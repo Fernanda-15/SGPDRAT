@@ -1,0 +1,24 @@
+#formUser{
+    background-color: #597fa5; /* OJALA PUDIERA VER LOS CAMBIOS :( ATT: ALLAN 28MAR2022*/
+    margin:auto;
+    padding: 25px;
+}
+
+#info label{
+    color: #ffff;
+}
+
+#contenedor{
+    background-color: rgb(178, 224, 192);
+}
+
+#boton:hover{
+    background-color: #5ed87c; 
+}
+
+#boton{
+    margin: 4px 2px;
+    cursor: pointer;
+    color:#ffff;
+}
+
