@@ -21,7 +21,7 @@ export class UserRegisterComponent implements OnInit {
     private _router:Router,
   ) {
     this.status=-1;
-    this.user = new User(3,"","","usuario","","","","");
+    this.user = new User(0,"","","usuario","","","","");
    }
 
   /*ngOnInit(): void {
@@ -33,7 +33,6 @@ export class UserRegisterComponent implements OnInit {
   }
 
   onSubmit(form:any){ 
-    console.log('BOTTON')
     console.log(this.user);
     this._userService.registro(this.user).subscribe(
      response=>{

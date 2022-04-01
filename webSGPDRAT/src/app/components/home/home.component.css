@@ -129,13 +129,16 @@ body{
   background-color: #ebeaf1;   
 }
 
+#us:hover{
+  background-color: #ffff;   
+}
 
 
 .sidebar ul li ul li:hover{
     background-color: #dbdbdf;    
   }
 
-  
+
 .main_content{
   width: 100%;
   margin-left: 210px;
