@@ -29,6 +29,12 @@ Route::prefix('api')->group(function () {
     Route::resource('/user', UserController::class,['except'=>['create','edit']]);
     Route::resource('/proyecto', ProyectoController::class,['except'=>['create','edit']]);
     Route::resource('/tarea', TareaController::class,['except'=>['create','edit']]);
+    Route::resource('/inspeccion', TareaController::class,['except'=>['create','edit']]);
+    Route::resource('/fotos', TareaController::class,['except'=>['create','edit']]);
+    Route::resource('/archivos', TareaController::class,['except'=>['create','edit']]);
+    Route::resource('/pago', TareaController::class,['except'=>['create','edit']]);
+    Route::resource('/comentario', TareaController::class,['except'=>['create','edit']]);
+    Route::resource('/log', TareaController::class,['except'=>['create','edit']]);
 
 });
 
