@@ -14,7 +14,9 @@ class Tarea extends Model
         'numero',
         'descripcion',
         'peso',
-        'avance'
+        'avance',
+        'fecha_inicio',
+        'fecha_final'
     ];
 
     public $incrementing = true; //SE SETEA EL AUTOINCREMENTAL

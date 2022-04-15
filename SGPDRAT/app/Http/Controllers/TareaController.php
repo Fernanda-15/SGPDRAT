@@ -51,6 +51,8 @@ class TareaController extends Controller
             'descripcion'=>'required',
             'peso'=>'required',
             'avance'=>'required',
+            'fecha_inicio'=>'required',
+            'fecha_final'=>'required'
         ];
         $valid=\validator($data,$rules);
         if($valid->fails()){
@@ -67,6 +69,8 @@ class TareaController extends Controller
             $tarea->descripcion=$data['descripcion']; 
             $tarea->peso=$data['peso'];
             $tarea->avance=$data['avance'];
+            $tarea->fecha_inicio=$data['fecha_inicio'];
+            $tarea->fecha_final=$data['fecha_final'];
             $tarea->save();
             $response=array(
                 'status'=>'success',
@@ -89,6 +93,8 @@ class TareaController extends Controller
                     'descripcion'=>'required',
                     'peso'=>'required',
                     'avance'=>'required',
+                    'fecha_inicio'=>'required',
+                    'fecha_final'=>'required'
                 ];
                 $validate=\validator($data,$rules);
                     if($validate->fails()){
