@@ -52,4 +52,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Proyecto');
     }
 
+    public function inspecciones(){
+        return $this->hasMany('App\Models\Inspeccion');
+    }
+
 }

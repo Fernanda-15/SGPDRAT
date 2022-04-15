@@ -32,4 +32,9 @@ class Proyecto extends Model
 
     public function tareas(){
         return $this->hasMany('App\Models\Tarea');
-    }}
+    }
+
+    public function inspecciones(){
+        return $this->hasMany('App\Models\Inspeccion');
+    }
+}
