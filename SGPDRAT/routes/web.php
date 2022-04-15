@@ -4,6 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\TareaController;
+use App\Http\Controllers\InspeccionController;
+use App\Http\Controllers\FotosController;
+use App\Http\Controllers\ArchivosController;
+use App\Http\Controllers\LogController;
+use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\PagoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,12 +36,12 @@ Route::prefix('api')->group(function () {
     Route::resource('/user', UserController::class,['except'=>['create','edit']]);
     Route::resource('/proyecto', ProyectoController::class,['except'=>['create','edit']]);
     Route::resource('/tarea', TareaController::class,['except'=>['create','edit']]);
-    Route::resource('/inspeccion', TareaController::class,['except'=>['create','edit']]);
-    Route::resource('/fotos', TareaController::class,['except'=>['create','edit']]);
-    Route::resource('/archivos', TareaController::class,['except'=>['create','edit']]);
-    Route::resource('/pago', TareaController::class,['except'=>['create','edit']]);
-    Route::resource('/comentario', TareaController::class,['except'=>['create','edit']]);
-    Route::resource('/log', TareaController::class,['except'=>['create','edit']]);
+    Route::resource('/inspeccion', InspeccionController::class,['except'=>['create','edit']]);
+    Route::resource('/fotos', FotosController::class,['except'=>['create','edit']]);
+    Route::resource('/archivos', ArchivosController::class,['except'=>['create','edit']]);
+    Route::resource('/pago', PagoController::class,['except'=>['create','edit']]);
+    Route::resource('/comentario', ComentarioController::class,['except'=>['create','edit']]);
+    Route::resource('/log', LogController::class,['except'=>['create','edit']]);
 
 });
 
