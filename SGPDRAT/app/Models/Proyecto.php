@@ -37,4 +37,15 @@ class Proyecto extends Model
     public function inspecciones(){
         return $this->hasMany('App\Models\Inspeccion');
     }
+
+    public function comentarios(){
+        return $this->hasMany('App\Models\Comentario');
+    }
+
+    public function pagos(){
+        return $this->hasMany('App\Models\Pago');
+    }
+    public function logs(){
+        return $this->hasMany('App\Models\Log');
+    }
 }
