@@ -32,4 +32,12 @@ class Inspeccion extends Model
     public function proyecto(){
         return $this->belongsTo('App\Models\Proyecto','proyecto_id');
     }
+
+    public function fotos(){
+        return $this->hasMany('App\Models\Fotos');
+    }
+
+    public function archivos(){
+        return $this->hasMany('App\Models\Archivos');
+    }
 }
