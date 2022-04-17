@@ -1,3 +1,4 @@
+
 <div style="border:20px;" [ngSwitch]="status">
     <div  class="alert alert-success" *ngSwitchCase="0">
       Usuario registrado con exito!!!
@@ -7,17 +8,17 @@
     </div>
    </div>
 
-<div class="col-md-12-" id="contenedor"> 
+<div class="col-md-12-" id="contenedor">
 
     <div class="form-group">
         <h2 style="font-size: 25px; text-align:center; ">Añadir Usuario</h2>
       </div>
 
     <form id="formUser" class="col-md-6 mr-auto ml-auto" #registerUserForm="ngForm" (ngSubmit)="onSubmit(registerUserForm)">
-        
+
         <div id="info" class="form-group">
             <label>Nombre de Usuario:</label>
-            <input type="text" name="nombreUsuario" class="form-control" #nombreUsuario="ngModel" 
+            <input type="text" name="nombreUsuario" class="form-control" #nombreUsuario="ngModel"
             [(ngModel)]="user.nombreUsuario" required pattern="^[a-zA-Z0-9\.]*$"> <!--PATRON ALFANUMERICO -->
             <small *ngIf="!nombreUsuario.valid && nombreUsuario.touched" class="invalid-feedback d-block">
                 El nombre no es válido
@@ -26,13 +27,13 @@
 
         <div id="info" class="form-group">
             <label>Contraseña: </label>
-            <input type="text" name="contrasena" class="form-control" #contrasena="ngModel" 
-            [(ngModel)]="user.contrasena" required pattern="^[a-zA-Z0-9\.]*$"> 
+            <input type="text" name="contrasena" class="form-control" #contrasena="ngModel"
+            [(ngModel)]="user.contrasena" required pattern="^[a-zA-Z0-9\.]*$">
             <small *ngIf="!contrasena.valid && contrasena.touched" class="invalid-feedback d-block">
                 La contraseña no es válida
             </small>
         </div>
-        
+
         <div id="info" class="form-group">
             <label>Role</label>
             <select name="role" #role="ngModel" [(ngModel)]="user.rol" class="form-control">
@@ -44,7 +45,7 @@
 
         <div id="info" class="form-group">
             <label>Nombre:</label>
-            <input type="text" name="nombre" class="form-control" #nombre="ngModel" 
+            <input type="text" name="nombre" class="form-control" #nombre="ngModel"
             [(ngModel)]="user.nombre" required pattern="[a-zA-Z ]{1,254}"> <!--PATRON LETRAS CON ESPACIO-->
             <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
                 El nombre no es válido
@@ -52,7 +53,7 @@
         </div>
         <div id="info" class="form-group">
             <label>Cédula:</label>
-            <input type="text" name="cedula" class="form-control" #cedula="ngModel" 
+            <input type="text" name="cedula" class="form-control" #cedula="ngModel"
             [(ngModel)]="user.cedula" required pattern="^[0-9\.]*$"> <!--PATRON NUMERICO -->
             <small *ngIf="!cedula.valid && cedula.touched" class="invalid-feedback d-block">
                 La cédula no es válida
@@ -60,20 +61,20 @@
         </div>
         <div id="info" class="form-group">
             <label>Teléfono: </label>
-            <input type="text" name="telefono" class="form-control" #telefono="ngModel" 
-            [(ngModel)]="user.telefono" required pattern="^[0-9\.]*$"> 
+            <input type="text" name="telefono" class="form-control" #telefono="ngModel"
+            [(ngModel)]="user.telefono" required pattern="^[0-9\.]*$">
             <small *ngIf="!telefono.valid && telefono.touched" class="invalid-feedback d-block">
                 El teléfono no es válido
             </small>
         </div>
-   
+
         <div id="info" class="form-group">
             <label>Correo electrónico</label>
             <input type="email" name="correo" class="form-control" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
             #correo="ngModel" [(ngModel)]="user.correo">
             <small *ngIf="!correo.valid&&correo.touched" class="invalid-feedback d-block">El correo electrónico no es válido</small>
           </div>
-  
+
         <input id="boton" type="submit" value="Agregar" class="btn btn-success" [disabled]="registerUserForm.invalid">
     </form>
 </div>
