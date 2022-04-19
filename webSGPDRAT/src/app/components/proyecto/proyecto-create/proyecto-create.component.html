@@ -52,6 +52,8 @@
         <input type="date" name="fecha_inicio" class="form-control" #fecha_inicio="ngModel" [(ngModel)]="proyecto.fecha_inicio">
     </div>
 
+    
+    <!--<div> {{proyecto.fecha_inicio | date : 'yyyy-MM-dd'}} </div> Formato fecha    -->
     <div id="info" class="form-group"> 
         <label for="fecha_final">Fecha de finalización: </label>
         <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="proyecto.fecha_final">

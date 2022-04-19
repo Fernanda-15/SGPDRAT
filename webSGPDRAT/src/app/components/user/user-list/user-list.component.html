@@ -1,9 +1,9 @@
 
 <div class="container" *ngIf="users">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-  
+   
       <h2>Lista de Usuarios</h2>
      
+      <div class="table-responsive">
       <table  class="table table-striped " >
           <thead>
               <tr>
@@ -32,12 +32,12 @@
                     <td >
                       <a [routerLink]="['/user-update',user.id]" class="btn btn-warning btn-xs"  u >
                        
-                          <span  class="glyphicon glyphicon-pencil"></span>
+                          <span  class="bi bi-pencil-fill"></span>
                       </a>
                     </td>
                     <td>
                     <button id="btnDelete" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModal" [attr.data-target]="'#exampleModal'+user.id">
-                        <span class="glyphicon glyphicon-remove"></span>
+                        <span class="bi bi-trash-fill"></span>
                     </button>
                     <div class="modal fade" id="exampleModal{{user.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -69,7 +69,7 @@
   
         
       </table>
-  
+    </div>
       
   
 </div>

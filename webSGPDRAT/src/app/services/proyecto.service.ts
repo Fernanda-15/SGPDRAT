@@ -4,7 +4,6 @@ import { Observable } from "rxjs";
 import { global } from "./global";
 import { Proyecto } from "../models/proyecto";
 
-
 @Injectable()
 export class ProyectoService{
 
@@ -25,5 +24,30 @@ export class ProyectoService{
         return this._http.post(this.url+'proyecto', params, {headers: headers});
     }
   
-    
+    public getProyectos():Observable<any>{
+        let httpHeaders =new HttpHeaders().append('Content-Type','application/x-www-form-urlencoded');//.append('token',this.token)
+        return this._http.get(this.url+'proyecto',{headers:httpHeaders});
+    }
+
+    getProyecto(id:number):Observable<any>{
+        let httpHeaders =new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+'proyecto/'+id , {headers:httpHeaders});
+    }
+
+    getTareas(id:number):Observable<any>{
+        let httpHeaders =new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+'tarea/proyecto/'+id , {headers:httpHeaders});
+    }
+
+    public deleteProyecto(id:number) : Observable<any>{
+        let httpHeaders=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.delete(this.url+'proyecto/'+id,{headers:httpHeaders});
+    }
+
+    update(proyecto:Proyecto):Observable<any>{
+        let json=JSON.stringify(proyecto);
+        let params='json='+json;
+        let httpHeaders=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.put(this.url+'proyecto/'+proyecto.id,params,{headers:httpHeaders});
+      }
 }

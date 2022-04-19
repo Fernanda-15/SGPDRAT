@@ -1,1 +1,73 @@
-<p>proyecto-list works!</p>
+<div class="loading" *ngIf="!proyectos">
+    Cargando...
+</div>
+<div class="container-fluid" *ngIf="proyectos">
+
+    <div class="card-columns">
+        <article class="card w-100" *ngFor="let proyecto of proyectos">
+            <div class="card-header">
+               <!-- <h3>{{proyecto.nombre}}</h3> --> 
+               
+                <h3>
+                    <a [routerLink]="['/proyecto-info',proyecto.id]">{{proyecto.nombre}}</a>
+                </h3>
+            
+            </div>
+            <div class="card-body">
+                <!--Datos para desplegar-->
+                <div>
+                    
+                    <h6>Objetivo</h6><a>{{proyecto.objetivo}}</a>
+                    <hr>
+                    <h6>Fecha inicio</h6><a>{{proyecto.fecha_inicio}}</a>
+                    <hr>
+                    <h6>Fecha final</h6><a>{{proyecto.fecha_final}}</a>
+                    
+                </div>
+                <!--Botones-->
+                <div class="buttons mt-5">
+
+                    <a [routerLink]="['/tarea-list',proyecto.id]" class="btn btn-success mr-2">
+                    <span  class="bi bi-clipboard2-fill"></span>
+                   </a> 
+
+                   <a [routerLink]="['/proyecto-update', proyecto.id]" class="btn btn-warning mr-2">
+                    <span  class="bi bi-pencil-fill"></span>
+                   </a>
+
+                <button id="btnDelete" class="btn btn-danger btn-xs mr-2" data-toggle="modal" data-target="#exampleModal" [attr.data-target]="'#exampleModal'+proyecto.id">
+                    <span class="bi bi-trash-fill"></span>
+                </button>
+                <div class="modal fade" id="exampleModal{{proyecto.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Confirmar</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          ¿Esta seguro de eliminar el proyecto?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                          <button id="btnConfirmar{{proyecto.id}}"  type="button" class="btn btn-success" (click)="delete(proyecto.id)" data-dismiss="modal">Aceptar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <script>
+                    $('#btnDelete'+proyecto.id).attr('data-target','#exampleModal'+proyecto.id);
+                    $('#btnConfirmar'+proyecto.id).attr('data-target','#exampleModal'+proyecto.id);
+                  </script>
+
+
+
+                </div>    
+            </div>
+
+        </article>
+    </div>
+
+</div>

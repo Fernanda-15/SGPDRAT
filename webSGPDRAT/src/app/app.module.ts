@@ -14,6 +14,10 @@ import { UserUpdateComponent } from './components/user/user-update/user-update.c
 import { ProyectoCreateComponent } from './components/proyecto/proyecto-create/proyecto-create.component';
 import { ProyectoListComponent } from './components/proyecto/proyecto-list/proyecto-list.component';
 import { ProyectoUpdateComponent } from './components/proyecto/proyecto-update/proyecto-update.component';
+import { TareaCreateComponent } from './components/tarea/tarea-create/tarea-create.component';
+import { TareaUpdateComponent } from './components/tarea/tarea-update/tarea-update.component';
+import { TareaListComponent } from './components/tarea/tarea-list/tarea-list.component';
+import { ProyectoInfoComponent } from './components/proyecto/proyecto-info/proyecto-info.component';
 
 @NgModule({ 
   declarations: [
@@ -27,6 +31,10 @@ import { ProyectoUpdateComponent } from './components/proyecto/proyecto-update/p
     ProyectoCreateComponent,
     ProyectoListComponent,
     ProyectoUpdateComponent,
+    TareaCreateComponent,
+    TareaUpdateComponent,
+    TareaListComponent,
+    ProyectoInfoComponent,
   ],
   imports: [
     BrowserModule,
