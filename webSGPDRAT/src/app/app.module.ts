@@ -15,7 +15,8 @@ import { ProyectoCreateComponent } from './components/proyecto/proyecto-create/p
 import { ProyectoListComponent } from './components/proyecto/proyecto-list/proyecto-list.component';
 import { ProyectoUpdateComponent } from './components/proyecto/proyecto-update/proyecto-update.component';
 
-@NgModule({ 
+
+@NgModule({
   declarations: [
     AppComponent,
     LoginComponent,

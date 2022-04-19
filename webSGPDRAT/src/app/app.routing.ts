@@ -2,6 +2,7 @@
 import { ModuleWithProviders } from "@angular/core";
 import {Routes,RouterModule} from '@angular/router';
 
+
 //IMPORTAR COMPONENTES
 import { LoginComponent } from "./components/login/login.component";
 import { HomeComponent} from './components/home/home.component';
@@ -12,6 +13,7 @@ import {ProyectoCreateComponent} from './components/proyecto/proyecto-create/pro
 import {ProyectoListComponent} from './components/proyecto/proyecto-list/proyecto-list.component';
 import {ProyectoUpdateComponent} from './components/proyecto/proyecto-update/proyecto-update.component';
 import { ErrorComponent } from "./components/error/error.component";
+
 
 
 //DEFINIR RUTAS

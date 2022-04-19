@@ -3,6 +3,7 @@ import { User } from '../../../models/user';
 import { UserService } from '../../../services/user.service';
 import{Router,ActivatedRoute} from '@angular/router';
 
+
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
@@ -17,7 +18,7 @@ export class UserRegisterComponent implements OnInit {
   public reset=false;
 
   constructor(
-    private _userService: UserService, 
+    private _userService: UserService,
     private _router:Router,
   ) {
     this.status=-1;
@@ -32,16 +33,16 @@ export class UserRegisterComponent implements OnInit {
     console.log('COMPONENTE DE REGISTRO')
   }
 
-  onSubmit(form:any){ 
+  onSubmit(form:any){
     console.log(this.user);
     this._userService.registro(this.user).subscribe(
      response=>{
       console.log(response);
         if(response.status == "success"){
           this.status = 0;
-          form.reset(); 
+          form.reset();
           this._router.navigate(['/user-list']);
-          
+
          }else{
                   this.status=1;
                }
@@ -49,12 +50,12 @@ export class UserRegisterComponent implements OnInit {
       error=>{
         this.status = 1;
        console.log(<any>error);
-       
+
       }
    );
   }
-  
+
 
  }
-  
+
 

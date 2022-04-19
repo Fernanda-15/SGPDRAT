@@ -8,14 +8,14 @@
     </div>
    </div>
 
-<div class="col-md-12-" id="contenedor">
 
     <div class="form-group">
-        <h2 style="font-size: 25px; text-align:center; ">Añadir Usuario</h2>
+      <p>Agregar Usuario</p>
       </div>
 
-    <form id="formUser" class="col-md-6 mr-auto ml-auto" #registerUserForm="ngForm" (ngSubmit)="onSubmit(registerUserForm)">
 
+    <form  id="formUser" class="col-md-6 mr-auto ml-auto" #registerUserForm="ngForm" (ngSubmit)="onSubmit(registerUserForm)">
+      <div class="row">
         <div id="info" class="form-group">
             <label>Nombre de Usuario:</label>
             <input type="text" name="nombreUsuario" class="form-control" #nombreUsuario="ngModel"
@@ -33,7 +33,8 @@
                 La contraseña no es válida
             </small>
         </div>
-
+      </div>
+      <div class="row">
         <div id="info" class="form-group">
             <label>Role</label>
             <select name="role" #role="ngModel" [(ngModel)]="user.rol" class="form-control">
@@ -51,6 +52,9 @@
                 El nombre no es válido
             </small>
         </div>
+
+      </div>
+      <div class="row">
         <div id="info" class="form-group">
             <label>Cédula:</label>
             <input type="text" name="cedula" class="form-control" #cedula="ngModel"
@@ -67,7 +71,8 @@
                 El teléfono no es válido
             </small>
         </div>
-
+      </div>
+      <div class="row">
         <div id="info" class="form-group">
             <label>Correo electrónico</label>
             <input type="email" name="correo" class="form-control" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
@@ -75,7 +80,13 @@
             <small *ngIf="!correo.valid&&correo.touched" class="invalid-feedback d-block">El correo electrónico no es válido</small>
           </div>
 
+          <div  id="info" style="margin-top:29px;">
+
         <input id="boton" type="submit" value="Agregar" class="btn btn-success" [disabled]="registerUserForm.invalid">
-    </form>
-</div>
+      </div>
+
+      </div>
+      </form>
+
+
 
