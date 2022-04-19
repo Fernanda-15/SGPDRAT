@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 //use PHPUnit\Framework\TestCase;
 use Tests\TestCase;
+use App\Models\User;
 
 class UserTest extends TestCase
 {
@@ -22,28 +23,17 @@ class UserTest extends TestCase
 
     public function test_getSingleUser()
     {
-        $response = $this->call('GET','api/user/1');
+        $userID = User::latest('created_at')->first()->value('id');
+
+        $response = $this->call('GET','api/user/'.($userID));
 
         $response->assertStatus(200, $response->status());
     }
 
-    public function test_insertUser(){
-        $headers = [];
-        $headers['CONTENT_TYPE'] = 'application/json';
-        $headers['Accept'] = 'application/json';
-
-        $data = array(
-            'nombreUsuario'=>'test',
-            'contrasena'=>'test',
-            'nombre'=>'test',
-            'cedula'=>'test',
-            'telefono'=>'test',
-            'correo'=>'test'
-        );
-
-        $json = json_encode($data);
-
-        $this->post('api/user', $json,)
-        ->assertStatus(200);
+    public function test_deleteUser()
+    {
+        $userID = User::latest('created_at')->first()->value('id');
+        $response = $this->call('DELETE','api/user/'.$userID);
+        $response->assertStatus(200, $response->status());
     }
 }

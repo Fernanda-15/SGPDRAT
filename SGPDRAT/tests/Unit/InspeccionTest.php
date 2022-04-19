@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 //use PHPUnit\Framework\TestCase;
 use Tests\TestCase;
+use App\Models\Inspeccion;
 
 class InspeccionTest extends TestCase
 {
@@ -21,8 +22,17 @@ class InspeccionTest extends TestCase
 
     public function test_getSingleInspeccion()
     {
-        $response = $this->call('GET','api/inspeccion/1');
+        $InspeccionID = Inspeccion::latest('created_at')->first()->value('id');
 
+        $response = $this->call('GET','api/inspeccion/'.($InspeccionID));
+
+        $response->assertStatus(200, $response->status());
+    }
+
+    public function test_deleteInspeccion()
+    {
+        $InspeccionID = Inspeccion::latest('created_at')->first()->value('id');
+        $response = $this->call('DELETE','api/inspeccion/'.$InspeccionID);
         $response->assertStatus(200, $response->status());
     }
 }

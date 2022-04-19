@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 //use PHPUnit\Framework\TestCase;
 use Tests\TestCase;
+use App\Models\Proyecto;
 
 class ProyectoTest extends TestCase
 {
@@ -19,10 +20,19 @@ class ProyectoTest extends TestCase
         $response->assertStatus(200, $response->status());
     }
 
-    public function test_getSingleproyecto()
+    public function test_getSingleProyecto()
     {
-        $response = $this->call('GET','api/proyecto/1');
+        $ProyectoID = Proyecto::latest('created_at')->first()->value('id');
 
+        $response = $this->call('GET','api/proyecto/'.($ProyectoID));
+
+        $response->assertStatus(200, $response->status());
+    }
+
+    public function test_deleteProyecto()
+    {
+        $ProyectoID = Proyecto::latest('created_at')->first()->value('id');
+        $response = $this->call('DELETE','api/proyecto/'.$ProyectoID);
         $response->assertStatus(200, $response->status());
     }
 }

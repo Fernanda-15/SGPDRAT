@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 //use PHPUnit\Framework\TestCase;
 use Tests\TestCase;
+use App\Models\Tarea;
 
 class TareaTest extends TestCase
 {
@@ -21,8 +22,17 @@ class TareaTest extends TestCase
 
     public function test_getSingleTarea()
     {
-        $response = $this->call('GET','api/tarea/1');
+        $TareaID = Tarea::latest('created_at')->first()->value('id');
 
+        $response = $this->call('GET','api/tarea/'.($TareaID));
+
+        $response->assertStatus(200, $response->status());
+    }
+
+    public function test_deleteTarea()
+    {
+        $TareaID = Tarea::latest('created_at')->first()->value('id');
+        $response = $this->call('DELETE','api/tarea/'.$TareaID);
         $response->assertStatus(200, $response->status());
     }
 }

@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 //use PHPUnit\Framework\TestCase;
 use Tests\TestCase;
+use App\Models\Comentario;
 
 class ComentarioTest extends TestCase
 {
@@ -21,8 +22,17 @@ class ComentarioTest extends TestCase
 
     public function test_getSingleComentario()
     {
-        $response = $this->call('GET','api/comentario/1');
+        $ComentarioID = Comentario::latest('created_at')->first()->value('id');
 
+        $response = $this->call('GET','api/comentario/'.($ComentarioID));
+
+        $response->assertStatus(200, $response->status());
+    }
+
+    public function test_deleteComentario()
+    {
+        $ComentarioID = Comentario::latest('created_at')->first()->value('id');
+        $response = $this->call('DELETE','api/comentario/'.$ComentarioID);
         $response->assertStatus(200, $response->status());
     }
 }

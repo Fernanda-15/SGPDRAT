@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 //use PHPUnit\Framework\TestCase;
 use Tests\TestCase;
+use App\Models\Archivos;
 
 class ArchivosTest extends TestCase
 {
@@ -21,8 +22,17 @@ class ArchivosTest extends TestCase
 
     public function test_getSingleArchivos()
     {
-        $response = $this->call('GET','api/archivos/1');
+        $ArchivosID = Archivos::latest('created_at')->first()->value('id');
 
+        $response = $this->call('GET','api/archivos/'.($ArchivosID));
+
+        $response->assertStatus(200, $response->status());
+    }
+
+    public function test_deleteArchivos()
+    {
+        $ArchivosID = Archivos::latest('created_at')->first()->value('id');
+        $response = $this->call('DELETE','api/archivos/'.$ArchivosID);
         $response->assertStatus(200, $response->status());
     }
 }
