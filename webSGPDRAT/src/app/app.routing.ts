@@ -2,6 +2,7 @@
 import { ModuleWithProviders } from "@angular/core";
 import {Routes,RouterModule} from '@angular/router';
 
+
 //IMPORTAR COMPONENTES
 import { LoginComponent } from "./components/login/login.component";
 import { HomeComponent} from './components/home/home.component';
@@ -16,6 +17,7 @@ import {TareaListComponent} from './components/tarea/tarea-list/tarea-list.compo
 import {TareaCreateComponent} from './components/tarea/tarea-create/tarea-create.component';
 import {TareaUpdateComponent} from './components/tarea/tarea-update/tarea-update.component';
 import { ErrorComponent } from "./components/error/error.component";
+
 
 
 //DEFINIR RUTAS

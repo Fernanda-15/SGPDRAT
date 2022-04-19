@@ -1,84 +1,107 @@
-<p>proyecto-create works!</p>
 
-<form id="formProyecto" class="col-md-6 mr-auto ml-auto" #createProyectoForm="ngForm" (ngSubmit)="onSubmit(createProyectoForm)">
-           
-    <div id="info" class="form-group">
-            <label>Usuario: </label>
-            <select name="usuario" #usuario="ngModel" [(ngModel)]="proyecto.user_id" class="form-control">
-                <option *ngFor="let us of users" value="{{us.id}}">
-                    {{us.nombre}}
-                  </option>
-            </select>
+  <div class="form-group">
+    <p>Agregar Proyecto</p>
+    </div>
+  <form id="formProyecto" class="col-md-6 mr-auto ml-auto" #createProyectoForm="ngForm" (ngSubmit)="onSubmit(createProyectoForm)">
+
+    <div class="row">
+      <div id="info" class="form-group">
+              <label>Usuario: </label>
+              <select name="usuario" #usuario="ngModel" [(ngModel)]="proyecto.user_id" class="form-control">
+                  <option *ngFor="let us of users" value="{{us.id}}">
+                      {{us.nombre}}
+                    </option>
+              </select>
+      </div>
+
+      <div id="info" class="form-group">
+          <label>Numero de contratación: </label>
+          <input type="text" name="numero_contratacion" class="form-control" #numero_contratacion="ngModel"
+          [(ngModel)]="proyecto.numero_contratacion" required pattern="^[a-zA-Z0-9\.]*$">
+          <small *ngIf="!numero_contratacion.valid && numero_contratacion.touched" class="invalid-feedback d-block">
+              El número de contratación no es válido
+          </small>
+      </div>
+
+    </div>
+    <div class="row">
+      <div id="info" class="form-group">
+              <label>Nombre: </label>
+              <input type="text" name="nombre" class="form-control" #nombre="ngModel"
+              [(ngModel)]="proyecto.nombre" required pattern="^[a-zA-Z0-9\.]*$">
+              <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
+                  El nombre no es válido
+              </small>
+      </div>
+
+      <div id="info" class="form-group">
+          <label>Objetivo: </label>
+          <input type="text" name="objetivo" class="form-control" #objetivo="ngModel"
+          [(ngModel)]="proyecto.objetivo" required pattern="^[a-zA-Z0-9\.]*$">
+          <small *ngIf="!objetivo.valid && objetivo.touched" class="invalid-feedback d-block">
+              El objetivo no es válido
+          </small>
+      </div>
     </div>
 
-    <div id="info" class="form-group">
-        <label>Numero de contratación: </label>
-        <input type="text" name="numero_contratacion" class="form-control" #numero_contratacion="ngModel" 
-        [(ngModel)]="proyecto.numero_contratacion" required pattern="^[a-zA-Z0-9\.]*$"> 
-        <small *ngIf="!numero_contratacion.valid && numero_contratacion.touched" class="invalid-feedback d-block">
-            El número de contratación no es válido
-        </small>
-    </div>  
-          
-    <div id="info" class="form-group">
-            <label>Nombre: </label>
-            <input type="text" name="nombre" class="form-control" #nombre="ngModel" 
-            [(ngModel)]="proyecto.nombre" required pattern="^[a-zA-Z0-9\.]*$"> 
-            <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
-                El nombre no es válido
-            </small>
-    </div>      
+    <div class="row">
+      <div id="info" class="form-group">
+          <label>Ubicación: </label>
+          <input type="text" name="ubicacion" class="form-control" #ubicacion="ngModel"
+          [(ngModel)]="proyecto.ubicacion" required pattern="^[a-zA-Z0-9\.]*$">
+          <small *ngIf="!ubicacion.valid && ubicacion.touched" class="invalid-feedback d-block">
+              La ubicacion no es válida
+          </small>
+      </div>
 
-    <div id="info" class="form-group">
-        <label>Objetivo: </label>
-        <input type="text" name="objetivo" class="form-control" #objetivo="ngModel" 
-        [(ngModel)]="proyecto.objetivo" required pattern="^[a-zA-Z0-9\.]*$"> 
-        <small *ngIf="!objetivo.valid && objetivo.touched" class="invalid-feedback d-block">
-            El objetivo no es válido
-        </small>
-    </div> 
-
-    <div id="info" class="form-group">
-        <label>Ubicación: </label>
-        <input type="text" name="ubicacion" class="form-control" #ubicacion="ngModel" 
-        [(ngModel)]="proyecto.ubicacion" required pattern="^[a-zA-Z0-9\.]*$"> 
-        <small *ngIf="!ubicacion.valid && ubicacion.touched" class="invalid-feedback d-block">
-            La ubicacion no es válida
-        </small>
-    </div> 
-
-    <div id="info" class="form-group"> 
-        <label for="fecha_inicio">Fecha de inicio: </label>
-        <input type="date" name="fecha_inicio" class="form-control" #fecha_inicio="ngModel" [(ngModel)]="proyecto.fecha_inicio">
+      <div id="info" class="form-group">
+          <label for="fecha_inicio">Fecha de inicio: </label>
+          <input type="date" name="fecha_inicio" class="form-control" #fecha_inicio="ngModel" [(ngModel)]="proyecto.fecha_inicio">
+      </div>
     </div>
 
+<<<<<<< HEAD
     
     <!--<div> {{proyecto.fecha_inicio | date : 'yyyy-MM-dd'}} </div> Formato fecha    -->
     <div id="info" class="form-group"> 
         <label for="fecha_final">Fecha de finalización: </label>
         <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="proyecto.fecha_final">
+=======
+    <div class="row">
+      <div id="info" class="form-group">
+          <label for="fecha_final">Fecha de finalización: </label>
+          <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="proyecto.fecha_final">
+      </div>
+
+      <!--FORMA DE PAGO, PREGUNTAR CUALES HAY -->
+      <div id="info" class="form-group">
+          <label>Forma de pago: </label>
+          <input type="text" name="forma_pago" class="form-control" #forma_pago="ngModel"
+          [(ngModel)]="proyecto.forma_pago" required pattern="^[a-zA-Z0-9\.]*$">
+          <small *ngIf="!forma_pago.valid && forma_pago.touched" class="invalid-feedback d-block">
+              La forma de pago no es válida
+          </small>
+      </div>
+>>>>>>> main
     </div>
 
-    <!--FORMA DE PAGO, PREGUNTAR CUALES HAY -->
-    <div id="info" class="form-group">
-        <label>Forma de pago: </label>
-        <input type="text" name="forma_pago" class="form-control" #forma_pago="ngModel" 
-        [(ngModel)]="proyecto.forma_pago" required pattern="^[a-zA-Z0-9\.]*$"> 
-        <small *ngIf="!forma_pago.valid && forma_pago.touched" class="invalid-feedback d-block">
-            La forma de pago no es válida
-        </small>
-    </div> 
+    <div class="row">
+      <div id="info" class="form-group">
+          <label>Monto adjudicado:</label>
+          <input type="text" name="monto_adjudicado" class="form-control" #monto_adjudicado="ngModel"
+          [(ngModel)]="proyecto.monto_adjudicado" required pattern="^[0-9\.]*$">
+          <small *ngIf="!monto_adjudicado.valid && monto_adjudicado.touched" class="invalid-feedback d-block">
+              La cédula no es válida
+          </small>
+      </div>
+      <div  id="info" style="margin-top:29px;">
 
-
-    <div id="info" class="form-group">
-        <label>Monto adjudicado:</label>
-        <input type="text" name="monto_adjudicado" class="form-control" #monto_adjudicado="ngModel" 
-        [(ngModel)]="proyecto.monto_adjudicado" required pattern="^[0-9\.]*$"> 
-        <small *ngIf="!monto_adjudicado.valid && monto_adjudicado.touched" class="invalid-feedback d-block">
-            La cédula no es válida
-        </small>
+      <input id="boton" type="submit" value="Agregar" class="btn btn-success" [disabled]="createProyectoForm.invalid">
+      </div>
     </div>
+  </form>
 
-    <input id="boton" type="submit" value="Agregar" class="btn btn-success" [disabled]="createProyectoForm.invalid">
 
-</form>
+
+
+

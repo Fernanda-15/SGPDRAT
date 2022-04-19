@@ -1,24 +1,59 @@
 #formUser{
-    background-color: #597fa5; /* OJALA PUDIERA VER LOS CAMBIOS :( ATT: ALLAN 28MAR2022*/
-    margin:auto;
-    padding: 25px;
+
+    margin-bottom: 50px;
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: dashed 4px rgba(20, 172, 232, 0.825);
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 32px 32px;
+    scroll-margin-bottom: 100%;
+}
+
+
+#info{
+  margin: 0px 0px 14px;
+padding: 5px;
+width : 200px;
+
 }
 
 #info label{
-    color: #ffff;
+    color: rgb(0, 0, 0);
 }
 
-#contenedor{
-    background-color: rgb(178, 224, 192);
+small{
+
+  margin:0px;
+  padding: 0px;
+}
+
+p{
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
 }
 
 #boton:hover{
-    background-color: #5ed87c; 
+    background-color: #5ed87c;
 }
 
 #boton{
-    margin: 4px 2px;
+
+  padding: 5px;
+    margin: 0px 0px 14px;
     cursor: pointer;
     color:#ffff;
 }
 
+/*
+.content{
+  overflow: hidden;
+  align-items: center;
+  box-sizing: border-box;
+  display: inline-flex;
+   flex-direction: column;
+  padding: 0 32px;
+} */

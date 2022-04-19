@@ -19,7 +19,8 @@ import { TareaUpdateComponent } from './components/tarea/tarea-update/tarea-upda
 import { TareaListComponent } from './components/tarea/tarea-list/tarea-list.component';
 import { ProyectoInfoComponent } from './components/proyecto/proyecto-info/proyecto-info.component';
 
-@NgModule({ 
+
+@NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
