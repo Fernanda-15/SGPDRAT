@@ -40,6 +40,16 @@ class TareaController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    public function getTareaByP($id){  
+        $data = Tarea::Where('proyecto_id',$id)->get();
+
+       return response()->json([
+        'status'=>'success',
+        'code'=>200,
+        'data'=>$data
+       ], 200);
+    }
+
     public function store(Request $request){
         $tarea=$request;
         $json=$request->input('json',null);
@@ -88,7 +98,6 @@ class TareaController extends Controller
             if(!empty($data)){
                 $data=array_map('trim',$data);
                 $rules=[
-                    'proyecto_id'=>'required|integer',
                     'numero'=>'required',
                     'descripcion'=>'required',
                     'peso'=>'required',
@@ -107,7 +116,8 @@ class TareaController extends Controller
                     }else{
                         $id=$data['id'];
                         unset($data['id']);  
-                        unset($data['created_at']);      
+                        unset($data['created_at']); 
+                        unset($data['proyecto_id']);  
                         $updated=Tarea::where('id',$id)->update($data);
                         if($updated>0){
                             $response=array(

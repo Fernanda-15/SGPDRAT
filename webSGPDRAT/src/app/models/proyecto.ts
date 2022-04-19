@@ -1,5 +1,6 @@
 export class Proyecto{
     constructor(
+        public id:number,
         public user_id:number,
         public numero_contratacion:string,
         public nombre:string,

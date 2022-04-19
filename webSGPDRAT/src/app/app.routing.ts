@@ -11,7 +11,11 @@ import {UserListComponent} from './components/user/user-list/user-list.component
 import {UserUpdateComponent} from './components/user/user-update/user-update.component';
 import {ProyectoCreateComponent} from './components/proyecto/proyecto-create/proyecto-create.component';
 import {ProyectoListComponent} from './components/proyecto/proyecto-list/proyecto-list.component';
+import {ProyectoInfoComponent} from './components/proyecto/proyecto-info/proyecto-info.component';
 import {ProyectoUpdateComponent} from './components/proyecto/proyecto-update/proyecto-update.component';
+import {TareaListComponent} from './components/tarea/tarea-list/tarea-list.component';
+import {TareaCreateComponent} from './components/tarea/tarea-create/tarea-create.component';
+import {TareaUpdateComponent} from './components/tarea/tarea-update/tarea-update.component';
 import { ErrorComponent } from "./components/error/error.component";
 
 
@@ -26,7 +30,11 @@ const appRoutes: Routes = [
     {path: 'user-update/:id',component:UserUpdateComponent},
     {path: 'proyecto-create', component:ProyectoCreateComponent},
     {path: 'proyecto-list', component:ProyectoListComponent},
+    {path: 'proyecto-info/:id', component:ProyectoInfoComponent},
     {path: 'proyecto-update/:id', component:ProyectoUpdateComponent},
+    {path: 'tarea-list/:id', component:TareaListComponent},
+    {path: 'tarea-create/:id', component:TareaCreateComponent},
+    {path: 'tarea-update/:id', component:TareaUpdateComponent},
     {path: '**', component: ErrorComponent}
 ];
 

@@ -1,0 +1,54 @@
+
+<form id="formTarea" class="col-md-6 mr-auto ml-auto" #createTareaForm="ngForm" (ngSubmit)="onSubmit(createTareaForm)">
+           
+
+    <div id="info" class="form-group">
+        <label>Numero de tarea: </label>
+        <input type="text" name="numero" class="form-control" #numero="ngModel" 
+        [(ngModel)]="tarea.numero" required pattern="^[a-zA-Z0-9\.]*$"> 
+        <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
+            El número de tarea no es válido
+        </small>
+    </div>  
+          
+    <div id="info" class="form-group">
+            <label>Descripcion: </label>
+            <input type="text" name="descripcion" class="form-control" #descripcion="ngModel" 
+            [(ngModel)]="tarea.descripcion" required pattern="^[a-zA-Z0-9\.]*$"> 
+            <small *ngIf="!descripcion.valid && descripcion.touched" class="invalid-feedback d-block">
+                La descripción no es válida
+            </small>
+    </div>      
+
+    <div id="info" class="form-group">
+        <label>Peso: </label>
+        <input type="text" name="peso" class="form-control" #peso="ngModel" 
+        [(ngModel)]="tarea.peso" required pattern="^[a-zA-Z0-9\.]*$"> 
+        <small *ngIf="!peso.valid && peso.touched" class="invalid-feedback d-block">
+            El peso de la tarea no es válido
+        </small>
+    </div>  
+
+    <div id="info" class="form-group">
+        <label>Avance: </label>
+        <input type="text" name="avance" class="form-control" #avance="ngModel" 
+        [(ngModel)]="tarea.avance" required pattern="^[a-zA-Z0-9\.]*$"> 
+        <small *ngIf="!avance.valid && avance.touched" class="invalid-feedback d-block">
+            El avance de tarea no es válido
+        </small>
+    </div>  
+
+    <div id="info" class="form-group"> 
+        <label for="fecha_inicio">Fecha de inicio: </label>
+        <input type="date" name="fecha_inicio" class="form-control" #fecha_inicio="ngModel" [(ngModel)]="tarea.fecha_inicio">
+    </div>
+
+    <div id="info" class="form-group"> 
+        <label for="fecha_final">Fecha de finalización: </label>
+        <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="tarea.fecha_final">
+    </div>
+
+   
+    <input id="boton" type="submit" value="Agregar" class="btn btn-success" [disabled]="createTareaForm.invalid">
+
+</form>

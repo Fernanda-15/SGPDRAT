@@ -3,7 +3,6 @@ import { Proyecto } from 'src/app/models/proyecto';
 import { ProyectoService } from 'src/app/services/proyecto.service';
 import { UserService } from 'src/app/services/user.service';
 import{Router} from '@angular/router';
-import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-proyecto-create',
@@ -26,7 +25,7 @@ export class ProyectoCreateComponent implements OnInit {
     private _router:Router,
   ) { 
     this.status=-1;
-    this.proyecto = new Proyecto(0,"","","","","31-03-2022","","",0);
+    this.proyecto = new Proyecto(0,0,"","","","","","","",0);
   }
 
   ngOnInit(): void {
