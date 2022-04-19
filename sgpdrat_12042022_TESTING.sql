@@ -11,19 +11,19 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
--- Schema sgpdrat
+-- Schema sgpdrat_test
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema sgpdrat
+-- Schema sgpdrat_test
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `sgpdrat` DEFAULT CHARACTER SET utf8 ;
-USE `sgpdrat` ;
+CREATE SCHEMA IF NOT EXISTS `sgpdrat_test` DEFAULT CHARACTER SET utf8 ;
+USE `sgpdrat_test` ;
 
 -- -----------------------------------------------------
--- Table `sgpdrat`.`users`
+-- Table `sgpdrat_test`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sgpdrat`.`users` (
+CREATE TABLE IF NOT EXISTS `sgpdrat_test`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombreUsuario` VARCHAR(16) NOT NULL,
   `contrasena` VARCHAR(255) NOT NULL,
@@ -42,9 +42,9 @@ DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `sgpdrat`.`proyecto`
+-- Table `sgpdrat_test`.`proyecto`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sgpdrat`.`proyecto` (
+CREATE TABLE IF NOT EXISTS `sgpdrat_test`.`proyecto` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `numero_contratacion` VARCHAR(32) NOT NULL,
@@ -61,16 +61,16 @@ CREATE TABLE IF NOT EXISTS `sgpdrat`.`proyecto` (
   INDEX `FK_Proyecto_User_idx` (`user_id` ASC) ,
   CONSTRAINT `FK_Proyecto_User`
     FOREIGN KEY (`user_id`)
-    REFERENCES `sgpdrat`.`users` (`id`))
+    REFERENCES `sgpdrat_test`.`users` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `sgpdrat`.`inspeccion`
+-- Table `sgpdrat_test`.`inspeccion`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sgpdrat`.`inspeccion` (
+CREATE TABLE IF NOT EXISTS `sgpdrat_test`.`inspeccion` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `proyecto_id` INT NOT NULL,
   `user_id` INT NOT NULL,
@@ -88,18 +88,18 @@ CREATE TABLE IF NOT EXISTS `sgpdrat`.`inspeccion` (
   INDEX `FK_Inspeccion_Proyecto_idx` (`proyecto_id` ASC) ,
   CONSTRAINT `FK_Inspeccion_Proyecto`
     FOREIGN KEY (`proyecto_id`)
-    REFERENCES `sgpdrat`.`proyecto` (`id`),
+    REFERENCES `sgpdrat_test`.`proyecto` (`id`),
   CONSTRAINT `FK_Inspeccion_User`
     FOREIGN KEY (`user_id`)
-    REFERENCES `sgpdrat`.`users` (`id`))
+    REFERENCES `sgpdrat_test`.`users` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `sgpdrat`.`archivos`
+-- Table `sgpdrat_test`.`archivos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sgpdrat`.`archivos` (
+CREATE TABLE IF NOT EXISTS `sgpdrat_test`.`archivos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `inspeccion_id` INT NOT NULL,
   `nombre` VARCHAR(128) NOT NULL,
@@ -109,15 +109,15 @@ CREATE TABLE IF NOT EXISTS `sgpdrat`.`archivos` (
   INDEX `FK_Archivos_Inspeccion_idx` (`inspeccion_id` ASC) ,
   CONSTRAINT `FK_Archivos_Inspeccion`
     FOREIGN KEY (`inspeccion_id`)
-    REFERENCES `sgpdrat`.`inspeccion` (`id`))
+    REFERENCES `sgpdrat_test`.`inspeccion` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `sgpdrat`.`comentario`
+-- Table `sgpdrat_test`.`comentario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sgpdrat`.`comentario` (
+CREATE TABLE IF NOT EXISTS `sgpdrat_test`.`comentario` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `proyecto_id` INT NOT NULL,
   `contenido` VARCHAR(2048) NOT NULL,
@@ -127,16 +127,16 @@ CREATE TABLE IF NOT EXISTS `sgpdrat`.`comentario` (
   INDEX `FK_Comentario_Proyecto_idx` (`proyecto_id` ASC) ,
   CONSTRAINT `FK_Comentario_Proyecto`
     FOREIGN KEY (`proyecto_id`)
-    REFERENCES `sgpdrat`.`proyecto` (`id`))
+    REFERENCES `sgpdrat_test`.`proyecto` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `sgpdrat`.`fotos`
+-- Table `sgpdrat_test`.`fotos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sgpdrat`.`fotos` (
+CREATE TABLE IF NOT EXISTS `sgpdrat_test`.`fotos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `inspeccion_id` INT NOT NULL,
   `nombre` VARCHAR(128) NOT NULL,
@@ -146,15 +146,15 @@ CREATE TABLE IF NOT EXISTS `sgpdrat`.`fotos` (
   INDEX `FK_Fotos_Inspeccion_idx` (`inspeccion_id` ASC) ,
   CONSTRAINT `FK_Fotos_Inspeccion`
     FOREIGN KEY (`inspeccion_id`)
-    REFERENCES `sgpdrat`.`inspeccion` (`id`))
+    REFERENCES `sgpdrat_test`.`inspeccion` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `sgpdrat`.`log`
+-- Table `sgpdrat_test`.`log`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sgpdrat`.`log` (
+CREATE TABLE IF NOT EXISTS `sgpdrat_test`.`log` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `proyecto_id` INT NOT NULL,
   `usuario` VARCHAR(16) NOT NULL,
@@ -165,16 +165,16 @@ CREATE TABLE IF NOT EXISTS `sgpdrat`.`log` (
   INDEX `FK_Log_Proyecto_idx` (`proyecto_id` ASC) ,
   CONSTRAINT `FK_Log_Proyecto`
     FOREIGN KEY (`proyecto_id`)
-    REFERENCES `sgpdrat`.`proyecto` (`id`))
+    REFERENCES `sgpdrat_test`.`proyecto` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `sgpdrat`.`pago`
+-- Table `sgpdrat_test`.`pago`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sgpdrat`.`pago` (
+CREATE TABLE IF NOT EXISTS `sgpdrat_test`.`pago` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `proyecto_id` INT NOT NULL,
   `numero` INT NOT NULL,
@@ -186,16 +186,16 @@ CREATE TABLE IF NOT EXISTS `sgpdrat`.`pago` (
   INDEX `FK_Pago_Proyecto_idx` (`proyecto_id` ASC) ,
   CONSTRAINT `FK_Pago_Proyecto`
     FOREIGN KEY (`proyecto_id`)
-    REFERENCES `sgpdrat`.`proyecto` (`id`))
+    REFERENCES `sgpdrat_test`.`proyecto` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `sgpdrat`.`tarea`
+-- Table `sgpdrat_test`.`tarea`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sgpdrat`.`tarea` (
+CREATE TABLE IF NOT EXISTS `sgpdrat_test`.`tarea` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `proyecto_id` INT NOT NULL,
   `numero` VARCHAR(45) NOT NULL,
@@ -210,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `sgpdrat`.`tarea` (
   INDEX `FK_Tarea_Proyecto_idx` (`proyecto_id` ASC) ,
   CONSTRAINT `FK_Tarea_Proyecto`
     FOREIGN KEY (`proyecto_id`)
-    REFERENCES `sgpdrat`.`proyecto` (`id`))
+    REFERENCES `sgpdrat_test`.`proyecto` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8mb3;
