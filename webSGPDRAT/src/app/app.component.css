@@ -1,6 +1,8 @@
 
 
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+/* angular-cli file: src/styles.css */
+@import "../../node_modules/angular-calendar/css/angular-calendar.css";
 
 *{
   margin: 0;
