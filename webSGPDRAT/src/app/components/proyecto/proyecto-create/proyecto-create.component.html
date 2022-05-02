@@ -60,29 +60,11 @@
       </div>
     </div>
 
-<<<<<<< HEAD
     
     <!--<div> {{proyecto.fecha_inicio | date : 'yyyy-MM-dd'}} </div> Formato fecha    -->
     <div id="info" class="form-group"> 
         <label for="fecha_final">Fecha de finalización: </label>
         <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="proyecto.fecha_final">
-=======
-    <div class="row">
-      <div id="info" class="form-group">
-          <label for="fecha_final">Fecha de finalización: </label>
-          <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="proyecto.fecha_final">
-      </div>
-
-      <!--FORMA DE PAGO, PREGUNTAR CUALES HAY -->
-      <div id="info" class="form-group">
-          <label>Forma de pago: </label>
-          <input type="text" name="forma_pago" class="form-control" #forma_pago="ngModel"
-          [(ngModel)]="proyecto.forma_pago" required pattern="^[a-zA-Z0-9\.]*$">
-          <small *ngIf="!forma_pago.valid && forma_pago.touched" class="invalid-feedback d-block">
-              La forma de pago no es válida
-          </small>
-      </div>
->>>>>>> main
     </div>
 
     <div class="row">
