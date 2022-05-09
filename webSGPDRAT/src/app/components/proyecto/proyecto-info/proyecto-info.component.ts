@@ -5,6 +5,7 @@ import { Proyecto } from 'src/app/models/proyecto';
 import { Tarea } from 'src/app/models/tarea';
 import{Router,ActivatedRoute} from '@angular/router';
 
+
 @Component({
   selector: 'app-proyecto-info',
   templateUrl: './proyecto-info.component.html',
