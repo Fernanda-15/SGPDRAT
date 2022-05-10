@@ -18,6 +18,9 @@ import { TareaCreateComponent } from './components/tarea/tarea-create/tarea-crea
 import { TareaUpdateComponent } from './components/tarea/tarea-update/tarea-update.component';
 import { TareaListComponent } from './components/tarea/tarea-list/tarea-list.component';
 import { ProyectoInfoComponent } from './components/proyecto/proyecto-info/proyecto-info.component';
+import { InspeccionCreateComponent } from './components/inspeccion/inspeccion-create/inspeccion-create.component';
+import { InspeccionUpdateComponent } from './components/inspeccion/inspeccion-update/inspeccion-update.component';
+import { InspeccionListComponent } from './components/inspeccion/inspeccion-list/inspeccion-list.component';
 
 
 @NgModule({
@@ -36,6 +39,9 @@ import { ProyectoInfoComponent } from './components/proyecto/proyecto-info/proye
     TareaUpdateComponent,
     TareaListComponent,
     ProyectoInfoComponent,
+    InspeccionCreateComponent,
+    InspeccionUpdateComponent,
+    InspeccionListComponent,
   ],
   imports: [
     BrowserModule,

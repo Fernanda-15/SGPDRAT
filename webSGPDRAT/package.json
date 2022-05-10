@@ -10,37 +10,22 @@
   },
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
     "@angular/animations": "~13.3.3",
     "@angular/common": "~13.3.3",
     "@angular/compiler": "~13.3.3",
     "@angular/core": "~13.3.3",
     "@angular/forms": "~13.3.3",
+    "@angular/material": "^13.3.3",
     "@angular/platform-browser": "~13.3.3",
     "@angular/platform-browser-dynamic": "~13.3.3",
     "@angular/router": "~13.3.3",
-=======
-    "@angular/animations": "~13.0.0",
-    "@angular/cdk": "^13.3.3",
-    "@angular/common": "~13.0.0",
-    "@angular/compiler": "~13.0.0",
-    "@angular/core": "~13.0.0",
-    "@angular/flex-layout": "^13.0.0-beta.38",
-    "@angular/forms": "~13.0.0",
-    "@angular/material": "^13.3.3",
-    "@angular/platform-browser": "~13.0.0",
-    "@angular/platform-browser-dynamic": "~13.0.0",
-    "@angular/router": "~13.0.0",
->>>>>>> main
     "angular-file-uploader": "7.1.1",
     "angular-froala-wysiwyg": "4.0.6",
     "bootstrap": "4.6.1",
+    "font-awesome": "^4.7.0",
     "jquery": "3.6.0",
     "rxjs": "~7.4.0",
-<<<<<<< HEAD
     "tslib": "^2.3.0",
-=======
->>>>>>> main
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

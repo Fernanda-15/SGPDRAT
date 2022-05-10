@@ -16,6 +16,8 @@ import {ProyectoUpdateComponent} from './components/proyecto/proyecto-update/pro
 import {TareaListComponent} from './components/tarea/tarea-list/tarea-list.component';
 import {TareaCreateComponent} from './components/tarea/tarea-create/tarea-create.component';
 import {TareaUpdateComponent} from './components/tarea/tarea-update/tarea-update.component';
+import {InspeccionCreateComponent} from './components/inspeccion/inspeccion-create/inspeccion-create.component';
+
 import { ErrorComponent } from "./components/error/error.component";
 
 
@@ -35,6 +37,7 @@ const appRoutes: Routes = [
     {path: 'tarea-list/:id', component:TareaListComponent},
     {path: 'tarea-create/:id', component:TareaCreateComponent},
     {path: 'tarea-update/:id', component:TareaUpdateComponent},
+    {path: 'inspeccion-create/:id', component:InspeccionCreateComponent},
     {path: '**', component: ErrorComponent}
 ];
 

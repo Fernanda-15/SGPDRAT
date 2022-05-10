@@ -59,23 +59,34 @@ export class TareaCreateComponent implements OnInit {
     console.log(this.tarea);
     this.tarea.proyecto_id=this.proyecto.id;
     console.log(this.tarea);
-    this._tareaService.registro(this.tarea).subscribe(
-     response=>{
-      console.log(response);
-        if(response.status == "success"){
-          this.status = 0;
-          form.reset(); 
-          this._router.navigate(['/tarea-list',this.tarea.proyecto_id]);
-          
-         }else{
-                  this.status=1;
-               }
-       },
-      error=>{
-        this.status = 1;
-       console.log(<any>error);
-       
+    if(this.proyecto.fecha_inicio <= this.tarea.fecha_inicio){ //verificaciones de fechas
+      if(this.proyecto.fecha_final >= this.tarea.fecha_final){
+
+        this._tareaService.registro(this.tarea).subscribe(
+          response=>{
+           console.log(response);
+             if(response.status == "success"){
+               this.status = 0;
+               form.reset(); 
+               this._router.navigate(['/tarea-list',this.tarea.proyecto_id]);
+               
+              }else{
+                       this.status=1;
+                    }
+            },
+           error=>{
+             this.status = 1;
+            console.log(<any>error);
+            
+           }
+        );
+
+      }else{
+        this.status=2;
       }
-   );
+    }else{
+      this.status=3;
+    }
+   
   }
 }
