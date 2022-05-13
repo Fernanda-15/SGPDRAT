@@ -1,6 +1,6 @@
 <!--TABLA DE TAREAS-->
 <div class="container" *ngIf="tareas">
-        <h5 style="">Lista de Tareas</h5>
+        <h5 id="titulo">Lista de Tareas</h5>
 
         <div class="table-responsive">
        
@@ -70,8 +70,8 @@
         </div>
         
     <!--Boton nueva tarea  -->
-        <div>
-            <button type="button" class="btn btn-success" id="tarea" [routerLink]="['/tarea-create',proyecto.id]">
+        <div style="position:absolute; right:225px; ">
+            <button  type="button" class="btn btn-success"  [routerLink]="['/tarea-create',proyecto.id]">
                 <span class="bi bi-clipboard2-plus-fill"> Agregar Tarea</span>
             </button>
         </div>
