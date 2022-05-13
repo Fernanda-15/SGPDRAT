@@ -13,9 +13,9 @@
 
 
 #info{
-  margin: 0px 0px 14px;
+margin: 0px 0px 14px;
 padding: 5px;
-width : 200px;
+width : 195px;
 
 }
 
@@ -24,7 +24,6 @@ width : 200px;
 }
 
 small{
-
   margin:0px;
   padding: 0px;
 }
