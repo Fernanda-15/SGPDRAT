@@ -60,24 +60,23 @@
       </div>
     </div>
 
-    
     <!--<div> {{proyecto.fecha_inicio | date : 'yyyy-MM-dd'}} </div> Formato fecha    -->
-    <div id="info" class="form-group"> 
+    <div class="row">
+      <div id="info" class="form-group"> 
         <label for="fecha_final">Fecha de finalización: </label>
         <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="proyecto.fecha_final">
     </div>
-
-    <div class="row">
       <div id="info" class="form-group">
           <label>Monto adjudicado:</label>
           <input type="text" name="monto_adjudicado" class="form-control" #monto_adjudicado="ngModel"
           [(ngModel)]="proyecto.monto_adjudicado" required pattern="^[0-9\.]*$">
           <small *ngIf="!monto_adjudicado.valid && monto_adjudicado.touched" class="invalid-feedback d-block">
-              La cédula no es válida
+              El monto no es válido
           </small>
       </div>
-      <div  id="info" style="margin-top:29px;">
-
+    </div>
+    <div class="row">
+    <div style="position: center; margin-top: 29px;">
       <input id="boton" type="submit" value="Agregar" class="btn btn-success" [disabled]="createProyectoForm.invalid">
       </div>
     </div>
