@@ -145,4 +145,14 @@ class LogController extends Controller
         }
         return response()->json($response,$response['code']);
     }
+
+
+    public function getLogByP($id){  
+        $data = Log::Where('proyecto_id',$id)->get();
+       return response()->json([
+        'status'=>'success',
+        'code'=>200,
+        'data'=>$data
+       ], 200);
+    }
 }

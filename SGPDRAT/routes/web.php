@@ -32,6 +32,7 @@ Route::prefix('api')->group(function () {
     Route::post('/user/updaterole',[UserController::class,'updateRole']);
     Route::post('/user/getrole/{id}',[UserController::class,'getRole']);
     Route::get('/tarea/proyecto/{id}',[TareaController::class,'getTareaByP']);
+    Route::get('/log/proyecto/{id}',[LogController::class,'getLogByP']);
 
     //RUTAS AUTOMATICAS RESTful
     Route::resource('/user', UserController::class,['except'=>['create','edit']]);

@@ -31,8 +31,6 @@ export class TareaListComponent implements OnInit {
     this.getProyecto();
   }
 
-  
-
   getProyecto():void{
     this._route.params.subscribe(params=>{
       let id=params['id'];
@@ -41,9 +39,7 @@ export class TareaListComponent implements OnInit {
           if(response.status=='success'){
             this.proyecto=response.data;
             this.loadTareas(id);
-
           }else{
-            
             console.log('AQUI');
             //this._router.navigate(['']);
           }

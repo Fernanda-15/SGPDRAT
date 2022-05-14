@@ -1,0 +1,30 @@
+<!--TABLA DE LOGS-->
+<div class="container" *ngIf="logs">
+    <h5 id="titulo">Lista de Logs</h5>
+
+    <div class="table-responsive">
+   
+    <table class="table table-striped" >
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">ID Proyecto</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let log of logs">
+                    <td>{{log.id}}</td>
+                    <td>{{log.proyecto_id}}</td>
+                    <td>{{log.usuario}}</td> 
+                    <td>{{log.descripcion}}</td>
+                    <td>{{log.created_at.slice(0,log.created_at.lastIndexOf('.')).split("T")}}</td>
+            </tr>
+        </tbody> 
+    </table>
+    </div>
+</div>
+

@@ -21,6 +21,7 @@ import { TareaCreateComponent } from './components/tarea/tarea-create/tarea-crea
 import { TareaUpdateComponent } from './components/tarea/tarea-update/tarea-update.component';
 import { TareaListComponent } from './components/tarea/tarea-list/tarea-list.component';
 import { ProyectoInfoComponent } from './components/proyecto/proyecto-info/proyecto-info.component';
+import { LogComponent } from './components/log/log.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { ProyectoInfoComponent } from './components/proyecto/proyecto-info/proye
     TareaUpdateComponent,
     TareaListComponent,
     ProyectoInfoComponent,
+    LogComponent,
   ],
   imports: [
     BrowserModule,
