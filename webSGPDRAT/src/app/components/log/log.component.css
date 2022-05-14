@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+#tarea{
+    position: absolute;
+    right : 135px;
+}
+
+#titulo{
+        font-size: 32px;
+        line-height: 40px;
+        text-align: left;
+        font-family: 'Josefin Sans', sans-serif;
+}

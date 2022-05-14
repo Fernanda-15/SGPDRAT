@@ -17,6 +17,7 @@ import {TareaListComponent} from './components/tarea/tarea-list/tarea-list.compo
 import {TareaCreateComponent} from './components/tarea/tarea-create/tarea-create.component';
 import {TareaUpdateComponent} from './components/tarea/tarea-update/tarea-update.component';
 import { ErrorComponent } from "./components/error/error.component";
+import { LogComponent } from "./components/log/log.component";
 
 
 
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
     {path: 'tarea-list/:id', component:TareaListComponent},
     {path: 'tarea-create/:id', component:TareaCreateComponent},
     {path: 'tarea-update/:id', component:TareaUpdateComponent},
+    {path: 'log-list/:id', component:LogComponent},
     {path: '**', component: ErrorComponent}
 ];
 
