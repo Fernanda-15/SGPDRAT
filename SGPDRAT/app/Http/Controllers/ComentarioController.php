@@ -71,75 +71,84 @@ class ComentarioController extends Controller
         return response()->json($response,$response['code']);
     }
 
-    public function update(Request $request){ 
-        $Comentario=$request;
-        $json=$request->input('json',null);
-        $data=json_decode($json,true);
-        if(!empty($data)){
-            $data=array_map('trim',$data);
-            $rules=[
-                'proyecto_id'=>'required|integer',
-                'contenido'=>'required',
-            ];
-            $validate=\validator($data,$rules);
-                if($validate->fails()){
-                 $response=array(
-                    'status'=>'error',
-                    'code'=>406,
-                    'message'=>'Los datos son incorrectos',
-                    'errors'=>$validate->errors()
-                );
-                }else{
-                    $id=$data['id'];
-                    unset($data['id']);  
-                    unset($data['created_at']);      
-                    $updated=Comentario::where('id',$id)->update($data);
-                    if($updated>0){
-                        $response=array(
-                            'status'=>'success',
-                            'code'=>200,
-                            'message'=>'Datos almacenados exitosamente'
-                        );
-                    }else{
+        public function update(Request $request){ 
+            $Comentario=$request;
+            $json=$request->input('json',null);
+            $data=json_decode($json,true);
+            if(!empty($data)){
+                $data=array_map('trim',$data);
+                $rules=[
+                    'proyecto_id'=>'required|integer',
+                    'contenido'=>'required',
+                ];
+                $validate=\validator($data,$rules);
+                    if($validate->fails()){
                     $response=array(
                         'status'=>'error',
-                        'code'=>400,
-                        'message'=>'No se pudo actualizar los datos'
+                        'code'=>406,
+                        'message'=>'Los datos son incorrectos',
+                        'errors'=>$validate->errors()
                     );
+                    }else{
+                        $id=$data['id'];
+                        unset($data['id']);  
+                        unset($data['created_at']);      
+                        $updated=Comentario::where('id',$id)->update($data);
+                        if($updated>0){
+                            $response=array(
+                                'status'=>'success',
+                                'code'=>200,
+                                'message'=>'Datos almacenados exitosamente'
+                            );
+                        }else{
+                        $response=array(
+                            'status'=>'error',
+                            'code'=>400,
+                            'message'=>'No se pudo actualizar los datos'
+                        );
+                        }
                     }
-                }
+            }else{
+            $response=array(
+                'status'=>'error',
+                'code'=>400,
+                'message'=>'Faltan parametros'
+            );
+            }
+        return response()->json($response,$response['code']);
+    }
+    public function destroy($id){
+        if(isset($id)){
+            $deleted=Comentario::where('id',$id)->delete();
+        if($deleted){
+            $response=array(
+                'status'=>'success',
+                'code'=>200,
+                'message'=>'Eliminado correctamente'
+            );
+        }else{
+            $response=array(
+                'status'=>'error',
+                'code'=>400,
+                'message'=>'Problemas al eliminar el recurso'
+            );
+        }
         }else{
         $response=array(
             'status'=>'error',
             'code'=>400,
-            'message'=>'Faltan parametros'
+            'message'=>'Falta el identificador del recurso'
         );
         }
-    return response()->json($response,$response['code']);
-}
-public function destroy($id){
-    if(isset($id)){
-        $deleted=Comentario::where('id',$id)->delete();
-    if($deleted){
-        $response=array(
-            'status'=>'success',
-            'code'=>200,
-            'message'=>'Eliminado correctamente'
-        );
-    }else{
-        $response=array(
-            'status'=>'error',
-            'code'=>400,
-            'message'=>'Problemas al eliminar el recurso'
-        );
+        return response()->json($response,$response['code']);
     }
-    }else{
-    $response=array(
-        'status'=>'error',
-        'code'=>400,
-        'message'=>'Falta el identificador del recurso'
-    );
+
+    public function getComentarioByP($id){  
+        $data = Comentario::Where('proyecto_id',$id)->get();
+       return response()->json([
+        'status'=>'success',
+        'code'=>200,
+        'data'=>$data
+       ], 200);
     }
-    return response()->json($response,$response['code']);
-}
 }

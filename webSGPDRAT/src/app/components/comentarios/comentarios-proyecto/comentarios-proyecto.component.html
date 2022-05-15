@@ -1,0 +1,27 @@
+<!--TABLA DE LOGS-->
+<div class="container" *ngIf="comentarios">
+    <h5 id="titulo">Comentarios del Proyecto {{proyecto.nombre}} #{{proyecto.numero_contratacion}}</h5>
+
+    <div class="table-responsive">
+   
+    <table class="table table-striped" >
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">ID Proyecto</th>
+                <th scope="col">Comentario</th>
+                <th scope="col">Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let comentario of comentarios">
+                    <td>{{comentario.id}}</td>
+                    <td>{{comentario.proyecto_id}}</td>
+                    <td>{{comentario.contenido}}</td> 
+                    <td>{{comentario.created_at.slice(0,comentario.created_at.lastIndexOf('.')).split("T")}}</td>
+            </tr>
+        </tbody> 
+    </table>
+    </div>
+</div>
