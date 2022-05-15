@@ -44,6 +44,11 @@ export class ProyectoService{
         return this._http.get(this.url+'log/proyecto/'+id , {headers:httpHeaders});
     }
 
+    getComentarios(id:number):Observable<any>{
+        let httpHeaders =new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+'comentario/proyecto/'+id , {headers:httpHeaders});
+    }
+
     public deleteProyecto(id:number) : Observable<any>{
         let httpHeaders=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
         return this._http.delete(this.url+'proyecto/'+id,{headers:httpHeaders});

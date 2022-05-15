@@ -18,6 +18,7 @@ import {TareaCreateComponent} from './components/tarea/tarea-create/tarea-create
 import {TareaUpdateComponent} from './components/tarea/tarea-update/tarea-update.component';
 import { ErrorComponent } from "./components/error/error.component";
 import { LogComponent } from "./components/log/log.component";
+import {ComentariosProyectoComponent} from './components/comentarios/comentarios-proyecto/comentarios-proyecto.component';
 
 
 
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
     {path: 'tarea-create/:id', component:TareaCreateComponent},
     {path: 'tarea-update/:id', component:TareaUpdateComponent},
     {path: 'log-list/:id', component:LogComponent},
+    {path: 'comentarioproyecto-list/:id', component:ComentariosProyectoComponent},
     {path: '**', component: ErrorComponent}
 ];
 

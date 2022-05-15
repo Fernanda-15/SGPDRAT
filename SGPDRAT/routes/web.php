@@ -33,6 +33,7 @@ Route::prefix('api')->group(function () {
     Route::post('/user/getrole/{id}',[UserController::class,'getRole']);
     Route::get('/tarea/proyecto/{id}',[TareaController::class,'getTareaByP']);
     Route::get('/log/proyecto/{id}',[LogController::class,'getLogByP']);
+    Route::get('/comentario/proyecto/{id}',[ComentarioController::class,'getComentarioByP']);
 
     //RUTAS AUTOMATICAS RESTful
     Route::resource('/user', UserController::class,['except'=>['create','edit']]);
