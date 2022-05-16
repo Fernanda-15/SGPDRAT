@@ -1,0 +1,34 @@
+<h1 id="titulo">Información del Proyecto</h1>
+
+<table id="tabla">
+  <tr>
+    <th>Administrador</th>
+    <th>N° Contratación</th>
+    <th>Nombre del Proyecto</th>
+  </tr>
+  <tr>
+    <td>{{userName}}</td>
+    <td>{{proyecto.numero_contratacion}}</td>
+    <td>{{proyecto.nombre}}</td>
+  </tr>
+  <tr>
+    <th>Objetivo del Proyecto</th>
+    <th>Ubicación del Proyecto</th>
+    <th>Fecha de Inicio</th>
+  </tr>
+  <tr>
+    <td>{{proyecto.objetivo}}</td>
+    <td>{{proyecto.ubicacion}}</td>
+    <td>{{proyecto.fecha_inicio.slice(0,proyecto.fecha_inicio.lastIndexOf('.')).split("T")}}</td>
+  </tr>
+  <tr>
+    <th>Fecha de Finalización</th>
+    <th>Forma de Pago</th>
+    <th>Monto Adjudicado</th>
+  </tr>
+  <tr>
+    <td>{{proyecto.fecha_final.slice(0,proyecto.fecha_final.lastIndexOf('.')).split("T")}}</td>
+    <td>{{proyecto.forma_pago}}</td>
+    <td>{{proyecto.monto_adjudicado}}</td>
+  </tr>
+</table>
