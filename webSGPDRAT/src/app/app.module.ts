@@ -21,7 +21,7 @@ import { TareaListComponent } from './components/tarea/tarea-list/tarea-list.com
 import { ProyectoInfoComponent } from './components/proyecto/proyecto-info/proyecto-info.component';
 import { LogComponent } from './components/log/log.component';
 import { ComentariosProyectoComponent } from './components/comentarios/comentarios-proyecto/comentarios-proyecto.component';
-import { CalendarComponent } from './components/calendar/calendar.component';
+import {CalendarModule} from './components/calendar/calendar.module';
 
 
 @NgModule({
@@ -42,7 +42,6 @@ import { CalendarComponent } from './components/calendar/calendar.component';
     ProyectoInfoComponent,
     LogComponent,
     ComentariosProyectoComponent,
-    CalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +49,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    CalendarModule
   ],
   providers: [
     appRoutingProviders
