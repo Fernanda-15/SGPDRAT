@@ -4,8 +4,6 @@ import { routing, appRoutingProviders } from './app.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -23,6 +21,10 @@ import { TareaListComponent } from './components/tarea/tarea-list/tarea-list.com
 import { ProyectoInfoComponent } from './components/proyecto/proyecto-info/proyecto-info.component';
 import { LogComponent } from './components/log/log.component';
 import { ComentariosProyectoComponent } from './components/comentarios/comentarios-proyecto/comentarios-proyecto.component';
+import {CalendarModule} from './components/calendar/calendar.module';
+import { PagoCreateComponent } from './components/pago/pago-create/pago-create.component';
+import { PagoListComponent } from './components/pago/pago-list/pago-list.component';
+import { PagoUpdateComponent } from './components/pago/pago-update/pago-update.component';
 
 
 @NgModule({
@@ -43,6 +45,9 @@ import { ComentariosProyectoComponent } from './components/comentarios/comentari
     ProyectoInfoComponent,
     LogComponent,
     ComentariosProyectoComponent,
+    PagoCreateComponent,
+    PagoListComponent,
+    PagoUpdateComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,10 +55,7 @@ import { ComentariosProyectoComponent } from './components/comentarios/comentari
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    })
+    CalendarModule
   ],
   providers: [
     appRoutingProviders

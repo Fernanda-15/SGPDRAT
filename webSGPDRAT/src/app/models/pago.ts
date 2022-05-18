@@ -4,6 +4,8 @@ export class Pago{
         public proyecto_id:number,
         public numbero:number,
         public proyeccion:number,
-        public monto:number
+        public monto:number,
+        public justificacion:string,
+        public numero_transaccion:string
     ){}
 }
