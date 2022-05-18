@@ -49,7 +49,9 @@ class PagoController extends Controller
             'proyecto_id'=>'required|integer',
             'numero'=>'required',
             'proyeccion'=>'required',
-            'monto'=>'required'
+            'monto'=>'required',
+            'justificacion'=>'required',
+            'numero_transaccion'=>'required',
         ];
         $valid=\validator($data,$rules);
         if($valid->fails()){
@@ -65,6 +67,8 @@ class PagoController extends Controller
             $Pago->numero=$data['numero'];
             $Pago->proyeccion=$data['proyeccion'];
             $Pago->monto=$data['monto'];
+            $Pago->justificacion=$data['justificacion'];
+            $Pago->numero_transaccion=$data['numero_transaccion'];
             $Pago->save();
             $response=array(
                 'status'=>'success',
@@ -85,7 +89,9 @@ class PagoController extends Controller
                 'proyecto_id'=>'required|integer',
                 'numero'=>'required',
                 'proyeccion'=>'required',
-                'monto'=>'required'
+                'monto'=>'required',
+                'justificacion'=>'required',
+                'numero_transaccion'=>'required',
             ];
             $validate=\validator($data,$rules);
                 if($validate->fails()){

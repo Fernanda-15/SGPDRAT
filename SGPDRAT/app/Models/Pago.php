@@ -13,7 +13,9 @@ class Pago extends Model
         'proyecto_id',
         'numero',
         'proyeccion',
-        'monto'
+        'monto',
+        'justificacion',
+        'numero_transaccion'
     ];
 
     public $incrementing = true; //SE SETEA EL AUTOINCREMENTAL

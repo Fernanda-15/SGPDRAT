@@ -21,6 +21,7 @@ export class ProyectoInfoComponent implements OnInit {
   public proyecto:Proyecto;
   private user:User;
   public userName:string;
+  public tareas:any;
   constructor(
     private _proyectoService:ProyectoService,
     private _tareaService:TareaService,
@@ -47,6 +48,8 @@ export class ProyectoInfoComponent implements OnInit {
             this.proyecto=response.data;
             console.log(this.proyecto);
             this.getUserName();
+            this.loadTareas(this.proyecto.id); 
+            console.log(this.tareas);
           }else{
             console.log('AQUI');
             //this._router.navigate(['']);
@@ -66,7 +69,7 @@ export class ProyectoInfoComponent implements OnInit {
           if(response.status=='success'){
             this.user=response.data;
             console.log(this.user);
-            this.userName = this.user.nombreUsuario;
+            this.userName = this.user.nombre;
           }else{
             console.log('AQUI');
             //this._router.navigate(['']);
@@ -79,5 +82,16 @@ export class ProyectoInfoComponent implements OnInit {
       );
   }
 
+  loadTareas(id:number):void{
+    this._proyectoService.getTareas(id).subscribe(
+      response=>{
+        console.log(response.data);
+          this.tareas = response.data;
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
 
 }

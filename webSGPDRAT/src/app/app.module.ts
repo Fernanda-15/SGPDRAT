@@ -22,6 +22,9 @@ import { ProyectoInfoComponent } from './components/proyecto/proyecto-info/proye
 import { LogComponent } from './components/log/log.component';
 import { ComentariosProyectoComponent } from './components/comentarios/comentarios-proyecto/comentarios-proyecto.component';
 import {CalendarModule} from './components/calendar/calendar.module';
+import { PagoCreateComponent } from './components/pago/pago-create/pago-create.component';
+import { PagoListComponent } from './components/pago/pago-list/pago-list.component';
+import { PagoUpdateComponent } from './components/pago/pago-update/pago-update.component';
 
 
 @NgModule({
@@ -42,6 +45,9 @@ import {CalendarModule} from './components/calendar/calendar.module';
     ProyectoInfoComponent,
     LogComponent,
     ComentariosProyectoComponent,
+    PagoCreateComponent,
+    PagoListComponent,
+    PagoUpdateComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import {Component, ViewChild, AfterViewInit} from "@angular/core";
+import {Component,Input, ViewChild, AfterViewInit} from "@angular/core";
 import {
   DayPilot,
   DayPilotCalendarComponent,
@@ -65,6 +65,7 @@ import {DataService} from "./data.service";
 })
 export class CalendarComponent implements AfterViewInit {
 
+  @Input() datos:any;
   @ViewChild("day") day!: DayPilotCalendarComponent;
   @ViewChild("week") week!: DayPilotCalendarComponent;
   @ViewChild("month") month!: DayPilotMonthComponent;
@@ -121,6 +122,7 @@ export class CalendarComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    console.log(this.datos);
     this.loadEvents();
   }
 
