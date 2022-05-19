@@ -17,7 +17,6 @@ export class UserListComponent implements OnInit {
   public url:string;
   public times: any;
   public i:number = 1 ;
-  public pageSize:number = 5;
   public desde:number = 0;
   public hasta:number = 5;
 

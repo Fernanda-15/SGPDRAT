@@ -3,7 +3,7 @@
     <h5 id="titulo">Log del Proyecto {{proyecto.nombre}} #{{proyecto.numero_contratacion}}</h5>
 
     <div class="table-responsive">
-   
+
     <table class="table table-striped" >
         <thead>
             <tr>
@@ -16,15 +16,18 @@
         </thead>
         <tbody>
 
-            <tr *ngFor="let log of logs">
+            <tr *ngFor="let log of logs | slice:desde:hasta let i=index">
                     <td>{{log.id}}</td>
                     <td>{{log.proyecto_id}}</td>
-                    <td>{{log.usuario}}</td> 
+                    <td>{{log.usuario}}</td>
                     <td>{{log.descripcion}}</td>
                     <td>{{log.created_at.slice(0,log.created_at.lastIndexOf('.')).split("T")}}</td>
             </tr>
-        </tbody> 
+        </tbody>
     </table>
+    <mat-paginator [length]="logs.length" [pageSize]="5"  [pageSizeOptions]="[5, 10, 25, 100]"  aria-label="Select page" (page)="cambiarpagina($event)">
+    </mat-paginator>
+
     </div>
 </div>
 

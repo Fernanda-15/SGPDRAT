@@ -4,6 +4,7 @@ import { TareaService } from 'src/app/services/tarea.service';
 import { Proyecto } from 'src/app/models/proyecto';
 import { Tarea } from 'src/app/models/tarea';
 import{Router,ActivatedRoute} from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-tarea-list',
@@ -14,19 +15,22 @@ import{Router,ActivatedRoute} from '@angular/router';
 })
 export class TareaListComponent implements OnInit {
 
-  public tareas:any;
+  public tareas: any[]=[];
   public tarea:Tarea;
   public proyecto:Proyecto;
+  public i:number = 1 ;
+  public desde:number = 0;
+  public hasta:number = 5;
   constructor(
     private _proyectoService:ProyectoService,
     private _tareaService:TareaService,
-    private _route:ActivatedRoute, 
+    private _route:ActivatedRoute,
     private _router:Router,
-  ) { 
+  ) {
     this.proyecto = new Proyecto(0,0,"","","","","","","",0);
     this.tarea = new Tarea(0,0,0,"",0,0,"","");
   }
-  
+
   ngOnInit(): void {
     this.getProyecto();
   }
@@ -46,7 +50,7 @@ export class TareaListComponent implements OnInit {
         },
         error=>{
           console.log(error);
-         //this._router.navigate(['']); 
+         //this._router.navigate(['']);
         }
       );
     });
@@ -82,4 +86,13 @@ export class TareaListComponent implements OnInit {
     );
   }
 
+  cambiarpagina(e:PageEvent){
+    console.log(e);
+    this.desde = e.pageIndex * e.pageSize;
+    this.hasta = this.desde + e.pageSize;
+
+  }
+
+
 }
+
