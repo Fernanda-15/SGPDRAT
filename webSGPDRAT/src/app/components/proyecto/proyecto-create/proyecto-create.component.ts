@@ -3,7 +3,7 @@ import { Proyecto } from 'src/app/models/proyecto';
 import { ProyectoService } from 'src/app/services/proyecto.service';
 import { UserService } from 'src/app/services/user.service';
 import{Router} from '@angular/router';
-import{isEmpty, timer} from 'rxjs';
+import{timer} from 'rxjs';
 
 @Component({
   selector: 'app-proyecto-create',
@@ -50,7 +50,6 @@ export class ProyectoCreateComponent implements OnInit {
   }
 
   onSubmit(form:any){ 
-    console.log(this.proyecto);
     let counter=timer(5000);
     if(this.proyecto.fecha_final >= this.proyecto.fecha_inicio){
       if(this.proyecto.user_id > 0){

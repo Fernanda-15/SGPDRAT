@@ -3,7 +3,7 @@ import { ProyectoService } from 'src/app/services/proyecto.service';
 import {Proyecto} from '../../../models/proyecto';
 import{Router,ActivatedRoute} from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-
+import{timer} from 'rxjs';
 
 @Component({
   selector: 'app-proyecto-update',
@@ -69,22 +69,49 @@ export class ProyectoUpdateComponent implements OnInit {
   }
 
   onSubmit(form:any):void{
-    this._proyectoService.update(this.proyecto).subscribe(
-      response=>{
-     if(response.code==200){
-      this.status=0;
-      this._router.navigate(['/proyecto-list']);
-      }else{
-        this.status=1;
-        this.reset=true;
-      }
-      },
-
-      error=>{
-        console.log(error);
-        this.status=1;
-      }
-    );
+    let counter=timer(5000);
+    if(this.proyecto.fecha_final >= this.proyecto.fecha_inicio){
+        if(this.proyecto.forma_pago != ""){
+          this._proyectoService.update(this.proyecto).subscribe(
+            response=>{
+           if(response.code==200){
+            form.reset(); 
+            this._router.navigate(['/proyecto-list']);
+            }else{
+              this.status=0;
+              this.reset=true;
+              counter.subscribe(n=>{
+                console.log(n);
+                this.status=-1;
+              });
+            }
+            },
+      
+            error=>{
+              this.status=0;
+              console.log(<any>error);
+              counter.subscribe(n=>{
+                console.log(n);
+                this.status=-1;
+              });
+            }
+          );
+        }else{
+          this.status=3;
+          counter.subscribe(n=>{
+            console.log(n);
+            this.status=-1;
+          });
+        }
+      
+    }else{
+      this.status=1;
+      counter.subscribe(n=>{
+        console.log(n);
+        this.status=-1;
+      });
+    }
+   
 
   }
 

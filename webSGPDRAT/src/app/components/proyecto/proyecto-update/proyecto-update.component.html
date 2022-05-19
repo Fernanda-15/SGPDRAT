@@ -1,6 +1,21 @@
+<div style="border:20px;" [ngSwitch]="status">
+    <div  class="alert alert-danger" *ngSwitchCase="0">
+      Error de servidor interno!!!
+    </div>
+    <div class="alert alert-danger"  *ngSwitchCase="1">
+      Error: La fecha final debe ser mayor a la fecha de inicio!!
+    </div>
+    <div class="alert alert-danger"  *ngSwitchCase="3">
+      Error: Debe seleccionar una forma de pago!!
+    </div>
+</div>
 
 <form id="formProyecto" class="col-md-6 mr-auto ml-auto" #updateProyectoForm="ngForm" (ngSubmit)="onSubmit(updateProyectoForm)">
-           
+     <div class="form-group">
+        <p>
+          Modifica el proyecto #{{proyecto.id}}
+        </p>
+      </div>   
     <div id="info" class="form-group">
             <label>Usuario: </label>
             <select name="usuario" #usuario="ngModel" [(ngModel)]="proyecto.user_id" class="form-control">
@@ -55,17 +70,14 @@
         <label for="fecha_final">Fecha de finalización: </label>   
         <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="proyecto.fecha_final">
     </div>
-
-    <!--FORMA DE PAGO, PREGUNTAR CUALES HAY -->
+    
     <div id="info" class="form-group">
-        <label>Forma de pago: </label>
-        <input type="text" name="forma_pago" class="form-control" #forma_pago="ngModel" 
-        [(ngModel)]="proyecto.forma_pago" required pattern="^[a-zA-Z0-9\.]*$"> 
-        <small *ngIf="!forma_pago.valid && forma_pago.touched" class="invalid-feedback d-block">
-            La forma de pago no es válida
-        </small>
+        <label>Forma de pago</label>
+      <select name="forma_pago" #forma_pago="ngModel" [(ngModel)]="proyecto.forma_pago" class="form-control">
+        <option value="contado">Contado</option>
+        <option  value="credito">Credito</option>
+      </select>
     </div> 
-
 
     <div id="info" class="form-group">
         <label>Monto adjudicado:</label>
