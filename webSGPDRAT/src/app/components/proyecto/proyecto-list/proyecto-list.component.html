@@ -1,35 +1,36 @@
 <div class="loading" *ngIf="!proyectos">
     Cargando...
 </div>
-<div class="container-fluid" *ngIf="proyectos">
 
-    <div class="card-columns">
-        <article class="card w-100" *ngFor="let proyecto of proyectos">
+<div class="container" *ngIf="proyectos">
+
+    <div class="card-columns ">
+        <article class="card w-auto " style="  border-color:rgba(20, 172, 232, 0.825);" *ngFor="let proyecto of proyectos">
             <div class="card-header">
-               <!-- <h3>{{proyecto.nombre}}</h3> --> 
-               
+               <!-- <h3>{{proyecto.nombre}}</h3> -->
+
                 <h3>
                     <a [routerLink]="['/proyecto-info',proyecto.id]">{{proyecto.nombre}}</a>
                 </h3>
-            
+
             </div>
             <div class="card-body">
                 <!--Datos para desplegar-->
                 <div>
-                    
+
                     <h6>Objetivo</h6><a>{{proyecto.objetivo}}</a>
                     <hr>
                     <h6>Fecha inicio</h6><a>{{proyecto.fecha_inicio}}</a>
                     <hr>
                     <h6>Fecha final</h6><a>{{proyecto.fecha_final}}</a>
-                    
+
                 </div>
                 <!--Botones-->
-                <div class="buttons mt-5"> 
+                <div class="buttons mt-5">
 
                     <a [routerLink]="['/tarea-list',proyecto.id]" class="btn btn-success mr-2">
                     <span  class="bi bi-clipboard2-fill"></span>
-                   </a> 
+                   </a>
 
                    <a [routerLink]="['/proyecto-update', proyecto.id]" class="btn btn-warning mr-2">
                     <span  class="bi bi-pencil-fill"></span>
@@ -38,7 +39,7 @@
                   <a [routerLink]="['/pago-list', proyecto.id]" class="btn btn-info mr-2" *ngIf="proyecto.forma_pago == 'credito'">
                     <span  class="bi bi-currency-dollar"></span>
                   </a>
-                 
+
 
                 <button id="btnDelete" class="btn btn-danger btn-xs mr-2" data-toggle="modal" data-target="#exampleModal" [attr.data-target]="'#exampleModal'+proyecto.id">
                     <span class="bi bi-trash-fill"></span>
@@ -69,10 +70,11 @@
 
 
 
-                </div>    
+                </div>
             </div>
 
         </article>
+
     </div>
 
 </div>
