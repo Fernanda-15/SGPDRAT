@@ -51,7 +51,6 @@ export class PagoListComponent implements OnInit {
   }
 
   loadPagos(id:number):void{
-    console.log(id);
     this._proyectoService.getPagos(id).subscribe(
       response=>{
           this.pagos = response.data;
