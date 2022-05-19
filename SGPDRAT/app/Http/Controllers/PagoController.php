@@ -40,6 +40,16 @@ class PagoController extends Controller
         return response()->json($response,$response['code']);
     }    
 
+    public function getPagoByP($id){  
+        $data = Pago::Where('proyecto_id',$id)->get();
+
+       return response()->json([
+        'status'=>'success',
+        'code'=>200,
+        'data'=>$data
+       ], 200);
+    }
+
     public function store(Request $request){
         $Pago=$request;
         $json=$request->input('json',null);

@@ -18,6 +18,7 @@ export class ProyectoListComponent implements OnInit {
     private _proyectoService:ProyectoService
   ) { 
     this.proyecto = new Proyecto(0,0,"","","","","","","",0)
+
   }
 
   ngOnInit(): void {
@@ -36,6 +37,8 @@ export class ProyectoListComponent implements OnInit {
       }
     );
   }
+
+  
 
 
   delete(id:number):void{

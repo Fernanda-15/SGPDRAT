@@ -19,6 +19,8 @@ import {TareaUpdateComponent} from './components/tarea/tarea-update/tarea-update
 import { ErrorComponent } from "./components/error/error.component";
 import { LogComponent } from "./components/log/log.component";
 import {ComentariosProyectoComponent} from './components/comentarios/comentarios-proyecto/comentarios-proyecto.component';
+import {PagoCreateComponent} from './components/pago/pago-create/pago-create.component';
+import {PagoListComponent} from './components/pago/pago-list/pago-list.component';
 
 
 
@@ -39,6 +41,8 @@ const appRoutes: Routes = [
     {path: 'tarea-update/:id', component:TareaUpdateComponent},
     {path: 'log-list/:id', component:LogComponent},
     {path: 'comentarioproyecto-list/:id', component:ComentariosProyectoComponent},
+    {path: 'pago-create/:id', component:PagoCreateComponent},
+    {path: 'pago-list/:id', component:PagoListComponent},
     {path: '**', component: ErrorComponent}
 ];
 
