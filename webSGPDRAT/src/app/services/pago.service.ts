@@ -23,23 +23,9 @@ export class PagoService{
       console.log(pago);
         return this._http.post(this.url+'pago', params, {headers: headers});
     }
-  
-    public getProyectos():Observable<any>{
-        let httpHeaders =new HttpHeaders().append('Content-Type','application/x-www-form-urlencoded');//.append('token',this.token)
-        return this._http.get(this.url+'pago',{headers:httpHeaders});
-    }
 
-    getProyecto(id:number):Observable<any>{
-        let httpHeaders =new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
-        return this._http.get(this.url+'pago/'+id , {headers:httpHeaders});
-    }
 
-    getTareas(id:number):Observable<any>{
-        let httpHeaders =new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
-        return this._http.get(this.url+'tarea/pago/'+id , {headers:httpHeaders});
-    }
-
-    public deleteProyecto(id:number) : Observable<any>{
+    public deletePago(id:number) : Observable<any>{
         let httpHeaders=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
         return this._http.delete(this.url+'pago/'+id,{headers:httpHeaders});
     }

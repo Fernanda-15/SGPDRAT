@@ -25,7 +25,7 @@
                     
                 </div>
                 <!--Botones-->
-                <div class="buttons mt-5">
+                <div class="buttons mt-5"> 
 
                     <a [routerLink]="['/tarea-list',proyecto.id]" class="btn btn-success mr-2">
                     <span  class="bi bi-clipboard2-fill"></span>
@@ -34,6 +34,11 @@
                    <a [routerLink]="['/proyecto-update', proyecto.id]" class="btn btn-warning mr-2">
                     <span  class="bi bi-pencil-fill"></span>
                    </a>
+
+                  <a [routerLink]="['/pago-list', proyecto.id]" class="btn btn-info mr-2" *ngIf="proyecto.forma_pago == 'credito'">
+                    <span  class="bi bi-currency-dollar"></span>
+                  </a>
+                 
 
                 <button id="btnDelete" class="btn btn-danger btn-xs mr-2" data-toggle="modal" data-target="#exampleModal" [attr.data-target]="'#exampleModal'+proyecto.id">
                     <span class="bi bi-trash-fill"></span>

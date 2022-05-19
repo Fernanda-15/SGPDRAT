@@ -39,6 +39,11 @@ export class ProyectoService{
         return this._http.get(this.url+'tarea/proyecto/'+id , {headers:httpHeaders});
     }
 
+    getPagos(id:number):Observable<any>{ 
+        let httpHeaders =new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+'pago/proyecto/'+id , {headers:httpHeaders});
+    }
+
     getLogs(id:number):Observable<any>{
         let httpHeaders =new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
         return this._http.get(this.url+'log/proyecto/'+id , {headers:httpHeaders});
