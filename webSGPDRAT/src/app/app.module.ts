@@ -25,7 +25,8 @@ import {CalendarModule} from './components/calendar/calendar.module';
 import { PagoCreateComponent } from './components/pago/pago-create/pago-create.component';
 import { PagoListComponent } from './components/pago/pago-list/pago-list.component';
 import { PagoUpdateComponent } from './components/pago/pago-update/pago-update.component';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,9 @@ import { PagoUpdateComponent } from './components/pago/pago-update/pago-update.c
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    CalendarModule
+    CalendarModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
   providers: [
     appRoutingProviders

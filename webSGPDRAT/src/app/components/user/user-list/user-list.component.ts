@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import{global} from '../../../services/global';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user-list',
@@ -12,12 +13,17 @@ import{global} from '../../../services/global';
 export class UserListComponent implements OnInit {
 
   public user:User;
-  public users:any;
+  public users: any[]=[];
   public url:string;
   public times: any;
+  public i:number = 1 ;
+  public pageSize:number = 5;
+  public desde:number = 0;
+  public hasta:number = 5;
+
   constructor(
     private _userService:UserService
-  ) { 
+  ) {
     this.url=global.urlApi;
     this.user = new User(1,"","","usuario","","","","")
   }
@@ -33,7 +39,7 @@ export class UserListComponent implements OnInit {
         this.users=response.data;
       },
       error=>{
-        this.users=null;
+        this.users=[];
         console.log("Error");
       }
     );
@@ -55,6 +61,13 @@ export class UserListComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  cambiarpagina(e:PageEvent){
+    console.log(e);
+    this.desde = e.pageIndex * e.pageSize;
+    this.hasta = this.desde + e.pageSize;
+
   }
 
 }
