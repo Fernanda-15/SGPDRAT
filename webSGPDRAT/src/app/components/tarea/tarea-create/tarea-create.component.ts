@@ -56,8 +56,6 @@ export class TareaCreateComponent implements OnInit {
 
 
   onSubmit(form:any){ 
-    console.log(this.proyecto.fecha_inicio);
-    console.log(this.proyecto.fecha_final);
   let counter=timer(5000);
   this.tarea.proyecto_id=this.proyecto.id;
     if(this.tarea.fecha_final >= this.tarea.fecha_inicio){

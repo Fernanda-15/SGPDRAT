@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TareaService } from 'src/app/services/tarea.service';
 import {Tarea} from '../../../models/tarea';
 import{Router,ActivatedRoute} from '@angular/router';
+import{timer} from 'rxjs';
 
 @Component({
   selector: 'app-tarea-update',
@@ -53,8 +54,8 @@ export class TareaUpdateComponent implements OnInit {
   }
 
 
-
   onSubmit(form:any):void{
+    let counter=timer(5000);
     this._tareaService.update(this.tarea).subscribe(
       response=>{
      if(response.code==200){
