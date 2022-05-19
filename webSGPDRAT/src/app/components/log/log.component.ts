@@ -4,6 +4,7 @@ import { Proyecto } from 'src/app/models/proyecto';
 import { LogService } from 'src/app/services/log.service';
 import { Log } from 'src/app/models/log';
 import {Router,ActivatedRoute} from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
 
 
 @Component({
@@ -16,16 +17,19 @@ import {Router,ActivatedRoute} from '@angular/router';
 
 export class LogComponent implements OnInit {
 
-  public logs:any;
+  public logs:any[]=[];
   public log:Log;
   public proyecto:Proyecto;
+  public i:number = 1 ;
+  public desde:number = 0;
+  public hasta:number = 5;
 
   constructor(
     private _proyectoService:ProyectoService,
     private _logService:LogService,
     private _route:ActivatedRoute,
     private _router:Router
-  ) { 
+  ) {
     this.proyecto = new Proyecto(0,0,"","","","","","","",0);
     this.log = new Log(0,0,"","","");
   }
@@ -51,7 +55,7 @@ export class LogComponent implements OnInit {
         },
         error=>{
           console.log(error);
-         //this._router.navigate(['']); 
+         //this._router.navigate(['']);
         }
       );
     });
@@ -67,4 +71,12 @@ export class LogComponent implements OnInit {
       }
     );
   }
+
+  cambiarpagina(e:PageEvent){
+    console.log(e);
+    this.desde = e.pageIndex * e.pageSize;
+    this.hasta = this.desde + e.pageSize;
+
+  }
+
 }

@@ -2,34 +2,34 @@
     <h5 id="titulo">Lista de Pagos del proyecto #{{proyecto.id}}</h5>
 
     <div class="table-responsive">
-   
+
     <table class="table table-striped" >
         <thead>
             <tr>
                 <th scope="col">Proyección</th>
                 <th scope="col">Monto</th>
                 <th scope="col">Justificación</th>
-                <th scope="col">Numero de Transacción</th> 
+                <th scope="col">Numero de Transacción</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
             </tr>
         </thead>
         <tbody>
 
-            <tr *ngFor="let pago of pagos">
+            <tr *ngFor="let pago of pagos | slice:desde:hasta let i=index">
                     <td>{{pago.numero}}</td>
-                    <td>{{pago.proyeccion}}</td> 
+                    <td>{{pago.proyeccion}}</td>
                     <td>{{pago.monto}}</td>
                     <td>{{pago.justificacion}}</td>
                     <td>{{pago.numero_transaccion}}</td>
-            
+
                     <td >
                     <a [routerLink]="['/pago-update',pago.id]" class="btn btn-warning btn-xs"  u >
-                    
+
                         <span  class="bi bi-pencil-fill"></span>
                     </a>
                     </td>
-           
+
                     <td>
                     <button id="btnDelete" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModal" [attr.data-target]="'#exampleModal'+pago.id">
                         <span class="bi bi-trash-fill"></span>
@@ -59,10 +59,12 @@
                     </script>
                     </td>
             </tr>
-        </tbody> 
+        </tbody>
     </table>
+    <mat-paginator [length]="pagos.length" [pageSize]="5"  [pageSizeOptions]="[5, 10, 25, 100]"  aria-label="Select page" (page)="cambiarpagina($event)">
+    </mat-paginator>
     </div>
-    
+
 <!--Boton nuevo pago  -->
     <div style="position:absolute; right:225px; ">
         <button  type="button" class="btn btn-success"  [routerLink]="['/pago-create',proyecto.id]">

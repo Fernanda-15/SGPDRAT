@@ -4,6 +4,7 @@ import { Proyecto } from 'src/app/models/proyecto';
 import { ComentarioService } from 'src/app/services/comentario.service';
 import { Comentario } from 'src/app/models/comentario';
 import {Router,ActivatedRoute} from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-comentarios-proyecto',
@@ -14,9 +15,12 @@ import {Router,ActivatedRoute} from '@angular/router';
 })
 export class ComentariosProyectoComponent implements OnInit {
 
-  public comentarios:any;
+  public comentarios:any[]=[];
   public comentario:Comentario;
   public proyecto:Proyecto;
+  public i:number = 1 ;
+  public desde:number = 0;
+  public hasta:number = 5;
 
   constructor(
     private _proyectoService:ProyectoService,
@@ -49,7 +53,7 @@ export class ComentariosProyectoComponent implements OnInit {
         },
         error=>{
           console.log(error);
-         //this._router.navigate(['']); 
+         //this._router.navigate(['']);
         }
       );
     });
@@ -67,4 +71,10 @@ export class ComentariosProyectoComponent implements OnInit {
     );
   }
 
+  cambiarpagina(e:PageEvent){
+    console.log(e);
+    this.desde = e.pageIndex * e.pageSize;
+    this.hasta = this.desde + e.pageSize;
+
+  }
 }
