@@ -4,6 +4,7 @@ import { ProyectoService } from 'src/app/services/proyecto.service';
 import { TareaService } from 'src/app/services/tarea.service';
 import{Router,ActivatedRoute} from '@angular/router';
 import { Tarea } from 'src/app/models/tarea';
+import{timer} from 'rxjs';
 
 @Component({
   selector: 'app-tarea-create',
@@ -55,27 +56,54 @@ export class TareaCreateComponent implements OnInit {
 
 
   onSubmit(form:any){ 
-    console.log(this.proyecto);
-    console.log(this.tarea);
-    this.tarea.proyecto_id=this.proyecto.id;
-    console.log(this.tarea);
-    this._tareaService.registro(this.tarea).subscribe(
-     response=>{
-      console.log(response);
-        if(response.status == "success"){
-          this.status = 0;
-          form.reset(); 
-          this._router.navigate(['/tarea-list',this.tarea.proyecto_id]);
-          
-         }else{
-                  this.status=1;
-               }
-       },
-      error=>{
-        this.status = 1;
-       console.log(<any>error);
-       
+    console.log(this.proyecto.fecha_inicio);
+    console.log(this.proyecto.fecha_final);
+  let counter=timer(5000);
+  this.tarea.proyecto_id=this.proyecto.id;
+    if(this.tarea.fecha_final >= this.tarea.fecha_inicio){
+      if((this.tarea.fecha_inicio >= this.proyecto.fecha_inicio) && (this.tarea.fecha_inicio <= this.proyecto.fecha_final)){ //FECHA INICIO DE TAREA CON EL PROYECTO
+       if((this.tarea.fecha_final <= this.proyecto.fecha_final) && (this.tarea.fecha_final >= this.proyecto.fecha_inicio)){ //FECHA FINAL DE TAREA CON EL PROYECTO
+        this._tareaService.registro(this.tarea).subscribe(
+          response=>{
+           console.log(response);
+             if(response.status == "success"){
+               this.status = 0;
+               form.reset(); 
+               this._router.navigate(['/tarea-list',this.tarea.proyecto_id]);
+               
+              }else{
+                       this.status=1;
+                    }
+            },
+           error=>{
+             this.status = 0;
+            console.log(<any>error);
+            
+           }
+        );
+       }else{
+        this.status=3;
+        counter.subscribe(n=>{
+        console.log(n);
+        this.status=-1;
+      });
+       }
+
+      }else{
+        this.status=2;
+        counter.subscribe(n=>{
+        console.log(n);
+        this.status=-1;
+      });
       }
-   );
+   
+    }else{
+      this.status=1;
+      counter.subscribe(n=>{
+        console.log(n);
+        this.status=-1;
+      });
+    }
+    
   }
 }

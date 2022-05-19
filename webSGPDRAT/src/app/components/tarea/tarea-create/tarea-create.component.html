@@ -1,3 +1,17 @@
+<div style="border:20px;" [ngSwitch]="status">
+  <div  class="alert alert-danger" *ngSwitchCase="0">
+    Error de servidor interno!!!
+  </div>
+  <div class="alert alert-danger"  *ngSwitchCase="1">
+    Error: La fecha final debe ser mayor a la fecha de inicio!!
+  </div>
+  <div class="alert alert-danger"  *ngSwitchCase="2">
+    Error: La fecha de Inicio de la tarea debe estar dentro del periodo del proyecto!!
+  </div>
+  <div class="alert alert-danger"  *ngSwitchCase="3">
+    Error: La fecha Final de la tarea debe estar dentro del periodo del proyecto!!
+  </div>
+ </div>
 
  <div class="form-group">
   <p>Agregar Tarea</p>
@@ -7,8 +21,8 @@
   <div class="row">
     <div id="info" class="form-group">
         <label>Numero de tarea: </label>
-        <input type="text" name="numero" class="form-control" #numero="ngModel"
-        [(ngModel)]="tarea.numero" required pattern="^[a-zA-Z0-9\.]*$">
+        <input type="text" name="numero" class="form-control" #numero="ngModel" 
+        [(ngModel)]="tarea.numero" required pattern="[1-9]">
         <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
             El número de tarea no es válido
         </small>
