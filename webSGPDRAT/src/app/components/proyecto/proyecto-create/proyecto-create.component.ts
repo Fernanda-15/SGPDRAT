@@ -3,6 +3,7 @@ import { Proyecto } from 'src/app/models/proyecto';
 import { ProyectoService } from 'src/app/services/proyecto.service';
 import { UserService } from 'src/app/services/user.service';
 import{Router} from '@angular/router';
+import{isEmpty, timer} from 'rxjs';
 
 @Component({
   selector: 'app-proyecto-create',
@@ -50,24 +51,58 @@ export class ProyectoCreateComponent implements OnInit {
 
   onSubmit(form:any){ 
     console.log(this.proyecto);
-    this._proyectoService.registro(this.proyecto).subscribe(
-     response=>{
-      console.log(response);
-        if(response.status == "success"){
-          this.status = 0;
-          form.reset(); 
-          this._router.navigate(['/proyecto-list']);
-          
-         }else{
-                  this.status=1;
-               }
-       },
-      error=>{
-        this.status = 1;
-       console.log(<any>error);
+    let counter=timer(5000);
+    if(this.proyecto.fecha_final >= this.proyecto.fecha_inicio){
+      if(this.proyecto.user_id > 0){
+        if(this.proyecto.forma_pago != ""){
+          this._proyectoService.registro(this.proyecto).subscribe(
+            response=>{
+            console.log(response);
+              if(response.status == "success"){
+                form.reset(); 
+                this._router.navigate(['/proyecto-list']);
+                }else{
+                        this.status=0;
+                        counter.subscribe(n=>{
+                          console.log(n);
+                          this.status=-1;
+                        });
+                      }
+              },
+              error=>{
+              this.status = 0;
+              console.log(<any>error);
+              counter.subscribe(n=>{
+                console.log(n);
+                this.status=-1;
+              });
+              
+            }
+          );
+        }else{
+          this.status=3;
+          counter.subscribe(n=>{
+            console.log(n);
+            this.status=-1;
+          });
+        }
        
+      }else{
+        this.status=2;
+        counter.subscribe(n=>{
+          console.log(n);
+          this.status=-1;
+        });
       }
-   );
+        
+    }else{
+      this.status=1;
+      counter.subscribe(n=>{
+        console.log(n);
+        this.status=-1;
+      });
+    }
+  
   }
 
 }

@@ -1,3 +1,17 @@
+<div style="border:20px;" [ngSwitch]="status">
+  <div  class="alert alert-danger" *ngSwitchCase="0">
+    Error de servidor interno!!!
+  </div>
+  <div class="alert alert-danger"  *ngSwitchCase="1">
+    Error: La fecha final debe ser mayor a la fecha de inicio!!
+  </div>
+  <div class="alert alert-danger"  *ngSwitchCase="2">
+    Error: Debe seleccionar un usuario!!
+  </div>
+  <div class="alert alert-danger"  *ngSwitchCase="3">
+    Error: Debe seleccionar una forma de pago!!
+  </div>
+ </div>
 
   <div class="form-group">
     <p>Agregar Proyecto</p>
@@ -66,15 +80,28 @@
         <label for="fecha_final">Fecha de finalización: </label>
         <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="proyecto.fecha_final">
     </div>
+
+  
+    <div id="info" class="form-group">
+      <label>Forma de pago</label>
+      <select name="forma_pago" #forma_pago="ngModel" [(ngModel)]="proyecto.forma_pago" class="form-control">
+        <option value="efectivo">Efectivo</option>
+        <option  value="tarjeta">Tarjeta</option>
+      </select>
+    </div>
+    </div>
+
+    <div class="row"> 
       <div id="info" class="form-group">
-          <label>Monto adjudicado:</label>
-          <input type="text" name="monto_adjudicado" class="form-control" #monto_adjudicado="ngModel"
-          [(ngModel)]="proyecto.monto_adjudicado" required pattern="^[0-9\.]*$">
-          <small *ngIf="!monto_adjudicado.valid && monto_adjudicado.touched" class="invalid-feedback d-block">
-              El monto no es válido
-          </small>
+        <label>Monto adjudicado:</label>
+        <input type="text" name="monto_adjudicado" class="form-control" #monto_adjudicado="ngModel"
+        [(ngModel)]="proyecto.monto_adjudicado" required pattern="^[0-9\.]*$">
+        <small *ngIf="!monto_adjudicado.valid && monto_adjudicado.touched" class="invalid-feedback d-block">
+            El monto no es válido
+        </small>
       </div>
     </div>
+
     <div class="row">
     <div style="position: center; margin-top: 29px;">
       <input id="boton" type="submit" value="Agregar" class="btn btn-success" [disabled]="createProyectoForm.invalid">
