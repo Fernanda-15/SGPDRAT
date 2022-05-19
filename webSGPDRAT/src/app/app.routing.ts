@@ -21,7 +21,7 @@ import { LogComponent } from "./components/log/log.component";
 import {ComentariosProyectoComponent} from './components/comentarios/comentarios-proyecto/comentarios-proyecto.component';
 import {PagoCreateComponent} from './components/pago/pago-create/pago-create.component';
 import {PagoListComponent} from './components/pago/pago-list/pago-list.component';
-
+import {PagoUpdateComponent} from './components/pago/pago-update/pago-update.component';
 
 
 //DEFINIR RUTAS
@@ -43,6 +43,7 @@ const appRoutes: Routes = [
     {path: 'comentarioproyecto-list/:id', component:ComentariosProyectoComponent},
     {path: 'pago-create/:id', component:PagoCreateComponent},
     {path: 'pago-list/:id', component:PagoListComponent},
+    {path: 'pago-update/:id', component:PagoUpdateComponent},
     {path: '**', component: ErrorComponent}
 ];
 
