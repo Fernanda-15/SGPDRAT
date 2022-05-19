@@ -65,12 +65,12 @@ export class TareaCreateComponent implements OnInit {
           response=>{
            console.log(response);
              if(response.status == "success"){
-               this.status = 0;
+               this.status = -1;
                form.reset(); 
                this._router.navigate(['/tarea-list',this.tarea.proyecto_id]);
                
               }else{
-                       this.status=1;
+                       this.status=0;
                     }
             },
            error=>{
