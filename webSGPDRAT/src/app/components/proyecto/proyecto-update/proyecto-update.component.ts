@@ -97,7 +97,7 @@ export class ProyectoUpdateComponent implements OnInit {
             }
           );
         }else{
-          this.status=3;
+          this.status=2;
           counter.subscribe(n=>{
             console.log(n);
             this.status=-1;

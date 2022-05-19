@@ -5,7 +5,7 @@
     <div class="alert alert-danger"  *ngSwitchCase="1">
       Error: La fecha final debe ser mayor a la fecha de inicio!!
     </div>
-    <div class="alert alert-danger"  *ngSwitchCase="3">
+    <div class="alert alert-danger"  *ngSwitchCase="2">
       Error: Debe seleccionar una forma de pago!!
     </div>
 </div>
@@ -70,7 +70,7 @@
         <label for="fecha_final">Fecha de finalización: </label>   
         <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="proyecto.fecha_final">
     </div>
-    
+
     <div id="info" class="form-group">
         <label>Forma de pago</label>
       <select name="forma_pago" #forma_pago="ngModel" [(ngModel)]="proyecto.forma_pago" class="form-control">
