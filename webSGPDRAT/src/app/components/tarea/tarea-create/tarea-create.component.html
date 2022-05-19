@@ -4,7 +4,7 @@
   </div>
 <form id="formTarea" class="col-md-6 mr-auto ml-auto" #createTareaForm="ngForm" (ngSubmit)="onSubmit(createTareaForm)">
 
-
+  <div class="row">
     <div id="info" class="form-group">
         <label>Numero de tarea: </label>
         <input type="text" name="numero" class="form-control" #numero="ngModel"
@@ -23,6 +23,10 @@
             </small>
     </div>
 
+  </div>
+
+
+  <div class="row">
     <div id="info" class="form-group">
         <label>Peso: </label>
         <input type="text" name="peso" class="form-control" #peso="ngModel"
@@ -41,6 +45,10 @@
         </small>
     </div>
 
+  </div>
+
+
+  <div class="row">
     <div id="info" class="form-group">
         <label for="fecha_inicio">Fecha de inicio: </label>
         <input type="date" name="fecha_inicio" class="form-control" #fecha_inicio="ngModel" [(ngModel)]="tarea.fecha_inicio">
@@ -51,7 +59,11 @@
         <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="tarea.fecha_final">
     </div>
 
+  </div>
 
+  <div class="row">
+    <div style="position: center; margin-top: 29px;">
     <input id="boton" type="submit" value="Agregar" class="btn btn-success" [disabled]="createTareaForm.invalid">
-
+</div>
+  </div>
 </form>
