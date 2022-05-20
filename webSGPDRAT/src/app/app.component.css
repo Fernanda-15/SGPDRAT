@@ -1,5 +1,4 @@
 
-
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
 /* angular-cli file: src/styles.css */
 
@@ -95,23 +94,27 @@
 .sidebar nav{
   transform: translateY(15%);
 }
-.sidebar ul{
+
+.mat-button{
     list-style: none;
 }
 
 
 
-.sidebar ul li{
+.mat-button {
+  font-size: 18px;
+  width: 170px;
   text-align: center;
-  padding: 20px;
+  padding: px;
+  margin: 10px;
   border-bottom: 1px solid rgba(241, 238, 238, 0.05);
   border-top: 1px solid rgba(185, 47, 47, 0.05);
   transform: translateY(15%);
 }
 
 
-.sidebar ul li a{
-  display:flex;
+.mat-button a {
+  display:contents;
   text-decoration: none;
   color: #010003;
   transition: all 400ms ease;
@@ -126,25 +129,15 @@
   font-size: 18px;
 }
 
-.sidebar ul li a .bi{
-
-  width: 25px;
-  color: black;
-
-}
-
-.sidebar ul li:hover{
-  background-color: #ebeaf1;
-}
 
 #us:hover{
-  background-color: #ffff;   
+  background-color: #ffff;
 }
 
 .sidebar ul li ul li:hover{
-  background-color: #ebeaf1;    
+  background-color: #ebeaf1;
 }
-
+ */
 
 .main_content{
   width: 100%;

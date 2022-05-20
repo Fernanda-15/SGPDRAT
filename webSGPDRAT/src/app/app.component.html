@@ -1,77 +1,73 @@
 
-
       <header class="header">
 
-      <div class="container">
-        <div class="btn-menu">
-          <label for="btn-menu" class="bi-list"></label>
+        <div class="container">
+          <div class="btn-menu">
+            <label for="btn-menu" class="bi-list"></label>
+          </div>
+        </div>
+
+        <div class="entrada"> Inicio
+
+        </div>
+
+        <!-- <div class="bodysito">
+          <router-outlet></router-outlet>
+        </div>-->
+
+       </header>
+
+      <input type="checkbox" id="btn-menu">
+      <div class="container-menu">
+        <div class="sidebar">
+
+          <div>
+            <img src="assets/images/senara-logo-hor.png" width="160" height="55">
+          </div>
+
+        <button mat-button [matMenuTriggerFor]="proyectos"><i class="bi bi-folder-fill"></i>Proyectos</button>
+        <mat-menu #proyectos="matMenu">
+          <button mat-menu-item routerLink="/proyecto-create">Agregar</button>
+          <button mat-menu-item routerLink="/proyecto-list">Lista</button>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="usuarios"><i class="bi bi-people-fill"></i>Usuarios</button>
+        <mat-menu #usuarios="matMenu">
+          <button mat-menu-item routerLink="/user-create">Agregar</button>
+          <button mat-menu-item routerLink="/user-list">Lista</button>
+        </mat-menu>
+
+        <button mat-button routerLink=""><i class="bi bi-gear-fill"></i>Configuración</button>
+        <button mat-button routerLink=""><i class="bi bi-box-arrow-right"></i>Cerrar Sesión</button>
+        <button mat-button routerLink=""><i class="bi bi-info-circle-fill"></i>Acerca de</button>
+
+
+
+
+          <label for="btn-menu" class="bi bi-x-lg"></label>
         </div>
       </div>
 
-      <div class="entrada"> Inicio
 
-      </div>
-
-      <!-- <div class="bodysito">
-        <router-outlet></router-outlet>
-      </div>-->
-
-     </header>
-
-    <input type="checkbox" id="btn-menu">
-    <div class="container-menu">
-      <div class="sidebar">
-
-        <div>
-          <img src="assets/images/senara-logo-hor.png" width="160" height="55">
-        </div>
-
-        <ul class="menu">
-
-          <li><a href="/proyecto-create"><i class="bi bi-folder-fill"></i>Proyectos</a></li>
-          <ul id="sub-menu" >
-            <li><a href="/proyecto-list"><i class="bi bi-list"></i>Lista de Proyectos</a>
-        </ul>
-          <li id="us"><a href="#"><i class="bi bi-people-fill"></i>Usuarios</a>
-            <ul id="sub-menu" >
-                <li><a href="/user-register"><i class="bi bi-plus"></i>Agregar</a>
-                <li><a href="/user-list"><i class="bi bi-list"></i>Mostrar</a>
-            </ul>
-        </li>
-        </ul>
-        <ul id="sub-menu">
-          <li><a href="#"><i class="bi bi-gear-fill"></i>Configuración</a></li>
-          <li><a href="#"><i class="bi bi-box-arrow-right"></i>Cerrar sesion</a></li>
-          <li><a href="#"><i class="bi bi-info-circle-fill"></i>Acerca de</a></li>
-        </ul>
-        <label for="btn-menu" class="bi bi-x-lg"></label>
-      </div>
+    <div  class="bodysito" style="background:url(assets/images/senara-adorno-hojas.jpg) no-repeat bottom right transparent;
+    background-image: url(assets/images/senara-adorno-hojas.jpg);
+    background-position-x: right;
+    background-position-y: bottom;
+    background-size: 100px 500px;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: transparent;
+    padding: 25px 150px 25px 25px;">
+      <router-outlet></router-outlet>
     </div>
 
 
-  <div  class="bodysito" style="background:url(assets/images/senara-adorno-hojas.jpg) no-repeat bottom right transparent;
-  background-image: url(assets/images/senara-adorno-hojas.jpg);
-  background-position-x: right;
-  background-position-y: bottom;
-  background-size: 100px 500px;
-  background-attachment: initial;
-  background-origin: initial;
-  background-clip: initial;
-  background-color: transparent;
-  padding: 25px 150px 25px 25px;">
-    <router-outlet></router-outlet>
-  </div>
-
-
-  <footer>
-    <p>
-      Created  by
-      <a target="_blank" href="https://google.com"
-        >Allan Gonzalez , Fernanda Quesada y Jurimar Lopez &copy; Todos los derechos reservados</a
-      >
-    </p>
-  </footer>
-
-
-
-
+    <footer>
+      <p>
+        Created  by
+        <a target="_blank" href="https://google.com"
+          >Allan Gonzalez , Fernanda Quesada y Jurimar Lopez &copy; Todos los derechos reservados</a
+        >
+      </p>
+    </footer>
