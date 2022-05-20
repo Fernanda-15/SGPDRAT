@@ -1,3 +1,23 @@
+<div style="border:20px;" [ngSwitch]="status">
+  <div  class="alert alert-danger" *ngSwitchCase="0">
+    Error de servidor interno!!!
+  </div>
+  <div class="alert alert-danger"  *ngSwitchCase="1">
+    Error: La fecha final debe ser mayor a la fecha de inicio!!
+  </div>
+  <div class="alert alert-danger"  *ngSwitchCase="2">
+    Error: La fecha de Inicio de la tarea debe estar dentro del periodo del proyecto!!
+  </div>
+  <div class="alert alert-danger"  *ngSwitchCase="3">
+    Error: La fecha Final de la tarea debe estar dentro del periodo del proyecto!!
+  </div>
+  <div class="alert alert-danger"  *ngSwitchCase="4">
+    Error: El numero de tarea ya está asignado a otra tarea!!
+  </div>
+  <div class="alert alert-danger"  *ngSwitchCase="5">
+    Error: La suma del peso de las tareas no debe ser mayor a 100!!
+  </div>
+ </div>
 
  <div class="form-group">
   <p>Agregar Tarea</p>
@@ -7,8 +27,8 @@
   <div class="row">
     <div id="info" class="form-group">
         <label>Numero de tarea: </label>
-        <input type="text" name="numero" class="form-control" #numero="ngModel"
-        [(ngModel)]="tarea.numero" required pattern="^[a-zA-Z0-9\.]*$">
+        <input type="number" name="numero" class="form-control" #numero="ngModel" 
+        [(ngModel)]="tarea.numero" required pattern="[1-9]">
         <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
             El número de tarea no es válido
         </small>
@@ -28,28 +48,6 @@
 
   <div class="row">
     <div id="info" class="form-group">
-        <label>Peso: </label>
-        <input type="text" name="peso" class="form-control" #peso="ngModel"
-        [(ngModel)]="tarea.peso" required pattern="^[a-zA-Z0-9\.]*$">
-        <small *ngIf="!peso.valid && peso.touched" class="invalid-feedback d-block">
-            El peso de la tarea no es válido
-        </small>
-    </div>
-
-    <div id="info" class="form-group">
-        <label>Avance: </label>
-        <input type="text" name="avance" class="form-control" #avance="ngModel"
-        [(ngModel)]="tarea.avance" required pattern="^[a-zA-Z0-9\.]*$">
-        <small *ngIf="!avance.valid && avance.touched" class="invalid-feedback d-block">
-            El avance de tarea no es válido
-        </small>
-    </div>
-
-  </div>
-
-
-  <div class="row">
-    <div id="info" class="form-group">
         <label for="fecha_inicio">Fecha de inicio: </label>
         <input type="date" name="fecha_inicio" class="form-control" #fecha_inicio="ngModel" [(ngModel)]="tarea.fecha_inicio">
     </div>
@@ -57,6 +55,18 @@
     <div id="info" class="form-group">
         <label for="fecha_final">Fecha de finalización: </label>
         <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="tarea.fecha_final">
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div id="info" class="form-group">
+        <label>Peso: </label>
+        <input type="number" name="peso" class="form-control" #peso="ngModel"
+        [(ngModel)]="tarea.peso" required pattern="[1-9]">
+        <small *ngIf="!peso.valid && peso.touched" class="invalid-feedback d-block">
+            El peso de la tarea no es válido
+        </small>
     </div>
 
   </div>

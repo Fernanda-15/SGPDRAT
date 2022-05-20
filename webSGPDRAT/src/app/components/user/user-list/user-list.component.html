@@ -9,7 +9,6 @@
       <table  class="table  table-striped" >
           <thead>
               <tr>
-                  <th scope="col">#Id</th>
                   <th scope="col">Usuario</th>
                   <th scope="col">Rol</th>
                   <th scope="col">Nombre</th>
@@ -24,7 +23,6 @@
           <tbody>
               <tr *ngFor="let user of users | slice:desde:hasta let i=index">
 
-                    <td>{{user.id}}</td>
                     <td>{{user.nombreUsuario}}</td>
                     <td>{{user.rol}}</td>
                     <td>{{user.nombre}}</td>
