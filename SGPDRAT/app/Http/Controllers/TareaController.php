@@ -57,7 +57,7 @@ class TareaController extends Controller
         $data=array_map('trim',$data);
         $rules=[
             'proyecto_id'=>'required|integer',
-            'numero'=>'required',
+            'numero'=>'required', 
             'descripcion'=>'required',
             'peso'=>'required',
             'avance'=>'required',
