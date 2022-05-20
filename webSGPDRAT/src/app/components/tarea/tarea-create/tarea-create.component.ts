@@ -83,11 +83,28 @@ export class TareaCreateComponent implements OnInit {
       }
     }
     if(existe>0){
-      this.status=4;
       return true;
     }
     
   }
+
+  pesoTarea():any{
+    let total:number=0;
+    let subt:number=0;
+    for(let i in this.tareas){
+      total= total + (this.tareas[i].peso);
+    }
+    console.log("TOTAL", total);
+   if(total < 100){
+     subt= total + (this.tarea.peso);
+    console.log("SUB", subt);
+     if(subt<=100){
+      return true;
+     }
+   }
+   return false;
+  }
+
 
   onSubmit(form:any){ 
   let counter=timer(5000);
@@ -96,26 +113,35 @@ export class TareaCreateComponent implements OnInit {
     if(this.tarea.fecha_final >= this.tarea.fecha_inicio){
       if((this.tarea.fecha_inicio >= this.proyecto.fecha_inicio) && (this.tarea.fecha_inicio <= this.proyecto.fecha_final)){ //FECHA INICIO DE TAREA CON EL PROYECTO
        if((this.tarea.fecha_final <= this.proyecto.fecha_final) && (this.tarea.fecha_final >= this.proyecto.fecha_inicio)){ //FECHA FINAL DE TAREA CON EL PROYECTO
-        if(!this.existeNT()){
-          this._tareaService.registro(this.tarea).subscribe(
-            response=>{
-             console.log(response);
-               if(response.status == "success"){
-                 this.status = -1;
-                 form.reset(); 
-                  this._router.navigate(['/tarea-list',this.tarea.proyecto_id]);
-                 
-                }
-                if(response.code == 500){
-                    this.status=0;
-                }
-              },
-              error=>{
-              this.status = 0;
-              console.log(<any>error);
-              
-             }
-          );
+        if(!this.existeNT()){ //Verificar que en el proyecto no exista una tarea con ese numero 
+          if(this.pesoTarea()){ //Verifica que el peso de las tareas no pase 100
+            this._tareaService.registro(this.tarea).subscribe(
+              response=>{
+               console.log(response);
+                 if(response.status == "success"){
+                   this.status = -1;
+                   form.reset(); 
+                    this._router.navigate(['/tarea-list',this.tarea.proyecto_id]);
+                   
+                  }
+                  if(response.code == 500){
+                      this.status=0;
+                  }
+                },
+                error=>{
+                this.status = 0;
+                console.log(<any>error);
+                
+               }
+            );
+          }else{
+            this.status=5;
+            counter.subscribe(n=>{
+            console.log(n);
+            this.status=-1;
+          });
+          }
+       
         }else{
           this.status=4;
           counter.subscribe(n=>{

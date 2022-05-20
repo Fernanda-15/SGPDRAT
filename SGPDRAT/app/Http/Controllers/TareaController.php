@@ -60,7 +60,6 @@ class TareaController extends Controller
             'numero'=>'required', 
             'descripcion'=>'required',
             'peso'=>'required',
-            'avance'=>'required',
             'fecha_inicio'=>'required',
             'fecha_final'=>'required'
         ];
@@ -78,7 +77,7 @@ class TareaController extends Controller
             $tarea->numero=$data['numero'];
             $tarea->descripcion=$data['descripcion']; 
             $tarea->peso=$data['peso'];
-            $tarea->avance=$data['avance'];
+            $tarea->avance=0;
             $tarea->fecha_inicio=$data['fecha_inicio'];
             $tarea->fecha_final=$data['fecha_final'];
             $tarea->save();
