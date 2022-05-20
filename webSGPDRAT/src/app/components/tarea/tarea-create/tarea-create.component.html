@@ -27,7 +27,7 @@
   <div class="row">
     <div id="info" class="form-group">
         <label>Numero de tarea: </label>
-        <input type="text" name="numero" class="form-control" #numero="ngModel" 
+        <input type="number" name="numero" class="form-control" #numero="ngModel" 
         [(ngModel)]="tarea.numero" required pattern="[1-9]">
         <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
             El número de tarea no es válido
@@ -63,7 +63,7 @@
     <div id="info" class="form-group">
         <label>Peso: </label>
         <input type="number" name="peso" class="form-control" #peso="ngModel"
-        [(ngModel)]="tarea.peso" required pattern="^[a-zA-Z0-9\.]*$">
+        [(ngModel)]="tarea.peso" required pattern="[1-9]">
         <small *ngIf="!peso.valid && peso.touched" class="invalid-feedback d-block">
             El peso de la tarea no es válido
         </small>
