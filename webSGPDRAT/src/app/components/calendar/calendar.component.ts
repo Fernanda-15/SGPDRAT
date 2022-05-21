@@ -6,6 +6,12 @@ import {
   DayPilotNavigatorComponent
 } from "@daypilot/daypilot-lite-angular";
 import {DataService} from "./data.service";
+import{Router,ActivatedRoute} from '@angular/router';
+import {ProyectoService} from "../../services/proyecto.service";
+import {Proyecto} from "../../models/proyecto";
+import {TareaService} from '../../services/tarea.service';
+import {Tarea} from '../../models/tarea';
+import { expand } from "rxjs";
 
 @Component({
   selector: 'calendar-component',
@@ -65,7 +71,9 @@ import {DataService} from "./data.service";
 })
 export class CalendarComponent implements AfterViewInit {
 
-  @Input() datos:any;
+  public proyecto:Proyecto;
+  public tarea:Tarea;
+  public tareas:any;
   @ViewChild("day") day!: DayPilotCalendarComponent;
   @ViewChild("week") week!: DayPilotCalendarComponent;
   @ViewChild("month") month!: DayPilotMonthComponent;
@@ -76,11 +84,11 @@ export class CalendarComponent implements AfterViewInit {
   date = DayPilot.Date.today();
 
   configNavigator: DayPilot.NavigatorConfig = {
-    showMonths: 3,
+    showMonths: 5,
     cellWidth: 25,
     cellHeight: 25,
     onVisibleRangeChanged: args => {
-      this.loadEvents();
+      //this.loadEvents();
     }
   };
 
@@ -99,39 +107,75 @@ export class CalendarComponent implements AfterViewInit {
 
   configWeek: DayPilot.CalendarConfig = {
     viewType: "Week",
-    onTimeRangeSelected: async (args) => {
-      const modal = await DayPilot.Modal.prompt("Create a new event:", "Event 1");
-      const dp = args.control;
-      dp.clearSelection();
-      if (!modal.result) { return; }
-      dp.events.add(new DayPilot.Event({
-        start: args.start,
-        end: args.end,
-        id: DayPilot.guid(),
-        text: modal.result
-      }));
-    }
   };
 
   configMonth: DayPilot.MonthConfig = {
-
+    eventHeight: 110,
+    cellHeight: 100
   };
 
-  constructor(private ds: DataService) {
-    this.viewWeek();
+  constructor(
+    private ds: DataService,
+    private _route:ActivatedRoute, 
+    private _router:Router,
+    private _proyectoService:ProyectoService,
+    private _tareaService:TareaService,) 
+    {
+    this.viewMonth();
+    this.proyecto = new Proyecto(0,0,"","","","","","","",0);
+    this.tarea = new Tarea(0,0,0,"",0,0,"","");
+  }
+
+  getProyecto():void{
+    this._route.params.subscribe(params=>{
+      let id=params['id'];
+      console.log(id);
+      this._proyectoService.getProyecto(id).subscribe(
+        response=>{
+          if(response.status=='success'){
+            this.proyecto=response.data;
+            this.loadTareas(this.proyecto.id);
+          }else{
+            console.log('AQUI');
+            //this._router.navigate(['']);
+          }
+        },
+        error=>{
+          console.log(error);
+         //this._router.navigate(['']); 
+        }
+      );
+    });
+  }
+
+  getDayDiff(startDate: Date, endDate: Date): number {
+    const msInDay = 24 * 60 * 60 * 1000;
+  
+    return Math.round(Math.abs(Number(endDate) - Number(startDate)) / msInDay);
+  }
+  loadTareas(id:number):void{
+    this._proyectoService.getTareas(id).subscribe(
+      response=>{
+          this.tareas = response.data;
+          console.log(this.tareas);
+          this.tareas.forEach((t:any) => {
+            this.events.push({
+              id: t.numero.toString(),
+              start: new DayPilot.Date(t.fecha_inicio).addHours(+(t.fecha_inicio[11]+t.fecha_final[12])),
+              end: new DayPilot.Date(t.fecha_final),
+              text: "Tarea #"+t.numero + " | " + t.descripcion + " | Avance: " + t.avance + "%" + " | Peso: " + t.peso
+            })
+          })
+          console.log(this.events);
+      },
+      error=>{
+        console.log(error);
+      }
+    );
   }
 
   ngAfterViewInit(): void {
-    console.log(this.datos);
-    this.loadEvents();
-  }
-
-  loadEvents(): void {
-    const from = this.nav.control.visibleStart();
-    const to = this.nav.control.visibleEnd();
-    this.ds.getEvents(from, to).subscribe(result => {
-      this.events = result;
-    });
+    this.getProyecto();
   }
 
   viewDay():void {
