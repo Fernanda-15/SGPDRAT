@@ -22,6 +22,7 @@ export class ProyectoInfoComponent implements OnInit {
   private user:User;
   public userName:string;
   public tareas:any;
+  public proyecto_id:string;
   constructor(
     private _proyectoService:ProyectoService,
     private _tareaService:TareaService,
@@ -32,6 +33,7 @@ export class ProyectoInfoComponent implements OnInit {
     this.proyecto = new Proyecto(0,0,"","","","","","","",0);
     this.user = new User(0,"","","","","","","",);
     this.userName = "";
+    this.proyecto_id = "";
   }
 
   ngOnInit(): void {
@@ -48,6 +50,8 @@ export class ProyectoInfoComponent implements OnInit {
             this.proyecto=response.data;
             console.log(this.proyecto);
             this.getUserName();
+            this.proyecto_id = this.proyecto.id.toString();
+            console.log("ID PROYECTO "+this.proyecto_id);
             this.loadTareas(this.proyecto.id); 
             console.log(this.tareas);
           }else{
