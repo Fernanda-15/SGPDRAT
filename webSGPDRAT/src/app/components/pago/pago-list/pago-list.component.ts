@@ -21,6 +21,7 @@ export class PagoListComponent implements OnInit {
   public i:number = 1 ;
   public desde:number = 0;
   public hasta:number = 5;
+  public total:number;
 
   constructor(
     private _proyectoService:ProyectoService,
@@ -30,6 +31,7 @@ export class PagoListComponent implements OnInit {
   ) {
     this.proyecto = new Proyecto(0,0,"","","","","","","",0);
     this.pago = new Pago(0,0,0,0,0,"","");
+    this.total=0;
   }
 
   ngOnInit(): void {
@@ -43,6 +45,7 @@ export class PagoListComponent implements OnInit {
         response=>{
           if(response.status=='success'){
             this.proyecto=response.data;
+            this.pendiente();
             this.loadPagos(id);
           }
         },
@@ -90,5 +93,11 @@ export class PagoListComponent implements OnInit {
     this.desde = e.pageIndex * e.pageSize;
     this.hasta = this.desde + e.pageSize;
 
+  }
+
+  pendiente():void{
+    for(let i in this.pagos){
+       this.total= this.total + (this.pagos[i].monto);
+     }  
   }
 }

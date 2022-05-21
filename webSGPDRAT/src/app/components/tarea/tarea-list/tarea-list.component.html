@@ -1,12 +1,14 @@
 <div style="border:20px;" [ngSwitch]="status">
     <!--ELIMINO CON EXITO-->
-    <div class="alert alert-success"  *ngSwitchCase="0">
-        Tarea eliminada con exito !!!
+    <div class="alert alert-success"  *ngSwitchCase="0" >
+        <i class="bi bi-check-circle-fill"></i> 
+         <strong> Éxito:</strong> Tarea eliminada con exito !!!
     </div>
 
     <!--PESO DE TAREA-->
     <div class="alert alert-danger"  *ngSwitchCase="1">
-      Error: La suma del peso de las tareas debe ser igual a 100 !!!
+        <i class="bi bi-exclamation-triangle-fill"></i> 
+        <strong> Error:</strong>  La suma del peso de las tareas debe ser igual a 100 !!!
     </div>
 </div>
 

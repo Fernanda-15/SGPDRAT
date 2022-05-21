@@ -1,6 +1,8 @@
 <div class="container" *ngIf="pagos">
     <h5 id="titulo">Lista de Pagos del proyecto #{{proyecto.id}}</h5>
-
+    <p><i class="bi bi-dot"></i> El monto total a cancelar es: {{proyecto.monto_adjudicado}}</p>
+    <p><i class="bi bi-dot"></i> El monto pendiente es: {{total}}</p>
+    
     <div class="table-responsive">
 
     <table class="table table-striped" >
