@@ -1,3 +1,16 @@
+<div style="border:20px;" [ngSwitch]="status">
+    <!--ELIMINO CON EXITO-->
+    <div class="alert alert-success"  *ngSwitchCase="0">
+        Tarea eliminada con exito !!!
+    </div>
+
+    <!--PESO DE TAREA-->
+    <div class="alert alert-danger"  *ngSwitchCase="1">
+      Error: La suma del peso de las tareas debe ser igual a 100 !!!
+    </div>
+</div>
+
+
 <!--TABLA DE TAREAS-->
 <div class="container" *ngIf="tareas">
         <h5 id="titulo">Lista de Tareas</h5>
@@ -71,8 +84,11 @@
 
     <!--Boton nueva tarea  -->
         <div style="position:absolute; right:225px; ">
-            <button  type="button" class="btn btn-success"  [routerLink]="['/tarea-create',proyecto.id]">
+            <button  type="button" class="btn btn-success mr-2"  [routerLink]="['/tarea-create',proyecto.id]">
                 <span class="bi bi-clipboard2-plus-fill"> Agregar Tarea</span>
+            </button>
+            <button  type="button" class="btn btn-info" (click)="listo()">
+                <span class="bi bi-check-square-fill"> Listo </span>
             </button>
         </div>
 </div>

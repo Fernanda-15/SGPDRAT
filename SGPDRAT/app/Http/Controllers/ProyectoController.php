@@ -41,6 +41,16 @@ class ProyectoController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    public function getUltimo(){ //Buscar el ID del proyecto
+        $data = Proyecto::latest('id')->first();
+        $response=array(
+            'status'=>'success',
+            'code'=>200,
+            'data'=>$data
+        );
+        return response()->json($response,200);
+    }
+
     public function store(Request $request){
         $proyecto=$request;
         $json=$request->input('json',null);
@@ -168,4 +178,5 @@ class ProyectoController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    
 }

@@ -20,13 +20,17 @@ export class ProyectoCreateComponent implements OnInit {
   public status:number;
   public reset=false;
   public users:any;
+  public proyectito:Proyecto;
+  public id:number;
   constructor(
     private _proyectoService: ProyectoService, 
     private _userService: UserService,
     private _router:Router,
   ) { 
     this.status=-1;
+    this.id=0;
     this.proyecto = new Proyecto(0,0,"","","","","","","",0);
+    this.proyectito = new Proyecto(0,0,"","","","","","","",0);
   }
 
   ngOnInit(): void {
@@ -36,7 +40,7 @@ export class ProyectoCreateComponent implements OnInit {
   }
 
 
-  getUsers(){
+  getUsers():any{
     this._userService.getUsers().subscribe(
       response=>{
         if(response.code==200){
@@ -49,17 +53,32 @@ export class ProyectoCreateComponent implements OnInit {
     );
   }
 
+  ruta():any{
+    this._proyectoService.getUltimo().subscribe(
+      response=>{
+        if(response.code==200){
+          this.proyectito=response.data;
+          this._router.navigate(['/tarea-list', this.proyectito.id]);
+        }
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
+
+
   onSubmit(form:any){ 
     let counter=timer(5000);
+    let e:number=0;
     if(this.proyecto.fecha_final >= this.proyecto.fecha_inicio){
       if(this.proyecto.user_id > 0){
         if(this.proyecto.forma_pago != ""){
           this._proyectoService.registro(this.proyecto).subscribe(
             response=>{
-            console.log(response);
-              if(response.status == "success"){
-                form.reset(); 
-                this._router.navigate(['/proyecto-list']);
+              if(response.code == 200){
+                form.reset();
+                this.ruta();
                 }else{
                         this.status=0;
                         counter.subscribe(n=>{
