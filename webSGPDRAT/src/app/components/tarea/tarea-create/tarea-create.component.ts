@@ -97,7 +97,7 @@ export class TareaCreateComponent implements OnInit {
     console.log("TOTAL", total);
    if(total < 100){
      subt= total + (this.tarea.peso);
-    console.log("SUB", subt);
+     
      if(subt<=100){
       return true;
      }

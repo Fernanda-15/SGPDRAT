@@ -101,9 +101,7 @@ export class PagoListComponent implements OnInit {
     deuda = this.proyecto.monto_adjudicado;
     for(let i in this.pagos){
        abonos= abonos + (this.pagos[i].monto);
-       console.log("FOR", abonos);
      }  
      this.total = deuda - abonos;
-     console.log(this.total);
   }
 }
