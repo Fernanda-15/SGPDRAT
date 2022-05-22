@@ -4,6 +4,8 @@ import { ProyectoService } from 'src/app/services/proyecto.service';
 import { UserService } from 'src/app/services/user.service';
 import{Router} from '@angular/router';
 import{timer} from 'rxjs';
+import {Log} from 'src/app/models/log';
+import { LogService } from 'src/app/services/log.service';
 
 @Component({
   selector: 'app-proyecto-create',
@@ -22,15 +24,18 @@ export class ProyectoCreateComponent implements OnInit {
   public users:any;
   public proyectito:Proyecto;
   public id:number;
+  private log:Log;
   constructor(
     private _proyectoService: ProyectoService, 
     private _userService: UserService,
     private _router:Router,
+    private _logService:LogService,
   ) { 
     this.status=-1;
     this.id=0;
     this.proyecto = new Proyecto(0,0,"","","","","","","",0);
     this.proyectito = new Proyecto(0,0,"","","","","","","",0);
+    this.log = new Log(0,0,"","","");
   }
 
   ngOnInit(): void {

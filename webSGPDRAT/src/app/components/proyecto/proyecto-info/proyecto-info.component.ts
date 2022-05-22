@@ -43,17 +43,13 @@ export class ProyectoInfoComponent implements OnInit {
   getProyecto():void{
     this._route.params.subscribe(params=>{
       let id=params['id'];
-      console.log(id);
       this._proyectoService.getProyecto(id).subscribe(
         response=>{
           if(response.status=='success'){
             this.proyecto=response.data;
-            console.log(this.proyecto);
             this.getUserName();
             this.proyecto_id = this.proyecto.id.toString();
-            console.log("ID PROYECTO "+this.proyecto_id);
             this.loadTareas(this.proyecto.id); 
-            console.log(this.tareas);
           }else{
             console.log('AQUI');
             //this._router.navigate(['']);
@@ -72,7 +68,6 @@ export class ProyectoInfoComponent implements OnInit {
         response=>{
           if(response.status=='success'){
             this.user=response.data;
-            console.log(this.user);
             this.userName = this.user.nombre;
           }else{
             console.log('AQUI');
@@ -89,7 +84,6 @@ export class ProyectoInfoComponent implements OnInit {
   loadTareas(id:number):void{
     this._proyectoService.getTareas(id).subscribe(
       response=>{
-        console.log(response.data);
           this.tareas = response.data;
       },
       error=>{

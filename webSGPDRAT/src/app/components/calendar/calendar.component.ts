@@ -110,7 +110,7 @@ export class CalendarComponent implements AfterViewInit {
   };
 
   configMonth: DayPilot.MonthConfig = {
-    eventHeight: 110,
+    eventHeight: 95,
     cellHeight: 100
   };
 
@@ -129,7 +129,6 @@ export class CalendarComponent implements AfterViewInit {
   getProyecto():void{
     this._route.params.subscribe(params=>{
       let id=params['id'];
-      console.log(id);
       this._proyectoService.getProyecto(id).subscribe(
         response=>{
           if(response.status=='success'){
@@ -157,7 +156,6 @@ export class CalendarComponent implements AfterViewInit {
     this._proyectoService.getTareas(id).subscribe(
       response=>{
           this.tareas = response.data;
-          console.log(this.tareas);
           this.tareas.forEach((t:any) => {
             this.events.push({
               id: t.numero.toString(),
@@ -166,7 +164,6 @@ export class CalendarComponent implements AfterViewInit {
               text: "Tarea #"+t.numero + " | " + t.descripcion + " | Avance: " + t.avance + "%" + " | Peso: " + t.peso
             })
           })
-          console.log(this.events);
       },
       error=>{
         console.log(error);
