@@ -45,7 +45,6 @@ export class PagoListComponent implements OnInit {
         response=>{
           if(response.status=='success'){
             this.proyecto=response.data;
-            this.pendiente();
             this.loadPagos(id);
           }
         },
@@ -61,6 +60,7 @@ export class PagoListComponent implements OnInit {
     this._proyectoService.getPagos(id).subscribe(
       response=>{
           this.pagos = response.data;
+          this.pendiente();
           console.log(this.pagos);
       },
       error=>{
@@ -96,8 +96,14 @@ export class PagoListComponent implements OnInit {
   }
 
   pendiente():void{
+    let deuda:number = 0;
+    let abonos:number = 0;
+    deuda = this.proyecto.monto_adjudicado;
     for(let i in this.pagos){
-       this.total= this.total + (this.pagos[i].monto);
+       abonos= abonos + (this.pagos[i].monto);
+       console.log("FOR", abonos);
      }  
+     this.total = deuda - abonos;
+     console.log(this.total);
   }
 }
