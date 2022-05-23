@@ -29,7 +29,7 @@ export class UserUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.reset=false;
-    this.user=new User(1,"","","usuario","","","","");
+    this.user=new User(1,"","","usuario","","","","","");
     this.getUser();
   }
 

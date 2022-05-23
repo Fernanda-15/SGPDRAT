@@ -19,7 +19,7 @@ class JwtAuth{
         $user=User::where([ //hace el select,mueve a primer registro
             //asigna valor a user del bd, si user viene vacio no lo encontro
             'nombreUsuario'=>$nombreUsuario,
-            'contrasena'=>$contrasena
+            'contrasena'=>hash('sha256',$contrasena)
         ])->first();
         if(is_object($user)){
             $token=array(
