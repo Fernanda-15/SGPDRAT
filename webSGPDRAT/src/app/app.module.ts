@@ -30,6 +30,9 @@ import {MatTableModule} from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { InspeccionCreateComponent } from './components/inspeccion/inspeccion-create/inspeccion-create.component';
+import { InspeccionUpdateComponent } from './components/inspeccion/inspeccion-update/inspeccion-update.component';
+import { InspeccionListComponent } from './components/inspeccion/inspeccion-list/inspeccion-list.component';
 
 
 @NgModule({
@@ -53,6 +56,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     PagoCreateComponent,
     PagoListComponent,
     PagoUpdateComponent,
+    InspeccionCreateComponent,
+    InspeccionUpdateComponent,
+    InspeccionListComponent,
   ],
   imports: [
     BrowserModule,
