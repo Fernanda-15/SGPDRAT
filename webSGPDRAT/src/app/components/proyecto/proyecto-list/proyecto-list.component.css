@@ -14,17 +14,18 @@
 }
 
 
-
-
 .card{
+position:static;
 margin: 1px;
 }
 
 .cards-columns{
+
 margin: 4px;
 }
 
 .card-header{
+  position:static;
     text-align: center;
     margin: 2px;
     padding: 5px;
@@ -38,9 +39,21 @@ margin: 4px;
 }
 
 .card-body{
+  position:static;
+
   margin: 5px;
 }
 
+.card-body h6{
+  position:static;
+  margin: 5px;
+}
+
+.col{
+
+    position:static;
+
+}
 mat-paginator{
   background-color:dashed 4px rgba(20, 172, 232, 0.825);;
 }
