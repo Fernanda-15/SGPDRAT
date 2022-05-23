@@ -1,5 +1,5 @@
 
-      <header class="header">
+      <header class="header" *ngIf="identity">
 
         <div class="container">
           <div class="btn-menu">
@@ -17,7 +17,7 @@
 
        </header>
 
-      <input type="checkbox" id="btn-menu">
+      <input type="checkbox" id="btn-menu" *ngIf="identity">
       <div class="container-menu">
         <div class="sidebar">
 
