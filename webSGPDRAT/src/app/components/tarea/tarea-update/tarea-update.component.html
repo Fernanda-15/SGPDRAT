@@ -14,13 +14,13 @@
     <div class="alert alert-danger"  *ngSwitchCase="2">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <i class="bi bi-exclamation-triangle-fill"></i>
-      <strong> Error: </strong>La fecha de Inicio de la tarea debe estar dentro del periodo del proyecto!!
+      <strong> Error: </strong>La fecha de Inicio de la tarea debe estar dentro del periodo del proyecto: [{{proyecto.fecha_inicio}} - {{proyecto.fecha_final}}]!!
     </div>
 
     <div class="alert alert-danger"  *ngSwitchCase="3">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <i class="bi bi-exclamation-triangle-fill"></i>
-      <strong> Error: </strong>La fecha Final de la tarea debe estar dentro del periodo del proyecto!!
+      <strong> Error: </strong>La fecha Final de la tarea debe estar dentro del periodo del proyecto: [{{proyecto.fecha_inicio}} - {{proyecto.fecha_final}}]!!
     </div>
 </div>
 
