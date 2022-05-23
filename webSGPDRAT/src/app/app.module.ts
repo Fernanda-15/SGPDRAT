@@ -29,6 +29,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { GanttModule } from './components/gantt/gantt.module';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatPaginatorModule,
     MatTableModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    GanttModule
   ],
   providers: [
     appRoutingProviders
