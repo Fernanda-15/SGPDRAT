@@ -11,3 +11,13 @@
   scroll-margin-bottom: 100%;
   position: center;
 }
+
+
+hr{
+  background-color: rgba(20, 172, 232, 0.825);
+}
+
+thead {
+  background-color: rgba(20, 172, 232, 0.825);
+
+}

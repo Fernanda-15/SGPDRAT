@@ -6,6 +6,7 @@ import { Pago } from 'src/app/models/pago';
 import{Router,ActivatedRoute} from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 
+
 @Component({
   selector: 'app-pago-list',
   templateUrl: './pago-list.component.html',
@@ -20,7 +21,7 @@ export class PagoListComponent implements OnInit {
   public proyecto:Proyecto;
   public i:number = 1 ;
   public desde:number = 0;
-  public hasta:number = 5;
+  public hasta:number = 3;
   public total:number;
 
   constructor(
@@ -101,7 +102,7 @@ export class PagoListComponent implements OnInit {
     deuda = this.proyecto.monto_adjudicado;
     for(let i in this.pagos){
        abonos= abonos + (this.pagos[i].monto);
-     }  
+     }
      this.total = deuda - abonos;
   }
 }

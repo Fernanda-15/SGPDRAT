@@ -46,10 +46,18 @@
 .row .btn{
   margin: 2px;
   font-size: 1vw;
+}
 
 
+hr{
+  background-color: rgba(20, 172, 232, 0.825);
+}
+
+thead {
+  background-color: rgba(20, 172, 232, 0.825);
 
 }
+
 
 /* .btn {
   display: flex;

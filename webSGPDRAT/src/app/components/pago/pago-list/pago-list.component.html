@@ -1,10 +1,27 @@
+
 <div class="container" *ngIf="pagos">
     <h5 id="titulo">Lista de Pagos del proyecto #{{proyecto.id}}</h5>
-    <p><i class="bi bi-dot"></i> El monto total a cancelar es: {{proyecto.monto_adjudicado}}</p>
-    <p><i class="bi bi-dot"></i> El monto pendiente es: {{total}}</p>
-    
-    <div class="table-responsive">
 
+    <div class="row" >
+      <div class="col">
+        <p>El monto total a cancelar es: {{proyecto.monto_adjudicado}}</p>
+        <hr/>
+        <p> El monto pendiente es: {{total}}</p>
+        <hr/>
+      </div>
+
+      <div class="col">
+        <!--Boton nuevo pago  -->
+        <div>
+          <button  type="button" class="btn btn-success"  [routerLink]="['/pago-create',proyecto.id]">
+              <span class="bi bi-clipboard2-plus-fill"> Agregar Pago</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!--TABLA DE PAGOS-->
+    <div class="table-responsive">
     <table class="table table-striped" >
         <thead>
             <tr>
@@ -64,15 +81,9 @@
             </tr>
         </tbody>
     </table>
-    <mat-paginator [length]="pagos.length" [pageSize]="5"  [pageSizeOptions]="[5, 10, 25, 100]"  aria-label="Select page" (page)="cambiarpagina($event)">
+    <mat-paginator [length]="pagos.length" [pageSize]="3"  [pageSizeOptions]="[3, 5, 10, 25, 100]"  aria-label="Select page" (page)="cambiarpagina($event)">
     </mat-paginator>
     </div>
 
-<!--Boton nuevo pago  -->
-    <div style="position:absolute; right:225px; ">
-        <button  type="button" class="btn btn-success"  [routerLink]="['/pago-create',proyecto.id]">
-            <span class="bi bi-clipboard2-plus-fill"> Agregar Pago</span>
-        </button>
-    </div>
 </div>
 

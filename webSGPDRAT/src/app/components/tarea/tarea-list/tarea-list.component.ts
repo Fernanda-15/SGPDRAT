@@ -21,7 +21,7 @@ export class TareaListComponent implements OnInit {
   public proyecto:Proyecto;
   public i:number = 1 ;
   public desde:number = 0;
-  public hasta:number = 5;
+  public hasta:number = 3;
   public status:number;
   constructor(
     private _proyectoService:ProyectoService,

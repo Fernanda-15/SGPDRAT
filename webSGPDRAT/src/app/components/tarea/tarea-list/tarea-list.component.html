@@ -32,10 +32,8 @@
 
   </div>
 
-
         <div class="table-responsive">
-
-        <table class="table" >
+        <table class="table table-striped" >
             <thead>
                 <tr>
                     <th scope="col">Numero</th>
@@ -96,7 +94,7 @@
                 </tr>
             </tbody>
         </table>
-        <mat-paginator [length]="tareas.length" [pageSize]="5"  [pageSizeOptions]="[5, 10, 25, 100]"  aria-label="Select page" (page)="cambiarpagina($event)">
+        <mat-paginator [length]="tareas.length" [pageSize]="5"  [pageSizeOptions]="[3, 5, 10, 25, 100]"  aria-label="Select page" (page)="cambiarpagina($event)">
         </mat-paginator>
         </div>
 
