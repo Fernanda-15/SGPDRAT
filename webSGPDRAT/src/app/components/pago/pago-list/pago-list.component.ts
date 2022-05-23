@@ -5,7 +5,7 @@ import { Proyecto } from 'src/app/models/proyecto';
 import { Pago } from 'src/app/models/pago';
 import{Router,ActivatedRoute} from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
-
+import{timer} from 'rxjs';
 
 @Component({
   selector: 'app-pago-list',
@@ -23,6 +23,7 @@ export class PagoListComponent implements OnInit {
   public desde:number = 0;
   public hasta:number = 3;
   public total:number;
+  public status:number;
 
   constructor(
     private _proyectoService:ProyectoService,
@@ -33,6 +34,7 @@ export class PagoListComponent implements OnInit {
     this.proyecto = new Proyecto(0,0,"","","","","","","",0);
     this.pago = new Pago(0,0,0,0,0,"","");
     this.total=0;
+    this.status = -1;
   }
 
   ngOnInit(): void {
@@ -71,18 +73,34 @@ export class PagoListComponent implements OnInit {
   }
 
   delete(id:number):void{
+  let counter=timer(5000);
     this._pagoService.deletePago(id).subscribe(
       response=>{
         if(response.status=="success"){
           console.log(response);
           this.loadPagos(this.proyecto.id);
+          this.status = 0;
+          counter.subscribe(n=>{
+            console.log(n);
+            this.status=-1;
+          });
         }
         else{
+          this.status=1;
+          counter.subscribe(n=>{
+            console.log(n);
+            this.status=-1;
+          });
           console.log(response);
         }
 
       },
       error=>{
+        this.status = 1;
+        counter.subscribe(n=>{
+          console.log(n);
+          this.status=-1;
+        });
         console.log(error);
       }
     );
