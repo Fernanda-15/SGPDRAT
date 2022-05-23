@@ -33,6 +33,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { InspeccionCreateComponent } from './components/inspeccion/inspeccion-create/inspeccion-create.component';
 import { InspeccionUpdateComponent } from './components/inspeccion/inspeccion-update/inspeccion-update.component';
 import { InspeccionListComponent } from './components/inspeccion/inspeccion-list/inspeccion-list.component';
+import { GanttModule } from './components/gantt/gantt.module';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { InspeccionListComponent } from './components/inspeccion/inspeccion-list
     MatTableModule,
     MatButtonModule,
     MatMenuModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    GanttModule
   ],
   providers: [
     appRoutingProviders
