@@ -3,6 +3,7 @@ import { ProyectoService } from 'src/app/services/proyecto.service';
 import { Proyecto } from 'src/app/models/proyecto';
 import{global} from '../../../services/global';
 import { PageEvent } from '@angular/material/paginator';
+import{timer} from 'rxjs';
 
 @Component({
   selector: 'app-proyecto-list',
@@ -18,12 +19,15 @@ export class ProyectoListComponent implements OnInit {
   public desde:number = 0;
   public hasta:number = 3;
   public status:number;
+  public tareas:any;
+  public id:number;
 
   constructor(
     private _proyectoService:ProyectoService
   ) {
     this.proyecto = new Proyecto(0,0,"","","","","","","",0)
     this.status=-1;
+    this.id=0;
   }
 
   ngOnInit(): void {
@@ -44,26 +48,74 @@ export class ProyectoListComponent implements OnInit {
   }
 
 
+  getTareas():void{
+  this._proyectoService.getTareas(this.id).subscribe(
+     response=>{
+       if(response.status=="success"){
+          this.tareas = response.data;
+          this.delete();
+          console.log(this.tareas);
+        }else{
+          this.status = 2;
+          console.log(response);
+        }
+      },
+      error=>{
+        this.status = 2;
+        console.log(error);
+      }
+    );
+  }
 
-
-  delete(id:number):void{
-    this._proyectoService.deleteProyecto(id).subscribe(
+  asigna_id(id:number):void{
+    this.id = id;
+    this.getTareas();
+  }
+ 
+  delete():void{
+  let counter=timer(5000);
+  if(this.tareas.length == 0){
+    this._proyectoService.deleteProyecto(this.id).subscribe(
       response=>{
         if(response.status=="success"){
           console.log(response);
           this.loadProyectos();
           this.status = 0;
+          counter.subscribe(n=>{
+            console.log(n);
+            this.status=-1;
+          });
         }
         else{
-          this.status = 1;
+          this.status = 2;
+          counter.subscribe(n=>{
+            console.log(n);
+            this.status=-1;
+          });
           console.log(response);
         }
 
       },
       error=>{
+        this.status = 2;
+          counter.subscribe(n=>{
+            console.log(n);
+            this.status=-1;
+          });
         console.log(error);
       }
     );
+
+  }else{
+    this.status=1;
+    counter.subscribe(n=>{
+      console.log(n);
+      this.status=-1;
+    });
+  }
+      
+  
+     
   }
 
 

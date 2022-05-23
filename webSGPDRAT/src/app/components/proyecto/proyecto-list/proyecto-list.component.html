@@ -12,12 +12,18 @@
       <i class="bi bi-exclamation-triangle-fill"></i>
       <strong> Error:</strong> El proyecto tiene tareas asignadas !!! 
   </div>
+
+   <!--ERROR DE SERVIDOR-->
+    <div  class="alert alert-danger" *ngSwitchCase="2">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <i class="bi bi-exclamation-triangle-fill"></i>
+          <strong> Error</strong> de servidor interno!!!
+    </div>
+
+
 </div>
 
 
-<div class="loading" *ngIf="!proyectos">
-    Cargando...
-</div>
 
 <div class="container" *ngIf="proyectos">
 
@@ -66,7 +72,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-                          <button id="btnConfirmar{{proyecto.id}}"  type="button" class="btn btn-success" (click)="delete(proyecto.id)" data-dismiss="modal">Aceptar</button>
+                          <button id="btnConfirmar{{proyecto.id}}"  type="button" class="btn btn-success" (click)="asigna_id(proyecto.id)" data-dismiss="modal">Aceptar</button>
                         </div>
                       </div>
                     </div>
