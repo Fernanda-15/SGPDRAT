@@ -61,6 +61,7 @@ export class GanttComponent implements OnInit {
               pCaption: "",
               pNotes: this.proyecto.objetivo
             }];
+            console.log(this.data);
             this.loadTareas(this.proyecto.id);
           }else{
             console.log('AQUI');
@@ -77,14 +78,11 @@ export class GanttComponent implements OnInit {
 
   loadTareas(id:number):void{
     let contador = 11;
-    
     this._proyectoService.getTareas(id).subscribe(
       response=>{
           this.tareas = response.data;
           this.tareasGantt = [];
             this.tareas.forEach((t:any) => {
-
-              console.log("TAREAS", t.descripcion);
               this.tareasGantt.push({
                 pID: contador,
                 pName: t.descripcion,
@@ -106,7 +104,6 @@ export class GanttComponent implements OnInit {
             })
             this.data = this.data.concat(this.tareasGantt);
             
-            console.log("CONCATENADO" , this.data);
           },
       error=>{
         console.log(error);
