@@ -17,13 +17,13 @@ export class ProyectoListComponent implements OnInit {
   public i:number = 1 ;
   public desde:number = 0;
   public hasta:number = 3;
-
+  public status:number;
 
   constructor(
     private _proyectoService:ProyectoService
   ) {
     this.proyecto = new Proyecto(0,0,"","","","","","","",0)
-
+    this.status=-1;
   }
 
   ngOnInit(): void {
@@ -52,8 +52,10 @@ export class ProyectoListComponent implements OnInit {
         if(response.status=="success"){
           console.log(response);
           this.loadProyectos();
+          this.status = 0;
         }
         else{
+          this.status = 1;
           console.log(response);
         }
 

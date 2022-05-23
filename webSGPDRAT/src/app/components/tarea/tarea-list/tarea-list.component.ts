@@ -85,7 +85,11 @@ export class TareaListComponent implements OnInit {
           });
         }
         else{
-          console.log(response);
+          this.status=2;
+          counter.subscribe(n=>{
+            console.log(n);
+            this.status=-1;
+          });
         }
 
       },

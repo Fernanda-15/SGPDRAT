@@ -1,12 +1,18 @@
-<!--
-<div class="alert alert-sucess"  *ngSwitchCase="0">
-  Proyecto eliminado con exito !!!
-</div>
+<div style="border:20px;" [ngSwitch]="status">
+  <!--ELIMINO CON EXITO-->
+  <div class="alert alert-success"  *ngSwitchCase="0" >
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <i class="bi bi-check-circle-fill"></i>
+      <strong> Éxito:</strong> Proyecto eliminado con exito !!!
+  </div>
 
-<div class="alert alert-danger"  *ngSwitchCase="2">
-  Error: El proyecto tiene tareas asignadas !!!
+  <!--Verificar que no tenga tareas relacionadas-->
+  <div class="alert alert-danger"  *ngSwitchCase="1">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <i class="bi bi-exclamation-triangle-fill"></i>
+      <strong> Error:</strong> El proyecto tiene tareas asignadas !!! 
+  </div>
 </div>
--->
 
 
 <div class="loading" *ngIf="!proyectos">
