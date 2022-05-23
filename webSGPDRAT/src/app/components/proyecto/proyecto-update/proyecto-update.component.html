@@ -1,10 +1,16 @@
 <div style="border:20px;" [ngSwitch]="status">
     <div  class="alert alert-danger" *ngSwitchCase="0">
-      Error de servidor interno!!!
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <i class="bi bi-exclamation-triangle-fill"></i>
+      <strong> Error</strong>  de servidor interno!!!
     </div>
+
     <div class="alert alert-danger"  *ngSwitchCase="1">
-      Error: La fecha final debe ser mayor a la fecha de inicio!!
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <i class="bi bi-exclamation-triangle-fill"></i>
+      <strong> Error:</strong>  La fecha final debe ser mayor a la fecha de inicio!!
     </div>
+    
 </div>
 
 <form id="formProyecto" class="col-md-6 mr-auto ml-auto" #updateProyectoForm="ngForm" (ngSubmit)="onSubmit(updateProyectoForm)">

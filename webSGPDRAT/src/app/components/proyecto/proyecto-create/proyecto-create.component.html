@@ -1,15 +1,23 @@
 <div style="border:20px;" [ngSwitch]="status">
   <div  class="alert alert-danger" *ngSwitchCase="0">
-    Error de servidor interno!!!
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <i class="bi bi-exclamation-triangle-fill"></i>
+      <strong> Error</strong> de servidor interno!!!
   </div>
   <div class="alert alert-danger"  *ngSwitchCase="1">
-    Error: La fecha final debe ser mayor a la fecha de inicio!!
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <i class="bi bi-exclamation-triangle-fill"></i>
+      <strong> Error:</strong> La fecha final debe ser mayor a la fecha de inicio!!
   </div>
   <div class="alert alert-danger"  *ngSwitchCase="2">
-    Error: Debe seleccionar un usuario!!
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <i class="bi bi-exclamation-triangle-fill"></i>
+      <strong> Error:</strong> Debe seleccionar un usuario!!
   </div>
   <div class="alert alert-danger"  *ngSwitchCase="3">
-    Error: Debe seleccionar una forma de pago!!
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <i class="bi bi-exclamation-triangle-fill"></i>
+    <strong> Error:</strong> Debe seleccionar una forma de pago!!
   </div>
  </div>
 
