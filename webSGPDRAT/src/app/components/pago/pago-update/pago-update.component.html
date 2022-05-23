@@ -1,1 +1,69 @@
-<p>pago-update works!</p>
+<div class="form-group">
+    <p>Modificar Pago {{pago.id}}</p>
+    </div>
+  <form id="formPago" class="col-md-6 mr-auto ml-auto" #updatePagoForm="ngForm" (ngSubmit)="onSubmit(updatePagoForm)">
+  
+    <div class="row">
+      <div id="info" class="form-group">
+          <label>Numero de pago: </label>
+          <input type="number" name="numero" class="form-control" #numero="ngModel" 
+          [(ngModel)]="pago.numero" required pattern="^[0-9]+">
+          <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
+              El número de pago no es válido
+          </small>
+      </div>
+ 
+      <div id="info" class="form-group">
+        <label>Proyección: </label>
+        <input type="number" name="proyeccion" class="form-control" #proyeccion="ngModel" 
+        [(ngModel)]="pago.proyeccion" required pattern="^[0-9]+">
+        <small *ngIf="!proyeccion.valid && proyeccion.touched" class="invalid-feedback d-block">
+            La proyeccion no es válida
+        </small>
+    </div>
+  
+    </div>
+  
+  
+    <div class="row">
+        <div id="info" class="form-group">
+            <label>Monto: </label>
+            <input type="number" name="monto" class="form-control" #monto="ngModel" 
+            [(ngModel)]="pago.monto" required pattern="^[0-9]+">
+            <small *ngIf="!monto.valid && monto.touched" class="invalid-feedback d-block">
+                El monto no es válido
+            </small>
+        </div>
+  
+        <div id="info" class="form-group">
+          <label>Número de transacción: </label>
+          <input type="number" name="numero_transaccion" class="form-control" #numero_transaccion="ngModel" 
+          [(ngModel)]="pago.numero_transaccion" required pattern="^[0-9]+">
+          <small *ngIf="!numero_transaccion.valid && numero_transaccion.touched" class="invalid-feedback d-block">
+              El número de transacción no es válido
+          </small>
+        </div>
+  
+    </div>
+  
+    <div class="row">
+      <div id="info" class="form-group">
+        <label>Justificación: </label>
+        <input type="text" name="justificacion" class="form-control" #justificacion="ngModel"
+        [(ngModel)]="pago.justificacion" required pattern="^[a-zA-Z0-9\.]*$">
+        <small *ngIf="!justificacion.valid && justificacion.touched" class="invalid-feedback d-block">
+            La justificación no es válida
+        </small>
+    </div>   
+  
+    </div>
+  
+    <div class="row">
+      <div style="position: center; margin-top: 29px;">
+        <input id="boton" type="submit" value="Modificar" class="btn btn-success mr-2" [disabled]="updatePagoForm.invalid">
+      </div>
+    
+    </div>
+
+  </form>
+

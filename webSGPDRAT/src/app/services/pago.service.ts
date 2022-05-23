@@ -35,5 +35,10 @@ export class PagoService{
         let params='json='+json;
         let httpHeaders=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
         return this._http.put(this.url+'pago/'+pago.id,params,{headers:httpHeaders});
-      }
+    }
+
+    public getPago(id:number):Observable<any>{
+        let httpHeaders =new HttpHeaders().append('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+'pago/'+id,{headers:httpHeaders});
+    }
 }
