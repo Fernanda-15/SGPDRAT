@@ -1,38 +1,17 @@
+<div class="homeContent">
+    <h2>Hoy es: {{ hoyEs }} </h2>
+      <h2>!Bienvenid@! </h2>                <!--Me gustari agregar el nombre del user-->
 
-
-  <h5>Fecha del dia</h5>
-
-  <p>!Bienvenidos!</p>
-
-  <div class="homeContent">
-
-
-      <div class="row">
-        <div class="col-sm ">
-          <ul class="list-group">
-            <p>Projectos</p>
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-          </ul>
-        </div>
-        <div class="col-sm ">
-
-          <div class="list-group">
-            <p> Tareas</p>
-            <a href="#" class="list-group-item list-group-item-action ">
-              Cras justo odio
+        <div class="col-md-6">
+          <p class="center">Proyectos</p>
+          <ul id="pro" class="list-group w-auto" *ngFor="let proyecto of proyectos | slice:desde:hasta let i=index">
+            <a href="proyecto-info/{{proyecto.id}}" class="list-group-item d-flex justify-content-between align-items-center">{{proyecto.nombre}}
+              <span class="badge badge-primary badge-pill">Id: {{proyecto.id}}</span>
             </a>
-            <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-            <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-            <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-          </div>
-
-      </div>
-
-
+            <li class="list-group-item">Objetivo: {{proyecto.objetivo}}</li>
+          </ul>
+          <mat-paginator [length]="proyectos.length" [pageSize]="3"  [pageSizeOptions]="[3, 5, 10, 25, 100]"  aria-label="Select page" (page)="cambiarpagina($event)">
+          </mat-paginator>
+        </div>
 
 </div>
