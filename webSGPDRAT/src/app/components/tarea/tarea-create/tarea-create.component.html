@@ -1,25 +1,31 @@
 <div style="border:20px;" [ngSwitch]="status">
   <div  class="alert alert-danger" *ngSwitchCase="0">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
     <i class="bi bi-exclamation-triangle-fill"></i>
         <strong> Error</strong> de servidor interno!!!
   </div>
   <div class="alert alert-danger"  *ngSwitchCase="1">
     <i class="bi bi-exclamation-triangle-fill"></i>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
     <strong> Error:</strong> La fecha final debe ser mayor a la fecha de inicio!!
   </div>
   <div class="alert alert-danger"  *ngSwitchCase="2">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
     <i class="bi bi-exclamation-triangle-fill"></i>
-        <strong> Error:</strong> La fecha de Inicio de la tarea debe estar dentro del periodo del proyecto!!
+        <strong> Error:</strong> La fecha de Inicio de la tarea debe estar dentro del periodo del proyecto: [{{proyecto.fecha_inicio}} - {{proyecto.fecha_final}}] !!
   </div>
   <div class="alert alert-danger"  *ngSwitchCase="3">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
     <i class="bi bi-exclamation-triangle-fill"></i>
-        <strong> Error:</strong> La fecha Final de la tarea debe estar dentro del periodo del proyecto!!
+        <strong> Error:</strong> La fecha Final de la tarea debe estar dentro del periodo del proyecto: [{{proyecto.fecha_inicio}} - {{proyecto.fecha_final}}] !!
   </div>
   <div class="alert alert-danger"  *ngSwitchCase="4">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
     <i class="bi bi-exclamation-triangle-fill"></i>
         <strong> Error:</strong> El numero de tarea ya está asignado a otra tarea!!
   </div>
   <div class="alert alert-danger"  *ngSwitchCase="5">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
     <i class="bi bi-exclamation-triangle-fill"></i>
     <strong> Error:</strong> La suma del peso de las tareas no debe ser mayor a 100!!
   </div>
