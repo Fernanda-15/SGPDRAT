@@ -7,6 +7,7 @@ export class User{
         public nombre:string,
         public cedula:string,
         public telefono:string,
-        public correo:string
+        public correo:string,
+        public gettoken:string
     ){}
 }

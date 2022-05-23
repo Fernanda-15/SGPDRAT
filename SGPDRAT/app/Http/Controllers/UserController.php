@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('api.auth',['except'=>['login','store','index','destroy','update','show']]);
+        $this->middleware('api.auth',['except'=>['login','store','index','destroy','update','show','getIdentity']]);
     }
 
     public function test(Request $request){
@@ -23,7 +23,7 @@ class UserController extends Controller
         $data=json_decode($json,true);
         $data=array_map('trim',$data);
         $rules=[
-            'nombreUsuario'=>'required|alpha',
+            'nombreUsuario'=>'required',
             'contrasena'=>'required'
         ];
         $validate=\validator($data,$rules);

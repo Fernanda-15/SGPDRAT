@@ -26,7 +26,7 @@ export class UserListComponent implements OnInit {
     private _userService:UserService
   ) {
     this.url=global.urlApi;
-    this.user = new User(1,"","","usuario","","","","");
+    this.user = new User(1,"","","usuario","","","","","");
     this.status=-1;
   }
 

@@ -31,7 +31,7 @@ export class ProyectoInfoComponent implements OnInit {
     private _router:Router,
   ) { 
     this.proyecto = new Proyecto(0,0,"","","","","","","",0);
-    this.user = new User(0,"","","","","","","",);
+    this.user = new User(0,"","","","","","","","");
     this.userName = "";
     this.proyecto_id = "";
   }
