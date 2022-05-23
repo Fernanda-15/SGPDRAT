@@ -1,4 +1,19 @@
+<div style="border:20px;" [ngSwitch]="status">
+  <!--ELIMINO CON EXITO-->
+  <div class="alert alert-success"  *ngSwitchCase="0" >
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <i class="bi bi-check-circle-fill"></i>
+      <strong> Éxito:</strong> Tarea eliminada con exito !!!
+  </div>
 
+  <!--ERROR DE SERVIDOR-->
+  <div  class="alert alert-danger" *ngSwitchCase="1">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <i class="bi bi-exclamation-triangle-fill"></i>
+          <strong> Error</strong> de servidor interno!!!
+  </div>
+
+</div>
 <div class="container" *ngIf="users">
 
 
