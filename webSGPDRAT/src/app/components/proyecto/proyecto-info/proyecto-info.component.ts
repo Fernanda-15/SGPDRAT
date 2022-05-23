@@ -6,6 +6,7 @@ import { Tarea } from 'src/app/models/tarea';
 import{Router,ActivatedRoute} from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
+import { Pago } from 'src/app/models/pago';
 
 
 @Component({
@@ -23,6 +24,11 @@ export class ProyectoInfoComponent implements OnInit {
   public userName:string;
   public tareas:any;
   public proyecto_id:string;
+  public tareasEjecutadas:number;
+  public tareasTotal:number;
+  public avanceObra:number;
+  public pagos:any;
+  public porcentajePagado:number;
   constructor(
     private _proyectoService:ProyectoService,
     private _tareaService:TareaService,
@@ -34,6 +40,10 @@ export class ProyectoInfoComponent implements OnInit {
     this.user = new User(0,"","","","","","","","");
     this.userName = "";
     this.proyecto_id = "";
+    this.tareasEjecutadas = 0;
+    this.tareasTotal = 0;
+    this.avanceObra = 0;
+    this.porcentajePagado = 0;
   }
 
   ngOnInit(): void {
@@ -91,6 +101,30 @@ export class ProyectoInfoComponent implements OnInit {
       response=>{
         console.log(response.data);
           this.tareas = response.data;
+          this.tareas.forEach((t:any) => {
+            this.tareasTotal +=1;
+            if(t.avance == 100){
+              this.tareasEjecutadas += 1;
+            }
+          })
+          this.avanceObra = (this.tareasEjecutadas/this.tareasTotal)*100;
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
+
+  loadPorcentajePagado(id:number){
+    this._proyectoService.getPagos(id).subscribe(
+      response=>{
+        console.log(response.data);
+          let pagado = 0;
+          this.pagos = response.data;
+          this.pagos.forEach((p:any) => {
+          pagado = pagado + p.monto;
+          })
+          this.porcentajePagado = (this.pagos/this.proyecto.monto_adjudicado)*100;
       },
       error=>{
         console.log(error);

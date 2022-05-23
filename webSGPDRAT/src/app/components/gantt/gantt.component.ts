@@ -92,7 +92,7 @@ export class GanttComponent implements OnInit {
                 pLink: "",
                 pMile: 1,
                 pRes: "N/A",
-                pComp: 100,
+                pComp: t.avance,
                 pGroup: 0,
                 pParent: 1,
                 pOpen: 1,
