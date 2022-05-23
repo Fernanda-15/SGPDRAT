@@ -18,7 +18,7 @@ export class GanttComponent implements OnInit {
   public proyecto:Proyecto;
   public userName:string;
   public tareas:any;
-  private tareasGantt:any;
+  public tareasGantt:any;
 
   @ViewChild("editor") editor: GanttEditorComponent;
   public editorOptions: GanttEditorOptions;
@@ -77,16 +77,19 @@ export class GanttComponent implements OnInit {
 
   loadTareas(id:number):void{
     let contador = 11;
+    
     this._proyectoService.getTareas(id).subscribe(
       response=>{
           this.tareas = response.data;
           this.tareasGantt = [];
             this.tareas.forEach((t:any) => {
+
+              console.log("TAREAS", t.descripcion);
               this.tareasGantt.push({
                 pID: contador,
-                pName: this.tareas.descripcion,
-                pStart: this.tareas.fecha_inicio,
-                pEnd: this.tareas.fecha_final,
+                pName: t.descripcion,
+                pStart: t.fecha_inicio,
+                pEnd: t.fecha_final,
                 pClass: "gmilestone",
                 pLink: "",
                 pMile: 1,
@@ -101,7 +104,9 @@ export class GanttComponent implements OnInit {
               })
               contador +=1;
             })
-            console.log(this.data.concat(this.tareasGantt));
+            this.data = this.data.concat(this.tareasGantt);
+            
+            console.log("CONCATENADO" , this.data);
           },
       error=>{
         console.log(error);
