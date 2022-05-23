@@ -7,7 +7,7 @@
       <div id="info" class="form-group">
           <label>Numero de pago: </label>
           <input type="number" name="numero" class="form-control" #numero="ngModel" 
-          [(ngModel)]="pago.numero" required pattern="^[0-9]+">
+          [(ngModel)]="pago.numero" required pattern="^[1-9]\d*$">
           <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
               El número de pago no es válido
           </small>
@@ -16,7 +16,7 @@
       <div id="info" class="form-group">
         <label>Proyección: </label>
         <input type="number" name="proyeccion" class="form-control" #proyeccion="ngModel" 
-        [(ngModel)]="pago.proyeccion" required pattern="^[0-9]+">
+        [(ngModel)]="pago.proyeccion" required pattern="^[1-9]\d*$">
         <small *ngIf="!proyeccion.valid && proyeccion.touched" class="invalid-feedback d-block">
             La proyeccion no es válida
         </small>
@@ -29,7 +29,7 @@
         <div id="info" class="form-group">
             <label>Monto: </label>
             <input type="number" name="monto" class="form-control" #monto="ngModel" 
-            [(ngModel)]="pago.monto" required pattern="^[0-9]+">
+            [(ngModel)]="pago.monto" required pattern="^[1-9]\d*$">
             <small *ngIf="!monto.valid && monto.touched" class="invalid-feedback d-block">
                 El monto no es válido
             </small>
@@ -38,7 +38,7 @@
         <div id="info" class="form-group">
           <label>Número de transacción: </label>
           <input type="number" name="numero_transaccion" class="form-control" #numero_transaccion="ngModel" 
-          [(ngModel)]="pago.numero_transaccion" required pattern="^[0-9]+">
+          [(ngModel)]="pago.numero_transaccion" required pattern="^[1-9]\d*$">
           <small *ngIf="!numero_transaccion.valid && numero_transaccion.touched" class="invalid-feedback d-block">
               El número de transacción no es válido
           </small>

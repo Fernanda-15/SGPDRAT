@@ -95,7 +95,7 @@
       <div id="info" class="form-group">
         <label>Monto adjudicado:</label>
         <input type="text" name="monto_adjudicado" class="form-control" #monto_adjudicado="ngModel"
-        [(ngModel)]="proyecto.monto_adjudicado" required pattern="^[0-9\.]*$">
+        [(ngModel)]="proyecto.monto_adjudicado" required pattern="^[0-9\.]*$"> 
         <small *ngIf="!monto_adjudicado.valid && monto_adjudicado.touched" class="invalid-feedback d-block">
             El monto no es válido
         </small>

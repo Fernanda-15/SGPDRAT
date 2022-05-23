@@ -29,8 +29,8 @@
 <div class="row">
     <div id="info" class="form-group">
         <label>Numero de tarea: </label>
-        <input type="text" name="numero" class="form-control" #numero="ngModel"
-        [(ngModel)]="tarea.numero" required pattern="^[a-zA-Z0-9\.]*$">
+        <input type="number" name="numero" class="form-control" #numero="ngModel"
+        [(ngModel)]="tarea.numero" required pattern="^[1-9]\d*$">
         <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
             El número de tarea no es válido
         </small>
@@ -49,8 +49,8 @@
   <div class="row">
     <div id="info" class="form-group">
         <label>Peso: </label>
-        <input type="text" name="peso" class="form-control" #peso="ngModel"
-        [(ngModel)]="tarea.peso" required pattern="^[a-zA-Z0-9\.]*$">
+        <input type="number" name="peso" class="form-control" #peso="ngModel"
+        [(ngModel)]="tarea.peso" required pattern="^[1-9]\d*$">
         <small *ngIf="!peso.valid && peso.touched" class="invalid-feedback d-block">
             El peso de la tarea no es válido
         </small>
@@ -58,8 +58,8 @@
 
     <div id="info" class="form-group">
         <label>Avance: </label>
-        <input type="text" name="avance" class="form-control" #avance="ngModel"
-        [(ngModel)]="tarea.avance" required pattern="^[a-zA-Z0-9\.]*$">
+        <input type="number" name="avance" class="form-control" #avance="ngModel"
+        [(ngModel)]="tarea.avance" required pattern="^[1-9]\d*$">
         <small *ngIf="!avance.valid && avance.touched" class="invalid-feedback d-block">
             El avance de tarea no es válido
         </small>

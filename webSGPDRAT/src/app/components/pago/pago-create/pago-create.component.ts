@@ -59,25 +59,34 @@ export class PagoCreateComponent implements OnInit {
 
   onSubmit(form:any){
   let counter=timer(5000); 
-    this.pago.proyecto_id = this.proyecto.id;
+  this.pago.proyecto_id = this.proyecto.id;
     if(this.pendiente()){
-      this._pagoService.registro(this.pago).subscribe(
-        response=>{
-          if(response.code == 200){
-            form.reset();
-            this._router.navigate(['/pago-list', this.proyecto.id]);
-            }
-          },
-          error=>{
-          this.status = 0;
-          console.log(<any>error);
-          counter.subscribe(n=>{
-            console.log(n);
-            this.status=-1;
-          });
-          
-        }
-      );
+      if(!this.existeNP()){
+        this._pagoService.registro(this.pago).subscribe(
+          response=>{
+            if(response.code == 200){
+              form.reset();
+              this._router.navigate(['/pago-list', this.proyecto.id]);
+              }
+            },
+            error=>{
+            this.status = 0;
+            console.log(<any>error);
+            counter.subscribe(n=>{
+              console.log(n);
+              this.status=-1;
+            });
+            
+          }
+        );
+      }else{
+        this.status = 3;
+        counter.subscribe(n=>{
+          console.log(n);
+          this.status=-1;
+        });
+      }
+     
     }
     
   }
@@ -92,6 +101,23 @@ export class PagoCreateComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+
+  existeNP():any{
+    let existe=0;
+    console.log(this.pagos); 
+    for(let i in this.pagos){
+      if(this.pagos[i].numero == this.pago.numero){
+        existe = existe+1;
+        console.log("EXISTE", existe);
+      }
+    }
+    if(existe>0){
+      return true;
+    }
+    
+    return false;
   }
 
   pendiente():any{
