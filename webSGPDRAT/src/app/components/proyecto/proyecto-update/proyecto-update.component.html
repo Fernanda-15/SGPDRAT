@@ -12,7 +12,9 @@
         <p>
           Modifica el proyecto #{{proyecto.id}}
         </p>
-      </div>   
+      </div>
+
+      <div class="row">
     <div id="info" class="form-group">
             <label>Usuario: </label>
             <select name="usuario" #usuario="ngModel" [(ngModel)]="proyecto.user_id" class="form-control">
@@ -24,47 +26,51 @@
 
     <div id="info" class="form-group">
         <label>Numero de contratación: </label>
-        <input type="text" name="numero_contratacion" class="form-control" #numero_contratacion="ngModel" 
-        [(ngModel)]="proyecto.numero_contratacion" required pattern="^[a-zA-Z0-9\.]*$"> 
+        <input type="text" name="numero_contratacion" class="form-control" #numero_contratacion="ngModel"
+        [(ngModel)]="proyecto.numero_contratacion" required pattern="^[a-zA-Z0-9\.]*$">
         <small *ngIf="!numero_contratacion.valid && numero_contratacion.touched" class="invalid-feedback d-block">
             El número de contratación no es válido
         </small>
-    </div>  
-          
+    </div>
+      </div>
+
+      <div class="row">
     <div id="info" class="form-group">
             <label>Nombre: </label>
-            <input type="text" name="nombre" class="form-control" #nombre="ngModel" 
-            [(ngModel)]="proyecto.nombre" required pattern="^[a-zA-Z0-9\.]*$"> 
+            <input type="text" name="nombre" class="form-control" #nombre="ngModel"
+            [(ngModel)]="proyecto.nombre" required pattern="^[a-zA-Z0-9\.]*$">
             <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
                 El nombre no es válido
             </small>
-    </div>      
+    </div>
 
     <div id="info" class="form-group">
         <label>Objetivo: </label>
-        <input type="text" name="objetivo" class="form-control" #objetivo="ngModel" 
-        [(ngModel)]="proyecto.objetivo" required pattern="^[a-zA-Z0-9\.]*$"> 
+        <input type="text" name="objetivo" class="form-control" #objetivo="ngModel"
+        [(ngModel)]="proyecto.objetivo" required pattern="^[a-zA-Z0-9\.]*$">
         <small *ngIf="!objetivo.valid && objetivo.touched" class="invalid-feedback d-block">
             El objetivo no es válido
         </small>
-    </div> 
-
+    </div>
+      </div>
+      <div class="row">
     <div id="info" class="form-group">
         <label>Ubicación: </label>
-        <input type="text" name="ubicacion" class="form-control" #ubicacion="ngModel" 
-        [(ngModel)]="proyecto.ubicacion" required pattern="^[a-zA-Z0-9\.]*$"> 
+        <input type="text" name="ubicacion" class="form-control" #ubicacion="ngModel"
+        [(ngModel)]="proyecto.ubicacion" required pattern="^[a-zA-Z0-9\.]*$">
         <small *ngIf="!ubicacion.valid && ubicacion.touched" class="invalid-feedback d-block">
             La ubicacion no es válida
         </small>
-    </div> 
+    </div>
 
-    <div id="info" class="form-group"> 
+    <div id="info" class="form-group">
         <label for="fecha_inicio">Fecha de inicio: </label>
         <input type="date" name="fecha_inicio" class="form-control" #fecha_inicio="ngModel" [(ngModel)]="proyecto.fecha_inicio">
     </div>
-
-    <div id="info" class="form-group"> 
-        <label for="fecha_final">Fecha de finalización: </label>   
+      </div>
+      <div class="row">
+    <div id="info" class="form-group">
+        <label for="fecha_final">Fecha de finalización: </label>
         <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="proyecto.fecha_final">
     </div>
 
@@ -74,18 +80,19 @@
         <option value="contado">Contado</option>
         <option  value="credito">Credito</option>
       </select>
-    </div> 
-
+    </div>
+      </div>
+      <div class="row">
     <div id="info" class="form-group">
         <label>Monto adjudicado:</label>
-        <input type="text" name="monto_adjudicado" class="form-control" #monto_adjudicado="ngModel" 
-        [(ngModel)]="proyecto.monto_adjudicado" required pattern="^[0-9\.]*$"> 
+        <input type="text" name="monto_adjudicado" class="form-control" #monto_adjudicado="ngModel"
+        [(ngModel)]="proyecto.monto_adjudicado" required pattern="^[0-9\.]*$">
         <small *ngIf="!monto_adjudicado.valid && monto_adjudicado.touched" class="invalid-feedback d-block">
             La cédula no es válida
         </small>
     </div>
-
-
+      </div>
+    <div class="row">
     <input id="boton" type="submit" value="Modificar" class="btn btn-success" [disabled]="updateProyectoForm.invalid">
-
+      </div>
 </form>

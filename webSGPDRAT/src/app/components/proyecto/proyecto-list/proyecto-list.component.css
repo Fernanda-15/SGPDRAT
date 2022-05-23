@@ -1,10 +1,46 @@
+
+.container{
+  margin-bottom: 100px;
+  align-items: center;
+  display:flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: dashed 4px rgba(20, 172, 232, 0.825);
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 32px 32px;
+  scroll-margin-bottom: 100%;
+  position: center;
+}
+
+
+
+
+.card{
+margin: 1px;
+}
+
+.cards-columns{
+margin: 4px;
+}
+
 .card-header{
     text-align: center;
-    
+    margin: 2px;
+    padding: 5px;
+
 }
 
 .card-header h3 a{
     color: black;
     text-decoration: none;
-    
+
+}
+
+.card-body{
+  margin: 5px;
+}
+
+mat-paginator{
+  background-color:dashed 4px rgba(20, 172, 232, 0.825);;
 }

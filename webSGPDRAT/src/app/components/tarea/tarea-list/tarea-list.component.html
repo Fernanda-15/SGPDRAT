@@ -16,19 +16,22 @@
 <!--TABLA DE TAREAS-->
 <div class="container" *ngIf="tareas" >
 
-  <div class="row">
-    <h5 id="titulo">Lista de Tareas</h5>
+  <div class="row" >
+    <div class="col">
+      <h5 id="titulo">Lista de Tareas</h5>
+    </div>
     <!--Boton nueva tarea  -->
-    <div style="position:absolute;  ">
-      <button  style="align-content: flex-end; margin-left:900px" type="button" class="btn btn-success mr-2"  [routerLink]="['/tarea-create',proyecto.id]">
+    <div class="col">
+      <button  type="button" class="btn btn-success m-md-2"  [routerLink]="['/tarea-create',proyecto.id]">
           <span class="bi bi-clipboard2-plus-fill"> Agregar Tarea</span>
       </button>
-      <button  type="button" class="btn btn-info" (click)="listo()">
+      <button  type="button" class="btn btn-info m-md-2" (click)="listo()">
           <span class="bi bi-check-square-fill"> Listo </span>
       </button>
-  </div>
+    </div>
 
   </div>
+
 
         <div class="table-responsive">
 
@@ -97,5 +100,8 @@
         </mat-paginator>
         </div>
 
+
 </div>
+
+
 

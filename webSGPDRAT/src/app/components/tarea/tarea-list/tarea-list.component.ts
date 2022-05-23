@@ -71,7 +71,7 @@ export class TareaListComponent implements OnInit {
   }
 
 
-  delete(id:number):void{ 
+  delete(id:number):void{
   let counter=timer(5000);
     this._tareaService.deleteTarea(id).subscribe(
       response=>{
@@ -119,8 +119,11 @@ export class TareaListComponent implements OnInit {
     }else{
       this._router.navigate(['/proyecto-list']);
    }
-     
+
   }
-  
+
+
+
+
 }
 
