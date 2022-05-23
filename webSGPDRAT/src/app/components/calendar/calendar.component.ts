@@ -84,7 +84,7 @@ export class CalendarComponent implements AfterViewInit {
   date = DayPilot.Date.today();
 
   configNavigator: DayPilot.NavigatorConfig = {
-    showMonths: 5,
+    showMonths: 3,
     cellWidth: 25,
     cellHeight: 25,
     onVisibleRangeChanged: args => {
