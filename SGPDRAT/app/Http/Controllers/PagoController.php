@@ -96,7 +96,6 @@ class PagoController extends Controller
         if(!empty($data)){
             $data=array_map('trim',$data);
             $rules=[
-                'proyecto_id'=>'required|integer',
                 'numero'=>'required',
                 'proyeccion'=>'required',
                 'monto'=>'required',
@@ -114,7 +113,8 @@ class PagoController extends Controller
                 }else{
                     $id=$data['id'];
                     unset($data['id']);  
-                    unset($data['created_at']);      
+                    unset($data['created_at']);         
+                    $data['updated_at']=now();    
                     $updated=Pago::where('id',$id)->update($data);
                     if($updated>0){
                         $response=array(

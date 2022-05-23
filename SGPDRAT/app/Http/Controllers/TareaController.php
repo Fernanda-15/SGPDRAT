@@ -116,7 +116,8 @@ class TareaController extends Controller
                         $id=$data['id'];
                         unset($data['id']);  
                         unset($data['created_at']); 
-                        unset($data['proyecto_id']);  
+                        unset($data['proyecto_id']);     
+                        $data['updated_at']=now();    
                         $updated=Tarea::where('id',$id)->update($data);
                         if($updated>0){
                             $response=array(

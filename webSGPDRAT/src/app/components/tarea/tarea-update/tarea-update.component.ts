@@ -86,7 +86,7 @@ export class TareaUpdateComponent implements OnInit {
             response=>{
           if(response.code==200){
             this.status=-1;
-            this._router.navigate(['/proyecto-list']);
+            this._router.navigate(['/tarea-list',this.tarea.proyecto_id]);
             }else{
               this.status=0;
               this.reset=true;

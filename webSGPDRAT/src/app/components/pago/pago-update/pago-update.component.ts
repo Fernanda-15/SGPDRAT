@@ -59,6 +59,18 @@ export class PagoUpdateComponent implements OnInit {
 
 
   onSubmit(form:any){
-    console.log("ONS", this.pago.id);
+    this._pagoService.update(this.pago).subscribe(
+      response=>{
+    if(response.code==200){
+      this.status=-1;
+     
+      }
+      },
+
+      error=>{
+        console.log(error);
+        this.status=0;
+      }
+    );
   }
 }
