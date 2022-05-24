@@ -148,8 +148,8 @@ export class TareaCreateComponent implements OnInit {
               response=>{
                console.log(response);
                  if(response.status == "success"){
-                   this.insertLogCreate(this.tarea.proyecto_id,"Numero "+this.tarea.numero+": "+this.tarea.descripcion+ " | Peso: "+this.tarea.peso);
-                   this.status = -1;
+                  this.insertLogCreate(this.tarea.proyecto_id,"Numero "+this.tarea.numero+": "+this.tarea.descripcion+ " | Peso: "+this.tarea.peso + " | Avance: "+this.tarea.avance);
+                  this.status = -1;
                    form.reset(); 
                     this._router.navigate(['/tarea-list',this.tarea.proyecto_id]);
                    

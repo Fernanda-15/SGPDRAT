@@ -6,13 +6,16 @@ import { Tarea } from 'src/app/models/tarea';
 import{Router,ActivatedRoute} from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import{timer} from 'rxjs';
+import { LogService } from 'src/app/services/log.service';
+import { Log } from 'src/app/models/log';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-tarea-list',
   templateUrl: './tarea-list.component.html',
   styleUrls: ['./tarea-list.component.css'],
   providers: [TareaService,
-    ProyectoService]
+    ProyectoService,UserService,LogService]
 })
 export class TareaListComponent implements OnInit {
 
@@ -23,19 +26,30 @@ export class TareaListComponent implements OnInit {
   public desde:number = 0;
   public hasta:number = 3;
   public status:number;
+  public identity:any;
+  private log:Log;
   constructor(
     private _proyectoService:ProyectoService,
     private _tareaService:TareaService,
     private _route:ActivatedRoute,
     private _router:Router,
+    private _userService: UserService,
+    private _logService: LogService
   ) {
     this.status=-1;
     this.proyecto = new Proyecto(0,0,"","","","","","","",0);
     this.tarea = new Tarea(0,0,0,"",0,0,"","");
+    this.log = new Log(0,0,"","","");
   }
 
   ngOnInit(): void {
+    this.loadStorage();
     this.getProyecto();
+  }
+
+
+  public loadStorage(){
+    this.identity=this._userService.getIdentity();
   }
 
   getProyecto():void{
@@ -59,6 +73,19 @@ export class TareaListComponent implements OnInit {
     });
   }
 
+  insertLogDelete(proyectoid:number,texto:string){
+    this.log = new Log(0,proyectoid,this.identity.nombreUsuario,"Se ha eliminado la tarea ID: "+texto,"");
+    console.log(this.log);
+    this._logService.registro(this.log).subscribe(
+      response=>{
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
+
+
   loadTareas(id:number):void{
     this._proyectoService.getTareas(id).subscribe(
       response=>{
@@ -76,7 +103,9 @@ export class TareaListComponent implements OnInit {
     this._tareaService.deleteTarea(id).subscribe(
       response=>{
         if(response.status=="success"){
-          console.log(response);
+          console.log(this.proyecto.id);
+          this.insertLogDelete(this.proyecto.id,id.toString());
+          this.status = -1;
           this.loadTareas(this.proyecto.id);
           this.status=0;
           counter.subscribe(n=>{
