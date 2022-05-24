@@ -178,5 +178,15 @@ class ProyectoController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    public function getProyectoByU($id){  
+        $data = Proyecto::Where('user_id',$id)->get();
+
+       return response()->json([
+        'status'=>'success',
+        'code'=>200,
+        'data'=>$data
+       ], 200);
+    }
+
     
 }
