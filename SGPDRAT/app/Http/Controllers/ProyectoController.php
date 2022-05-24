@@ -13,7 +13,7 @@ class ProyectoController extends Controller
        // $this->middleware('api.auth');
     }
 
-    public function index(){  
+    public function index(){
         $data=Proyecto::all(); //OBTIENE TODOS LOS REGISTROS EN LA DB
         $response=array(
             'status'=>'success',
@@ -29,7 +29,7 @@ class ProyectoController extends Controller
             $response=array(
                 'status'=>'success',
                 'code'=>200,
-                'data'=>$data 
+                'data'=>$data
             );
         }else{
             $response=array(
@@ -79,7 +79,7 @@ class ProyectoController extends Controller
             $proyecto=new Proyecto();
             $proyecto->user_id=$data['user_id'];
             $proyecto->numero_contratacion=$data['numero_contratacion'];
-            $proyecto->nombre=$data['nombre']; 
+            $proyecto->nombre=$data['nombre'];
             $proyecto->objetivo=$data['objetivo'];
             $proyecto->ubicacion=$data['ubicacion'];
             $proyecto->fecha_inicio=$data['fecha_inicio'];
@@ -96,7 +96,7 @@ class ProyectoController extends Controller
         return response()->json($response,$response['code']);
     }
 
-    public function update(Request $request){ 
+    public function update(Request $request){
             $proyecto=$request;
             $json=$request->input('json',null);
             $data=json_decode($json,true);
@@ -123,9 +123,9 @@ class ProyectoController extends Controller
                     );
                     }else{
                         $id=$data['id'];
-                        unset($data['id']);  
-                        unset($data['created_at']);      
-                        $data['updated_at']=now();    
+                        unset($data['id']);
+                        unset($data['created_at']);
+                        $data['updated_at']=now();
                         $updated=Proyecto::where('id',$id)->update($data);
                         if($updated>0){
                             $response=array(
@@ -152,7 +152,7 @@ class ProyectoController extends Controller
     }
 
     public function destroy($id){
-      
+
         if(isset($id)){
             $deleted=Proyecto::where('id',$id)->delete();
         if($deleted){
@@ -178,9 +178,8 @@ class ProyectoController extends Controller
         return response()->json($response,$response['code']);
     }
 
-    public function getProyectoByU($id){  
+    public function getProyectoByU($id){
         $data = Proyecto::Where('user_id',$id)->get();
-
        return response()->json([
         'status'=>'success',
         'code'=>200,
@@ -188,5 +187,5 @@ class ProyectoController extends Controller
        ], 200);
     }
 
-    
+
 }

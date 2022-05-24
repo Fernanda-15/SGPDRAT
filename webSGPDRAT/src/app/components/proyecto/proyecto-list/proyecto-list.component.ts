@@ -35,29 +35,30 @@ export class ProyectoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadStorage();
+    this.loadProyectosByU(this.identity.id);
+    //this.loadStorage();
   }
 
-  public loadStorage(){
-    this.identity=this._userService.getIdentity();
-    console.log(this.identity.sub);
-    if(this.identity.rol == 'ingeniero'){
-      this.loadProyectosByU(this.identity.sub);
-    }else{
-    this.loadProyectos();
-    }
-  }
+  // public loadStorage(){
+  //   this.identity=this._userService.getIdentity();
+  //   console.log(this.identity.sub);
+  //   if(this.identity.rol == 'ingeniero'){
+  //     this.loadProyectosByU(this.identity.sub);
+  //   }else{
+  //   this.loadProyectos();
+  //   }
+  // }
 
-  loadProyectos():void{
-    this._proyectoService.getProyectos().subscribe(
-      response=>{
-        this.proyectos=response.data;
-      },
-      error=>{
-        console.log("Error");
-      }
-    );
-  }
+//    loadProyectos():void{
+//     this._proyectoService.getProyectos().subscribe(
+//      response=>{
+//     this.proyectos=response.data;
+//      },
+//     error=>{
+//       console.log("Error");
+//      }
+//   );
+//  }
 
   loadProyectosByU(id:number):void{
     this._proyectoService.getProyectosByU(id).subscribe(
@@ -94,7 +95,7 @@ export class ProyectoListComponent implements OnInit {
     this.id = id;
     this.getTareas();
   }
- 
+
   delete():void{
   let counter=timer(5000);
   if(this.tareas.length == 0){
@@ -102,7 +103,7 @@ export class ProyectoListComponent implements OnInit {
       response=>{
         if(response.status=="success"){
           console.log(response);
-          this.loadProyectos();
+          this.loadProyectosByU(this.identity.id);
           this.status = 0;
           counter.subscribe(n=>{
             console.log(n);
@@ -136,9 +137,9 @@ export class ProyectoListComponent implements OnInit {
       this.status=-1;
     });
   }
-      
-  
-     
+
+
+
   }
 
 
