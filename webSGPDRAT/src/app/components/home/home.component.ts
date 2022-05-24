@@ -23,17 +23,18 @@ export class HomeComponent implements OnInit {
   public i:number = 1 ;
   public desde:number = 0;
   public hasta:number = 3;
-
+  public identity:any;
   constructor(
-    private _proyectoService:ProyectoService
+    private _proyectoService:ProyectoService,
+    public _userService:UserService,
   ) {
     this.proyecto = new Proyecto(0,0,"","","","","","","",0)
 
   }
 
   ngOnInit(): void {
+    this.loadStorage();
     this.hoyEs = this.hoy.transform(Date.now(), 'dd/MM/yyyy');
-    this.loadProyectos();
   }
 
 
@@ -48,6 +49,28 @@ export class HomeComponent implements OnInit {
         console.log("Error");
       }
     );
+    }
+
+    public loadStorage(){
+      this.identity=this._userService.getIdentity();
+      console.log(this.identity.sub);
+      if(this.identity.rol == 'ingeniero'){
+        this.loadProyectosByU(this.identity.sub);
+      }else{
+      this.loadProyectos();
+      }
+    }
+
+    loadProyectosByU(id:number):void{
+      this._proyectoService.getProyectosByU(id).subscribe(
+        response=>{
+          console.log(response.data);
+          this.proyectos=response.data;
+        },
+        error=>{
+          console.log("Error");
+        }
+      );
     }
 
     cambiarpagina(e:PageEvent){
