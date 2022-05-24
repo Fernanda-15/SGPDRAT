@@ -1,3 +1,8 @@
+
+  <div *ngIf="user_id != proyecto.user_id || proyecto.id == 0">
+    <error-component></error-component>
+  </div>
+<div *ngIf="user_id == proyecto.user_id && proyecto.id != 0">
 <h1 id="titulo">Información del Proyecto</h1>
 
 <table id="tabla">
@@ -48,3 +53,4 @@
 <div style="margin-top: 150px;margin-left:100px">
   <gantt-component></gantt-component>
   </div>
+</div>

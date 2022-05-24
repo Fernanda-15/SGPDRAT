@@ -21,6 +21,7 @@ export class ProyectoInfoComponent implements OnInit {
 
   public proyecto:Proyecto;
   private user:User;
+  public user_id:number;
   public userName:string;
   public tareas:any;
   public proyecto_id:string;
@@ -44,6 +45,7 @@ export class ProyectoInfoComponent implements OnInit {
     this.tareasTotal = 0;
     this.avanceObra = 0;
     this.porcentajePagado = 0;
+    this.user_id = 0;
   }
 
   ngOnInit(): void {
@@ -84,6 +86,8 @@ export class ProyectoInfoComponent implements OnInit {
             this.user=response.data;
             console.log(this.user);
             this.userName = this.user.nombre;
+            this.user_id = this.user.id;
+            console.log(this.user_id);
           }else{
             console.log('AQUI');
             //this._router.navigate(['']);
