@@ -55,4 +55,15 @@ export class InspeccionService{
         let httpHeaders=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
         return this._http.put(this.url+'inspeccion/'+inspeccion.id,params,{headers:httpHeaders});
       }
+    
+      public getInspeccion(id:number):Observable<any>{
+        let httpHeaders =new HttpHeaders().append('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+'inspeccion/'+id,{headers:httpHeaders});
+    }
+
+    public deleteInspeccion(id:number) : Observable<any>{
+        let httpHeaders=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.delete(this.url+'inspeccion/'+id,{headers:httpHeaders});
+    }
+
 }
