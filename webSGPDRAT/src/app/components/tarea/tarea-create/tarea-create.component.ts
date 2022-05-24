@@ -5,6 +5,9 @@ import { TareaService } from 'src/app/services/tarea.service';
 import{Router,ActivatedRoute} from '@angular/router';
 import { Tarea } from 'src/app/models/tarea';
 import{timer} from 'rxjs';
+import { LogService } from 'src/app/services/log.service';
+import { Log } from 'src/app/models/log';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-tarea-create',
@@ -12,7 +15,9 @@ import{timer} from 'rxjs';
   styleUrls: ['./tarea-create.component.css'],
   providers: [
     ProyectoService,
-    TareaService]
+    TareaService,
+    LogService,
+  UserService]
 })
 export class TareaCreateComponent implements OnInit {
 
@@ -20,20 +25,30 @@ export class TareaCreateComponent implements OnInit {
   public tarea:Tarea;
   public tareas:any;
   public status:number;
+  public identity:any;
+  private log:Log;
 
   constructor(
     private _proyectoService: ProyectoService, 
     private _tareaService: TareaService,
+    private _userService: UserService,
     private _router:Router,
-    private _route:ActivatedRoute
+    private _route:ActivatedRoute,
+    private _logService: LogService,
   ) { 
     this.status=-1;
     this.proyecto=new Proyecto(0,0,"","","","","","","",0);
     this.tarea=new Tarea(0,0,0,"",0,0,"","");
+    this.log = new Log(0,0,"","","");
   }
 
   ngOnInit(): void {
+    this.loadStorage();
     this.getProyecto();
+  }
+
+  public loadStorage(){
+    this.identity=this._userService.getIdentity();
   }
 
   getProyecto():void{
@@ -54,6 +69,19 @@ export class TareaCreateComponent implements OnInit {
         }
       );
     });
+  }
+
+
+  insertLogCreate(proyectoid:number,texto:string){
+    this.log = new Log(0,proyectoid,this.identity.nombreUsuario,"Se ha creado la tarea "+texto,"");
+    console.log(this.log);
+    this._logService.registro(this.log).subscribe(
+      response=>{
+      },
+      error=>{
+        console.log(error);
+      }
+    );
   }
 
   getTareasByProyecto():any{
@@ -120,6 +148,7 @@ export class TareaCreateComponent implements OnInit {
               response=>{
                console.log(response);
                  if(response.status == "success"){
+                   this.insertLogCreate(this.tarea.proyecto_id,"Numero "+this.tarea.numero+": "+this.tarea.descripcion+ " | Peso: "+this.tarea.peso);
                    this.status = -1;
                    form.reset(); 
                     this._router.navigate(['/tarea-list',this.tarea.proyecto_id]);
