@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component ,DoCheck} from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import{Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -21,10 +22,10 @@ export class AppComponent {
     public _userService:UserService,
     private _router:Router,
   )
-  {
+  {this.loadStorage();
     if(this.identity == null){
     this._router.navigate(['login']);
-    }
+     }
     this.times=0;
   }
 
@@ -35,7 +36,7 @@ export class AppComponent {
 
   ngOnInit(){
     this.times=0;
-    
+
    }
 
    ngDoCheck(): void {

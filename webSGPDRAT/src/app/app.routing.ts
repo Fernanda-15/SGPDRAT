@@ -2,7 +2,6 @@
 import { ModuleWithProviders } from "@angular/core";
 import {Routes,RouterModule} from '@angular/router';
 
-
 //IMPORTAR COMPONENTES
 import { LoginComponent } from "./components/login/login.component";
 import { HomeComponent} from './components/home/home.component';
@@ -22,13 +21,15 @@ import {ComentariosProyectoComponent} from './components/comentarios/comentarios
 import {PagoCreateComponent} from './components/pago/pago-create/pago-create.component';
 import {PagoListComponent} from './components/pago/pago-list/pago-list.component';
 import {PagoUpdateComponent} from './components/pago/pago-update/pago-update.component';
+import {TareasAvanceComponent} from './components/tarea/tareas-avance/tareas-avance.component';
 
 
 //DEFINIR RUTAS
 const appRoutes: Routes = [
     {path: '', component: HomeComponent},
-    {path: 'inicio',component:HomeComponent},
-    {path: 'login',component: LoginComponent},
+    {path: 'inicio/:id',component:HomeComponent},
+    {path: 'login',component:LoginComponent},
+    {path: 'logout/:sure',component:LoginComponent},
     {path: 'user-register',component:UserRegisterComponent},
     {path: 'user-list',component:UserListComponent},
     {path: 'user-update/:id',component:UserUpdateComponent},
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
     {path: 'pago-create/:id', component:PagoCreateComponent},
     {path: 'pago-list/:id', component:PagoListComponent},
     {path: 'pago-update/:id', component:PagoUpdateComponent},
+    {path: 'tareas-avance/:id', component:TareasAvanceComponent},
     {path: '**', component: ErrorComponent}
 ];
 
