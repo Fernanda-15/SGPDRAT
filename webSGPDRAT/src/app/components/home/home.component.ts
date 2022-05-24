@@ -23,9 +23,12 @@ export class HomeComponent implements OnInit {
   public i:number = 1 ;
   public desde:number = 0;
   public hasta:number = 3;
+  public identity:any;
 
   constructor(
-    private _proyectoService:ProyectoService
+    public _userService:UserService,
+    private _proyectoService:ProyectoService,
+
   ) {
     this.proyecto = new Proyecto(0,0,"","","","","","","",0)
 
@@ -36,7 +39,6 @@ export class HomeComponent implements OnInit {
     this.loadProyectos();
   }
 
-
   loadProyectos():void{
     this._proyectoService.getProyectos().subscribe(
       response=>{
@@ -44,7 +46,6 @@ export class HomeComponent implements OnInit {
         this.proyectos=response.data;
       },
       error=>{
-
         console.log("Error");
       }
     );
