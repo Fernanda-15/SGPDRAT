@@ -5,12 +5,15 @@ import { ProyectoService } from 'src/app/services/proyecto.service';
 import {Tarea} from '../../../models/tarea';
 import{Router,ActivatedRoute} from '@angular/router';
 import{timer} from 'rxjs';
+import { LogService } from 'src/app/services/log.service';
+import { Log } from 'src/app/models/log';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-tarea-update',
   templateUrl: './tarea-update.component.html',
   styleUrls: ['./tarea-update.component.css'],
-  providers: [TareaService, ProyectoService]
+  providers: [TareaService, ProyectoService,UserService,LogService]
 })
 export class TareaUpdateComponent implements OnInit {
   
@@ -18,26 +21,33 @@ export class TareaUpdateComponent implements OnInit {
   public tarea:any;
   public status: any;
   public reset=false;
+  public identity:any;
+  private log:Log;
 
   constructor(
     private _tareaService:TareaService,
     private _proyectoService: ProyectoService, 
     private _router:Router,
-    private _route:ActivatedRoute
+    private _route:ActivatedRoute,
+    private _userService: UserService,
+    private _logService: LogService
   ) { 
     this.proyecto=new Proyecto(0,0,"","","","","","","",0);
     this.tarea=new Tarea(0,0,0,"",0,0,"","");
     this.status=-1;
+    this.log = new Log(0,0,"","","");
   }
 
   ngOnInit(): void {
+    this.loadStorage();
     this.reset=false;
     this.getTarea();
   }
 
+  public loadStorage(){
+    this.identity=this._userService.getIdentity();
+  }
 
-
-  
   getTarea():void{
 
     this._route.params.subscribe(params=>{
@@ -59,6 +69,19 @@ export class TareaUpdateComponent implements OnInit {
       );
     });
   }
+
+  insertLogUpdate(proyectoid:number,texto:string){
+    this.log = new Log(0,proyectoid,this.identity.nombreUsuario,"Se ha actualizado la tarea "+texto,"");
+    console.log(this.log);
+    this._logService.registro(this.log).subscribe(
+      response=>{
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
+
 
   getProyecto(id:number):void{
     this._proyectoService.getProyecto(id).subscribe(
@@ -85,6 +108,7 @@ export class TareaUpdateComponent implements OnInit {
           this._tareaService.update(this.tarea).subscribe(
             response=>{
           if(response.code==200){
+            this.insertLogUpdate(this.tarea.proyecto_id,"Numero "+this.tarea.numero+": "+this.tarea.descripcion+ " | Peso: "+this.tarea.peso + " | Avance: "+this.tarea.avance);
             this.status=-1;
             this._router.navigate(['/tarea-list',this.tarea.proyecto_id]);
             }else{
