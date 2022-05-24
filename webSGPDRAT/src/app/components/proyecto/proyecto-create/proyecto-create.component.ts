@@ -4,6 +4,9 @@ import { ProyectoService } from 'src/app/services/proyecto.service';
 import { UserService } from 'src/app/services/user.service';
 import{Router} from '@angular/router';
 import{timer} from 'rxjs';
+import { LogService } from 'src/app/services/log.service';
+import { Log } from 'src/app/models/log';
+
 
 @Component({
   selector: 'app-proyecto-create',
@@ -11,7 +14,8 @@ import{timer} from 'rxjs';
   styleUrls: ['./proyecto-create.component.css'],
   providers: [
     ProyectoService,
-    UserService]
+    UserService,
+  LogService]
 })
 export class ProyectoCreateComponent implements OnInit {
 
@@ -22,23 +26,29 @@ export class ProyectoCreateComponent implements OnInit {
   public users:any;
   public proyectito:Proyecto;
   public id:number;
+  public identity:any;
+  private log:Log;
   constructor(
     private _proyectoService: ProyectoService, 
     private _userService: UserService,
+    private _logService: LogService,
     private _router:Router,
   ) { 
     this.status=-1;
     this.id=0;
     this.proyecto = new Proyecto(0,0,"","","","","","","",0);
     this.proyectito = new Proyecto(0,0,"","","","","","","",0);
+    this.log = new Log(0,0,"","","");
   }
 
   ngOnInit(): void {
-    console.log('COMPONENTE DE CREACION DE PROYECTO');
-    
+    this.loadStorage();
     this.getUsers();
   }
 
+  public loadStorage(){
+    this.identity=this._userService.getIdentity();
+  }
 
   getUsers():any{
     this._userService.getUsers().subscribe(
@@ -58,8 +68,21 @@ export class ProyectoCreateComponent implements OnInit {
       response=>{
         if(response.code==200){
           this.proyectito=response.data;
+          this.insertLogCreate(this.proyectito.id,this.proyectito.nombre);
           this._router.navigate(['/tarea-list', this.proyectito.id]);
         }
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
+
+  insertLogCreate(proyectoid:number,texto:string){
+    this.log = new Log(0,proyectoid,this.identity.nombreUsuario,"Se crea el proyecto "+texto,"");
+    console.log(this.log);
+    this._logService.registro(this.log).subscribe(
+      response=>{
       },
       error=>{
         console.log(error);
@@ -71,9 +94,11 @@ export class ProyectoCreateComponent implements OnInit {
   onSubmit(form:any){ 
     let counter=timer(5000);
     let e:number=0;
+    let proyectonombre = this.proyecto.nombre;
     if(this.proyecto.fecha_final >= this.proyecto.fecha_inicio){
       if(this.proyecto.user_id > 0){
         if(this.proyecto.forma_pago != ""){
+          let proyectoid = this.proyecto.id;
           this._proyectoService.registro(this.proyecto).subscribe(
             response=>{
               if(response.code == 200){

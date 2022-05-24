@@ -4,12 +4,13 @@ import { Proyecto } from '../../../models/proyecto';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { timer } from 'rxjs';
-
+import { LogService } from 'src/app/services/log.service';
+import { Log } from 'src/app/models/log';
 @Component({
   selector: 'app-proyecto-update',
   templateUrl: './proyecto-update.component.html',
   styleUrls: ['./proyecto-update.component.css'],
-  providers: [ProyectoService, UserService]
+  providers: [ProyectoService, UserService, LogService]
 })
 export class ProyectoUpdateComponent implements OnInit {
 
@@ -17,16 +18,20 @@ export class ProyectoUpdateComponent implements OnInit {
   public status: any;
   public reset = false;
   public users: any;
+  public identity:any;
+  private log:Log;
   constructor(
     private _proyectoService: ProyectoService,
     private _userService: UserService,
     private _router: Router,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _logService: LogService,
   ) {
-
+    this.log = new Log(0,0,"","","");
   }
 
   ngOnInit(): void {
+    this.loadStorage();
     this.reset = false;
     this.proyecto = new Proyecto(0, 0, "", "", "", "", "", "", "", 0);
     this.getProyecto();
@@ -54,6 +59,21 @@ export class ProyectoUpdateComponent implements OnInit {
     });
   }
 
+  public loadStorage(){
+    this.identity=this._userService.getIdentity();
+  }
+
+  insertLogUpdate(proyectoid:number,texto:string){
+    this.log = new Log(0,proyectoid,this.identity.nombreUsuario,"Se actualizó el proyecto "+texto,"");
+    console.log(this.log);
+    this._logService.registro(this.log).subscribe(
+      response=>{
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
 
   getUsers() {
     this._userService.getUsers().subscribe(
@@ -74,6 +94,7 @@ export class ProyectoUpdateComponent implements OnInit {
       this._proyectoService.update(this.proyecto).subscribe(
         response => {
           if (response.code == 200) {
+            this.insertLogUpdate(this.proyecto.id,this.proyecto.nombre);
             form.reset();
             this._router.navigate(['/proyecto-list']);
           } else {
