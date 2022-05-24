@@ -22,6 +22,16 @@ class InspeccionController extends Controller
         return response()->json($response,200);
     }
 
+    public function getInspeccionByP($id){  
+        $data = Inspeccion::Where('proyecto_id',$id)->get();
+
+       return response()->json([
+        'status'=>'success',
+        'code'=>200,
+        'data'=>$data
+       ], 200);
+    }
+    
     public function show($id){  //BUSQUEDA POR ID
         $data=Inspeccion::find($id);  //BUSCA EL ID EN LA DB
         if(is_object($data)){  //VERIFICA SI ES OBJETO
