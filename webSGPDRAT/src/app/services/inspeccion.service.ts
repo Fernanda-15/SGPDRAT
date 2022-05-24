@@ -39,6 +39,11 @@ export class InspeccionService{
         return this._http.get(this.url+'tarea/inspeccion/'+id , {headers:httpHeaders});
     }
 
+    public getUltimo():Observable<any>{
+        let httpHeaders =new HttpHeaders().append('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+'inspeccion/getultimo',{headers:httpHeaders});
+    }
+
     public deleteProyecto(id:number) : Observable<any>{
         let httpHeaders=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
         return this._http.delete(this.url+'inspeccion/'+id,{headers:httpHeaders});
