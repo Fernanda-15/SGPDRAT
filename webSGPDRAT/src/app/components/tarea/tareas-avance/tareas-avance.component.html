@@ -1,1 +1,49 @@
-<p>tareas-avance works!</p>
+<!--TABLA DE TAREAS-->
+<div class="container">
+
+    <div class="row" >
+      <div class="col">
+        <h5 id="titulo">Lista de Tareas</h5>
+      </div>
+     
+    </div>
+  
+          <div class="table-responsive">
+          <table class="table table-striped" >
+              <thead>
+                  <tr>
+                      <th scope="col">Numero</th>
+                      <th scope="col">Descripcion</th>
+                      <th scope="col">Avance</th>
+                      <th scope="col">Inspeccionar</th>
+                  </tr>
+              </thead>
+              <tbody>
+ 
+                <tr *ngFor="let tarea of tareas | slice:desde:hasta let i=index">
+                          <td>{{tarea.numero}}</td>
+                          <td>{{tarea.descripcion}}</td>
+                          <td>{{tarea.avance}}</td>
+
+
+                          <td >
+                          <a [routerLink]="['/tarea-update',tarea.id]" class="btn btn-info btn-xs"  u >
+  
+                              <span  class="bi bi-paperclip"></span>
+                          </a>
+                    </td>
+  
+              
+                </tr>
+          
+              </tbody>
+          </table>
+          <mat-paginator [length]="tareas.length" [pageSize]="5"  [pageSizeOptions]="[3, 5, 10, 25, 100]"  aria-label="Select page" (page)="cambiarpagina($event)">
+          </mat-paginator>
+          </div>
+  
+  
+  </div>
+  
+  
+  
