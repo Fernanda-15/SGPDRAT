@@ -12,7 +12,7 @@ class JwtAuth{
     {
         $this->key='23und2end023r02dn';
         //esta llave es unica
-    } 
+    }
 
     public function signin($nombreUsuario,$contrasena){ //GENERA EL TOKEN PARA UN USUARIO AUTENTICADO
         //entrar login cifrar token, verifica user password
@@ -32,7 +32,7 @@ class JwtAuth{
                 'telefono' => $user->telefono,
                 'correo' => $user->correo,
                 'iat'=>time(), //creacion de token , time devuelve tiempo
-                'exp'=>time()+7200//tiempo de expiracion //500
+                'exp'=>time()+3000//tiempo de expiracion //500
 
             );
             $data=JWT::encode($token,$this->key,'HS256');//token . llave.alg cifrado

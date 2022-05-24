@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Proyecto } from 'src/app/models/proyecto';
 import { UserService } from 'src/app/services/user.service';
-import{Router} from '@angular/router';
+import{Router,ActivatedRoute,Params} from '@angular/router';
 import {User} from '../../models/user';
 import{timer} from 'rxjs';
 
@@ -22,15 +22,17 @@ export class LoginComponent implements OnInit {
   constructor(
     private _userService: UserService,
     private _router:Router,
-  ) { 
+    private _routes:ActivatedRoute
+  ) {
     this.status=-1;
     this.user = new User(0,"","","","","","","","");
-    if(this._userService.getIdentity() != null){
-      this._router.navigate(['']);
-      }
+    // if(this._userService.getIdentity() != null){
+    //   this._router.navigate(['']);
+    //   }
   }
 
   ngOnInit(): void {
+    this.logout();
   }
 
   onSubmit(form:any){
@@ -74,6 +76,22 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  
+
+  logout(){
+    this._routes.params.subscribe(
+      params=>{
+        let logout= +params['sure'];
+        if(logout==1){
+          localStorage.removeItem('identity');
+          localStorage.removeItem('token');
+          //localStorage.getItem('identity');
+          this.identity=null;
+          this.token=null;
+          //Redireccion
+          this._router.navigate(['login']);
+        }
+      }
+    );
+  }
 
 }

@@ -2,7 +2,6 @@
 import { ModuleWithProviders } from "@angular/core";
 import {Routes,RouterModule} from '@angular/router';
 
-
 //IMPORTAR COMPONENTES
 import { LoginComponent } from "./components/login/login.component";
 import { HomeComponent} from './components/home/home.component';
@@ -27,8 +26,9 @@ import {PagoUpdateComponent} from './components/pago/pago-update/pago-update.com
 //DEFINIR RUTAS
 const appRoutes: Routes = [
     {path: '', component: HomeComponent},
-    {path: 'inicio',component:HomeComponent},
-    {path: 'login',component: LoginComponent},
+    {path: 'inicio/:id',component:HomeComponent},
+    {path: 'login',component:LoginComponent},
+    {path: 'logout/:sure',component:LoginComponent},
     {path: 'user-register',component:UserRegisterComponent},
     {path: 'user-list',component:UserListComponent},
     {path: 'user-update/:id',component:UserUpdateComponent},
