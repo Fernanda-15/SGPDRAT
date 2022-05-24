@@ -36,6 +36,7 @@ Route::prefix('api')->group(function () {
     Route::get('/comentario/proyecto/{id}',[ComentarioController::class,'getComentarioByP']);
     Route::get('/pago/proyecto/{id}',[PagoController::class,'getPagoByP']);
     Route::get('/proyecto/getultimo',[ProyectoController::class,'getUltimo']);
+    Route::get('/proyecto/user/{id}',[ProyectoController::class,'getProyectoByU']);
     Route::get('/inspeccion/proyecto/{id}',[InspeccionController::class,'getInspeccionByP']);
 
     //RUTAS AUTOMATICAS RESTful
