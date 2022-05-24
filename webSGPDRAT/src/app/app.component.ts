@@ -23,9 +23,9 @@ export class AppComponent {
     private _router:Router,
   )
   {this.loadStorage();
-    // if(this.identity == null){
-    // this._router.navigate(['login']);
-    // }
+    if(this.identity == null){
+    this._router.navigate(['login']);
+     }
     this.times=0;
   }
 
