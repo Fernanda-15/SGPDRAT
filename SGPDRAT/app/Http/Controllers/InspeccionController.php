@@ -94,6 +94,16 @@ class InspeccionController extends Controller
         }
         return response()->json($response,$response['code']);
     }
+    
+    public function getUltimo(){ //Buscar el ID del proyecto
+        $data = Inspeccion::latest('id')->first();
+        $response=array(
+            'status'=>'success',
+            'code'=>200,
+            'data'=>$data
+        );
+        return response()->json($response,200);
+    }
 
     public function update(Request $request){ 
         $inspeccion=$request;

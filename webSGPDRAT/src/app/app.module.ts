@@ -4,7 +4,7 @@ import { routing, appRoutingProviders } from './app.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { AngularFileUploaderModule } from "angular-file-uploader";
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
@@ -75,7 +75,8 @@ import { TareasAvanceComponent } from './components/tarea/tareas-avance/tareas-a
     MatMenuModule,
     FlexLayoutModule,
     GanttModule,
-    ErrorModule
+    ErrorModule,
+    AngularFileUploaderModule,
   ],
   providers: [
     appRoutingProviders
