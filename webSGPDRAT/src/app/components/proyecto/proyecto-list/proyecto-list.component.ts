@@ -40,17 +40,31 @@ export class ProyectoListComponent implements OnInit {
 
   public loadStorage(){
     this.identity=this._userService.getIdentity();
+    console.log(this.identity.sub);
+    if(this.identity.rol == 'ingeniero'){
+      this.loadProyectosByU(this.identity.sub);
+    }else{
     this.loadProyectos();
+    }
   }
 
   loadProyectos():void{
     this._proyectoService.getProyectos().subscribe(
       response=>{
-        console.log(response);
         this.proyectos=response.data;
       },
       error=>{
+        console.log("Error");
+      }
+    );
+  }
 
+  loadProyectosByU(id:number):void{
+    this._proyectoService.getProyectosByU(id).subscribe(
+      response=>{
+        this.proyectos=response.data;
+      },
+      error=>{
         console.log("Error");
       }
     );
