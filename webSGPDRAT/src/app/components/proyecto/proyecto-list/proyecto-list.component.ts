@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProyectoService } from 'src/app/services/proyecto.service';
 import { Proyecto } from 'src/app/models/proyecto';
+import { UserService } from '../../../services/user.service';
 import{global} from '../../../services/global';
 import { PageEvent } from '@angular/material/paginator';
 import{timer} from 'rxjs';
@@ -9,7 +10,8 @@ import{timer} from 'rxjs';
   selector: 'app-proyecto-list',
   templateUrl: './proyecto-list.component.html',
   styleUrls: ['./proyecto-list.component.css'],
-  providers:[ProyectoService]
+  providers:[ProyectoService,
+              UserService]
 })
 export class ProyectoListComponent implements OnInit {
 
@@ -21,8 +23,10 @@ export class ProyectoListComponent implements OnInit {
   public status:number;
   public tareas:any;
   public id:number;
+  public identity:any;
 
   constructor(
+    public _userService:UserService,
     private _proyectoService:ProyectoService
   ) {
     this.proyecto = new Proyecto(0,0,"","","","","","","",0)
@@ -31,6 +35,11 @@ export class ProyectoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadStorage();
+  }
+
+  public loadStorage(){
+    this.identity=this._userService.getIdentity();
     this.loadProyectos();
   }
 
