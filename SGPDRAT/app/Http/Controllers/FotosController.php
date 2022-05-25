@@ -142,4 +142,34 @@ public function destroy($id){
     }
     return response()->json($response,$response['code']);
 }
+
+public function uploadImage(Request $request){
+    $image=$request->file('file0');
+    $validate=\Validator::make($request->all(),[
+        'file0'=>'required|image|mimes:png,jpg,jpeg'
+    ]);
+    if(!$image || $validate->fails()){
+        $response=array(
+            'status'=>'error',
+            'code'=>406,
+            'message'=>'Error al subir la imagen',
+           
+        );
+    }else{
+        //$image_name=time().$image->getClientOriginalName();
+
+        $image_name=time().$image->getClientOriginalName();
+        
+        \Storage::disk('fotos')->put($image_name,\File::get($image));
+        $response=array(
+            'status'=>'success',
+            'code'=>200,
+            'message'=>'Imagen cargada correctamente',
+            'image'=>$image_name
+        );
+    }
+    return response()->json($response,$response['code']);
+}
+
+
 }

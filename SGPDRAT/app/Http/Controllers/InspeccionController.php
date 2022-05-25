@@ -59,7 +59,6 @@ class InspeccionController extends Controller
             'proyecto_id'=>'required|integer',
             'user_id'=>'required|integer',
             'numero'=>'required',
-            'fecha'=>'required',
             'observaciones'=>'required',
             'firma'=>'required',
             'avance_obra'=>'required',
@@ -79,7 +78,7 @@ class InspeccionController extends Controller
             $inspeccion->proyecto_id=$data['proyecto_id'];
             $inspeccion->user_id=$data['user_id'];
             $inspeccion->numero=$data['numero'];
-            $inspeccion->fecha=$data['fecha']; 
+            $inspeccion->fecha=now();
             $inspeccion->observaciones=$data['observaciones'];
             $inspeccion->firma=$data['firma'];
             $inspeccion->avance_obra=$data['avance_obra'];
@@ -93,6 +92,17 @@ class InspeccionController extends Controller
             );
         }
         return response()->json($response,$response['code']);
+    }
+
+    
+    public function getUltimo(){ //Buscar el ID del proyecto
+        $data = Inspeccion::latest('id')->first();
+        $response=array(
+            'status'=>'success',
+            'code'=>200,
+            'data'=>$data
+        );
+        return response()->json($response,200);
     }
 
     public function update(Request $request){ 

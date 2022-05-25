@@ -75,4 +75,9 @@ export class ProyectoService{
         let httpHeaders=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
         return this._http.put(this.url+'proyecto/'+proyecto.id,params,{headers:httpHeaders});
       }
+
+    getInspecciones(id:number):Observable<any>{
+        let httpHeaders =new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+'inspeccion/proyecto/'+id , {headers:httpHeaders});
+    }
 }

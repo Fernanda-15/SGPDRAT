@@ -4,6 +4,8 @@ import { Proyecto } from 'src/app/models/proyecto';
 import { ProyectoService } from 'src/app/services/proyecto.service';
 import { UserService } from 'src/app/services/user.service';
 import { PageEvent } from '@angular/material/paginator';
+import{Router,ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -19,58 +21,96 @@ export class HomeComponent implements OnInit {
   public today: Date = new Date();
   public hoy = new DatePipe('en-US');
   public proyecto:Proyecto;
-  public proyectos:any[]=[];
+  public proyectos:Array<Proyecto>;
   public i:number = 1 ;
   public desde:number = 0;
   public hasta:number = 3;
   public identity:any;
+  public user:any;
+  private token:any;
+
   constructor(
-    private _proyectoService:ProyectoService,
     public _userService:UserService,
-  ) {
+    private _proyectoService:ProyectoService,
+    private _route:ActivatedRoute,
+    private _router:Router
+
+  ) { this.loadStorage();
     this.proyecto = new Proyecto(0,0,"","","","","","","",0)
-
+    this.proyectos=[];
   }
 
-  ngOnInit(): void {
-    this.loadStorage();
-    this.hoyEs = this.hoy.transform(Date.now(), 'dd/MM/yyyy');
+  ngOnInit(){
+
+   this.loadProyectosByU();
+  this.hoyEs = this.hoy.transform(Date.now(), 'dd/MM/yyyy');
   }
 
 
-  loadProyectos():void{
-    this._proyectoService.getProyectos().subscribe(
-      response=>{
-        console.log(response);
+  public loadStorage(){
+    this.identity=this._userService.getIdentity();
+    this.token=this._userService.getToken();
+  }
+
+    getUser(){
+      this._route.params.subscribe(params=>{
+
+        let id=params['sure'];
+        console.log(id);
+        this._userService.getUser(id).subscribe(
+          response=>{
+            if(response.status=='success'){
+              this.user=response.data;
+
+            }
+          },
+          error=>{
+            console.log(error);
+          }
+        );
+      });
+    }
+
+    loadProyectos(){
+      this._proyectoService.getProyectos().subscribe(
+          response=>{
         this.proyectos=response.data;
-      },
-      error=>{
+        console.log(response.data);
+        },
+          error=>{
+          console.log("Error");
+          }
+      );
 
-        console.log("Error");
-      }
-    );
-    }
+  }
 
-    public loadStorage(){
+    loadProyectosByU(){
+      var idUser;
       this.identity=this._userService.getIdentity();
-      console.log(this.identity.sub);
-      if(this.identity.rol == 'ingeniero'){
-        this.loadProyectosByU(this.identity.sub);
+      idUser=this.identity.sub;
+      console.log(idUser);
+      if(idUser){
+        console.log("hola");
+      this.getProyectosByU(idUser);
       }else{
-      this.loadProyectos();
+        console.log(idUser);
+        this.loadProyectos();
       }
-    }
+   }
 
-    loadProyectosByU(id:number):void{
+
+
+    getProyectosByU(id:number):void{
       this._proyectoService.getProyectosByU(id).subscribe(
         response=>{
-          console.log(response.data);
           this.proyectos=response.data;
-        },
-        error=>{
-          console.log("Error");
-        }
-      );
+          console.log(response.data);
+          },
+            error=>{
+            console.log("Error");
+            }
+      )
+
     }
 
     cambiarpagina(e:PageEvent){

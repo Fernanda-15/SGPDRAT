@@ -143,4 +143,30 @@ public function destroy($id){
     return response()->json($response,$response['code']);
 }
 
+public function uploadArchivo(Request $request){
+    $file=$request->file('file0');
+    $validate=\Validator::make($request->all(),[
+        'file0'=>'required|file|mimes:pdf,txt,docx'
+    ]);
+    if(!$file || $validate->fails()){
+        $response=array(
+            'status'=>'error',
+            'code'=>406,
+            'message'=>'Error al subir la imagen',
+           
+        );
+    }else{
+        $file_name=time().$file->getClientOriginalName();
+        \Storage::disk('archivos')->put($file_name,\File::get($file));
+        $response=array(
+            'status'=>'success',
+            'code'=>200,
+            'message'=>'Imagen cargada correctamente',
+            'file'=>$file_name
+        );
+    }
+    return response()->json($response,$response['code']);
+}
+
+
 }

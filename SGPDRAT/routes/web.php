@@ -38,7 +38,9 @@ Route::prefix('api')->group(function () {
     Route::get('/proyecto/getultimo',[ProyectoController::class,'getUltimo']);
     Route::get('/proyecto/user/{id}',[ProyectoController::class,'getProyectoByU']);
     Route::get('/inspeccion/proyecto/{id}',[InspeccionController::class,'getInspeccionByP']);
-
+    Route::post('/fotos/upload',[FotosController::class,'uploadImage']);
+    Route::get('/inspeccion/getultimo',[InspeccionController::class,'getUltimo']);
+    Route::post('/archivos/upload',[ArchivosController::class,'uploadArchivo']);
     //RUTAS AUTOMATICAS RESTful
     Route::resource('/user', UserController::class,['except'=>['create','edit']]);
     Route::resource('/proyecto', ProyectoController::class,['except'=>['create','edit']]);
