@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
               let counter=timer(5000);
                 this.status=1;
                 counter.subscribe(n=>{
-                  this.status=-1;
+                  this.status=1;
                 });
               this.identity=null;
             }
@@ -70,8 +70,9 @@ export class LoginComponent implements OnInit {
           counter.subscribe(n=>{
             this.status=-1;
           });
+        }else{
+          this.status=1;
         }
-        this.status=-1;
       }
     );
   }
