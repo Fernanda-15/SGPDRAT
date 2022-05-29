@@ -22,6 +22,8 @@ import {PagoCreateComponent} from './components/pago/pago-create/pago-create.com
 import {PagoListComponent} from './components/pago/pago-list/pago-list.component';
 import {PagoUpdateComponent} from './components/pago/pago-update/pago-update.component';
 import {InspeccionCreateComponent} from './components/inspeccion/inspeccion-create/inspeccion-create.component';
+import {InspeccionUpdateComponent} from './components/inspeccion/inspeccion-update/inspeccion-update.component';
+import {InspeccionListComponent} from './components/inspeccion/inspeccion-list/inspeccion-list.component';
 
 
 //DEFINIR RUTAS
@@ -46,6 +48,8 @@ const appRoutes: Routes = [
     {path: 'pago-list/:id', component:PagoListComponent},
     {path: 'pago-update/:id', component:PagoUpdateComponent},
     {path: 'inspeccion-create/:id', component:InspeccionCreateComponent},
+    {path: 'inspeccion-update/:id', component:InspeccionUpdateComponent},
+    {path: 'inspeccion-list/:id', component:InspeccionListComponent},
     {path: '**', component: ErrorComponent}
 ];
 
