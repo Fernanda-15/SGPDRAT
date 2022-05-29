@@ -29,49 +29,80 @@ export class ProyectoListComponent implements OnInit {
     public _userService:UserService,
     private _proyectoService:ProyectoService
   ) {
+    this.loadStorage();
     this.proyecto = new Proyecto(0,0,"","","","","","","",0)
     this.status=-1;
     this.id=0;
   }
 
-  ngOnInit(): void {
-    this.loadProyectosByU(this.identity.id);
-    //this.loadStorage();
+  ngOnInit(){
+   // this.loadProyectosByU();
+
+   
+   this.loadStorage();
   }
 
-  // public loadStorage(){
-  //   this.identity=this._userService.getIdentity();
-  //   console.log(this.identity.sub);
-  //   if(this.identity.rol == 'ingeniero'){
-  //     this.loadProyectosByU(this.identity.sub);
-  //   }else{
-  //   this.loadProyectos();
-  //   }
-  // }
+  public loadStorage(){
+    this.identity=this._userService.getIdentity();
+    console.log(this.identity.sub);
+      if(this.identity.rol == "ingeniero"){
+       this.loadProyectosByUU(this.identity.sub);
+  }else{
+     this.loadProyectos();
+     }
+   }
 
-//    loadProyectos():void{
-//     this._proyectoService.getProyectos().subscribe(
-//      response=>{
-//     this.proyectos=response.data;
-//      },
-//     error=>{
-//       console.log("Error");
-//      }
-//   );
-//  }
-
-  loadProyectosByU(id:number):void{
-    this._proyectoService.getProyectosByU(id).subscribe(
+   loadProyectos():void{
+     this._proyectoService.getProyectos().subscribe(
       response=>{
-        this.proyectos=response.data;
+ this.proyectos=response.data;
       },
-      error=>{
-        console.log("Error");
-      }
-    );
+   error=>{
+     console.log("Error");
+    }
+ );
   }
 
+   loadProyectosByUU(id:number):void{
+   this._proyectoService.getProyectosByU(id).subscribe(
+  response=>{
+       this.proyectos=response.data;
+     },
+     error=>{
+       console.log("Error");
+     }
+   );
+  }
 
+  loadProyectosByU(){
+    var idUser;
+    this.identity=this._userService.getIdentity();
+    idUser=this.identity.sub;
+    console.log(idUser);
+    if(idUser){
+        console.log("picha");
+        this.getProyectosByU(idUser);
+
+    }else{
+      console.log(idUser);
+      this.loadProyectos();
+    }
+ }
+
+
+
+ getProyectosByU(id:number):void{
+  this._proyectoService.getProyectosByU(id).subscribe(
+    response=>{
+      this.proyectos=response.data;
+      console.log(response.data);
+      },
+        error=>{
+        console.log("Error");
+        }
+  )
+
+}
   getTareas():void{
   this._proyectoService.getTareas(this.id).subscribe(
      response=>{
@@ -103,7 +134,7 @@ export class ProyectoListComponent implements OnInit {
       response=>{
         if(response.status=="success"){
           console.log(response);
-          this.loadProyectosByU(this.identity.id);
+          this.loadProyectosByU();
           this.status = 0;
           counter.subscribe(n=>{
             console.log(n);
