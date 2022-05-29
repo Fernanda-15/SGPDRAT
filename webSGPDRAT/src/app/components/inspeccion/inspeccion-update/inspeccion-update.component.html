@@ -6,14 +6,6 @@
 <form id="formInspeccion" class="col-md-6 mr-auto ml-auto" #createInspeccionForm="ngForm" (ngSubmit)="onSubmit(createInspeccionForm)">
 
     <div class="row">
-        <div id="info" class="form-group">
-            <label>Numero de inspeccion: </label>
-            <input type="number" name="numero" class="form-control" #numero="ngModel" [(ngModel)]="inspeccion.numero"
-                required pattern="^[1-9]\d*$">
-            <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
-                El número de inspección no es válido
-            </small>
-        </div>
 
         <div id="info" class="form-group">
             <label>Observaciones: </label>
@@ -33,14 +25,14 @@
             <input type="text" name="firma" class="form-control" #firma="ngModel"
                 [(ngModel)]="inspeccion.firma" required pattern="^[a-zA-Z0-9\.]*$">
             <small *ngIf="!firma.valid && firma.touched" class="invalid-feedback d-block">
-                La observación no es válida
+                La firma no es válida
             </small>
         </div>
     </div>
 
     <div class="row">
         <div style="position: center; margin-top: 29px;">
-            <input id="boton" type="submit" value="Agregar" class="btn btn-success mr-2"
+            <input id="boton" type="submit" value="Modificar" class="btn btn-success mr-2"
                 [disabled]="createInspeccionForm.invalid">
         </div>
 
