@@ -19,7 +19,15 @@
   
 <div class="container" *ngIf="inspecciones">
     <h5 id="titulo">Lista de Inspecciones del proyecto #{{proyecto.id}}</h5>
-
+    <!--Boton nueva inspeccion  y lista de avance de las tareas-->
+    <div class="col">
+        <button  type="button" class="btn btn-success m-md-2"  [routerLink]="['/inspeccion-create',proyecto.id]">
+            <span class="bi bi-file-earmark-check"> Agregar Inspección</span>
+        </button>
+        <button  type="button" class="btn btn-info m-md-2"  [routerLink]="['/tareas-avance',proyecto.id]">
+            <span class="bi bi-file-earmark-bar-graph"> Avance de tareas</span>
+        </button>
+      </div>
     <!--TABLA DE INSPECCIONES-->
     <div class="table-responsive">
     <table class="table table-striped" >
