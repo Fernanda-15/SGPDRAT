@@ -106,12 +106,12 @@ export class ProyectoInfoComponent implements OnInit {
         console.log(response.data);
           this.tareas = response.data;
           this.tareas.forEach((t:any) => {
+            this.avanceObra = this.avanceObra + (this.tareas.avance*this.tareas.peso)/100;
             this.tareasTotal +=1;
             if(t.avance == 100){
               this.tareasEjecutadas += 1;
             }
           })
-          this.avanceObra = (this.tareasEjecutadas/this.tareasTotal)*100;
       },
       error=>{
         console.log(error);
