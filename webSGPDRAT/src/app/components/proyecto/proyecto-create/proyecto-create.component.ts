@@ -48,6 +48,7 @@ export class ProyectoCreateComponent implements OnInit {
 
   public loadStorage(){
     this.identity=this._userService.getIdentity();
+    this.proyecto.user_id=this.identity.sub;
   }
 
   getUsers():any{
