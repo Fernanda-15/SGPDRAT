@@ -5,14 +5,18 @@ import { ProyectoService } from 'src/app/services/proyecto.service';
 import{Router,ActivatedRoute} from '@angular/router';
 import { Proyecto } from 'src/app/models/proyecto';
 import{timer} from 'rxjs';
-
+import { LogService } from 'src/app/services/log.service';
+import { Log } from 'src/app/models/log';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-pago-update',
   templateUrl: './pago-update.component.html',
   styleUrls: ['./pago-update.component.css'], 
   providers: [
-    PagoService
+    PagoService,
+    LogService,
+    UserService
   ]
 })
 export class PagoUpdateComponent implements OnInit {
@@ -23,21 +27,31 @@ export class PagoUpdateComponent implements OnInit {
   public pagos:any;
   public status: number;
   public reset=false;
+  public log:Log;
+  public identity:any;
 
   constructor(
     private _pagoService: PagoService,
     private _proyectoService: ProyectoService,
+    private _userService:UserService,
+    private _logService:LogService,
     private _router:Router,
     private _route:ActivatedRoute
   ) {
     this.pago = new Pago(0,0,0,0,0,"","");
     this.proyecto=new Proyecto(0,0,"","","","","","","",0);
     this.status=-1;
+    this.log = new Log(0,0,"","","");
    }
 
   ngOnInit(): void { 
+    this.loadStorage();
     this.getProyecto();
     this.reset=false;
+  }
+
+  public loadStorage(){
+    this.identity=this._userService.getIdentity();
   }
 
   getProyecto():void{
@@ -78,6 +92,17 @@ export class PagoUpdateComponent implements OnInit {
     });
   }
 
+  insertLogUpdate(proyectoid:number,texto:string){
+    this.log = new Log(0,proyectoid,this.identity.nombreUsuario,"Se actualizó el pago "+texto,"");
+    console.log(this.log);
+    this._logService.registro(this.log).subscribe(
+      response=>{
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
 
   onSubmit(form:any){
   let counter=timer(5000); 
@@ -86,6 +111,7 @@ export class PagoUpdateComponent implements OnInit {
         this._pagoService.update(this.pago).subscribe(
           response=>{
         if(response.code==200){
+          this.insertLogUpdate(this.pago.proyecto_id,this.pago.numero+" | Monto: "+this.pago.monto.toString()+" | N Transaccion: "+this.pago.numero_transaccion)
           form.reset();
           this._router.navigate(['/pago-list', this.proyecto.id]);
           }

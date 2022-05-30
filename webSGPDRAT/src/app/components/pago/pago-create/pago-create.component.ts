@@ -5,6 +5,9 @@ import { ProyectoService } from 'src/app/services/proyecto.service';
 import{Router,ActivatedRoute} from '@angular/router';
 import { Proyecto } from 'src/app/models/proyecto';
 import{timer} from 'rxjs';
+import { LogService } from 'src/app/services/log.service';
+import { Log } from 'src/app/models/log';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-pago-create',
@@ -12,7 +15,9 @@ import{timer} from 'rxjs';
   styleUrls: ['./pago-create.component.css'],
   providers: [
     ProyectoService,
-    PagoService
+    PagoService,
+    LogService,
+    UserService
   ]
 })
 export class PagoCreateComponent implements OnInit {
@@ -21,22 +26,31 @@ export class PagoCreateComponent implements OnInit {
   public proyecto:Proyecto;
   public pagos:any;
   public status:number;
-
+  public log:Log;
+  public identity:any;
+  
   constructor(
     private _proyectoService: ProyectoService, 
     private _pagoService: PagoService,
+    private _userService:UserService,
+    private _logService:LogService,
     private _router:Router,
     private _route:ActivatedRoute
   ) { 
     this.status = -1;
     this.proyecto = new Proyecto(0,0,"","","","","","","",0);
     this.pago = new Pago(0,0,0,0,0,"","");
+    this.log = new Log(0,0,"","","");
   }
 
   ngOnInit(): void {
+    this.loadStorage();
     this.getProyecto();
   }
 
+  public loadStorage(){
+    this.identity=this._userService.getIdentity();
+  }
   
   getProyecto():void{
   this._route.params.subscribe(params=>{
@@ -57,6 +71,18 @@ export class PagoCreateComponent implements OnInit {
    });
   }
 
+  insertLogCreate(proyectoid:number,texto:string){
+    this.log = new Log(0,proyectoid,this.identity.nombreUsuario,"Se agregó el pago "+texto,"");
+    console.log(this.log);
+    this._logService.registro(this.log).subscribe(
+      response=>{
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
+
   onSubmit(form:any){
   let counter=timer(5000); 
   this.pago.proyecto_id = this.proyecto.id;
@@ -65,6 +91,7 @@ export class PagoCreateComponent implements OnInit {
         this._pagoService.registro(this.pago).subscribe(
           response=>{
             if(response.code == 200){
+              this.insertLogCreate(this.pago.proyecto_id,this.pago.numero+" | Monto: "+this.pago.monto.toString()+" | N Transaccion: "+this.pago.numero_transaccion)
               form.reset();
               this._router.navigate(['/pago-list', this.proyecto.id]);
               }
