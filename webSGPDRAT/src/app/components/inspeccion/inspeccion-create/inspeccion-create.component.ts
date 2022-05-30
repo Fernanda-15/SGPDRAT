@@ -176,19 +176,35 @@ export class InspeccionCreateComponent implements OnInit {
 
   }
   modificar(a:any){
+  let counter=timer(5000);
    console.log("VALOR", a);
-    this.tarea.avance = a;
-    this._tareaService.update(this.tarea).subscribe(
-      response=>{
-        if(response.code==200){
-          this.loadTareas(this.tarea.proyecto_id);
-         }
-      },
+   if(a<=100){
+      this.tarea.avance = a;
+      this._tareaService.update(this.tarea).subscribe(
+        response=>{
+          if(response.code==200){
+            this.loadTareas(this.tarea.proyecto_id);
+            this.status=2;
+            counter.subscribe(n=>{
+             console.log(n);
+             this.status=-1;
+           });
+          }
+        },
 
-      error=>{
-        console.log(error);
-      }
-    );
+        error=>{
+          console.log(error);
+        }
+      );
+   }else{
+        this.status=3;
+        counter.subscribe(n=>{
+        console.log(n);
+        this.status=-1;
+      });
+   }
+
+   
   }
 
 

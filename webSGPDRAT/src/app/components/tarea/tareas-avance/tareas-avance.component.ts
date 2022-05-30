@@ -98,23 +98,35 @@ export class TareasAvanceComponent implements OnInit {
   modificar(a:any){
     let counter=timer(5000);
     console.log("VALOR", a);
-     this.tarea.avance = a;
-     this._tareaService.update(this.tarea).subscribe(
-       response=>{
-         if(response.code==200){
-           this.loadTareas(this.tarea.proyecto_id);
-           this.status=0;
-           counter.subscribe(n=>{
-            console.log(n);
-            this.status=-1;
-          });
-          }
-       },
- 
-       error=>{
-         console.log(error);
-       }
-     );
+     if(a<=100){
+      this.tarea.avance = a;
+      this._tareaService.update(this.tarea).subscribe(
+        response=>{
+          if(response.code==200){
+            this.loadTareas(this.tarea.proyecto_id);
+            this.status=0;
+            counter.subscribe(n=>{
+             console.log(n);
+             this.status=-1;
+           });
+           }
+        },
+  
+        error=>{
+          console.log(error);
+        }
+      );
+    }else{
+      this.status=1;
+            counter.subscribe(n=>{
+             console.log(n);
+             this.status=-1;
+           });
+    }
+    
    }
+
+
+   
 }
 
