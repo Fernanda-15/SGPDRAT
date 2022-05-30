@@ -261,10 +261,10 @@ export class InspeccionCreateComponent implements OnInit {
   }
 
   public afuConfig={
-    multiple:false,
-    formatAllowed:".pdf, .docx, .txt, .gif",
+    multiple:true,
+    formatsAllowed: ".jpg,.jpeg,.png,.gif",
     method:"POST",
-    maxSize:3,
+    maxSize:10,
     uploadAPI:{
       url:global.urlApi+'fotos/upload',
       headers:{
@@ -272,7 +272,7 @@ export class InspeccionCreateComponent implements OnInit {
       } 
     },
     theme:"attachPin",
-    hideProgressBar:false,
+    hideProgressBar:true,
     hideResetBtn:true,
     hideSelectBtn:false,
     attachPinText:'Subir imagen',
@@ -291,8 +291,8 @@ export class InspeccionCreateComponent implements OnInit {
 
 
   public afuConfig2={
-    multiple:false,
-    formatAllowed:".pdf, .docx, .txt",
+    multiple:true,
+    formatsAllowed:".pdf,.docx,.txt",
     method:"POST",
     maxSize:3,
     uploadAPI:{
