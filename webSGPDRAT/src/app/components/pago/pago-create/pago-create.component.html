@@ -43,7 +43,7 @@
       <div id="info" class="form-group">
         <label>Proyección: </label>
         <input type="number" name="proyeccion" class="form-control" #proyeccion="ngModel" 
-        [(ngModel)]="pago.proyeccion" required pattern="^[0-9]+">
+        [(ngModel)]="pago.proyeccion" required pattern="^[0-9]+" disabled>
         <small *ngIf="!proyeccion.valid && proyeccion.touched" class="invalid-feedback d-block">
             La proyeccion no es válida
         </small>

@@ -95,6 +95,7 @@ export class PagoCreateComponent implements OnInit {
     this._proyectoService.getPagos(id).subscribe(
       response=>{
           this.pagos = response.data;
+          this.getPendiente();
           console.log(this.pagos);
       },
       error=>{
@@ -131,7 +132,7 @@ export class PagoCreateComponent implements OnInit {
      }  
       sub = abonos + this.pago.monto;
       p = deuda - abonos;
-
+      this.pago.proyeccion=p;
       if(p != 0){
         if(sub <= deuda){
           return true;
@@ -142,6 +143,21 @@ export class PagoCreateComponent implements OnInit {
         this.status=1;
       }
       return false;
+  }
+
+  getPendiente(){
+    let p:number=0;
+    let deuda:number = 0;
+    let abonos:number = 0;
+    let sub:number = 0;
+    deuda = this.proyecto.monto_adjudicado;
+    for(let i in this.pagos){
+       abonos= abonos + (this.pagos[i].monto);
+     }  
+      sub = abonos + this.pago.monto;
+      p = deuda - abonos;
+      this.pago.proyeccion=p;
+      
   }
 
 }
