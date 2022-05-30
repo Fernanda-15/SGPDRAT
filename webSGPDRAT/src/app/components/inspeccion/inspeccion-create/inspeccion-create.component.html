@@ -1,3 +1,16 @@
+<div style="border:20px;" [ngSwitch]="status">
+    <div  class="alert alert-danger" *ngSwitchCase="0">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <i class="bi bi-exclamation-triangle-fill"></i>
+          <strong> Error</strong> de servidor interno!!!
+    </div>
+    <div  class="alert alert-danger" *ngSwitchCase="1">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="bi bi-exclamation-triangle-fill"></i>
+            <strong> Error:</strong> El numero de inspección ingresado ya existe!!!
+    </div>
+
+</div>   
 <!--TITULO-->
 <div class="form-group">
     <p>Agregar Inspección</p>

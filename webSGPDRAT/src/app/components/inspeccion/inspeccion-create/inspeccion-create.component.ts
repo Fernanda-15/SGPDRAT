@@ -13,6 +13,7 @@ import { Fotos } from 'src/app/models/fotos';
 import { FotosService } from 'src/app/services/fotos.service';
 import { Archivos } from 'src/app/models/archivos'; 
 import { ArchivosService } from 'src/app/services/archivos.service'
+import{timer} from 'rxjs';
 
 @Component({
   selector: 'app-tareas-avance',
@@ -32,6 +33,7 @@ export class InspeccionCreateComponent implements OnInit {
   public hasta:number = 3;
   public avance:number;
   public inspeccion:Inspeccion;
+  public inspecciones: any;
   public identity:any;
   public tareasEjecutadas:number;
   public tareasTotal:number;
@@ -39,6 +41,7 @@ export class InspeccionCreateComponent implements OnInit {
   public pagos:any;
   public porcentajePagado:number;
   public reset:any;
+  public status:number;
 
   constructor(
     private _proyectoService:ProyectoService,
@@ -62,6 +65,7 @@ export class InspeccionCreateComponent implements OnInit {
     this.avanceObra = 0;
     this.porcentajePagado = 0;
     this.reset=false;
+    this.status=-1;
   }
 
   ngOnInit(): void {
@@ -81,6 +85,7 @@ export class InspeccionCreateComponent implements OnInit {
         response=>{
           if(response.status=='success'){
             this.proyecto=response.data;
+            this.getInspeccionesByProyecto();
             this.loadTareas(id);
           }else{
             console.log('AQUI');
@@ -93,6 +98,39 @@ export class InspeccionCreateComponent implements OnInit {
         }
       );
     });
+  }
+
+  getInspeccionesByProyecto():any{
+    console.log(this.proyecto.id);
+    this._proyectoService.getInspecciones(this.proyecto.id).subscribe(
+      response=>{
+        console.log(response);
+          if(response.status == "success"){
+            this.inspecciones = response.data;
+           }
+         },
+        error=>{
+         console.log(<any>error);
+        }
+        
+     );
+
+     
+  }
+
+  existeNI():any{
+    let existe=0;
+    console.log(this.inspecciones); 
+    for(let i in this.inspecciones){
+      if(this.inspecciones[i].numero == this.inspeccion.numero){
+        existe = existe+1;
+      }
+    }
+    if(existe>0){
+      return true;
+    }
+    return false;
+    
   }
 
   loadTareas(id:number):void{
@@ -172,28 +210,37 @@ export class InspeccionCreateComponent implements OnInit {
   }
 
   onSubmit(form:any){
+  let counter=timer(5000);
     this.inspeccion.user_id = this.identity.sub;
     this.inspeccion.proyecto_id = this.proyecto.id;
     this.inspeccion.avance_obra = this.avanceObra;
     this.inspeccion.porcentaje_pagado = this.porcentajePagado;
     this.inspeccion.tareas_ejecutadas = this.tareasEjecutadas;
 
-    this._inspeccionService.registro(this.inspeccion).subscribe(
-      response=>{
-        if(response.code == 200){
-          console.log(response.data);
-          form.reset();
-          this.getUltimo();
-        
-          this._router.navigate(['/inspeccion-list',this.inspeccion.proyecto_id]);
-          }
-        },
-        error=>{
-        console.log(<any>error);
-             
-      }
-
-    );
+    if(!this.existeNI()){
+      this._inspeccionService.registro(this.inspeccion).subscribe(
+        response=>{
+          if(response.code == 200){
+            console.log(response.data);
+            form.reset();
+            this.getUltimo();
+          
+            this._router.navigate(['/inspeccion-list',this.inspeccion.proyecto_id]);
+            }
+          },
+          error=>{
+          console.log(<any>error);
+               
+        }
+  
+      );
+    }else{
+      this.status=1;
+          counter.subscribe(n=>{
+          console.log(n);
+          this.status=-1;
+        });
+    }
 
   }
 
