@@ -80,24 +80,8 @@
         <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="proyecto.fecha_final">
     </div>
 
-    <div id="info" class="form-group">
-        <label>Forma de pago</label>
-      <select name="forma_pago" #forma_pago="ngModel" [(ngModel)]="proyecto.forma_pago" class="form-control">
-        <option value="contado">Contado</option>
-        <option  value="credito">Credito</option>
-      </select>
-    </div>
       </div>
-      <div class="row">
-    <div id="info" class="form-group">
-        <label>Monto adjudicado:</label>
-        <input type="text" name="monto_adjudicado" class="form-control" #monto_adjudicado="ngModel"
-        [(ngModel)]="proyecto.monto_adjudicado" required pattern="^[0-9\.]*$">
-        <small *ngIf="!monto_adjudicado.valid && monto_adjudicado.touched" class="invalid-feedback d-block">
-            La cédula no es válida
-        </small>
-    </div>
-      </div>
+      
     <div class="row">
     <input id="boton" type="submit" value="Modificar" class="btn btn-success" [disabled]="updateProyectoForm.invalid">
       </div>
