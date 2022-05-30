@@ -1,13 +1,13 @@
 
 <div class="homeContent">
     <h2>Hoy es: {{ hoyEs }} </h2>
-      <h2>!Bienvenid@! </h2>                <!--Me gustari agregar el nombre del user-->
+      <h2>!Bienvenid@ {{identity.nombre}} !</h2>   
 
         <div class="col-md-6">
           <p class="center">Proyectos</p>
           <ul id="pro" class="list-group w-auto"  *ngFor="let proyecto of proyectos | slice:desde:hasta let i=index" >
             <a  href="proyecto-info/{{proyecto.id}}"  class="list-group-item d-flex justify-content-between align-items-center">{{proyecto.nombre}}
-              <span class="badge badge-primary badge-pill">Id: {{proyecto.id}}</span>
+              <span class="badge badge-primary badge-pill">Contrato: {{proyecto.numero_contratacion}}</span>
             </a>
             <li class="list-group-item">Objetivo: {{proyecto.objetivo}}</li>
           </ul>

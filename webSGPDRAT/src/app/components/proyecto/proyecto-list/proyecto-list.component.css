@@ -58,4 +58,11 @@ mat-paginator{
   background-color:dashed 4px rgba(20, 172, 232, 0.825);;
 }
 
+#titulo{
+  font-size: 32px;
+  line-height: 40px;
+  text-align: left;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
 
