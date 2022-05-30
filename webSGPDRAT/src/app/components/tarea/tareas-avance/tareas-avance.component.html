@@ -1,3 +1,27 @@
+<div style="border:20px;" [ngSwitch]="status">
+  <!--MODIFICO CON EXITO-->
+  <div class="alert alert-success"  *ngSwitchCase="0" >
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <i class="bi bi-check-circle-fill"></i>
+      <strong> Éxito:</strong> Avance modificado con exito !!!
+  </div>
+
+  <!--AVANCE DE TAREA-->
+  <div class="alert alert-danger"  *ngSwitchCase="1">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <i class="bi bi-exclamation-triangle-fill"></i>
+      <strong> Error:</strong>  El avance no debe ser mayor a 100 !!!
+  </div>
+
+  <!--ERROR DE SERVIDOR-->
+  <div  class="alert alert-danger" *ngSwitchCase="2">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <i class="bi bi-exclamation-triangle-fill"></i>
+          <strong> Error</strong> de servidor interno !!!
+  </div>
+
+</div>
+
 <!--TABLA DE TAREAS-->
 <div class="container">
 
@@ -15,7 +39,7 @@
                       <th scope="col">Numero</th>
                       <th scope="col">Descripcion</th>
                       <th scope="col">Avance</th>
-                      <th scope="col">Inspeccionar</th>
+                      <th scope="col">Modificar Avance</th>
                   </tr>
               </thead>
               <tbody>
@@ -27,10 +51,39 @@
 
 
                           <td >
-                          <a [routerLink]="['/tarea-update',tarea.id]" class="btn btn-info btn-xs"  u >
-  
-                              <span  class="bi bi-paperclip"></span>
-                          </a>
+                            <button id="btnUpdate" class="btn btn-info btn-xs" data-toggle="modal"
+                            data-target="#exampleModal" [attr.data-target]="'#exampleModal'+tarea.id">
+                            <span class="bi bi-bar-chart-fill"></span>
+                        </button>
+                        <div class="modal fade" id="exampleModal{{tarea.id}}" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Avance de Tarea: {{tarea.id}}
+                                        </h5>
+                                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                                            <span class="bi bi-x-lg"></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="avance" class="col-form-label">Valor:</label>
+                                            <input #avance type="number" class="form-control" id="avance">
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button id="btnConfirmar{{tarea.id}}" type="button"
+                                                    class="btn btn-success" (click)="getTarea(tarea.id, avance.value)"
+                                                    data-dismiss="modal">Modificar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </td>
   
               

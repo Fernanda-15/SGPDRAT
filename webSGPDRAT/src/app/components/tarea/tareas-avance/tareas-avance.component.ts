@@ -5,6 +5,7 @@ import { ProyectoService } from 'src/app/services/proyecto.service';
 import { TareaService } from 'src/app/services/tarea.service';
 import{Router,ActivatedRoute} from '@angular/router';
 import { Proyecto } from 'src/app/models/proyecto';
+import{timer} from 'rxjs';
 
 @Component({
   selector: 'app-tareas-avance',
@@ -20,6 +21,7 @@ export class TareasAvanceComponent implements OnInit {
   public proyecto:Proyecto;
   public desde:number = 0;
   public hasta:number = 3;
+  public status:number;
   constructor(
     private _proyectoService:ProyectoService,
     private _tareaService:TareaService,
@@ -28,6 +30,7 @@ export class TareasAvanceComponent implements OnInit {
   ) { 
     this.proyecto = new Proyecto(0,0,"","","","","","","",0);
     this.tarea = new Tarea(0,0,0,"",0,0,"","");
+    this.status=-1;
   }
 
   ngOnInit(): void {
@@ -73,5 +76,45 @@ export class TareasAvanceComponent implements OnInit {
     this.hasta = this.desde + e.pageSize;
 
   }
+
+  getTarea(id:number,a:any){
+
+    this._tareaService.getTarea(id).subscribe(
+      response=>{
+        if(response.code==200){
+            this.tarea=response.data;
+            this.modificar(a);
+         }
+      },
+
+      error=>{
+        console.log(error);
+      }
+    );
+
+  }
+
+  
+  modificar(a:any){
+    let counter=timer(5000);
+    console.log("VALOR", a);
+     this.tarea.avance = a;
+     this._tareaService.update(this.tarea).subscribe(
+       response=>{
+         if(response.code==200){
+           this.loadTareas(this.tarea.proyecto_id);
+           this.status=0;
+           counter.subscribe(n=>{
+            console.log(n);
+            this.status=-1;
+          });
+          }
+       },
+ 
+       error=>{
+         console.log(error);
+       }
+     );
+   }
 }
 
