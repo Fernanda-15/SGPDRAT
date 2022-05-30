@@ -6,13 +6,18 @@ import { Pago } from 'src/app/models/pago';
 import{Router,ActivatedRoute} from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import{timer} from 'rxjs';
+import { LogService } from 'src/app/services/log.service';
+import { Log } from 'src/app/models/log';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-pago-list',
   templateUrl: './pago-list.component.html',
   styleUrls: ['./pago-list.component.css'],
   providers: [PagoService,
-    ProyectoService]
+    ProyectoService,
+    LogService,
+    UserService]
 })
 export class PagoListComponent implements OnInit {
 
@@ -24,10 +29,15 @@ export class PagoListComponent implements OnInit {
   public hasta:number = 3;
   public total:number;
   public status:number;
+  public log:Log;
+  public identity:any;
+  
 
   constructor(
     private _proyectoService:ProyectoService,
     private _pagoService:PagoService,
+    private _userService:UserService,
+    private _logService:LogService,
     private _route:ActivatedRoute,
     private _router:Router,
   ) {
@@ -35,10 +45,28 @@ export class PagoListComponent implements OnInit {
     this.pago = new Pago(0,0,0,0,0,"","");
     this.total=0;
     this.status = -1;
+    this.log = new Log(0,0,"","","");
   }
 
   ngOnInit(): void {
+    this.loadStorage();
     this.getProyecto();
+  }
+
+  public loadStorage(){
+    this.identity=this._userService.getIdentity();
+  }
+
+  insertLogDelete(proyectoid:number,texto:string){
+    this.log = new Log(0,proyectoid,this.identity.nombreUsuario,"Se eliminó el pago "+texto,"");
+    console.log(this.log);
+    this._logService.registro(this.log).subscribe(
+      response=>{
+      },
+      error=>{
+        console.log(error);
+      }
+    );
   }
 
   getProyecto():void{
@@ -78,6 +106,7 @@ export class PagoListComponent implements OnInit {
       response=>{
         if(response.status=="success"){
           console.log(response);
+          this.insertLogDelete(this.pago.proyecto_id,id.toString());
           this.loadPagos(this.proyecto.id);
           this.status = 0;
           counter.subscribe(n=>{

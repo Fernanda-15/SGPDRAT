@@ -26,8 +26,9 @@
 
 
 <div class="container" *ngIf="proyectos">
+<h1 id="titulo" *ngIf="proyectos.length==0">Todavía no tienes proyectos asignados.</h1>
 
- <div class="card-columns">
+ <div class="card-columns" *ngIf="proyectos.length>0">
 
         <article class="card border-primary " *ngFor="let proyecto of proyectos | slice:desde:hasta let i=index">
             <div class="card-header">
