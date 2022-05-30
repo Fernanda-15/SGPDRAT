@@ -52,7 +52,7 @@
                       </a>
                     </td>
                     <td>
-                    <button id="btnDelete" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModal" [attr.data-target]="'#exampleModal'+user.id">
+                    <button *ngIf="user.rol!='admin'" id="btnDelete" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModal" [attr.data-target]="'#exampleModal'+user.id">
                         <span class="bi bi-trash-fill"></span>
                     </button>
                     <div class="modal fade" id="exampleModal{{user.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
