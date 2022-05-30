@@ -176,19 +176,35 @@ export class InspeccionCreateComponent implements OnInit {
 
   }
   modificar(a:any){
+  let counter=timer(5000);
    console.log("VALOR", a);
-    this.tarea.avance = a;
-    this._tareaService.update(this.tarea).subscribe(
-      response=>{
-        if(response.code==200){
-          this.loadTareas(this.tarea.proyecto_id);
-         }
-      },
+   if(a<=100){
+      this.tarea.avance = a;
+      this._tareaService.update(this.tarea).subscribe(
+        response=>{
+          if(response.code==200){
+            this.loadTareas(this.tarea.proyecto_id);
+            this.status=2;
+            counter.subscribe(n=>{
+             console.log(n);
+             this.status=-1;
+           });
+          }
+        },
 
-      error=>{
-        console.log(error);
-      }
-    );
+        error=>{
+          console.log(error);
+        }
+      );
+   }else{
+        this.status=3;
+        counter.subscribe(n=>{
+        console.log(n);
+        this.status=-1;
+      });
+   }
+
+   
   }
 
 
@@ -245,10 +261,10 @@ export class InspeccionCreateComponent implements OnInit {
   }
 
   public afuConfig={
-    multiple:false,
-    formatAllowed:".pdf, .docx, .txt, .gif",
+    multiple:true,
+    formatsAllowed: ".jpg,.jpeg,.png,.gif",
     method:"POST",
-    maxSize:3,
+    maxSize:10,
     uploadAPI:{
       url:global.urlApi+'fotos/upload',
       headers:{
@@ -256,7 +272,7 @@ export class InspeccionCreateComponent implements OnInit {
       } 
     },
     theme:"attachPin",
-    hideProgressBar:false,
+    hideProgressBar:true,
     hideResetBtn:true,
     hideSelectBtn:false,
     attachPinText:'Subir imagen',
@@ -275,8 +291,8 @@ export class InspeccionCreateComponent implements OnInit {
 
 
   public afuConfig2={
-    multiple:false,
-    formatAllowed:".pdf, .docx, .txt",
+    multiple:true,
+    formatsAllowed:".pdf,.docx,.txt",
     method:"POST",
     maxSize:3,
     uploadAPI:{

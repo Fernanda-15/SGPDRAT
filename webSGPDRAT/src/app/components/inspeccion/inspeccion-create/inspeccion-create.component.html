@@ -9,6 +9,19 @@
         <i class="bi bi-exclamation-triangle-fill"></i>
             <strong> Error:</strong> El numero de inspección ingresado ya existe!!!
     </div>
+    <!--MODIFICO CON EXITO-->
+    <div class="alert alert-success"  *ngSwitchCase="2" >
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="bi bi-check-circle-fill"></i>
+        <strong> Éxito:</strong> Avance modificado con exito !!!
+    </div>
+
+    <!--AVANCE DE TAREA-->
+    <div class="alert alert-danger"  *ngSwitchCase="3">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <strong> Error:</strong>  El avance no debe ser mayor a 100 !!!
+    </div>
 
 </div>   
 <!--TITULO-->
@@ -80,7 +93,7 @@
 
     <div class="row">
         <div class="col">
-            <h5 id="titulo">Avance de las Tareas</h5>
+            <h5 id="titulo">Tareas activas</h5>
         </div>
 
     </div>
@@ -102,7 +115,7 @@
                         <td>{{tarea.descripcion}}</td>
                         <td>{{tarea.avance}}</td>
                         <td>
-                            <button id="btnDelete" class="btn btn-info btn-xs" data-toggle="modal"
+                            <button id="btnUpdate" class="btn btn-info btn-xs" data-toggle="modal"
                                 data-target="#exampleModal" [attr.data-target]="'#exampleModal'+tarea.id">
                                 <span class="bi bi-bar-chart-fill"></span>
                             </button>
