@@ -35,6 +35,7 @@ import { InspeccionUpdateComponent } from './components/inspeccion/inspeccion-up
 import { InspeccionListComponent } from './components/inspeccion/inspeccion-list/inspeccion-list.component';
 import { GanttModule } from './components/gantt/gantt.module';
 import { TareasAvanceComponent } from './components/tarea/tareas-avance/tareas-avance.component';
+import { AboutComponent } from './components/about/about.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { TareasAvanceComponent } from './components/tarea/tareas-avance/tareas-a
     InspeccionUpdateComponent,
     InspeccionListComponent,
     TareasAvanceComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
