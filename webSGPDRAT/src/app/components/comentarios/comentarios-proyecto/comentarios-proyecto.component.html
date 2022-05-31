@@ -1,3 +1,19 @@
+<div style="border:20px;" [ngSwitch]="status">
+    <div  class="alert alert-danger" *ngSwitchCase="0">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <i class="bi bi-exclamation-triangle-fill"></i>
+          <strong> Error</strong> de servidor interno!!!
+    </div>
+    <!--AGREGOO CON EXITO-->
+    <div class="alert alert-success"  *ngSwitchCase="1" >
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="bi bi-check-circle-fill"></i>
+        <strong> Éxito:</strong> Comentario agregado con exito !!!
+    </div>
+
+</div>
+<!--TITULO-->
+
 <!--TABLA DE COMENTARIOS-->
 <div class="container" *ngIf="comentarios">
     <h5 id="titulo">Comentarios del Proyecto {{proyecto.nombre}} #{{proyecto.numero_contratacion}}</h5>
