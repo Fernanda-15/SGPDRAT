@@ -1,32 +1,66 @@
-<!--TABLA DE LOGS-->
+<!--TABLA DE COMENTARIOS-->
 <div class="container" *ngIf="comentarios">
     <h5 id="titulo">Comentarios del Proyecto {{proyecto.nombre}} #{{proyecto.numero_contratacion}}</h5>
 
-     <!--Boton nuevo comentario  -->
-     <div class="col">
-        <button  type="button" class="btn btn-success m-md-2"  [routerLink]="">
+    <!--Boton nuevo comentario  -->
+    <div class="col">
+        <button id="btnCreate" type="button" class="btn btn-success m-md-2" data-toggle="modal"
+            data-target="#exampleModal" [attr.data-target]="'#exampleModal'+proyecto.id">
+
             <span class="bi bi-chat-square-dots-fill"> Agregar Comentario</span>
         </button>
-      </div>
-      
+        <div class="modal fade" id="exampleModal{{proyecto.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h5 id="exampleModalLabel">Agregar Comentario: 
+                        </h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                            <span class="bi bi-x-lg"></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-boddy">
+                        <label for="contenido" class="col-form-label">Contenido:</label>
+                        <input #contenido type="text" class="form-control" id="contenido">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button id="btnConfirmar{{proyecto.id}}" type="button" class="btn btn-success"
+                            (click)="onSubmit(proyecto.id, contenido.value)" data-dismiss="modal">Agregar</button>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
     <div class="table-responsive">
 
-    <table class="table table-striped" >
-        <thead>
-            <tr>
-                <th scope="col">Comentario</th>
-                <th scope="col">Fecha</th>
-            </tr>
-        </thead>
-        <tbody>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Comentario</th>
+                    <th scope="col">Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
 
-            <tr *ngFor="let comentario of comentarios | slice:desde:hasta let i=index">
+                <tr *ngFor="let comentario of comentarios | slice:desde:hasta let i=index">
                     <td>{{comentario.contenido}}</td>
                     <td>{{comentario.created_at.slice(0,comentario.created_at.lastIndexOf('.')).split("T")}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <mat-paginator [length]="comentarios.length" [pageSize]="5"  [pageSizeOptions]="[5, 10, 25, 100]"  aria-label="Select page" (page)="cambiarpagina($event)">
-    </mat-paginator>
+                </tr>
+            </tbody>
+        </table>
+        <mat-paginator [length]="comentarios.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"
+            aria-label="Select page" (page)="cambiarpagina($event)">
+        </mat-paginator>
     </div>
 </div>

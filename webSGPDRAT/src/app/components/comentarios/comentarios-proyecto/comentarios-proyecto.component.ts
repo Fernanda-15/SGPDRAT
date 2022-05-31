@@ -77,4 +77,22 @@ export class ComentariosProyectoComponent implements OnInit {
     this.hasta = this.desde + e.pageSize;
 
   }
+
+
+  onSubmit(id:number,a:any){
+    this.comentario.proyecto_id=id;
+    this.comentario.contenido=a;
+    this._comentarioService.registro(this.comentario).subscribe(
+      response=>{
+        if(response.code==200){
+          this.loadComentarios(this.comentario.proyecto_id);
+         }
+      },
+
+      error=>{
+        console.log(error);
+      }
+    );
+
+  }
 }
