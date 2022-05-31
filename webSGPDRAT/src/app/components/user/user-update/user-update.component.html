@@ -1,5 +1,5 @@
 <div class="row">
-  
+
     <p *ngIf="!is_edit">
         Error
     </p>
@@ -18,61 +18,73 @@
           Modifica el usuario  #{{user.id}}
       </p>
       </div>
-     
-      <div class="form-group">
+
+      <div class="row">
+      <div id="info" class="form-group">
         <label>Nombre de Usuario:</label>
-        <input type="text" name="nombreUsuario" class="form-control" #nombreUsuario="ngModel" 
+        <input type="text" name="nombreUsuario" class="form-control" #nombreUsuario="ngModel"
         [(ngModel)]="user.nombreUsuario" required pattern="^[a-zA-Z0-9\.]*$"> <!--PATRON ALFANUMERICO -->
         <small *ngIf="!nombreUsuario.valid && nombreUsuario.touched" class="invalid-feedback d-block">
             El nombre no es válido
         </small>
     </div>
 
-    <div class="form-group">
+    <div id="info"  class="form-group">
         <label>Contraseña: </label>
-        <input type="text" name="contrasena" class="form-control" #contrasena="ngModel" 
-        [(ngModel)]="user.contrasena" required pattern="^[a-zA-Z0-9\.]*$"> 
+        <input type="text" name="contrasena" class="form-control" #contrasena="ngModel"
+        [(ngModel)]="user.contrasena" required pattern="^[a-zA-Z0-9\.]*$">
         <small *ngIf="!contrasena.valid && contrasena.touched" class="invalid-feedback d-block">
             La contraseña no es válida
         </small>
     </div>
+  </div>
 
-    <div class="form-group">
+  <div class="row">
+    <div id="info"  class="form-group">
         <label>Nombre:</label>
-        <input type="text" name="nombre" class="form-control" #nombre="ngModel" 
+        <input type="text" name="nombre" class="form-control" #nombre="ngModel"
         [(ngModel)]="user.nombre" required pattern="^[a-zA-Z\.]*$">  <!--PATRON LETRAS -->
         <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
             El nombre no es válido
         </small>
     </div>
-    <div class="form-group">
+    <div id="info"  class="form-group">
         <label>Cédula:</label>
-        <input type="text" name="cedula" class="form-control" #cedula="ngModel" 
+        <input type="text" name="cedula" class="form-control" #cedula="ngModel"
         [(ngModel)]="user.cedula" required pattern="^[0-9\.]*$"> <!--PATRON NUMERICO -->
         <small *ngIf="!cedula.valid && cedula.touched" class="invalid-feedback d-block">
             La cédula no es válida
         </small>
     </div>
-    <div class="form-group">
+  </div>
+
+  <div class="row">
+    <div id="info"  class="form-group">
         <label>Teléfono: </label>
-        <input type="text" name="telefono" class="form-control" #telefono="ngModel" 
-        [(ngModel)]="user.telefono" required pattern="^[0-9\.]*$"> 
+        <input type="text" name="telefono" class="form-control" #telefono="ngModel"
+        [(ngModel)]="user.telefono" required pattern="^[0-9\.]*$">
         <small *ngIf="!telefono.valid && telefono.touched" class="invalid-feedback d-block">
             El teléfono no es válido
         </small>
     </div>
 
-    <div class="form-group">
+    <div id="info"  class="form-group">
         <label>Correo electrónico</label>
         <input type="email" name="correo" class="form-control" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
         #correo="ngModel" [(ngModel)]="user.correo">
         <small *ngIf="!correo.valid&&correo.touched" class="invalid-feedback d-block">El correo electrónico no es válido</small>
       </div>
-      
-      <input type="submit" value="Actualizar" class="btn btn-success" [disabled]="updateUserForm.invalid">
-    </form>
 
   </div>
- 
+
+  <div class="row" >
+      <input type="submit" value="Actualizar" class="btn btn-success" [disabled]="updateUserForm.invalid">
+    </div>
+
+    </form>
+
+
+
+
 
 
