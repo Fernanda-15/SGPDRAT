@@ -1,1 +1,36 @@
-<p>archivos-list works!</p>
+<h5 id="titulo">Imagenes</h5>
+
+<article class="card border-primary mb-3" style="max-width: 18rem;" *ngFor="let foto of fotos | slice:desde:hasta let i=index">
+
+    <div class="card-header" style="width: 18rem;">
+        <img src="{{url + 'fotos/getimage/' + foto.nombre }}" class="card-img-top">
+        <div class="card-body">
+            <button id="btnDelete" class="btn btn-danger btn-xs mr-2" data-toggle="modal" data-target="#exampleModal" [attr.data-target]="'#exampleModal'+foto.id">
+                <span class="bi bi-trash-fill"> Eliminar</span>
+            </button>
+        </div>
+      </div>
+
+</article>
+
+<h5 id="titulo">Archivos</h5>
+    <div *ngIf="archivos.length!=0">
+        <article class="card border-primary mb-3" style="max-width: 18rem;" *ngFor="let archivo of archivos | slice:desde:hasta let i=index">
+
+            <div class="card-header" style="width: 18rem;">
+                
+                <object data="{{url + 'archivos/getdocumento/' + archivo.nombre }}" height="100%" width="100%"></object>
+    
+                <div class="card-body">
+                <p>
+                    {{archivo.nombre}}
+                </p>
+                    <button id="btnDelete" class="btn btn-danger btn-xs mr-2" data-toggle="modal" data-target="#exampleModal" [attr.data-target]="'#exampleModal'+foto.id">
+                        <span class="bi bi-trash-fill"> Eliminar</span>
+                    </button>
+                </div>
+              </div>
+        
+            </article>
+    </div>
+   
