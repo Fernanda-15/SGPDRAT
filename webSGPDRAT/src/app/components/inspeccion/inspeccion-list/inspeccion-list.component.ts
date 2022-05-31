@@ -6,12 +6,18 @@ import { Inspeccion } from 'src/app/models/inspeccion';
 import{Router,ActivatedRoute} from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import{timer} from 'rxjs';
+import { LogService } from 'src/app/services/log.service';
+import { Log } from 'src/app/models/log';
+import { UserService } from 'src/app/services/user.service';
+
 @Component({
   selector: 'app-inspeccion-list',
   templateUrl: './inspeccion-list.component.html',
   styleUrls: ['./inspeccion-list.component.css'],
   providers: [InspeccionService,
-    ProyectoService]
+    ProyectoService,
+    LogService,
+  UserService]
 })
 export class InspeccionListComponent implements OnInit {
 
@@ -22,20 +28,30 @@ export class InspeccionListComponent implements OnInit {
   public desde:number = 0;
   public hasta:number = 3;
   public status:number;
+  private log:Log;
+  public identity:any;
 
   constructor(
     private _proyectoService:ProyectoService,
     private _inspeccionService:InspeccionService,
+    private _logService: LogService,
+    private _userService:UserService,
     private _route:ActivatedRoute,
     private _router:Router,
   ) { 
     this.proyecto = new Proyecto(0,0,"","","","","","","",0);
     this.inspeccion = new Inspeccion(0,0,0,0,"","","",0,0,0);
     this.status = -1;
+    this.log = new Log(0,0,"","","");
   }
 
   ngOnInit(): void {
+    this.loadStorage();
     this.getProyecto();
+  }
+
+  public loadStorage(){
+    this.identity=this._userService.getIdentity();
   }
 
   
@@ -58,6 +74,19 @@ export class InspeccionListComponent implements OnInit {
   }
 
   
+  insertLogDelete(proyectoid:number,texto:string){
+    this.log = new Log(0,proyectoid,this.identity.nombreUsuario,"Se ha eliminado la inspeccion "+texto,"");
+    console.log(this.log);
+    this._logService.registro(this.log).subscribe(
+      response=>{
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
+
+
   loadInspecciones(id:number):void{
     this._proyectoService.getInspecciones(id).subscribe(
       response=>{
@@ -76,6 +105,7 @@ export class InspeccionListComponent implements OnInit {
       response=>{
         if(response.status=="success"){
           console.log(response);
+          this.insertLogDelete(this.inspeccion.proyecto_id,id.toString());
           this.loadInspecciones(this.proyecto.id);
           this.status = 0;
           counter.subscribe(n=>{
