@@ -10,6 +10,7 @@ import{Router,ActivatedRoute} from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { Pago } from 'src/app/models/pago';
+import { PagoService } from 'src/app/services/pago.service';
 
 
 @Component({
@@ -18,7 +19,8 @@ import { Pago } from 'src/app/models/pago';
   styleUrls: ['./proyecto-info.component.css'],
   providers: [TareaService,
             ProyectoService,
-          UserService]
+          UserService,
+        PagoService]
 })
 export class ProyectoInfoComponent implements OnInit {
   
@@ -31,7 +33,7 @@ export class ProyectoInfoComponent implements OnInit {
   public tareasEjecutadas:number;
   public tareasTotal:number;
   public avanceObra:number;
-  public pagos:any;
+  public pagosP:any;
   public porcentajePagado:number;
   public hoyEs :any;
   public today: Date = new Date();
@@ -40,6 +42,10 @@ export class ProyectoInfoComponent implements OnInit {
   private token:any;
   public mostrarInfoPDF:boolean;
   public tarea:Tarea;
+  public pagos:any[]=[];
+  public pago:Pago;
+  public total:number;
+  
   //PDF
   @ViewChild('htmlData') htmlData!: ElementRef;
   //PDF
@@ -47,6 +53,7 @@ export class ProyectoInfoComponent implements OnInit {
     private _proyectoService:ProyectoService,
     private _tareaService:TareaService,
     private _userService:UserService,
+    private _pagoService:PagoService,
     private _route:ActivatedRoute, 
     private _router:Router,
   ) { 
@@ -62,6 +69,8 @@ export class ProyectoInfoComponent implements OnInit {
     this.hoyEs = this.hoy.transform(Date.now(), 'dd/MM/yyyy');
     this.tarea = new Tarea(0,0,0,"",0,0,"","");
     this.mostrarInfoPDF = true;
+    this.pago = new Pago(0,0,0,0,0,"","");
+    this.total=0;
   }
 
   ngOnInit(): void {
@@ -83,6 +92,8 @@ export class ProyectoInfoComponent implements OnInit {
             console.log("ID PROYECTO "+this.proyecto_id);
             this.loadTareas(this.proyecto.id); 
             console.log(this.tareas);
+            this.loadPagos(id);
+            console.log(this.pagos);
           }else{
             console.log('AQUI');
             //this._router.navigate(['']);
@@ -141,11 +152,11 @@ export class ProyectoInfoComponent implements OnInit {
       response=>{
         console.log(response.data);
           let pagado = 0;
-          this.pagos = response.data;
-          this.pagos.forEach((p:any) => {
+          this.pagosP = response.data;
+          this.pagosP.forEach((p:any) => {
           pagado = pagado + p.monto;
           })
-          this.porcentajePagado = (this.pagos/this.proyecto.monto_adjudicado)*100;
+          this.porcentajePagado = (this.pagosP/this.proyecto.monto_adjudicado)*100;
       },
       error=>{
         console.log(error);
@@ -174,4 +185,26 @@ export class ProyectoInfoComponent implements OnInit {
     });
   }
 
+  loadPagos(id:number):void{
+    this._proyectoService.getPagos(id).subscribe(
+      response=>{
+          this.pagos = response.data;
+          this.pendiente();
+          console.log(this.pagos);
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
+
+  pendiente():void{
+    let deuda:number = 0;
+    let abonos:number = 0;
+    deuda = this.proyecto.monto_adjudicado;
+    for(let i in this.pagos){
+       abonos= abonos + (this.pagos[i].monto);
+     }
+     this.total = deuda - abonos;
+  }
 }

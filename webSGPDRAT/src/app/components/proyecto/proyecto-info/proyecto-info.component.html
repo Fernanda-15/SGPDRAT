@@ -99,6 +99,27 @@
       </tr>
   </tbody>
   </table> 
+  <h3 style="margin-left: 160px;margin-top: 50px;"><span style="font-weight:bold; ">Lista de Pagos</span></h3>
+  <table id="table">  
+    <thead>
+      <tr>
+          <th scope="col">Número</th>
+          <th scope="col">Proyección</th>
+          <th scope="col">Monto</th>
+          <th scope="col">Justificación</th>
+          <th scope="col">Numero de Transacción</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pago of pagos">
+            <td>{{pago.numero}}</td>
+            <td>{{pago.proyeccion}}</td>
+            <td>{{pago.monto}}</td>
+            <td>{{pago.justificacion}}</td>
+            <td>{{pago.numero_transaccion}}</td>
+    </tr>
+</tbody>
+</table> 
   </div>
 </div>
 
