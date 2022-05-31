@@ -2,13 +2,18 @@
 <div class="container" *ngIf="comentarios">
     <h5 id="titulo">Comentarios del Proyecto {{proyecto.nombre}} #{{proyecto.numero_contratacion}}</h5>
 
+     <!--Boton nuevo comentario  -->
+     <div class="col">
+        <button  type="button" class="btn btn-success m-md-2"  [routerLink]="">
+            <span class="bi bi-chat-square-dots-fill"> Agregar Comentario</span>
+        </button>
+      </div>
+      
     <div class="table-responsive">
 
     <table class="table table-striped" >
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">ID Proyecto</th>
                 <th scope="col">Comentario</th>
                 <th scope="col">Fecha</th>
             </tr>
@@ -16,8 +21,6 @@
         <tbody>
 
             <tr *ngFor="let comentario of comentarios | slice:desde:hasta let i=index">
-                    <td>{{comentario.id}}</td>
-                    <td>{{comentario.proyecto_id}}</td>
                     <td>{{comentario.contenido}}</td>
                     <td>{{comentario.created_at.slice(0,comentario.created_at.lastIndexOf('.')).split("T")}}</td>
             </tr>

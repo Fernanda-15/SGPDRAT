@@ -47,6 +47,11 @@
     <td>{{porcentajePagado}}%</td>
   </tr>
 </table>
+<div class="col">
+  <button  type="button" class="btn btn-info m-md-2" [routerLink]="['/comentarioproyecto-list',proyecto.id]">
+    <span class="bi bi-chat-square-text-fill"> Lista Comentarios</span>
+</button>
+</div>
 <div class="calendar">
 <calendar-component></calendar-component>
 </div>
