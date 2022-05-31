@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 import { ProyectoService } from 'src/app/services/proyecto.service';
 import { TareaService } from 'src/app/services/tarea.service';
 import { Proyecto } from 'src/app/models/proyecto';
@@ -18,7 +21,7 @@ import { Pago } from 'src/app/models/pago';
           UserService]
 })
 export class ProyectoInfoComponent implements OnInit {
-
+  
   public proyecto:Proyecto;
   private user:User;
   public user_id:number;
@@ -30,6 +33,16 @@ export class ProyectoInfoComponent implements OnInit {
   public avanceObra:number;
   public pagos:any;
   public porcentajePagado:number;
+  public hoyEs :any;
+  public today: Date = new Date();
+  public hoy = new DatePipe('en-US');
+  public identity:any;
+  private token:any;
+  public mostrarInfoPDF:boolean;
+  public tarea:Tarea;
+  //PDF
+  @ViewChild('htmlData') htmlData!: ElementRef;
+  //PDF
   constructor(
     private _proyectoService:ProyectoService,
     private _tareaService:TareaService,
@@ -46,9 +59,13 @@ export class ProyectoInfoComponent implements OnInit {
     this.avanceObra = 0;
     this.porcentajePagado = 0;
     this.user_id = 0;
+    this.hoyEs = this.hoy.transform(Date.now(), 'dd/MM/yyyy');
+    this.tarea = new Tarea(0,0,0,"",0,0,"","");
+    this.mostrarInfoPDF = true;
   }
 
   ngOnInit(): void {
+    this.loadStorage();
     this.getProyecto();
   }
 
@@ -106,7 +123,7 @@ export class ProyectoInfoComponent implements OnInit {
         console.log(response.data);
           this.tareas = response.data;
           this.tareas.forEach((t:any) => {
-            this.avanceObra = this.avanceObra + (this.tareas.avance*this.tareas.peso)/100;
+            this.avanceObra = this.avanceObra + (t.avance*t.peso)/100;
             this.tareasTotal +=1;
             if(t.avance == 100){
               this.tareasEjecutadas += 1;
@@ -134,6 +151,27 @@ export class ProyectoInfoComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  public loadStorage(){
+    this.identity=this._userService.getIdentity();
+    this.token=this._userService.getToken();
+  }
+
+  public openPDF(): void {
+    this.mostrarInfoPDF = true;
+    let DATA: any = document.getElementById('pdf');
+    this.hoyEs = this.hoy.transform(Date.now(), 'dd/MM/yyyy');
+    html2canvas(DATA).then((canvas) => {
+      let fileWidth = 208;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      PDF.save('reporte.pdf');
+      this.mostrarInfoPDF = false;
+    });
   }
 
 }

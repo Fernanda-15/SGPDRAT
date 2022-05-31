@@ -15,6 +15,9 @@
   position: center;
 }
 
+.col{
+    display:block;
+  }
 
 #titulo{
     font-size: 40px;
@@ -55,4 +58,21 @@
     text-align: center;
     background-color: #04AA6D;
     color: white;
+  }
+
+  #table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    margin-left: 160px;
+  }
+  
+  #table td, #table th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  #tabletr:nth-child(even) {
+    background-color: #dddddd;
   }
