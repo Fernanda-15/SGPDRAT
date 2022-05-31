@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\Archivos;
 
 class ArchivosController extends Controller
@@ -166,6 +167,31 @@ public function uploadArchivo(Request $request){
         );
     }
     return response()->json($response,$response['code']);
+}
+public function getArchivosByI($id){  
+    $data = Archivos::Where('inspeccion_id',$id)->get();
+
+   return response()->json([
+    'status'=>'success',
+    'code'=>200,
+    'data'=>$data
+   ], 200);
+}
+
+
+public function getDocumentos($filename){
+    $exist=\Storage::disk('archivos')->exists($filename);
+    if($exist){
+        $file=\Storage::disk('archivos')->get($filename);
+        return new Response($file,200);
+    }else{
+        $response=array(
+            'status'=>'error',
+            'code'=>404,
+            'message'=>'Archivo no existe'
+      );
+        return response()->json($response,$response['code']);
+    }
 }
 
 
