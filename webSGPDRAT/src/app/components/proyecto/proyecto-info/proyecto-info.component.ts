@@ -68,7 +68,7 @@ export class ProyectoInfoComponent implements OnInit {
     this.user_id = 0;
     this.hoyEs = this.hoy.transform(Date.now(), 'dd/MM/yyyy');
     this.tarea = new Tarea(0,0,0,"",0,0,"","");
-    this.mostrarInfoPDF = true;
+    this.mostrarInfoPDF = false;
     this.pago = new Pago(0,0,0,0,0,"","");
     this.total=0;
   }
