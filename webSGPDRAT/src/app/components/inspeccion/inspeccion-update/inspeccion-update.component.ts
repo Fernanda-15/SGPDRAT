@@ -9,12 +9,16 @@ import { ArchivosService } from 'src/app/services/archivos.service';
 import {global} from '../../../services/global';
 import{Router,ActivatedRoute} from '@angular/router';
 import{timer} from 'rxjs';
+import { LogService } from 'src/app/services/log.service';
+import { Log } from 'src/app/models/log';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-inspeccion-update',
   templateUrl: './inspeccion-update.component.html',
   styleUrls: ['./inspeccion-update.component.css'],
-  providers: [InspeccionService, FotosService, ArchivosService]
+  providers: [InspeccionService, FotosService, ArchivosService,LogService,
+    UserService]
 })
 export class InspeccionUpdateComponent implements OnInit {
 
@@ -24,11 +28,14 @@ export class InspeccionUpdateComponent implements OnInit {
   public identity:any;
   public status:number;
   public reset:any;
+  private log:Log;
 
   constructor(
     private _inspeccionService:InspeccionService,
     private _fotosService:FotosService,
     private _archivosService:ArchivosService,
+    private _logService: LogService,
+    private _userService:UserService,
     private _router:Router,
     private _route:ActivatedRoute
   ) {
@@ -37,10 +44,29 @@ export class InspeccionUpdateComponent implements OnInit {
     this.archivo = new Archivos(0,0,"");
     this.status=-1;
     this.reset=false;
+    this.log = new Log(0,0,"","","");
    }
 
   ngOnInit(): void {
+    this.loadStorage();
     this.getInspeccion();
+  }
+
+
+  public loadStorage(){
+    this.identity=this._userService.getIdentity();
+  }
+
+  insertLogUpdate(proyectoid:number,texto:string){
+    this.log = new Log(0,proyectoid,this.identity.nombreUsuario,"Se ha modificado la inspeccion "+texto,"");
+    console.log(this.log);
+    this._logService.registro(this.log).subscribe(
+      response=>{
+      },
+      error=>{
+        console.log(error);
+      }
+    );
   }
 
   getInspeccion():void{
@@ -70,6 +96,7 @@ export class InspeccionUpdateComponent implements OnInit {
       this._inspeccionService.update(this.inspeccion).subscribe(
           response=>{
           if(response.code==200){
+            this.insertLogUpdate(this.inspeccion.proyecto_id," Numero : "+this.inspeccion.numero+ " | Avance Obra: "+this.inspeccion.avance_obra);
             form.reset();
             this.onSubmit2();
             this._router.navigate(['/inspeccion-list', this.inspeccion.proyecto_id]);
