@@ -23,7 +23,7 @@
         <strong> Error:</strong>  El avance no debe ser mayor a 100 !!!
     </div>
 
-</div>   
+</div>
 <!--TITULO-->
 <div class="form-group">
     <p>Agregar Inspección</p>
@@ -73,16 +73,15 @@
         <div style="position: center; margin-top: 29px;">
             <angular-file-uploader [config]="afuConfig" [resetUpload]=reset (ApiResponse)="imageUploaded($event)">
             </angular-file-uploader>
-        </div> 
+        </div>
 
         <div style="position: center; margin-top: 29px;">
             <angular-file-uploader [config]="afuConfig2" [resetUpload]=reset (ApiResponse)="docUploaded($event)">
             </angular-file-uploader>
-        </div> 
+        </div>
 
     </div>
 
-    
 </form>
 
 
@@ -134,7 +133,7 @@
                                             <div class="mb-3">
                                                 <label for="avance" class="col-form-label">Valor:</label>
                                                 <input #avance type="number" class="form-control" id="avance">
-    
+
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-danger"
                                                         data-dismiss="modal">Cancelar</button>
@@ -144,14 +143,14 @@
                                                 </div>
                                             </div>
                                         </div>
-    
+
                                     </div>
                                 </div>
                             </div>
                         </td>
                     </tr>
                 </ng-container>
-                
+
             </tbody>
         </table>
         <mat-paginator [length]="tareas.length" [pageSize]="5" [pageSizeOptions]="[3, 5, 10, 25, 100]"
@@ -160,7 +159,6 @@
     </div>
 
 
-    <!--IMAGEN-->
 
-    
 </div>
+
