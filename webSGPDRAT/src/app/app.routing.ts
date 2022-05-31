@@ -25,6 +25,7 @@ import {PagoUpdateComponent} from './components/pago/pago-update/pago-update.com
 import {InspeccionCreateComponent} from './components/inspeccion/inspeccion-create/inspeccion-create.component';
 import {InspeccionUpdateComponent} from './components/inspeccion/inspeccion-update/inspeccion-update.component';
 import {InspeccionListComponent} from './components/inspeccion/inspeccion-list/inspeccion-list.component';
+import { ArchivosListComponent } from "./components/archivos/archivos-list/archivos-list.component";
 import { AboutComponent } from "./components/about/about.component";
 
 
@@ -54,6 +55,8 @@ const appRoutes: Routes = [
     {path: 'inspeccion-create/:id', component:InspeccionCreateComponent},
     {path: 'inspeccion-update/:id', component:InspeccionUpdateComponent},
     {path: 'inspeccion-list/:id', component:InspeccionListComponent},
+    {path: 'archivo-list/:id', component:ArchivosListComponent},
+
     {path: '**', component: ErrorComponent}
 ];
 
