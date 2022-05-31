@@ -10,7 +10,7 @@
   <div class="alert alert-danger"  *ngSwitchCase="1">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <i class="bi bi-exclamation-triangle-fill"></i>
-      <strong> Error:</strong> El proyecto tiene tareas asignadas !!! 
+      <strong> Error:</strong> El proyecto tiene tareas asignadas !!!
   </div>
 
    <!--ERROR DE SERVIDOR-->
@@ -46,15 +46,15 @@
                     <a [routerLink]="['/tarea-list',proyecto.id]" class="btn btn-success mr-2" *ngIf="identity.rol == 'admin' || identity.rol == 'ingeniero'">
                       <span  class="bi bi-clipboard2-fill"></span>
                     </a>
-  
+
                     <a [routerLink]="['/proyecto-update', proyecto.id]" class="btn btn-warning mr-2" *ngIf="identity.rol == 'admin' || identity.rol == 'ingeniero'">
                       <span  class="bi bi-pencil-fill"></span>
                     </a>
-  
+
                     <a [routerLink]="['/pago-list', proyecto.id]" class="btn btn-info mr-2" *ngIf="proyecto.forma_pago == 'credito' && identity.rol != 'inspector' && identity.rol != 'direccion' ">
                       <span  class="bi bi-currency-dollar"></span>
                     </a>
-  
+
                     <a [routerLink]="['/inspeccion-list',proyecto.id]" class="btn btn-success mr-2" *ngIf="identity.rol == 'inspector'" >
                       <span  class="bi bi-paperclip"></span>
                     </a>
@@ -95,7 +95,9 @@
 
             <div class="card-body">
                 <!--Datos para desplegar-->
-
+                <div class="col">
+                  <h6>Id</h6><a>{{proyecto.id}}</a>
+                </div>
                   <div class="col">
                     <h6>Objetivo</h6><a>{{proyecto.objetivo}}</a>
                   </div>
