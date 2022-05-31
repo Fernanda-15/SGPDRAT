@@ -43,14 +43,14 @@ return [
         ],
         'fotos' => [
             'driver' => 'local',
-            'root' => storage_path('app/fotos'),
+            'root' => storage_path('app/public/fotos'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
 
         'archivos' => [
             'driver' => 'local',
-            'root' => storage_path('app/archivos'),
+            'root' => storage_path('app/public/archivos'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

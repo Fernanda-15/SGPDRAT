@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\Fotos;
 
 class FotosController extends Controller
@@ -171,5 +172,29 @@ public function uploadImage(Request $request){
     return response()->json($response,$response['code']);
 }
 
+public function getImage($filename){
+    $exist=\Storage::disk('fotos')->exists($filename);
+    if($exist){
+        $file=\Storage::disk('fotos')->get($filename);
+        return new Response($file,200);
+    }else{
+        $response=array(
+            'status'=>'error',
+            'code'=>404,
+            'message'=>'Imagen no existe'
+      );
+        return response()->json($response,$response['code']);
+    }
+}
+
+
+public function getFotosByI($id){  
+    $data = Fotos::Where('inspeccion_id',$id)->get();
+   return response()->json([
+    'status'=>'success',
+    'code'=>200,
+    'data'=>$data
+   ], 200);
+}
 
 }
