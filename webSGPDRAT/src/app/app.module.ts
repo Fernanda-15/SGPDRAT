@@ -36,8 +36,7 @@ import { InspeccionListComponent } from './components/inspeccion/inspeccion-list
 import { GanttModule } from './components/gantt/gantt.module';
 import { TareasAvanceComponent } from './components/tarea/tareas-avance/tareas-avance.component';
 import { AboutComponent } from './components/about/about.component';
-import { ArchivoListsComponent } from './components/archivos/archivo-lists/archivo-lists.component';
-
+import { ArchivosListComponent } from './components/archivos/archivos-list/archivos-list.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +63,7 @@ import { ArchivoListsComponent } from './components/archivos/archivo-lists/archi
     InspeccionListComponent,
     TareasAvanceComponent,
     AboutComponent,
-    ArchivoListsComponent,
+    ArchivosListComponent,
   ],
   imports: [
     BrowserModule,
