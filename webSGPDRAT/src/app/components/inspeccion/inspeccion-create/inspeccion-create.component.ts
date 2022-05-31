@@ -14,6 +14,9 @@ import { FotosService } from 'src/app/services/fotos.service';
 import { Archivos } from 'src/app/models/archivos'; 
 import { ArchivosService } from 'src/app/services/archivos.service'
 import{timer} from 'rxjs';
+import { LogService } from 'src/app/services/log.service';
+import { Log } from 'src/app/models/log';
+
 
 @Component({
   selector: 'app-tareas-avance',
@@ -21,7 +24,7 @@ import{timer} from 'rxjs';
   styleUrls: ['./inspeccion-create.component.css'],
   providers: [TareaService,
     ProyectoService,
-    InspeccionService, UserService, FotosService, ArchivosService]
+    InspeccionService, UserService, FotosService, ArchivosService,LogService]
 })
 export class InspeccionCreateComponent implements OnInit {
   public tareas: any[]=[];
@@ -42,6 +45,7 @@ export class InspeccionCreateComponent implements OnInit {
   public porcentajePagado:number;
   public reset:any;
   public status:number;
+  private log:Log;
 
   constructor(
     private _proyectoService:ProyectoService,
@@ -50,6 +54,7 @@ export class InspeccionCreateComponent implements OnInit {
     private _inspeccionService:InspeccionService,
     private _fotosService:FotosService,
     private _archivosService:ArchivosService,
+    private _logService: LogService,
     private _route:ActivatedRoute,
     private _router:Router,
   ) { 
@@ -58,6 +63,7 @@ export class InspeccionCreateComponent implements OnInit {
     this.inspeccion = new Inspeccion(0,0,0,0,"","","",0,0,0);
     this.foto = new Fotos(0,0,"");
     this.archivo = new Archivos(0,0,"");
+    this.log = new Log(0,0,"","","");
 
     this.avance=0;
     this.tareasEjecutadas = 0;
@@ -131,6 +137,18 @@ export class InspeccionCreateComponent implements OnInit {
     }
     return false;
     
+  }
+
+  insertLogCreate(proyectoid:number,texto:string){
+    this.log = new Log(0,proyectoid,this.identity.nombreUsuario,"Se ha generado la inspeccion "+texto,"");
+    console.log(this.log);
+    this._logService.registro(this.log).subscribe(
+      response=>{
+      },
+      error=>{
+        console.log(error);
+      }
+    );
   }
 
   loadTareas(id:number):void{
@@ -237,6 +255,7 @@ export class InspeccionCreateComponent implements OnInit {
       this._inspeccionService.registro(this.inspeccion).subscribe(
         response=>{
           if(response.code == 200){
+            this.insertLogCreate(this.inspeccion.proyecto_id," Numero : "+this.inspeccion.numero+ " | Avance Obra: "+this.avanceObra);
             console.log(response.data);
             form.reset();
             this.getUltimo();
