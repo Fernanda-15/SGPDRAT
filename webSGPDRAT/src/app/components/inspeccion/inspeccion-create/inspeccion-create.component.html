@@ -117,26 +117,28 @@
                                   <div class="modal-dialog">
                                       <div class="modal-content">
                                           <div class="modal-header">
-                                              <h5 class="modal-title" id="exampleModalLabel">Avance de Tarea: {{tarea.id}}
+
+                                              <h5  id="exampleModalLabel">Avance de Tarea: {{tarea.id}}
                                               </h5>
                                               <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-                                                  <span class="bi bi-x-lg"></span>
-                                              </button>
+                                                <span class="bi bi-x-lg"></span>
+                                            </button>
                                           </div>
-                                          <div class="modal-body">
-                                              <div class="mb-3">
+
+                                      <div class="modal-boddy">
                                                   <label for="avance" class="col-form-label">Valor:</label>
                                                   <input #avance type="number" class="form-control" id="avance">
 
+                                      </div>
                                                   <div class="modal-footer">
                                                       <button type="button" class="btn btn-danger"
                                                           data-dismiss="modal">Cancelar</button>
                                                       <button id="btnConfirmar{{tarea.id}}" type="button"
                                                           class="btn btn-success" (click)="getTarea(tarea.id, avance.value)"
                                                           data-dismiss="modal">Modificar</button>
-                                                  </div>
+
                                               </div>
-                                          </div>
+
 
                                       </div>
                                   </div>
