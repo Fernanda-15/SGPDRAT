@@ -120,6 +120,9 @@ class ArchivosController extends Controller
 }
 public function destroy($id){
     if(isset($id)){
+        $data=Archivos::find($id);
+        $name = $data['nombre'];
+        \Storage::disk('archivos')->delete($name);
         $deleted=Archivos::where('id',$id)->delete();
     if($deleted){
         $response=array(
