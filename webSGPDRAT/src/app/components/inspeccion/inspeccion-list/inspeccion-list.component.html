@@ -36,6 +36,7 @@
                 <th scope="col">Número</th>
                 <th scope="col">Observación</th>
                 <th scope="col">Avance de la obra</th>
+                <th scope="col">Archivos</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
             </tr>
@@ -46,7 +47,12 @@
                     <td>{{inspeccion.numero}}</td>
                     <td>{{inspeccion.observaciones}}</td>
                     <td>{{inspeccion.avance_obra}}</td>
+                    <td>
+                        <a [routerLink]="['/archivo-list',inspeccion.id]" class="btn btn-primary btn-xs"  u >
 
+                            <span  class="bi bi-folder-fill"></span>
+                        </a>
+                    </td>
                     <td >
                     <a [routerLink]="['/inspeccion-update',inspeccion.id]" class="btn btn-warning btn-xs"  u >
 
