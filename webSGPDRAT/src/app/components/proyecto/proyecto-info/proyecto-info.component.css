@@ -64,13 +64,13 @@
     width: 80%;
     margin-left: 160px;
   }
-  
+
   #table td, #table th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
   }
-  
+
   #tabletr:nth-child(even) {
     background-color: #dddddd;
   }
@@ -86,3 +86,8 @@
 
 }
 
+.botones
+{
+ margin-left: 370px;
+ margin-right: 370px;
+}
