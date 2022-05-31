@@ -4,7 +4,9 @@
   </div>
 <div *ngIf="user_id == proyecto.user_id && proyecto.id != 0">
 <h1 id="titulo">Información del Proyecto</h1>
-
+<div class="text-right">
+  <button style="margin-bottom:20px;margin-left: 1100px;" type="button" class="btn btn-primary" (click)="openPDF()">Generar PDF</button>
+</div>
 <table id="tabla">
   <tr>
     <th>Administrador</th>
@@ -43,7 +45,7 @@
   </tr>
   <tr>
     <td>{{tareasEjecutadas}} / {{tareasTotal}}</td>
-    <td>{{avanceObra}}%</td>
+    <td>{{avanceObra}} %</td>
     <td>{{porcentajePagado}}%</td>
   </tr>
 </table>
@@ -58,4 +60,71 @@
 <div class="gantti" >
   <gantt-component></gantt-component>
   </div>
+  <div id="pdf" #pdf *ngIf="mostrarInfoPDF">
+    <div>
+      <h3 style="text-align:right;margin-right: 150px;">
+        <img src="assets/images/senara-logo-hor.png" style="margin-left: 160px;margin-right:800px;margin-top: 50px;" width="180" height="75">
+        <span style="font-weight:bold; ">Fecha del Reporte: </span>{{hoyEs}}
+        <h3><span style="font-weight:bold;">Reporte Generado por: </span>{{identity.nombre}}</h3>
+      </h3>
+      </div>
+    <h4 style="font-size:30px;text-align: center;margin-bottom: 50px;margin-top: 20px;">Informe de Estado de Proyecto</h4>
+    <h3 style="margin-left: 160px;"><span style="font-weight:bold; ">Nombre del Proyecto: </span>{{proyecto.nombre}}</h3>
+    <h3 style="margin-left: 160px;"><span style="font-weight:bold; ">Numero de Contratación: </span>#{{proyecto.numero_contratacion}}</h3>
+    <h3 style="margin-left: 160px;"><span style="font-weight:bold; ">Objetivo del Proyecto: </span>Objetivo del Proyecto: {{proyecto.objetivo}}</h3>
+    <h3 style="margin-left: 160px;"><span style="font-weight:bold; ">Administrador del Proyecto: </span>{{userName}}</h3>
+    <h3 style="margin-left: 160px;"><span style="font-weight:bold; ">Ubicación del Proyecto: </span>{{proyecto.ubicacion}}</h3>
+    <h3 style="margin-left: 160px;"><span style="font-weight:bold; ">Fecha de Inicio: </span>{{proyecto.fecha_inicio.slice(0,proyecto.fecha_inicio.lastIndexOf('.')).split("T")}}</h3>
+    <h3 style="margin-left: 160px;"><span style="font-weight:bold; ">Fecha de Finalización: </span>{{proyecto.fecha_final.slice(0,proyecto.fecha_final.lastIndexOf('.')).split("T")}}</h3>
+    <h3 style="margin-left: 160px;"><span style="font-weight:bold; ">Forma de Pago: </span>{{proyecto.forma_pago}}</h3>
+    <h3 style="margin-left: 160px;"><span style="font-weight:bold; ">Monto Adjudicado: </span>{{proyecto.monto_adjudicado}}</h3>
+    <h3 style="margin-left: 160px;"><span style="font-weight:bold; ">Tareas Ejecutadas: </span>{{tareasEjecutadas}} / {{tareasTotal}}</h3>
+    <h3 style="margin-left: 160px;"><span style="font-weight:bold; ">Avance de la obra: </span>{{avanceObra}}%</h3>
+    <h3 style="margin-left: 160px;"><span style="font-weight:bold; ">Porcentaje pagado: </span>{{porcentajePagado}}%</h3>
+    <h3 style="margin-left: 160px;margin-top: 50px;"><span style="font-weight:bold; ">Lista de Tareas</span></h3>
+    <table id="table">  
+      <thead>
+        <tr>
+            <th scope="col">Numero</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Avance</th>
+            <th scope="col">Fecha de inicio</th>
+            <th scope="col">Fecha Final</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tarea of tareas">
+              <td>{{tarea.numero}}</td>
+              <td>{{tarea.descripcion}}</td>
+              <td>{{tarea.peso}}</td>
+              <td>{{tarea.avance}}</td>
+              <td>{{tarea.fecha_inicio}}</td>
+              <td>{{tarea.fecha_final}}</td>
+      </tr>
+  </tbody>
+  </table> 
+  <h3 style="margin-left: 160px;margin-top: 50px;"><span style="font-weight:bold; ">Lista de Pagos</span></h3>
+  <table id="table">  
+    <thead>
+      <tr>
+          <th scope="col">Número</th>
+          <th scope="col">Proyección</th>
+          <th scope="col">Monto</th>
+          <th scope="col">Justificación</th>
+          <th scope="col">Numero de Transacción</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pago of pagos">
+            <td>{{pago.numero}}</td>
+            <td>{{pago.proyeccion}}</td>
+            <td>{{pago.monto}}</td>
+            <td>{{pago.justificacion}}</td>
+            <td>{{pago.numero_transaccion}}</td>
+    </tr>
+</tbody>
+</table> 
+  </div>
 </div>
+

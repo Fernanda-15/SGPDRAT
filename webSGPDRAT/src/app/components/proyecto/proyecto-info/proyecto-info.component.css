@@ -15,6 +15,9 @@
   position: center;
 } */
 
+.col{
+    display:block;
+  }
 
 #titulo{
     font-size: 40px;
@@ -55,7 +58,22 @@
     background-color: #04AA6D;
     color: white;
   }
-
+  #table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    margin-left: 160px;
+  }
+  
+  #table td, #table th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  #tabletr:nth-child(even) {
+    background-color: #dddddd;
+  }
 
 .gantti{
   margin-top: 50px;
@@ -67,3 +85,4 @@
   margin-bottom: 50px;
 
 }
+
