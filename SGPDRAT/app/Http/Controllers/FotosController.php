@@ -120,6 +120,9 @@ class FotosController extends Controller
 }
 public function destroy($id){
     if(isset($id)){
+        $data=Fotos::find($id);
+        $name = $data['nombre'];
+        \Storage::disk('fotos')->delete($name);
         $deleted=Fotos::where('id',$id)->delete();
     if($deleted){
         $response=array(

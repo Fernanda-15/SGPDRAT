@@ -27,7 +27,7 @@ export class FotosService{
         return this._http.get(this.url+'fotos',{headers:httpHeaders});
     }
 
-    public deleteComentario(id:number) : Observable<any>{
+    public deleteFoto(id:number) : Observable<any>{
         let httpHeaders=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
         return this._http.delete(this.url+'fotos/'+id,{headers:httpHeaders});
     }

@@ -5,6 +5,7 @@ import { ComentarioService } from 'src/app/services/comentario.service';
 import { Comentario } from 'src/app/models/comentario';
 import {Router,ActivatedRoute} from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
+import{timer} from 'rxjs';
 
 @Component({
   selector: 'app-comentarios-proyecto',
@@ -21,6 +22,7 @@ export class ComentariosProyectoComponent implements OnInit {
   public i:number = 1 ;
   public desde:number = 0;
   public hasta:number = 5;
+  public status:number = -1;
 
   constructor(
     private _proyectoService:ProyectoService,
@@ -75,6 +77,35 @@ export class ComentariosProyectoComponent implements OnInit {
     console.log(e);
     this.desde = e.pageIndex * e.pageSize;
     this.hasta = this.desde + e.pageSize;
+
+  }
+
+
+  onSubmit(id:number,a:any){
+    let counter=timer(5000);
+    this.comentario.proyecto_id=id;
+    this.comentario.contenido=a;
+    this._comentarioService.registro(this.comentario).subscribe(
+      response=>{
+        if(response.code==200){
+          this.loadComentarios(this.comentario.proyecto_id);
+          this.status=1;
+            counter.subscribe(n=>{
+             console.log(n);
+             this.status=-1;
+           });
+         }
+      },
+
+      error=>{
+        console.log(error);
+        this.status=0;
+            counter.subscribe(n=>{
+             console.log(n);
+             this.status=-1;
+           });
+      }
+    );
 
   }
 }
