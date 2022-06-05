@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
 
     loadProyectos(){
       this._proyectoService.getProyectos().subscribe(
-          response=>{
+        response=>{
         this.proyectos=response.data;
         console.log(response.data);
         },
@@ -91,11 +91,9 @@ export class HomeComponent implements OnInit {
       this.identity=this._userService.getIdentity();
       idUser=this.identity.sub;
       console.log(idUser);
-      if(idUser){
-        console.log("hola");
+      if(this.identity.rol == "ingeniero"){
       this.getProyectosByU(idUser);
       }else{
-        console.log(idUser);
         this.loadProyectos();
       }
    }
