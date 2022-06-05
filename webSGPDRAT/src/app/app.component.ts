@@ -22,10 +22,17 @@ export class AppComponent {
     public _userService:UserService,
     private _router:Router,
   )
-  {this.loadStorage();
-    if(this.identity == null){
+  {
+    this.loadStorage();
+    if(this.identity==null){
+      this.identity = {
+        sub : "null",
+        rol : "null"
+      }
+    }
+    if(this.identity.rol == "null"){
     this._router.navigate(['login']);
-     }
+    }
     this.times=0;
   }
 
@@ -36,7 +43,6 @@ export class AppComponent {
 
   ngOnInit(){
     this.times=0;
-
    }
 
    ngDoCheck(): void {
@@ -45,6 +51,12 @@ export class AppComponent {
        this.loadStorage();
        this.times=0;
      }
+     if(this.identity==null){
+      this.identity = {
+        sub : "null",
+        rol : "null"
+      }
+    }
    }
 
 

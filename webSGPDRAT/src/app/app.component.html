@@ -1,5 +1,5 @@
 
-      <header class="header" *ngIf="identity">
+      <header class="header" *ngIf="identity.rol != 'null'">
 
         <div class="container">
           <div class="btn-menu">
@@ -17,7 +17,7 @@
 
        </header>
 
-      <input type="checkbox" id="btn-menu" *ngIf="identity">
+      <input type="checkbox" id="btn-menu" *ngIf="identity.rol != 'null'">
       <div class="container-menu">
         <div class="sidebar">
 
@@ -25,13 +25,13 @@
             <img src="assets/images/senara-logo-hor.png" width="160" height="55" routerLink="/">
           </div>
 
-        <button mat-button [matMenuTriggerFor]="proyectos"><i class="bi bi-folder-fill"></i>Proyectos</button>
+        <button mat-button [matMenuTriggerFor]="proyectos" *ngIf="identity.rol!='inspector'"><i class="bi bi-folder-fill"></i>Proyectos</button>
         <mat-menu #proyectos="matMenu">
           <button mat-menu-item routerLink="/proyecto-create">Agregar</button>
           <button mat-menu-item routerLink="/proyecto-list">Lista</button>
         </mat-menu>
 
-        <button mat-button [matMenuTriggerFor]="usuarios"><i class="bi bi-people-fill"></i>Usuarios</button>
+        <button mat-button [matMenuTriggerFor]="usuarios" *ngIf="identity.rol == 'admin'"><i class="bi bi-people-fill"></i>Usuarios</button>
         <mat-menu #usuarios="matMenu">
           <button mat-menu-item routerLink="/user-register">Agregar</button>
           <button mat-menu-item routerLink="/user-list">Lista</button>
