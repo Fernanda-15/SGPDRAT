@@ -12,6 +12,7 @@ import{timer} from 'rxjs';
   providers: [
     UserService]
 })
+
 export class LoginComponent implements OnInit {
 
   public status:number;
@@ -24,15 +25,26 @@ export class LoginComponent implements OnInit {
     private _router:Router,
     private _routes:ActivatedRoute
   ) {
+    
     this.status=-1;
     this.user = new User(0,"","","","","","","","");
     // if(this._userService.getIdentity() != null){
     //   this._router.navigate(['']);
-    //   }
+    //   } 
+    if(this.identity=null){
+      this.identity = {
+        sub : "null",
+        rol : "null"
+      }
+    }
   }
 
   ngOnInit(): void {
     this.logout();
+  }
+
+  public loadStorage(){
+    this.identity=this._userService.getIdentity();
   }
 
   onSubmit(form:any){
@@ -47,6 +59,7 @@ export class LoginComponent implements OnInit {
             response=>{
               this.identity=JSON.stringify(response);
               localStorage.setItem("identity",this.identity);
+              this.loadStorage();
             },
             error=>{
               let counter=timer(5000);

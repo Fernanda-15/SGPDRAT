@@ -51,17 +51,16 @@ export class HomeComponent implements OnInit {
   this.hoyEs = this.hoy.transform(Date.now(), 'dd/MM/yyyy');
   }
 
-
   public loadStorage(){
     this.identity=this._userService.getIdentity();
     this.token=this._userService.getToken();
   }
 
-    getUser(){
-      this._route.params.subscribe(params=>{
+  getUser(){
+    this._route.params.subscribe(params=>{
 
-        let id=params['sure'];
-        console.log(id);
+      let id=params['sure'];
+      console.log(id);
         this._userService.getUser(id).subscribe(
           response=>{
             if(response.status=='success'){

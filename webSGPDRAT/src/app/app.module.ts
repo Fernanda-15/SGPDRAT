@@ -37,6 +37,7 @@ import { GanttModule } from './components/gantt/gantt.module';
 import { TareasAvanceComponent } from './components/tarea/tareas-avance/tareas-avance.component';
 import { AboutComponent } from './components/about/about.component';
 import { ArchivosListComponent } from './components/archivos/archivos-list/archivos-list.component';
+import { Validators, FormBuilder } from "@angular/forms";
 
 @NgModule({
   declarations: [
