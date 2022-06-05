@@ -96,6 +96,7 @@ export class ProyectoCreateComponent implements OnInit {
     let counter=timer(5000);
     let e:number=0;
     let proyectonombre = this.proyecto.nombre;
+    this.proyecto.user_id = this.identity.sub;
     if(this.proyecto.fecha_final >= this.proyecto.fecha_inicio){
       if(this.proyecto.user_id > 0){
         if(this.proyecto.forma_pago != ""){
