@@ -25,7 +25,7 @@
             <img src="assets/images/senara-logo-hor.png" width="160" height="55" routerLink="/">
           </div>
 
-        <button mat-button [matMenuTriggerFor]="proyectos" *ngIf="identity.rol!='inspector'"><i class="bi bi-folder-fill"></i>Proyectos</button>
+        <button mat-button [matMenuTriggerFor]="proyectos"><i class="bi bi-folder-fill"></i>Proyectos</button>
         <mat-menu #proyectos="matMenu">
           <button mat-menu-item routerLink="/proyecto-create">Agregar</button>
           <button mat-menu-item routerLink="/proyecto-list">Lista</button>
@@ -33,11 +33,11 @@
 
         <button mat-button [matMenuTriggerFor]="usuarios" *ngIf="identity.rol == 'admin'"><i class="bi bi-people-fill"></i>Usuarios</button>
         <mat-menu #usuarios="matMenu">
-          <button mat-menu-item routerLink="/user-register">Agregar</button>
+          <button mat-menu-item routerLink="/user-register" >Agregar</button>
           <button mat-menu-item routerLink="/user-list">Lista</button>
         </mat-menu>
 
-        <button mat-button routerLink=""><i class="bi bi-gear-fill"></i>Configuración</button>
+        <button mat-button routerLink=""><i class="bi bi-gear-fill" *ngIf="identity.rol == 'admin'"></i>Configuración</button>
         <button mat-button routerLink="/logout/1"><i class="bi bi-box-arrow-right"></i>Cerrar Sesión</button>
         <button mat-button routerLink="/about"><i class="bi bi-info-circle-fill"></i>Acerca de</button>
           <label for="btn-menu" class="bi bi-x-lg"></label>

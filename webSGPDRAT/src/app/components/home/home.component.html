@@ -1,5 +1,5 @@
 
-<div class="homeContent">
+<div class="homeContent" *ngIf="identity">
     <h2>Hoy es: {{ hoyEs }} </h2>
       <h2 data-testid="bienvenido">! Bienvenid@ {{identity.nombre}} !</h2>   
 
