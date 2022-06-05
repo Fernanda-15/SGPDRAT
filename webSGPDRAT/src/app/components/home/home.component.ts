@@ -5,6 +5,7 @@ import { ProyectoService } from 'src/app/services/proyecto.service';
 import { UserService } from 'src/app/services/user.service';
 import { PageEvent } from '@angular/material/paginator';
 import{Router,ActivatedRoute} from '@angular/router';
+import { timer } from 'rxjs';
 
 
 @Component({
@@ -41,14 +42,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(){
-    if (!localStorage.getItem('firstReload') || localStorage.getItem('firstReload') == 'true') {
-      localStorage.setItem('firstReload', 'false');
-      window.location.reload();
-    } else {
-      localStorage.setItem('firstReload', 'true');
-    }
-   this.loadProyectosByU();
-  this.hoyEs = this.hoy.transform(Date.now(), 'dd/MM/yyyy');
+    let timing = timer(1000);
+    timing.subscribe(n=>{
+      this.loadProyectosByU();
+    })
+    this.hoyEs = this.hoy.transform(Date.now(), 'dd/MM/yyyy');
   }
 
   public loadStorage(){
