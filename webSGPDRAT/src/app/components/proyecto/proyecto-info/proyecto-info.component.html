@@ -1,4 +1,11 @@
-<div *ngIf="user_id == proyecto.user_id && proyecto.id != 0">
+<div *ngIf="!showContent">
+  <h1 id="titulo">Cargando...</h1>
+</div>
+<div *ngIf="showContent">
+<div *ngIf="proyecto.id == 0">
+  <error-component></error-component>
+</div>
+<div *ngIf="identity.sub == proyecto.user_id && proyecto.id != 0 || identity.rol == 'admin' || identity.rol == 'direccion' || identity.rol=='inspector'">
 <h1 id="titulo">Información del Proyecto</h1>
 
 <div class="botones">
@@ -125,4 +132,4 @@
 </table>
   </div>
 </div>
-
+</div>

@@ -1,4 +1,7 @@
-
+<div *ngIf="!showContent">
+  <h1 id="titulo">Cargando...</h1>
+</div>
+<div *ngIf="showContent">
 <div class="homeContent" *ngIf="identity">
     <h2>Hoy es: {{ hoyEs }} </h2>
       <h2 data-testid="bienvenido">! Bienvenid@ {{identity.nombre}} !</h2>   
@@ -17,5 +20,5 @@
           </mat-paginator>
         </div>
         </div>
-
+</div>
 </div>

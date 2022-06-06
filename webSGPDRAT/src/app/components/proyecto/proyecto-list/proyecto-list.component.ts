@@ -14,7 +14,6 @@ import{timer} from 'rxjs';
               UserService]
 })
 export class ProyectoListComponent implements OnInit {
-
   public proyecto:Proyecto;
   public proyectos:any[]=[];
   public i:number = 1 ;
@@ -24,6 +23,7 @@ export class ProyectoListComponent implements OnInit {
   public tareas:any;
   public id:number;
   public identity:any;
+  public showContent: boolean = false;
 
   constructor(
     public _userService:UserService,
@@ -37,8 +37,7 @@ export class ProyectoListComponent implements OnInit {
 
   ngOnInit(){
    // this.loadProyectosByU();
-
-   
+   setTimeout(()=>this.showContent=true, 200);
    this.loadStorage();
   }
 

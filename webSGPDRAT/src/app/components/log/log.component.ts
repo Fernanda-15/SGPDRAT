@@ -5,6 +5,7 @@ import { LogService } from 'src/app/services/log.service';
 import { Log } from 'src/app/models/log';
 import {Router,ActivatedRoute} from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -23,10 +24,15 @@ export class LogComponent implements OnInit {
   public i:number = 1 ;
   public desde:number = 0;
   public hasta:number = 5;
+  public showContent: boolean = false;
+  public identity:any;
+  public token:any;
+  public acceso:boolean = false;
 
   constructor(
     private _proyectoService:ProyectoService,
     private _logService:LogService,
+    private _userService:UserService,
     private _route:ActivatedRoute,
     private _router:Router
   ) {
@@ -35,7 +41,14 @@ export class LogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setTimeout(()=>this.showContent=true, 200);
+    this.loadStorage();
     this.getProyecto();
+  }
+
+  public loadStorage(){
+    this.identity=this._userService.getIdentity();
+    this.token=this._userService.getToken();
   }
 
   getProyecto():void{
@@ -46,7 +59,6 @@ export class LogComponent implements OnInit {
         response=>{
           if(response.status=='success'){
             this.proyecto=response.data;
-            console.log(this.proyecto);
             this.loadLogs(id);
           }else{
             console.log('AQUI');

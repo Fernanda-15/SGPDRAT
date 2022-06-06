@@ -24,7 +24,7 @@ import { timer } from 'rxjs';
         PagoService]
 })
 export class ProyectoInfoComponent implements OnInit {
-  
+  public showContent: boolean = false;
   public proyecto:Proyecto;
   private user:User;
   public user_id:number;
@@ -75,11 +75,9 @@ export class ProyectoInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let timing = timer(500);
-    timing.subscribe(n=>{
+      setTimeout(()=>this.showContent=true, 200);
       this.loadStorage();
       this.getProyecto();
-    })
   }
 
   getProyecto():void{
