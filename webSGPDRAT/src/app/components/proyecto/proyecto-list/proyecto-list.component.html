@@ -26,7 +26,7 @@
 <div *ngIf="showContent">
 <div class="container" *ngIf="proyectos">
 <h1 id="titulo" *ngIf="proyectos.length==0">Todavía no tienes proyectos asignados.</h1>
-
+<h1 id="titulo" *ngIf="proyectos.length>0">Lista de Proyectos</h1>
  <div class="card-columns" *ngIf="proyectos.length>0">
 
         <article class="card border-primary " *ngFor="let proyecto of proyectos | slice:desde:hasta let i=index">
@@ -95,7 +95,7 @@
             <div class="card-body">
                 <!--Datos para desplegar-->
                 <div class="col">
-                  <h6>Id</h6><a>{{proyecto.id}}</a>
+                  <h6>N°Contrato</h6><a>{{proyecto.numero_contratacion}}</a>
                 </div>
                   <div class="col">
                     <h6>Objetivo</h6><a>{{proyecto.objetivo}}</a>
