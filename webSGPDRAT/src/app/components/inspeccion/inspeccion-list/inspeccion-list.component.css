@@ -15,9 +15,8 @@
 
 .col{
   border: rgba(20, 172, 232, 0.825);
-display:block;
+  display:block;
 }
-
 
 
 
@@ -56,5 +55,4 @@ thead {
 background-color: rgba(20, 172, 232, 0.825);
 
 }
-
 

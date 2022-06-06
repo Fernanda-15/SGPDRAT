@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { Pago } from 'src/app/models/pago';
 import { PagoService } from 'src/app/services/pago.service';
+import { timer } from 'rxjs';
 
 
 @Component({
@@ -74,8 +75,11 @@ export class ProyectoInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadStorage();
-    this.getProyecto();
+    let timing = timer(500);
+    timing.subscribe(n=>{
+      this.loadStorage();
+      this.getProyecto();
+    })
   }
 
   getProyecto():void{
@@ -86,14 +90,10 @@ export class ProyectoInfoComponent implements OnInit {
         response=>{
           if(response.status=='success'){
             this.proyecto=response.data;
-            console.log(this.proyecto);
             this.getUserName();
             this.proyecto_id = this.proyecto.id.toString();
-            console.log("ID PROYECTO "+this.proyecto_id);
             this.loadTareas(this.proyecto.id); 
-            console.log(this.tareas);
             this.loadPagos(id);
-            console.log(this.pagos);
           }else{
             console.log('AQUI');
             //this._router.navigate(['']);
