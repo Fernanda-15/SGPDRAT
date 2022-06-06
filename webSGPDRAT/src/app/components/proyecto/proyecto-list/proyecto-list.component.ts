@@ -78,13 +78,10 @@ export class ProyectoListComponent implements OnInit {
     var idUser;
     this.identity=this._userService.getIdentity();
     idUser=this.identity.sub;
-    console.log(idUser);
     if(idUser){
-        console.log("picha");
         this.getProyectosByU(idUser);
 
     }else{
-      console.log(idUser);
       this.loadProyectos();
     }
  }
