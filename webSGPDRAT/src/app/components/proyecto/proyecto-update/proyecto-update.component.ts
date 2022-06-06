@@ -14,6 +14,7 @@ import { Log } from 'src/app/models/log';
 })
 export class ProyectoUpdateComponent implements OnInit {
 
+  public showContent: boolean = false;
   public proyecto: any;
   public status: any;
   public reset = false;
@@ -31,6 +32,7 @@ export class ProyectoUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setTimeout(()=>this.showContent=true, 200);
     this.loadStorage();
     this.reset = false;
     this.proyecto = new Proyecto(0, 0, "", "", "", "", "", "", "", 0);

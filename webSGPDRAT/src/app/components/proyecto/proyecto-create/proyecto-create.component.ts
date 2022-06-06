@@ -19,7 +19,7 @@ import { Log } from 'src/app/models/log';
 })
 export class ProyectoCreateComponent implements OnInit {
 
-  
+  public showContent: boolean = false;
   public proyecto:Proyecto;
   public status:number;
   public reset=false;
@@ -42,6 +42,7 @@ export class ProyectoCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setTimeout(()=>this.showContent=true, 200);
     this.loadStorage();
     this.getUsers();
   }

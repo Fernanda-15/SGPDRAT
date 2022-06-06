@@ -12,7 +12,14 @@
     </div>
     
 </div>
-
+<div *ngIf="!showContent">
+  <h1 id="titulo">Cargando...</h1>
+</div>
+<div *ngIf="showContent">
+<div *ngIf="identity.rol == 'inspector' || identity.rol == 'direccion'">
+  <error-component></error-component>
+</div>
+<div *ngIf="identity.sub == proyecto.user_id || identity.rol=='admin'">
 <form id="formProyecto" class="col-md-6 mr-auto ml-auto" #updateProyectoForm="ngForm" (ngSubmit)="onSubmit(updateProyectoForm)">
      <div class="form-group">
         <p>
@@ -86,3 +93,5 @@
     <input id="boton" type="submit" value="Modificar" class="btn btn-success" [disabled]="updateProyectoForm.invalid">
       </div>
 </form>
+</div>
+</div>

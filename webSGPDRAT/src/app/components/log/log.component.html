@@ -1,5 +1,14 @@
 <!--TABLA DE LOGS-->
-<div class="container" *ngIf="logs">
+<div *ngIf="!showContent">
+    <h1 id="titulo">Cargando...</h1>
+  </div>
+  <div *ngIf="showContent">
+    <div *ngIf="identity.rol == 'inspector' || proyecto.id == 0">
+        <error-component></error-component>
+    </div>
+<div class="container" *ngIf="logs && identity.rol != 'inspector' && proyecto.id != 0 && identity.sub == proyecto.user_id
+||logs && identity.rol != 'inspector' && proyecto.user_id != 0 && identity.rol == 'admin' 
+||logs && identity.rol != 'inspector' && proyecto.user_id != 0 && identity.rol == 'direccion'">
     <h5 id="titulo">Log del Proyecto # {{proyecto.numero_contratacion}} </h5>
 
     <div class="table-responsive">
@@ -29,5 +38,6 @@
     </mat-paginator>
 
     </div>
+</div>
 </div>
 

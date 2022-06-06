@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   public identity:any;
   public user:any;
   private token:any;
-
+  public showContent: boolean = false;
   constructor(
     public _userService:UserService,
     private _proyectoService:ProyectoService,
@@ -42,7 +42,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(){
-    let timing = timer(1000);
+    setTimeout(()=>this.showContent=true, 200);
+    let timing = timer(200);
     timing.subscribe(n=>{
       this.loadProyectosByU();
     })

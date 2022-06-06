@@ -20,11 +20,10 @@
           <strong> Error</strong> de servidor interno!!!
     </div>
 
-
+<div *ngIf="!showContent">
+      <h1 id="titulo">Cargando...</h1>
 </div>
-
-
-
+<div *ngIf="showContent">
 <div class="container" *ngIf="proyectos">
 <h1 id="titulo" *ngIf="proyectos.length==0">Todavía no tienes proyectos asignados.</h1>
 
@@ -113,4 +112,5 @@
         <mat-paginator [length]="proyectos.length" [pageSize]="3"  [pageSizeOptions]="[3, 5, 10, 25, 100]"  aria-label="Select page" (page)="cambiarpagina($event)">
         </mat-paginator>
       </div>
+</div>
 </div>

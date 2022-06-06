@@ -20,7 +20,14 @@
     <strong> Error:</strong> Debe seleccionar una forma de pago!!
   </div>
  </div>
-
+ <div *ngIf="!showContent">
+  <h1 id="titulo">Cargando...</h1>
+</div>
+<div *ngIf="showContent">
+<div *ngIf="identity.rol == 'inspector' || identity.rol == 'direccion'">
+  <error-component></error-component>
+</div>
+<div *ngIf="identity.rol == 'ingeniero' || identity.rol == 'admin'">
   <div class="form-group">
     <p>Agregar Proyecto</p>
     </div>
@@ -122,6 +129,8 @@
       </div>
     </div>
   </form>
+</div>
+</div>
 
 
 
