@@ -29,6 +29,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { InspeccionCreateComponent } from './components/inspeccion/inspeccion-create/inspeccion-create.component';
 import { InspeccionUpdateComponent } from './components/inspeccion/inspeccion-update/inspeccion-update.component';
@@ -81,9 +84,11 @@ import { Validators, FormBuilder } from "@angular/forms";
     GanttModule,
     ErrorModule,
     AngularFileUploaderModule,
+    MatInputModule
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}
   ],
   bootstrap: [AppComponent]
 })

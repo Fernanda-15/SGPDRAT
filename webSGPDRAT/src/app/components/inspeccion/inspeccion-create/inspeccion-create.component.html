@@ -40,21 +40,7 @@
                 El número de inspección no es válido
             </small>
         </div>
-
-        <div id="info" class="form-group">
-            <label>Observaciones: </label>
-            <input type="text" name="observaciones" class="form-control" #observaciones="ngModel"
-                [(ngModel)]="inspeccion.observaciones" required pattern="^[a-zA-Z0-9\.]*$">
-            <small *ngIf="!observaciones.valid && observaciones.touched" class="invalid-feedback d-block">
-                La observación no es válida
-            </small>
-        </div>
-
-    </div>
-
-
-    <div class="row">
-        <div id="info" class="form-group">
+        <div id="info" class="form-group" style="margin-left:10px">
             <label>Firma: </label>
             <input type="text" name="firma" class="form-control" #firma="ngModel"
                 [(ngModel)]="inspeccion.firma" required pattern="^[a-zA-Z0-9\.]*$">
@@ -63,13 +49,22 @@
             </small>
         </div>
     </div>
+    <div class="row">
+        <div id="info" class="form-group" style="margin-right:200px;margin-top: 25px;">
+            <mat-form-field appearance="fill" style="width:200%;">
+                <mat-label>Escriba sus observaciones...</mat-label>
+                <textarea name="observaciones" #observaciones="ngModel"
+                [(ngModel)]="inspeccion.observaciones"  matInput placeholder="Escriba sus observaciones..."></textarea>
+            </mat-form-field>
+            <!--<input type="text" name="observaciones" class="form-control" #observaciones="ngModel"
+                [(ngModel)]="inspeccion.observaciones" required pattern="^[a-zA-Z0-9\.]*$"> -->
+            <small *ngIf="!observaciones.valid && observaciones.touched" class="invalid-feedback d-block">
+                La observación no es válida
+            </small>
+        </div>
+    </div>
 
     <div class="row">
-        <div style="position: center; margin-top: 29px;">
-            <input id="boton" type="submit" value="Agregar" class="btn btn-success mr-2"
-                [disabled]="createInspeccionForm.invalid">
-        </div>
-
         <div style="position: center; margin-top: 29px;">
             <angular-file-uploader [config]="afuConfig" [resetUpload]=reset (ApiResponse)="imageUploaded($event)">
             </angular-file-uploader>
@@ -79,9 +74,13 @@
             <angular-file-uploader [config]="afuConfig2" [resetUpload]=reset (ApiResponse)="docUploaded($event)">
             </angular-file-uploader>
         </div>
-
     </div>
-
+    <div class="row">
+    <div style="position: center; margin-top: 40px;">
+        <input id="boton" type="submit" value="Agregar" class="btn btn-success mr-2"
+            [disabled]="createInspeccionForm.invalid">
+    </div>
+    </div>
     <div class="container">
 
       <div class="row">

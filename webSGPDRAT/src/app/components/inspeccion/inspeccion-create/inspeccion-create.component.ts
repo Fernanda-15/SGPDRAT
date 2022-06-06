@@ -17,7 +17,6 @@ import{timer} from 'rxjs';
 import { LogService } from 'src/app/services/log.service';
 import { Log } from 'src/app/models/log';
 
-
 @Component({
   selector: 'app-tareas-avance',
   templateUrl: './inspeccion-create.component.html',
