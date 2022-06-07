@@ -8,13 +8,15 @@
 <div *ngIf="identity.sub == proyecto.user_id && proyecto.id != 0 || identity.rol == 'admin' || identity.rol == 'direccion' || identity.rol=='inspector'">
 <h1 id="titulo">Información del Proyecto</h1>
 
-<div class="botones">
+
+<div class="row">
     <button type="button" class="btn btn-primary m-md-2" (click)="openPDF()">Generar PDF</button>
     <button  type="button" class="btn btn-info m-md-2" [routerLink]="['/comentarioproyecto-list',proyecto.id]">
       <span class="bi bi-chat-square-text-fill"> Lista Comentarios</span>
   </button>
 </div>
 
+<div class="row">
 <table id="tabla">
 
   <tr>
@@ -58,13 +60,17 @@
     <td>{{porcentajePagado}}%</td>
   </tr>
 </table>
+</div>
 
 <div class="calendar">
 <calendar-component></calendar-component>
 </div>
+
+
 <div class="gantti" >
   <gantt-component></gantt-component>
   </div>
+
   <div id="pdf" #pdf *ngIf="mostrarInfoPDF">
     <div>
       <h3 style="text-align:right;margin-right: 150px;">
