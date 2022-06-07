@@ -2,7 +2,7 @@
  /*@import "~jsgantt-improved/dist/jsgantt.css";*/
  html, body {
   width: 100%;
-  overflow-x: hidden;
+   overflow-x: hidden;
  }
 
 html{
@@ -12,6 +12,7 @@ html{
 }
 
 body {
+  
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }

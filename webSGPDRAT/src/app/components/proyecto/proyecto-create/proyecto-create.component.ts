@@ -6,7 +6,8 @@ import{Router} from '@angular/router';
 import{timer} from 'rxjs';
 import { LogService } from 'src/app/services/log.service';
 import { Log } from 'src/app/models/log';
-
+import {global} from '../../../services/global';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-proyecto-create',
@@ -29,11 +30,11 @@ export class ProyectoCreateComponent implements OnInit {
   public identity:any;
   private log:Log;
   constructor(
-    private _proyectoService: ProyectoService, 
+    private _proyectoService: ProyectoService,
     private _userService: UserService,
     private _logService: LogService,
     private _router:Router,
-  ) { 
+  ) {
     this.status=-1;
     this.id=0;
     this.proyecto = new Proyecto(0,0,"","","","","","","",0);
@@ -93,7 +94,7 @@ export class ProyectoCreateComponent implements OnInit {
   }
 
 
-  onSubmit(form:any){ 
+  onSubmit(form:any){
     let counter=timer(5000);
     let e:number=0;
     let proyectonombre = this.proyecto.nombre;
@@ -122,7 +123,7 @@ export class ProyectoCreateComponent implements OnInit {
                 console.log(n);
                 this.status=-1;
               });
-              
+
             }
           );
         }else{
@@ -132,7 +133,7 @@ export class ProyectoCreateComponent implements OnInit {
             this.status=-1;
           });
         }
-       
+
       }else{
         this.status=2;
         counter.subscribe(n=>{
@@ -140,7 +141,7 @@ export class ProyectoCreateComponent implements OnInit {
           this.status=-1;
         });
       }
-        
+
     }else{
       this.status=1;
       counter.subscribe(n=>{
@@ -148,7 +149,7 @@ export class ProyectoCreateComponent implements OnInit {
         this.status=-1;
       });
     }
-  
+
   }
 
 }

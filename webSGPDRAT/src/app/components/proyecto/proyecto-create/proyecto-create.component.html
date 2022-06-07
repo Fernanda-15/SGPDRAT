@@ -28,13 +28,15 @@
   <error-component></error-component>
 </div>
 <div *ngIf="identity.rol == 'ingeniero' || identity.rol == 'admin'">
-  <div class="form-group">
-    <p>Agregar Proyecto</p>
-    </div>
-  <form id="formProyecto" class="col-md-6 mr-auto ml-auto" #createProyectoForm="ngForm" (ngSubmit)="onSubmit(createProyectoForm)">
 
+    <div class="container">
+  <form id="formProyecto" class="col-md-6 mr-auto ml-auto" #createProyectoForm="ngForm" (ngSubmit)="onSubmit(createProyectoForm)">
+    <div class="form-group">
+      <p>Agregar Proyecto</p>
+      </div>
     <div class="row">
-      <div id="info" class="form-group" *ngIf="identity.rol == 'admin'">
+
+      <div id="info" class="form-group col-md-6" *ngIf="identity.rol == 'admin'">
               <label>Usuario: </label>
               <select name="usuario" #usuario="ngModel" [(ngModel)]="proyecto.user_id" class="form-control">
                   <option *ngFor="let us of users" value="{{us.id}}">
@@ -43,13 +45,15 @@
               </select>
       </div>
 
-      <div id="info" class="form-group" *ngIf="identity.rol != 'admin'">
+
+      <div id="info" class="form-group col-md-6" *ngIf="identity.rol != 'admin'">
         <label>Usuario: </label>
-        <input type="text"  name="usuario" class="form-control" 
-        value={{identity.nombreUsuario}} disabled>    
+        <input type="text"  name="usuario" class="form-control"
+        value={{identity.nombreUsuario}} disabled>
+
 </div>
 
-      <div id="info" class="form-group">
+      <div id="info" class="form-group col-md-6">
           <label>Numero de contratación: </label>
           <input type="number" name="numero_contratacion" class="form-control" #numero_contratacion="ngModel"
           [(ngModel)]="proyecto.numero_contratacion" required pattern="^[1-9]\d*$">
@@ -60,7 +64,7 @@
 
     </div>
     <div class="row">
-      <div id="info" class="form-group">
+      <div id="info" class="form-group col-md-6">
               <label>Nombre: </label>
               <input type="text" name="nombre" class="form-control" #nombre="ngModel"
               [(ngModel)]="proyecto.nombre" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
@@ -69,7 +73,7 @@
               </small>
       </div>
 
-      <div id="info" class="form-group">
+      <div id="info" class="form-group col-md-6">
           <label>Objetivo: </label>
           <input type="text" name="objetivo" class="form-control" #objetivo="ngModel"
           [(ngModel)]="proyecto.objetivo" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
@@ -80,7 +84,7 @@
     </div>
 
     <div class="row">
-      <div id="info" class="form-group">
+      <div id="info" class="form-group col-md-6">
           <label>Ubicación: </label>
           <input type="text" name="ubicacion" class="form-control" #ubicacion="ngModel"
           [(ngModel)]="proyecto.ubicacion" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
@@ -89,7 +93,7 @@
           </small>
       </div>
 
-      <div id="info" class="form-group">
+      <div id="info" class="form-group col-md-6">
           <label for="fecha_inicio">Fecha de inicio: </label>
           <input type="date" name="fecha_inicio" class="form-control" #fecha_inicio="ngModel" [(ngModel)]="proyecto.fecha_inicio">
       </div>
@@ -97,13 +101,13 @@
 
     <!--<div> {{proyecto.fecha_inicio | date : 'yyyy-MM-dd'}} </div> Formato fecha    -->
     <div class="row">
-      <div id="info" class="form-group"> 
+      <div id="info" class="form-group col-md-6">
         <label for="fecha_final">Fecha de finalización: </label>
         <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="proyecto.fecha_final">
     </div>
 
-  
-    <div id="info" class="form-group">
+
+    <div id="info" class="form-group ">
       <label>Forma de pago</label>
       <select name="forma_pago" #forma_pago="ngModel" [(ngModel)]="proyecto.forma_pago" class="form-control">
         <option value="contado">Contado</option>
@@ -112,23 +116,25 @@
     </div>
     </div>
 
-    <div class="row"> 
+    <div class="row">
       <div id="info" class="form-group">
         <label>Monto adjudicado:</label>
         <input type="number" name="monto_adjudicado" class="form-control" #monto_adjudicado="ngModel"
-        [(ngModel)]="proyecto.monto_adjudicado" required pattern="^[0-9\.]*$"> 
+        [(ngModel)]="proyecto.monto_adjudicado" required pattern="^[0-9\.]*$">
         <small *ngIf="!monto_adjudicado.valid && monto_adjudicado.touched" class="invalid-feedback d-block">
             El monto no es válido
         </small>
       </div>
-    </div>
 
-    <div class="row">
+
+
     <div style="position: center; margin-top: 29px;">
       <input id="boton" type="submit" value="Agregar" class="btn btn-success" [disabled]="createProyectoForm.invalid">
       </div>
     </div>
   </form>
+
+</div>
 </div>
 </div>
 
