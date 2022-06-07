@@ -24,15 +24,16 @@
     </div>
 
 </div>
-<!--TITULO-->
-<div class="form-group">
-    <p>Agregar Inspección</p>
-</div>
+
+<div class="container">
 <!--FORMULARIO-->
 <form id="formInspeccion" class="col-md-6 mr-auto ml-auto" #createInspeccionForm="ngForm" (ngSubmit)="onSubmit(createInspeccionForm)">
-
+<!--TITULO-->
+<div class="form-group">
+  <p>Agregar Inspección</p>
+</div>
     <div class="row">
-        <div id="info" class="form-group">
+        <div id="info" class="form-grou col-md-6">
             <label>Numero de inspeccion: </label>
             <input type="number" name="numero" class="form-control" #numero="ngModel" [(ngModel)]="inspeccion.numero"
                 required pattern="^[1-9]\d*$">
@@ -40,7 +41,7 @@
                 El número de inspección no es válido
             </small>
         </div>
-        <div id="info" class="form-group" style="margin-left:10px">
+        <div id="info" class="form-group col-md-6" >
             <label>Firma: </label>
             <input type="text" name="firma" class="form-control" #firma="ngModel"
                 [(ngModel)]="inspeccion.firma" required pattern="^[a-zA-Z0-9\.]*$">
@@ -50,7 +51,7 @@
         </div>
     </div>
     <div class="row">
-        <div id="info" class="form-group" style="margin-right:200px;margin-top: 25px;">
+        <div id="info" class="form-group col-md-6" style="margin-right:200px;margin-top: 25px;">
             <mat-form-field appearance="fill" style="width:200%;">
                 <mat-label>Escriba sus observaciones...</mat-label>
                 <textarea name="observaciones" #observaciones="ngModel"
@@ -81,7 +82,7 @@
             [disabled]="createInspeccionForm.invalid">
     </div>
     </div>
-    <div class="container">
+    <div class="containerr">
 
       <div class="row">
           <div class="col">
@@ -158,7 +159,7 @@
   </div>
 
 </form>
-
+</div>
 
 
 <!--TAREAS X AVANCE-->

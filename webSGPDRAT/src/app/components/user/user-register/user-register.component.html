@@ -13,19 +13,19 @@
       <p>Agregar Usuario</p>
       </div>
 
-
+      <div class="container">
     <form  id="formUser" class="col-md-6 mr-auto ml-auto" #registerUserForm="ngForm" (ngSubmit)="onSubmit(registerUserForm)">
       <div class="row">
-        <div id="info" class="form-group">
+        <div id="info" class="form-group col-md-6">
             <label>Nombre de Usuario:</label>
             <input type="text" name="nombreUsuario" class="form-control" #nombreUsuario="ngModel"
-            [(ngModel)]="user.nombreUsuario" required pattern="^[a-zA-ZñÑ0-9\.]*$"> 
+            [(ngModel)]="user.nombreUsuario" required pattern="^[a-zA-ZñÑ0-9\.]*$">
             <small *ngIf="!nombreUsuario.valid && nombreUsuario.touched" class="invalid-feedback d-block">
                 El nombre no es válido
             </small>
         </div>
 
-        <div id="info" class="form-group">
+        <div id="info" class="form-group col-md-6">
             <label>Contraseña: </label>
             <input type="password" name="contrasena" class="form-control" #contrasena="ngModel"
             [(ngModel)]="user.contrasena" required pattern="^[a-zA-ZñÑ0-9\.]*$">
@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="row">
-        <div id="info" class="form-group">
+        <div id="info" class="form-group col-md-6">
             <label>Role</label>
             <select name="role" #role="ngModel" [(ngModel)]="user.rol" class="form-control">
               <option value="admin">Administrador del Sistema</option>
@@ -45,7 +45,7 @@
             </select>
           </div>
 
-        <div id="info" class="form-group">
+        <div id="info" class="form-group col-md-6">
             <label>Nombre:</label>
             <input type="text" name="nombre" class="form-control" #nombre="ngModel"
             [(ngModel)]="user.nombre" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$"> <!--PATRON LETRAS CON ESPACIO-->
@@ -56,7 +56,7 @@
 
       </div>
       <div class="row">
-        <div id="info" class="form-group">
+        <div id="info" class="form-group col-md-6">
             <label>Cédula:</label>
             <input type="number" name="cedula" class="form-control" #cedula="ngModel"
             [(ngModel)]="user.cedula" required pattern="^[0-9\.]*$"> <!--PATRON NUMERICO -->
@@ -64,7 +64,7 @@
                 La cédula no es válida
             </small>
         </div>
-        <div id="info" class="form-group">
+        <div id="info" class="form-group col-md-6">
             <label>Teléfono: </label>
             <input type="number" name="telefono" class="form-control" #telefono="ngModel"
             [(ngModel)]="user.telefono" required pattern="^[0-9\.]*$">
@@ -74,7 +74,7 @@
         </div>
       </div>
       <div class="row">
-        <div id="info" class="form-group">
+        <div id="info" class="form-group col-md-6">
             <label>Correo electrónico</label>
             <input type="email" name="correo" class="form-control" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
             #correo="ngModel" [(ngModel)]="user.correo">
@@ -88,6 +88,7 @@
 
       </div>
       </form>
+      </div>
 
 
 

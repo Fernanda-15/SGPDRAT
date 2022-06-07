@@ -1,5 +1,5 @@
 #formUser{
-    margin-bottom: 50px;
+    /* margin-bottom: 50px;
     align-items: center;
     display:flex;
     flex-direction: column;
@@ -8,9 +8,24 @@
     border-radius: 4px;
     box-sizing: border-box;
     padding: 32px 32px;
-    scroll-margin-bottom: 100%;
+    scroll-margin-bottom: 100%; */
 }
 
+
+.container{
+  margin-bottom: 50px;
+  /* align-items: center; */
+  /* display:flex;
+  flex-direction: column; */
+  background-color: #ffffff;
+  border:outset rgba(20, 172, 232, 0.825);
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 32px 32px;
+  scroll-margin-bottom: 100%;
+  position: center;
+
+}
 
 #info{
   margin: 0px 0px 14px;
@@ -47,12 +62,3 @@ p{
     color:#ffff;
 }
 
-/*
-.content{
-  overflow: hidden;
-  align-items: center;
-  box-sizing: border-box;
-  display: inline-flex;
-   flex-direction: column;
-  padding: 0 32px;
-} */
