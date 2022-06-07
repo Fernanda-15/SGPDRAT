@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
  /*@import "~jsgantt-improved/dist/jsgantt.css";*/
-html, body {
+ html, body {
   width: 100%;
   overflow-x: hidden;
  }
@@ -693,6 +693,11 @@ div .gantt {
   width: 900px;
 }
 
+
+div.gchartlbl{
+  overflow-x: scroll;
+}
+
 div.gchartlbl,
 div.gchartgrid {
   /* _width: 532px; */
@@ -875,8 +880,9 @@ td.gspanning div {
 }
 
 .gmainright {
+  overflow-x: scroll;
   background-color: rgb(255, 255, 255);
-  overflow:hidden;
+  /* overflow:hidden; */
 }
 
 .gmainleft {
