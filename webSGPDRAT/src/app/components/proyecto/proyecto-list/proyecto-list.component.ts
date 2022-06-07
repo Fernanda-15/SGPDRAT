@@ -66,6 +66,7 @@ export class ProyectoListComponent implements OnInit {
    this._proyectoService.getProyectosByU(id).subscribe(
   response=>{
        this.proyectos=response.data;
+       this.proyectos = this.proyectos.sort((a, b) => (a.nombre < b.nombre ? -1 : 1));
      },
      error=>{
        console.log("Error");
@@ -86,12 +87,11 @@ export class ProyectoListComponent implements OnInit {
  }
 
 
-
  getProyectosByU(id:number):void{
   this._proyectoService.getProyectosByU(id).subscribe(
     response=>{
       this.proyectos=response.data;
-      console.log(response.data);
+      this.proyectos = this.proyectos.sort((a, b) => (a.nombre < b.nombre ? -1 : 1));
       },
         error=>{
         console.log("Error");
