@@ -80,4 +80,9 @@ export class ProyectoService{
         let httpHeaders =new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
         return this._http.get(this.url+'inspeccion/proyecto/'+id , {headers:httpHeaders});
     }
+
+    public buscar(valor:any):Observable<any>{
+        let httpHeaders =new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+'proyecto/buscar/'+valor , {headers:httpHeaders});
+    }
 }

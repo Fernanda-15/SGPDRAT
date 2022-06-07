@@ -169,6 +169,23 @@ export class ProyectoListComponent implements OnInit {
 
   }
 
+  buscar(valor:any){
+    console.log(valor);
+    this._proyectoService.buscar(valor).subscribe(
+      response=>{
+        if(response.status=="success"){
+          console.log(response);
+          this.proyectos=response.data;
+          if(this.proyectos.length == 0){
+            this.status=3;
+          }
+        }
+      }
+    );
+
+  }
+
+
 
   cambiarpagina(e:PageEvent){
     console.log(e);

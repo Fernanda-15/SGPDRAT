@@ -17,11 +17,12 @@
 .card{
 position:static;
 margin: 1px;
+margin-top: 15px;
+
 }
 
 .cards-columns{
-
-margin: 4px;
+  margin: 4px;
 }
 
 .card-header{
@@ -29,7 +30,6 @@ margin: 4px;
     text-align: center;
     margin: 2px;
     padding: 5px;
-
 }
 
 .card-header h3 a{
@@ -65,4 +65,6 @@ mat-paginator{
   font-family: 'Josefin Sans', sans-serif;
 }
 
-
+#form{
+  margin-left: 700px;
+}

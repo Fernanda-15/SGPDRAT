@@ -187,5 +187,13 @@ class ProyectoController extends Controller
        ], 200);
     }
 
+    public function buscar($valor){
+        $data = Proyecto::Where('nombre', 'like' , "%$valor%")->get();
+       return response()->json([
+        'status'=>'success',
+        'code'=>200,
+        'data'=>$data
+       ], 200);
+    }
 
 }
