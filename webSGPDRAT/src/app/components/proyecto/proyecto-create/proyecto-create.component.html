@@ -30,12 +30,13 @@
 <div *ngIf="identity.rol == 'ingeniero' || identity.rol == 'admin'">
 
     <div class="container">
+      <!--FORMULARIO-->
   <form id="formProyecto" class="col-md-6 mr-auto ml-auto" #createProyectoForm="ngForm" (ngSubmit)="onSubmit(createProyectoForm)">
+    <!--TITULO-->
     <div class="form-group">
       <p>Agregar Proyecto</p>
       </div>
     <div class="row">
-
       <div id="info" class="form-group col-md-6" *ngIf="identity.rol == 'admin'">
               <label>Usuario: </label>
               <select name="usuario" #usuario="ngModel" [(ngModel)]="proyecto.user_id" class="form-control">
@@ -44,13 +45,10 @@
                     </option>
               </select>
       </div>
-
-
       <div id="info" class="form-group col-md-6" *ngIf="identity.rol != 'admin'">
         <label>Usuario: </label>
         <input type="text"  name="usuario" class="form-control"
         value={{identity.nombreUsuario}} disabled>
-
 </div>
 
       <div id="info" class="form-group col-md-6">
@@ -107,7 +105,7 @@
     </div>
 
 
-    <div id="info" class="form-group ">
+    <div id="info" class="form-group col-md-6">
       <label>Forma de pago</label>
       <select name="forma_pago" #forma_pago="ngModel" [(ngModel)]="proyecto.forma_pago" class="form-control">
         <option value="contado">Contado</option>
@@ -117,7 +115,7 @@
     </div>
 
     <div class="row">
-      <div id="info" class="form-group">
+      <div id="info" class="form-group col-md-6">
         <label>Monto adjudicado:</label>
         <input type="number" name="monto_adjudicado" class="form-control" #monto_adjudicado="ngModel"
         [(ngModel)]="proyecto.monto_adjudicado" required pattern="^[0-9\.]*$">
