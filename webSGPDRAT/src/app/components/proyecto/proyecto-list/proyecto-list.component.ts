@@ -24,6 +24,7 @@ export class ProyectoListComponent implements OnInit {
   public id:number;
   public identity:any;
   public showContent: boolean = false;
+  public searchText:any;
 
   constructor(
     public _userService:UserService,
@@ -42,6 +43,7 @@ export class ProyectoListComponent implements OnInit {
   }
 
   public loadStorage(){
+    this.status=-1;
     this.identity=this._userService.getIdentity();
     console.log(this.identity.sub);
       if(this.identity.rol == "ingeniero"){
@@ -178,6 +180,8 @@ export class ProyectoListComponent implements OnInit {
           this.proyectos=response.data;
           if(this.proyectos.length == 0){
             this.status=3;
+          }else{
+            this.status=4;
           }
         }
       }
