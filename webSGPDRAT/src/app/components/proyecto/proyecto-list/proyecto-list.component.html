@@ -28,18 +28,18 @@
 <div class="container" *ngIf="proyectos">
 <h1 id="titulo" *ngIf="proyectos.length==0 && status!=3">Todavía no tienes proyectos asignados.</h1>
 
-<h1 id="titulo" *ngIf="proyectos.length==0 ">No se econtró ningun proyecto con ese nombre.</h1>
-<nav class="navbar" id="buscar" >
+<h1 id="titulo" *ngIf="proyectos.length==0 && status==3">No se econtró ningun proyecto con ese nombre.</h1>
+<nav class="navbar" id="buscar">
   <div class="container-fluid">
     <form class="d-flex" role="search" id="form">
-      <button class="btn btn-secondary mr-2" type="submit" (click)="loadStorage()" ><span class="bi bi-arrow-clockwise"></span></button>
       <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" #valor id="valor">
-      <button class="btn btn-info " type="submit" (click)="buscar(valor.value)"><span class="bi bi-search"></span></button>
+      <button class="btn btn-outline-info ml-1" type="submit" (click)="buscar(valor.value)"><span class="bi bi-search"></span></button>
     </form>
   </div>
 </nav>
 
-  
+<button  *ngIf="proyectos.length==0 && status==3" class="btn btn-danger" type="submit" (click)="loadStorage()" ><span class="bi bi-arrow-clockwise">Recargar</span></button>
+
  <div class="card-columns" *ngIf="proyectos.length>0">
 
         <article class="card border-primary " *ngFor="let proyecto of proyectos | slice:desde:hasta let i=index">
@@ -125,6 +125,5 @@
         <mat-paginator [length]="proyectos.length" [pageSize]="3"  [pageSizeOptions]="[3, 5, 10, 25, 100]"  aria-label="Select page" (page)="cambiarpagina($event)">
         </mat-paginator>
       </div>
-      
 </div>
 </div>
