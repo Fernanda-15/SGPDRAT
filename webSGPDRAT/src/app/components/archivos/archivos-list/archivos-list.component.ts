@@ -27,6 +27,7 @@ export class ArchivosListComponent implements OnInit {
   public hasta:number = 3;
   public url:any;
   public status:number=-1;
+  public tipo:any;
 
   constructor(
     private _route:ActivatedRoute,
@@ -81,7 +82,7 @@ export class ArchivosListComponent implements OnInit {
   loadDocumento(id:number):void{
     this._inspeccionService.getArchivos(id).subscribe(
       response=>{
-          this.archivos = response.data;
+          this.archivos = response.data; 
       },
       error=>{
         console.log(error);
@@ -89,6 +90,15 @@ export class ArchivosListComponent implements OnInit {
     );
   }
 
+  getTipo(nombre:any):any{
+    if( nombre.includes(".pdf")){
+      return 1;
+    }
+    if(nombre.includes(".docx")){
+      return 2;
+    }
+    return 3;
+  }
   delete(id:number):void{
     let counter=timer(5000);
     this._fotosService.deleteFoto(id).subscribe(
