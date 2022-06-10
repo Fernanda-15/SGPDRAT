@@ -2,7 +2,7 @@
 
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <i class="bi bi-info-circle-fill"></i>
-    <strong> Detalles:</strong> La inspeccion no tiene ni archivos ni documentos relacionados !!!
+    <strong> Información:</strong> La inspeccion no tiene ni archivos ni documentos relacionados !!!
 
 </div>
 
@@ -13,7 +13,7 @@
 
         <div class="card-header" style="width: 18rem;">
             <img src="{{url + 'fotos/getimage/' + foto.nombre }}" class="card-img-top">
-            <div class="card-body">
+            <div class="card-body" id="card-body">
                 <button id="btnDelete" class="btn btn-danger btn-xs mr-2" data-toggle="modal"
                     data-target="#exampleModal" [attr.data-target]="'#exampleModal'+foto.id">
                     <span class="bi bi-trash-fill"> Eliminar</span>
@@ -52,11 +52,13 @@
     <article class="card border-primary mb-3" style="max-width: 18rem;"
         *ngFor="let archivo of archivos | slice:desde:hasta let i=index">
 
-        <div class="card-header" style="width: 18rem;">
+        <div class="card-header" style="width: 18rem; text-align: center;">
 
-            <img src="{{url + 'archivos/getdocumento/pdf.png'}}" class="card-img-top">
+            <img src="assets/images/pdf.png" style="width: 10rem;" class="card-img-top"  *ngIf="getTipo(archivo.nombre)==1" >
+            <img src="assets/images/docx.png" style="width: 10rem;" class="card-img-top"  *ngIf="getTipo(archivo.nombre)==2" >
+            <img src="assets/images/txt.png" style="width: 10rem;" class="card-img-top"  *ngIf="getTipo(archivo.nombre)==3" >
 
-            <div class="card-body">
+            <div class="card-body" id="card-body">
                 <p>
                     {{archivo.nombre}}
                 </p>
