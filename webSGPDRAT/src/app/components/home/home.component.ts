@@ -42,8 +42,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(){
-    setTimeout(()=>this.showContent=true, 200);
-    let timing = timer(200);
+    setTimeout(()=>this.showContent=true, 1000);
+    let timing = timer(1000);
     timing.subscribe(n=>{
       this.loadProyectosByU();
     })
