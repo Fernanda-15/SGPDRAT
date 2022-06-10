@@ -25,7 +25,7 @@ export class ProyectoListComponent implements OnInit {
   public identity:any;
   public showContent: boolean = false;
   public searchText:any;
-
+  public p:any;
   constructor(
     public _userService:UserService,
     private _proyectoService:ProyectoService
@@ -171,21 +171,25 @@ export class ProyectoListComponent implements OnInit {
 
   }
 
-  buscar(valor:any){
-    console.log(valor);
-    this._proyectoService.buscar(valor).subscribe(
-      response=>{
-        if(response.status=="success"){
-          console.log(response);
-          this.proyectos=response.data;
-          if(this.proyectos.length == 0){
-            this.status=3;
-          }else{
-            this.status=4;
+  buscar(form:any){
+    console.log("HOLA:",this.searchText);
+    if(this.searchText!=null){
+      this._proyectoService.buscar(this.searchText).subscribe(
+        response=>{
+          if(response.status=="success"){
+            console.log(response);
+            this.proyectos=response.data;
+            this.p=this.searchText;
+            form.reset();
+            if(this.proyectos.length == 0){
+              this.status=3;
+            }else{
+              this.status=4;
+            }
           }
         }
-      }
-    );
+      );
+    }
 
   }
 
