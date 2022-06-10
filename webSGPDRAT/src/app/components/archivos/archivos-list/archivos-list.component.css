@@ -16,7 +16,7 @@
   .card{
   position:static;
   margin: 1px;
-  margin-top: 15px;
+  margin-top: 10px;
   
   }
   
@@ -30,4 +30,12 @@
 #card-body{
     text-align: center;
 }
+
+
+.cards-columns{
+    margin: 4px;
+  }
+  
+
+  
   

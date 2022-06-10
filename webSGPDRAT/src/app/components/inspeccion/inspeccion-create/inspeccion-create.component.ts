@@ -279,7 +279,7 @@ export class InspeccionCreateComponent implements OnInit {
   }
 
   public afuConfig={
-    multiple:true,
+    multiple: true ,
     formatsAllowed: ".jpg,.jpeg,.png,.gif",
     method:"POST",
     maxSize:10,

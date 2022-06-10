@@ -8,6 +8,8 @@
 
 <div *ngIf="fotos.length!=0">
     <h5 id="titulo">Imagenes</h5>
+    <div class="card-columns" >
+ 
     <article class="card border-primary mb-3" style="max-width: 18rem;"
         *ngFor="let foto of fotos | slice:desde:hasta let i=index">
 
@@ -44,18 +46,22 @@
 
     </article>
 </div>
+</div>
 
 
 
 <div *ngIf="archivos.length!=0">
     <h5 id="titulo">Archivos</h5>
+    
+ <div class="card-columns" >
+ 
     <article class="card border-primary mb-3" style="max-width: 18rem;"
         *ngFor="let archivo of archivos | slice:desde:hasta let i=index">
 
         <div class="card-header" style="width: 18rem; text-align: center;">
 
-            <img src="assets/images/pdf.png" style="width: 10rem;" class="card-img-top"  *ngIf="getTipo(archivo.nombre)==1" >
-            <img src="assets/images/docx.png" style="width: 10rem;" class="card-img-top"  *ngIf="getTipo(archivo.nombre)==2" >
+            <img src="assets/images/pdf.png" style="width: 8.5rem;" class="card-img-top"  *ngIf="getTipo(archivo.nombre)==1" >
+            <img src="assets/images/docx.png" style="width: 8.5rem;" class="card-img-top"  *ngIf="getTipo(archivo.nombre)==2" >
             <img src="assets/images/txt.png" style="width: 10rem;" class="card-img-top"  *ngIf="getTipo(archivo.nombre)==3" >
 
             <div class="card-body" id="card-body">
@@ -91,4 +97,5 @@
         </div>
 
     </article>
+</div>
 </div>
