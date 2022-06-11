@@ -45,6 +45,8 @@
         </div>
 
     </article>
+    <mat-paginator [length]="fotos.length" [pageSize]="3"  [pageSizeOptions]="[3, 5, 10, 25, 100]"  aria-label="Select page" (page)="cambiarpagina($event)">
+    </mat-paginator>
 </div>
 </div>
 
