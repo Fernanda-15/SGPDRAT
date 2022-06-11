@@ -457,6 +457,11 @@ export class InspeccionCreateComponent implements OnInit {
         if (response.code == 200) {
           console.log("ELIMINADA CORRECTAMENTE");
           this.fotos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
+          this.status = 4;
+          counter.subscribe(n => {
+            console.log(n);
+            this.status = -1;
+          });
         }
       },
       error => {
@@ -481,6 +486,11 @@ export class InspeccionCreateComponent implements OnInit {
         if (response.code == 200) {
           console.log("ELIMINADO CORRECTAMENTE");
           this.archivos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
+          this.status = 5;
+          counter.subscribe(n => {
+            console.log(n);
+            this.status = -1;
+          });
         }
       },
       error => {
