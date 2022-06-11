@@ -200,4 +200,9 @@ public function getFotosByI($id){
    ], 200);
 }
 
+public function getRuta($filename){
+    return response()->file(storage_path('app/public/fotos/'.$filename));
+   
+}
+
 }

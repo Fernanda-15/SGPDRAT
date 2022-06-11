@@ -156,21 +156,21 @@
 
     
      <!--DOCUMENTOS-->
-     <div class="row">
+     <div class="row" id="documentos">
       
         <div style="position: center; margin-top: 29px;">
             <angular-file-uploader  *ngIf="archivos.length != 5" [config]="afuConfig2" [resetUpload]=reset (ApiResponse)="docUploaded($event)">
             </angular-file-uploader>
         </div>
 
-        <div class="table-responsive" id="table_refresh" style="margin-top: 29px;" *ngIf="archivos.length != 0">
+        <div class="table-responsive" id="table_refresh" style="margin-top: 30px;" *ngIf="archivos.length != 0">
             <div class="row">
                 <div class="col">
                     <h5 id="titulo">Documentos</h5>
                 </div>
     
             </div>
-            <table class="table table-striped" >
+            <table class="table table-striped" id="tabla" >
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
@@ -231,7 +231,7 @@
 
 
 
-    <div class="containerr">
+    <div class="containerr" style=" margin-top: 30px;" >
 
         <div class="row">
             <div class="col">
@@ -239,9 +239,8 @@
             </div>
 
         </div>
-
         <div class="table-responsive" id="table_refresh"  *ngIf="tareas.length != 0">
-            <table class="table table-striped">
+            <table class="table table-striped" style="position: center;">
                 <thead>
                     <tr>
                         <th scope="col">Numero</th>

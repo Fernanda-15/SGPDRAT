@@ -8,96 +8,105 @@
 
 <div *ngIf="fotos.length!=0">
     <h5 id="titulo">Imagenes</h5>
-    <div class="card-columns" >
- 
-    <article class="card border-primary mb-3" style="max-width: 18rem;"
-        *ngFor="let foto of fotos | slice:desde:hasta let i=index">
+    <div class="card-columns">
 
-        <div class="card-header" style="width: 18rem;">
-            <img src="{{url + 'fotos/getimage/' + foto.nombre }}" class="card-img-top">
-            <div class="card-body" id="card-body">
-                <button id="btnDelete" class="btn btn-danger btn-xs mr-2" data-toggle="modal"
-                    data-target="#exampleModal" [attr.data-target]="'#exampleModal'+foto.id">
-                    <span class="bi bi-trash-fill"> Eliminar</span>
-                </button>
-                <div class="modal fade" id="exampleModal{{foto.id}}" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Confirmar</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                ¿Esta seguro de eliminar la imagen?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-                                <button id="btnConfirmar{{foto.id}}" type="button" class="btn btn-success"
-                                    (click)="delete(foto.id)" data-dismiss="modal">Aceptar</button>
+        <article class="card border-primary mb-3" style="max-width: 18rem;"
+            *ngFor="let foto of fotos | slice:desde:hasta let i=index">
+
+            <div class="card-header" style="width: 18rem;">
+                <a href="{{url + 'fotos/getruta/' + foto.nombre }}" download>
+                    <img src="{{url + 'fotos/getimage/' + foto.nombre }}" class="card-img-top">
+                </a>
+                <div class="card-body" id="card-body">
+                    <button id="btnDelete" class="btn btn-danger btn-xs mr-2" data-toggle="modal"
+                        data-target="#exampleModal" [attr.data-target]="'#exampleModal'+foto.id">
+                        <span class="bi bi-trash-fill"> Eliminar</span>
+                    </button>
+                    <div class="modal fade" id="exampleModal{{foto.id}}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Confirmar</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Esta seguro de eliminar la imagen?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                    <button id="btnConfirmar{{foto.id}}" type="button" class="btn btn-success"
+                                        (click)="delete(foto.id)" data-dismiss="modal">Aceptar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </article>
-    <mat-paginator [length]="fotos.length" [pageSize]="3"  [pageSizeOptions]="[3, 5, 10, 25, 100]"  aria-label="Select page" (page)="cambiarpagina($event)">
-    </mat-paginator>
-</div>
+        </article>
+        <mat-paginator [length]="fotos.length" [pageSize]="3" [pageSizeOptions]="[3, 5, 10, 25, 100]"
+            aria-label="Select page" (page)="cambiarpagina($event)">
+        </mat-paginator>
+    </div>
 </div>
 
 
 
 <div *ngIf="archivos.length!=0">
     <h5 id="titulo">Archivos</h5>
-    
- <div class="card-columns" >
- 
-    <article class="card border-primary mb-3" style="max-width: 18rem;"
-        *ngFor="let archivo of archivos | slice:desde:hasta let i=index">
 
-        <div class="card-header" style="width: 18rem; text-align: center;">
+    <div class="card-columns">
 
-            <img src="assets/images/pdf.png" style="width: 8.5rem;" class="card-img-top"  *ngIf="getTipo(archivo.nombre)==1" >
-            <img src="assets/images/docx.png" style="width: 8.5rem;" class="card-img-top"  *ngIf="getTipo(archivo.nombre)==2" >
-            <img src="assets/images/txt.png" style="width: 10rem;" class="card-img-top"  *ngIf="getTipo(archivo.nombre)==3" >
+        <article class="card border-primary mb-3" style="max-width: 18rem;"
+            *ngFor="let archivo of archivos | slice:desde:hasta let i=index">
 
-            <div class="card-body" id="card-body">
-                <p>
-                    {{archivo.nombre}}
-                </p>
-                <button id="btnDelete" class="btn btn-danger btn-xs mr-2" data-toggle="modal"
-                    data-target="#exampleModal" [attr.data-target]="'#exampleModal'+archivo.id">
-                    <span class="bi bi-trash-fill"> Eliminar</span>
-                </button>
-                <div class="modal fade" id="exampleModal{{archivo.id}}" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Confirmar</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                ¿Esta seguro de eliminar el documento?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-                                <button id="btnConfirmar{{archivo.id}}" type="button" class="btn btn-success"
-                                    (click)="delete2(archivo.id)" data-dismiss="modal">Aceptar</button>
+            <div class="card-header" style="width: 18rem; text-align: center;">
+                <a href="{{url + 'archivos/getruta/' + archivo.nombre }}" download>
+                    <img src="assets/images/pdf.png" style="width: 8.5rem;" class="card-img-top"
+                        *ngIf="getTipo(archivo.nombre)==1">
+                    <img src="assets/images/docx.png" style="width: 8.5rem;" class="card-img-top"
+                        *ngIf="getTipo(archivo.nombre)==2">
+                    <img src="assets/images/txt.png" style="width: 10rem;" class="card-img-top"
+                        *ngIf="getTipo(archivo.nombre)==3">
+
+                </a>
+
+                <div class="card-body" id="card-body">
+
+                    <p>
+                        {{archivo.nombre}}
+                    </p>
+                    <button id="btnDelete" class="btn btn-danger btn-xs mr-2" data-toggle="modal"
+                        data-target="#exampleModal" [attr.data-target]="'#exampleModal'+archivo.id">
+                        <span class="bi bi-trash-fill"> Eliminar</span>
+                    </button>
+                    <div class="modal fade" id="exampleModal{{archivo.id}}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Confirmar</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Esta seguro de eliminar el documento?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                    <button id="btnConfirmar{{archivo.id}}" type="button" class="btn btn-success"
+                                        (click)="delete2(archivo.id)" data-dismiss="modal">Aceptar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </article>
-</div>
+        </article>
+    </div>
 </div>

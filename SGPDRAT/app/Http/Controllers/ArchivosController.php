@@ -197,5 +197,9 @@ public function getDocumentos($filename){
     }
 }
 
+public function getRuta($filename){
+    return response()->file(storage_path('app/public/archivos/'.$filename));
+   
+}
 
 }

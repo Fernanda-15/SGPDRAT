@@ -45,6 +45,8 @@ Route::prefix('api')->group(function () {
     Route::get('/archivos/inspeccion/{id}',[ArchivosController::class,'getArchivosByI']);
     Route::get('/fotos/getimage/{filename}',[FotosController::class,'getImage']);
     Route::get('/archivos/getdocumento/{filename}',[ArchivosController::class,'getDocumentos']);
+    Route::get('/archivos/getruta/{filename}',[ArchivosController::class,'getRuta']);
+    Route::get('/fotos/getruta/{filename}',[FotosController::class,'getRuta']);
     Route::get('/proyecto/buscar/{valor}',[ProyectoController::class,'buscar']);
 
     //RUTAS AUTOMATICAS RESTful
