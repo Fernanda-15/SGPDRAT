@@ -48,6 +48,10 @@ Route::prefix('api')->group(function () {
     Route::get('/archivos/getruta/{filename}',[ArchivosController::class,'getRuta']);
     Route::get('/fotos/getruta/{filename}',[FotosController::class,'getRuta']);
     Route::get('/proyecto/buscar/{valor}',[ProyectoController::class,'buscar']);
+    
+    
+    Route::get('/fotos/liberar/{id}',[FotosController::class,'liberar']);
+    Route::get('/archivos/liberar/{id}',[ArchivosController::class,'liberar']);
 
     //RUTAS AUTOMATICAS RESTful
     Route::resource('/user', UserController::class,['except'=>['create','edit']]);

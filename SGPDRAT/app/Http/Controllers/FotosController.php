@@ -205,4 +205,14 @@ public function getRuta($filename){
    
 }
 
+public function liberar($name){
+    \Storage::disk('fotos')->delete($name);
+    return response()->json([
+        'status'=>'success',
+        'code'=>200,
+        'data'=>$name
+       ], 200);
+ 
+}
+
 }

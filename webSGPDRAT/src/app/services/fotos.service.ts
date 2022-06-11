@@ -22,6 +22,11 @@ export class FotosService{
         return this._http.post(this.url+'fotos', params, {headers: headers});
     }
 
+    public liberar(id:number):Observable<any>{
+        let httpHeaders =new HttpHeaders().append('Content-Type','application/x-www-form-urlencoded');//.append('token',this.token)
+        return this._http.get(this.url+'fotos/liberar/'+id,{headers:httpHeaders});
+    }  
+
     public getComentarios():Observable<any>{
         let httpHeaders =new HttpHeaders().append('Content-Type','application/x-www-form-urlencoded');//.append('token',this.token)
         return this._http.get(this.url+'fotos',{headers:httpHeaders});

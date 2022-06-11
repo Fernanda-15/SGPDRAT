@@ -445,22 +445,51 @@ export class InspeccionCreateComponent implements OnInit {
   }
 
 
-  delete(id: number): void {
+  delete(id: any): void {
     let indice: any;
+    let nombre:any;
     let counter = timer(5000); //AGREGAR MENSAJE
 
     indice = this.fotos.indexOf(id); // obtenemos el indice
-    this.fotos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
+    nombre=this.fotos[indice].nombre;
+    this._fotosService.liberar(nombre).subscribe(
+      response => {
+        if (response.code == 200) {
+          console.log("ELIMINADA CORRECTAMENTE");
+          this.fotos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
+        }
+      },
+      error => {
+        console.log(<any>error);
+
+      }
+
+    );
 
   }
 
   delete2(id: number): void {
     let indice: any;
+    let nombre:any;
     let counter = timer(5000); //AGREGAR MENSAJE
 
     indice = this.archivos.indexOf(id); // obtenemos el indice
-    this.archivos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
 
+    nombre=this.archivos[indice].nombre;
+    this._archivosService.liberar(nombre).subscribe(
+      response => {
+        if (response.code == 200) {
+          console.log("ELIMINADO CORRECTAMENTE");
+          this.archivos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
+        }
+      },
+      error => {
+        console.log(<any>error);
+
+      }
+
+    );
+      
   }
 
 
