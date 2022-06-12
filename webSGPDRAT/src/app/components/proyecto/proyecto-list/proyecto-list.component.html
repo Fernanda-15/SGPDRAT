@@ -26,21 +26,21 @@
 </div>
 <div *ngIf="showContent">
 <div class="container" *ngIf="proyectos">
+  <nav class="navbar" id="buscar" >
+    <div class="container-fluid">
+      <form class="d-flex" role="search" id="form" #form="ngForm" (ngSubmit)="buscar(form)">
+        <button class="btn btn-secondary mr-2" type="submit" (click)="loadStorage()" id="recarga"><span class="bi bi-arrow-clockwise"></span></button>
+        <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" id="valor" name="valor" #valor="ngModel" [(ngModel)]="searchText">
+        <button class="btn btn-info " type="submit" ><span class="bi bi-search"></span></button>
+      </form>
+    </div>
+  </nav>
 <h1 id="titulo" *ngIf="proyectos.length==0 && status!=3">Todavía no tienes proyectos asignados.</h1>
 
-<h1 id="titulo" *ngIf="proyectos.length==0 && status==3">No se econtró ningun proyecto con ese nombre.</h1>
+<h1 id="titulo" *ngIf="proyectos.length==0 && status==3">No se encontró ningun proyecto con ese nombre.</h1>
 
 <h1 id="titulo" *ngIf="status==4">Proyectos encontrados con: {{p}}</h1>
 
-<nav class="navbar" id="buscar" >
-  <div class="container-fluid">
-    <form class="d-flex" role="search" id="form" #form="ngForm" (ngSubmit)="buscar(form)">
-      <button class="btn btn-secondary mr-2" type="submit" (click)="loadStorage()" id="recarga"><span class="bi bi-arrow-clockwise"></span></button>
-      <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" id="valor" name="valor" #valor="ngModel" [(ngModel)]="searchText">
-      <button class="btn btn-info " type="submit" ><span class="bi bi-search"></span></button>
-    </form>
-  </div>
-</nav>
 
   
  <div class="card-columns" *ngIf="proyectos.length>0">
@@ -125,9 +125,9 @@
 
             </div>
         </article>
-        <mat-paginator [length]="proyectos.length" [pageSize]="3"  [pageSizeOptions]="[3, 5, 10, 25, 100]"  aria-label="Select page" (page)="cambiarpagina($event)">
-        </mat-paginator>
       </div>
+      <mat-paginator [length]="proyectos.length" [pageSize]="3"  [pageSizeOptions]="[3, 5, 10, 25, 100]"  aria-label="Select page" (page)="cambiarpagina($event)" *ngIf="proyectos.length>3">
+      </mat-paginator>
       
 </div>
 </div>
