@@ -1,163 +1,317 @@
 <div style="border:20px;" [ngSwitch]="status">
-    <div  class="alert alert-danger" *ngSwitchCase="0">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <i class="bi bi-exclamation-triangle-fill"></i>
-          <strong> Error</strong> de servidor interno!!!
-    </div>
-    <div  class="alert alert-danger" *ngSwitchCase="1">
+    <div class="alert alert-danger" *ngSwitchCase="0">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <i class="bi bi-exclamation-triangle-fill"></i>
-            <strong> Error:</strong> El numero de inspección ingresado ya existe!!!
+        <strong> Error</strong> de servidor interno!!!
+    </div>
+
+    <div class="alert alert-danger" *ngSwitchCase="1">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <strong> Error:</strong> El numero de inspección ingresado ya existe!!!
     </div>
     <!--MODIFICO CON EXITO-->
-    <div class="alert alert-success"  *ngSwitchCase="2" >
+    <div class="alert alert-success" *ngSwitchCase="2">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <i class="bi bi-check-circle-fill"></i>
         <strong> Éxito:</strong> Avance modificado con exito !!!
     </div>
 
     <!--AVANCE DE TAREA-->
-    <div class="alert alert-danger"  *ngSwitchCase="3">
+    <div class="alert alert-danger" *ngSwitchCase="3">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <i class="bi bi-exclamation-triangle-fill"></i>
-        <strong> Error:</strong>  El avance no debe ser mayor a 100 !!!
+        <strong> Error:</strong> El avance no debe ser mayor a 100 !!!
+    </div>
+
+    <!--IMAGEN ELIMINADA CON EXITO-->
+    <div class="alert alert-success" *ngSwitchCase="4">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="bi bi-check-circle-fill"></i>
+        <strong> Éxito:</strong> Imagen eliminada con exito !!!
+    </div>
+
+    <!--DOCUMENTO ELIMINADA CON EXITO-->
+    <div class="alert alert-success" *ngSwitchCase="5">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="bi bi-check-circle-fill"></i>
+        <strong> Éxito:</strong> Documento eliminado con exito !!!
     </div>
 
 </div>
 
 <div class="container">
-<!--FORMULARIO-->
-<form id="formInspeccion" class="col-md-6 mr-auto ml-auto" #createInspeccionForm="ngForm" (ngSubmit)="onSubmit(createInspeccionForm)">
-<!--TITULO-->
-<div class="form-group">
-  <p>Agregar Inspección</p>
-</div>
-    <div class="row">
-        <div id="info" class="form-grou col-md-6">
-            <label>Numero de inspeccion: </label>
-            <input type="number" name="numero" class="form-control" #numero="ngModel" [(ngModel)]="inspeccion.numero"
-                required pattern="^[1-9]\d*$">
-            <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
-                El número de inspección no es válido
-            </small>
+    <!--FORMULARIO-->
+    <form id="formInspeccion" class="col-md-6 mr-auto ml-auto" #createInspeccionForm="ngForm"
+        (ngSubmit)="onSubmit(createInspeccionForm)">
+        <!--TITULO-->
+        <div class="form-group">
+            <p>Agregar Inspección</p>
         </div>
-        <div id="info" class="form-group col-md-6" >
-            <label>Firma: </label>
-            <input type="text" name="firma" class="form-control" #firma="ngModel"
-                [(ngModel)]="inspeccion.firma" required pattern="^[a-zA-Z0-9\.]*$">
-            <small *ngIf="!firma.valid && firma.touched" class="invalid-feedback d-block">
-                La firma no es válida
-            </small>
+        <div class="row">
+            <div id="info" class="form-grou col-md-6">
+                <label>Numero de inspeccion: </label>
+                <input type="number" name="numero" class="form-control" #numero="ngModel"
+                    [(ngModel)]="inspeccion.numero" required pattern="^[1-9]\d*$">
+                <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
+                    El número de inspección no es válido
+                </small>
+            </div>
+            <div id="info" class="form-group col-md-6">
+                <label>Firma: </label>
+                <input type="text" name="firma" class="form-control" #firma="ngModel" [(ngModel)]="inspeccion.firma"
+                    required pattern="^[a-zA-Z0-9\.]*$">
+                <small *ngIf="!firma.valid && firma.touched" class="invalid-feedback d-block">
+                    La firma no es válida
+                </small>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div id="info" class="form-group col-md-6" style="margin-right:200px;margin-top: 25px;">
-            <mat-form-field appearance="fill" style="width:200%;">
-                <mat-label>Escriba sus observaciones...</mat-label>
-                <textarea name="observaciones" #observaciones="ngModel"
-                [(ngModel)]="inspeccion.observaciones"  matInput placeholder="Escriba sus observaciones..."></textarea>
-            </mat-form-field>
-            <!--<input type="text" name="observaciones" class="form-control" #observaciones="ngModel"
+        <div class="row">
+            <div id="info" class="form-group col-md-6" style="margin-right:200px;margin-top: 25px;">
+                <mat-form-field appearance="fill" style="width:200%;">
+                    <mat-label>Escriba sus observaciones...</mat-label>
+                    <textarea name="observaciones" #observaciones="ngModel" [(ngModel)]="inspeccion.observaciones"
+                        matInput placeholder="Escriba sus observaciones..."></textarea>
+                </mat-form-field>
+                <!--<input type="text" name="observaciones" class="form-control" #observaciones="ngModel"
                 [(ngModel)]="inspeccion.observaciones" required pattern="^[a-zA-Z0-9\.]*$"> -->
-            <small *ngIf="!observaciones.valid && observaciones.touched" class="invalid-feedback d-block">
-                La observación no es válida
-            </small>
+                <small *ngIf="!observaciones.valid && observaciones.touched" class="invalid-feedback d-block">
+                    La observación no es válida
+                </small>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
+       
+        <div class="row">
+            <div style="position: center; margin-top: 40px;">
+                <input id="boton" type="submit" value="Agregar" class="btn btn-success mr-2"
+                    [disabled]="createInspeccionForm.invalid">
+            </div>
+        </div>
+        
+    </form>
+
+    
+        <!--IMAGENES-->
+        <div class="row" >
+            <div style="position: center; margin-top: 20px;">
+                <angular-file-uploader  *ngIf="fotos.length != 10" [config]="afuConfig" [resetUpload]=reset (ApiResponse)="imageUploaded($event)">
+                </angular-file-uploader>
+            </div>
+            <div class="table-responsive" id="table_refresh" style="margin-top: 29px;"  *ngIf="fotos.length != 0">
+                <div class="row">
+                    <div class="col">
+                        <h5 id="titulo">Imagenes</h5>
+                    </div>
+        
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let f of fotos | slice:desde:hasta let i=index">
+                            <tr>
+                                <td>{{f.nombre}}</td>
+                                <td>
+                                    <button id="btnDelete" class="btn btn-danger btn-xs" data-toggle="modal"
+                                        data-target="#exampleModal" [attr.data-target]="'#exampleModal'">
+                                        <span class="bi bi-trash-fill"></span>
+                                    </button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmar</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Esta seguro de eliminar la foto?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger"
+                                                        data-dismiss="modal">No</button>
+                                                    <button id="btnConfirmar{{f.id}}" type="button"
+                                                        class="btn btn-success" (click)="delete(f)"
+                                                        data-dismiss="modal">Aceptar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </ng-container>
+
+                    </tbody>
+                </table>
+                <mat-paginator [length]="fotos.length" [pageSize]="5" [pageSizeOptions]="[3, 5, 10, 25, 100]"
+                    aria-label="Select page" (page)="cambiarpagina($event)">
+                </mat-paginator>
+            </div>
+
+
+        </div>
+
+    
+     <!--DOCUMENTOS-->
+     <div class="row" id="documentos">
+      
         <div style="position: center; margin-top: 29px;">
-            <angular-file-uploader [config]="afuConfig" [resetUpload]=reset (ApiResponse)="imageUploaded($event)">
+            <angular-file-uploader  *ngIf="archivos.length != 5" [config]="afuConfig2" [resetUpload]=reset (ApiResponse)="docUploaded($event)">
             </angular-file-uploader>
         </div>
 
-        <div style="position: center; margin-top: 29px;">
-            <angular-file-uploader [config]="afuConfig2" [resetUpload]=reset (ApiResponse)="docUploaded($event)">
-            </angular-file-uploader>
+        <div class="table-responsive" id="table_refresh" style="margin-top: 30px;" *ngIf="archivos.length != 0">
+            <div class="row">
+                <div class="col">
+                    <h5 id="titulo">Documentos</h5>
+                </div>
+    
+            </div>
+            <table class="table table-striped" id="tabla" >
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let a of archivos | slice:desde:hasta let i=index">
+                        <tr>
+                            <td>{{a.nombre}}</td>
+                            <td>
+                                <button id="btnDelete" class="btn btn-danger btn-xs" data-toggle="modal"
+                                    data-target="#exampleModal" [attr.data-target]="'#exampleModal'+a.id">
+                                    <span class="bi bi-trash-fill"></span>
+                                </button>
+                                <div class="modal fade" id="exampleModal{{a.id}}" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Confirmar</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ¿Esta seguro de eliminar el documento?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"
+                                                    data-dismiss="modal">No</button>
+                                                <button id="btnConfirmar{{a.id}}" type="button"
+                                                    class="btn btn-success" (click)="delete2(a)"
+                                                    data-dismiss="modal">Aceptar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    $('#btnDelete' + user.id).attr('data-target', '#exampleModal' + user.id);
+                                    $('#btnConfirmar' + user.id).attr('data-target', '#exampleModal' + user.id);
+                                </script>
+
+                            </td>
+                        </tr>
+                    </ng-container>
+
+                </tbody>
+            </table>
+            <mat-paginator [length]="tareas.length" [pageSize]="5" [pageSizeOptions]="[3, 5, 10, 25, 100]"
+                aria-label="Select page" (page)="cambiarpagina($event)">
+            </mat-paginator>
         </div>
+
+
     </div>
-    <div class="row">
-    <div style="position: center; margin-top: 40px;">
-        <input id="boton" type="submit" value="Agregar" class="btn btn-success mr-2"
-            [disabled]="createInspeccionForm.invalid">
+
+
+
+    <div class="containerr" style=" margin-top: 30px;" >
+
+        <div class="row">
+            <div class="col">
+                <h5 id="titulo">Tareas activas</h5>
+            </div>
+
+        </div>
+        <div class="table-responsive" id="table_refresh"  *ngIf="tareas.length != 0">
+            <table class="table table-striped" style="position: center;">
+                <thead>
+                    <tr>
+                        <th scope="col">Numero</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Avance</th>
+                        <th scope="col">Modificar Avance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let tarea of tareas | slice:desde:hasta let i=index">
+                        <tr *ngIf="tarea.avance != '100'">
+                            <td>{{tarea.numero}}</td>
+                            <td>{{tarea.descripcion}}</td>
+                            <td>{{tarea.avance}}</td>
+                            <td>
+                                <button id="btnUpdate" class="btn btn-info btn-xs" data-toggle="modal"
+                                    data-target="#exampleModal" [attr.data-target]="'#exampleModal'+tarea.id">
+                                    <span class="bi bi-bar-chart-fill"></span>
+                                </button>
+                                <div class="modal fade" id="exampleModal{{tarea.id}}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+
+                                                <h5 id="exampleModalLabel">Avance de Tarea: {{tarea.id}}
+                                                </h5>
+                                                <button type="button" class="btn-close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span class="bi bi-x-lg"></span>
+                                                </button>
+                                            </div>
+
+                                            <div class="modal-boddy">
+                                                <label for="avance" class="col-form-label">Valor:</label>
+                                                <input #avance type="number" class="form-control" id="avance">
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button id="btnConfirmar{{tarea.id}}" type="button"
+                                                    class="btn btn-success"
+                                                    (click)="getTarea(tarea.id, avance.value)"
+                                                    data-dismiss="modal">Modificar</button>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-container>
+
+                </tbody>
+            </table>
+            <mat-paginator [length]="tareas.length" [pageSize]="5" [pageSizeOptions]="[3, 5, 10, 25, 100]"
+                aria-label="Select page" (page)="cambiarpagina($event)">
+            </mat-paginator>
+        </div>
+
+
+
     </div>
-    </div>
-    <div class="containerr">
 
-      <div class="row">
-          <div class="col">
-              <h5 id="titulo">Tareas activas</h5>
-          </div>
-
-      </div>
-
-      <div class="table-responsive" id="table_refresh">
-          <table class="table table-striped">
-              <thead>
-                  <tr>
-                      <th scope="col">Numero</th>
-                      <th scope="col">Descripcion</th>
-                      <th scope="col">Avance</th>
-                      <th scope="col">Modificar Avance</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <ng-container *ngFor="let tarea of tareas | slice:desde:hasta let i=index">
-                      <tr  *ngIf="tarea.avance != '100'" >
-                          <td>{{tarea.numero}}</td>
-                          <td>{{tarea.descripcion}}</td>
-                          <td>{{tarea.avance}}</td>
-                          <td>
-                              <button id="btnUpdate" class="btn btn-info btn-xs" data-toggle="modal"
-                                  data-target="#exampleModal" [attr.data-target]="'#exampleModal'+tarea.id">
-                                  <span class="bi bi-bar-chart-fill"></span>
-                              </button>
-                              <div class="modal fade" id="exampleModal{{tarea.id}}" tabindex="-1"
-                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog">
-                                      <div class="modal-content">
-                                          <div class="modal-header">
-
-                                              <h5  id="exampleModalLabel">Avance de Tarea: {{tarea.id}}
-                                              </h5>
-                                              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-                                                <span class="bi bi-x-lg"></span>
-                                            </button>
-                                          </div>
-
-                                      <div class="modal-boddy">
-                                                  <label for="avance" class="col-form-label">Valor:</label>
-                                                  <input #avance type="number" class="form-control" id="avance">
-
-                                      </div>
-                                                  <div class="modal-footer">
-                                                      <button type="button" class="btn btn-danger"
-                                                          data-dismiss="modal">Cancelar</button>
-                                                      <button id="btnConfirmar{{tarea.id}}" type="button"
-                                                          class="btn btn-success" (click)="getTarea(tarea.id, avance.value)"
-                                                          data-dismiss="modal">Modificar</button>
-
-                                              </div>
-
-
-                                      </div>
-                                  </div>
-                              </div>
-                          </td>
-                      </tr>
-                  </ng-container>
-
-              </tbody>
-          </table>
-          <mat-paginator [length]="tareas.length" [pageSize]="5" [pageSizeOptions]="[3, 5, 10, 25, 100]"
-              aria-label="Select page" (page)="cambiarpagina($event)">
-          </mat-paginator>
-      </div>
-
-
-
-  </div>
-
-</form>
 </div>
-

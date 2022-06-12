@@ -200,4 +200,19 @@ public function getFotosByI($id){
    ], 200);
 }
 
+public function getRuta($filename){
+    return response()->file(storage_path('app/public/fotos/'.$filename));
+   
+}
+
+public function liberar($name){
+    \Storage::disk('fotos')->delete($name);
+    return response()->json([
+        'status'=>'success',
+        'code'=>200,
+        'data'=>$name
+       ], 200);
+ 
+}
+
 }

@@ -197,5 +197,19 @@ public function getDocumentos($filename){
     }
 }
 
+public function getRuta($filename){
+    return response()->file(storage_path('app/public/archivos/'.$filename));
+   
+}
 
+
+public function liberar($name){
+    \Storage::disk('archivos')->delete($name);
+    return response()->json([
+        'status'=>'success',
+        'code'=>200,
+        'data'=>$name
+       ], 200);
+ 
+}
 }

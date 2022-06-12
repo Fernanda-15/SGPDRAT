@@ -44,4 +44,10 @@ export class ArchivosService{
         return this._http.put(this.url+'archivos/'+archivos.id,params,{headers:httpHeaders});
     }
 
+    public liberar(id:number):Observable<any>{
+        let httpHeaders =new HttpHeaders().append('Content-Type','application/x-www-form-urlencoded');//.append('token',this.token)
+        return this._http.get(this.url+'archivos/liberar/'+id,{headers:httpHeaders});
+    }  
+
+
 }
