@@ -17,6 +17,7 @@ export class AppComponent {
   public identity:any;
   private token:any;
   private times:number;
+  public checked:boolean;
 
   constructor(
     public _userService:UserService,
@@ -34,6 +35,7 @@ export class AppComponent {
     this._router.navigate(['login']);
     }
     this.times=0;
+    this.checked = false;
   }
 
   public loadStorage(){
@@ -58,6 +60,11 @@ export class AppComponent {
       }
     }
    }
+   checkValue(event: any){
+    console.log(event);
+  }
 
-
+  changeChecked(){
+    this.checked = !this.checked;
+  }
 }
