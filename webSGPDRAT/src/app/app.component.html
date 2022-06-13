@@ -17,7 +17,7 @@
 
        </header>
 
-      <input type="checkbox" id="btn-menu" *ngIf="identity.rol != 'null'">
+      <input [checked]="checked" (click)="changeChecked()" type="checkbox" id="btn-menu" *ngIf="identity.rol != 'null'">
       <div class="container-menu">
         <div class="sidebar">
 
@@ -27,18 +27,18 @@
 
         <button mat-button [matMenuTriggerFor]="proyectos"><i class="bi bi-folder-fill"></i>Proyectos</button>
         <mat-menu #proyectos="matMenu">
-          <button mat-menu-item routerLink="/proyecto-create" *ngIf="identity.rol=='admin' || identity.rol=='ingeniero'">Agregar</button>
-          <button mat-menu-item routerLink="/proyecto-list">Lista</button>
+          <button mat-menu-item routerLink="/proyecto-create" *ngIf="identity.rol=='admin' || identity.rol=='ingeniero'" (click)="changeChecked()">Agregar</button>
+          <button mat-menu-item routerLink="/proyecto-list" (click)="changeChecked()">Lista</button>
         </mat-menu>
 
         <button mat-button [matMenuTriggerFor]="usuarios" *ngIf="identity.rol == 'admin'"><i class="bi bi-people-fill"></i>Usuarios</button>
         <mat-menu #usuarios="matMenu">
-          <button mat-menu-item routerLink="/user-register" >Agregar</button>
-          <button mat-menu-item routerLink="/user-list">Lista</button>
+          <button mat-menu-item routerLink="/user-register" (click)="changeChecked()" >Agregar</button>
+          <button mat-menu-item routerLink="/user-list" (click)="changeChecked()">Lista</button>
         </mat-menu>
 
-        <button mat-button routerLink="/logout/1"><i class="bi bi-box-arrow-right"></i>Cerrar Sesión</button>
-        <button mat-button routerLink="/about"><i class="bi bi-info-circle-fill"></i>Acerca de</button>
+        <button mat-button routerLink="/logout/1" (click)="changeChecked()"><i class="bi bi-box-arrow-right"></i>Cerrar Sesión</button>
+        <button mat-button routerLink="/about" (click)="changeChecked()"><i class="bi bi-info-circle-fill"></i>Acerca de</button>
           <label for="btn-menu" class="bi bi-x-lg"></label>
         </div>
       </div>

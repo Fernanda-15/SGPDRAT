@@ -94,6 +94,16 @@
   transform: translateX(0%);
 }
 
+#btn-menu:not(:checked) ~ .container-menu{
+  opacity: 0;
+  visibility: collapse;
+}
+
+#btn-menu:not(:checked) ~ .container-menu .sidebar{
+  transform: translateX(-100%);
+}
+
+
 .sidebar nav{
   transform: translateY(15%);
 }
