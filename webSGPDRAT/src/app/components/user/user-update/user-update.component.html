@@ -31,7 +31,7 @@
 
     <div id="info"  class="form-group">
         <label>Contraseña: </label>
-        <input type="text" name="contrasena" class="form-control" #contrasena="ngModel"
+        <input type="password" name="contrasena" class="form-control" #contrasena="ngModel"
         [(ngModel)]="user.contrasena" required pattern="^[a-zA-Z0-9\.]*$">
         <small *ngIf="!contrasena.valid && contrasena.touched" class="invalid-feedback d-block">
             La contraseña no es válida
