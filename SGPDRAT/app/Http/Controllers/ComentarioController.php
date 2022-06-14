@@ -7,11 +7,17 @@ use App\Models\Comentario;
 
 class ComentarioController extends Controller
 {
+    ///
+    ///CONSTRUCTOR DE LA CLASE,INYECTA MIDDLEWARE
+    ///
     public function __construct()
     {
        // $this->middleware('api.auth');
     }
     
+    ///
+    ///OBTIENE TODA LA INFORMACION DE LOS COMENTARIOS DESDE LA BASE DE DATOS
+    ///
     public function index(){  
         $data=Comentario::all(); //OBTIENE TODOS LOS REGISTROS EN LA DB
         $response=array(
@@ -22,6 +28,9 @@ class ComentarioController extends Controller
         return response()->json($response,200);
     }
 
+    ///
+    ///OBTIENE LA INFORMACION DE UN COMENTARIO A PARTIR DEL ID DEL MISMO
+    ///
     public function show($id){  
         $data=Comentario::find($id);  
         if(is_object($data)){  
@@ -40,6 +49,9 @@ class ComentarioController extends Controller
         return response()->json($response,$response['code']);
     }    
 
+    ///
+    ///RECIBE LA INFORMACION DEL COMENTARIO, VERIFICA LOS CAMPOS Y LO AGREGA A LA BASE DE DATOS
+    ///
     public function store(Request $request){
         $Comentario=$request;
         $json=$request->input('json',null);
@@ -70,7 +82,9 @@ class ComentarioController extends Controller
         }
         return response()->json($response,$response['code']);
     }
-
+    ///
+    ///OBTIENE LA INFORMACION DEL COMENTARIO, VERIFICA LOS CAMPOS Y ACTUALIZA LA INFORMACION EN LA BASE DE DATOS
+    ///
         public function update(Request $request){ 
             $Comentario=$request;
             $json=$request->input('json',null);
@@ -117,6 +131,10 @@ class ComentarioController extends Controller
             }
         return response()->json($response,$response['code']);
     }
+
+    ///
+    ///ELIMINA LA INFORMACION DE UN COMENTARIO A PARTIR DEL ID DEL MISMO
+    ///
     public function destroy($id){
         if(isset($id)){
             $deleted=Comentario::where('id',$id)->delete();
@@ -142,7 +160,9 @@ class ComentarioController extends Controller
         }
         return response()->json($response,$response['code']);
     }
-
+    ///
+    ///OBTIENE TODOS LOS COMENTARIOS DE UN PROYECTO A PARTIR DEL ID DEL MISMO
+    ///
     public function getComentarioByP($id){  
         $data = Comentario::Where('proyecto_id',$id)->get();
        return response()->json([

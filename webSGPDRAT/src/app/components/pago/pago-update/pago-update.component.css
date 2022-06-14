@@ -18,7 +18,13 @@
     width : 195px;
     
     
-    }
+}
+
+p{
+    font-size: 32px;
+    line-height: 40px;
+    text-align: center;
+  }
 
   
   

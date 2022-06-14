@@ -7,11 +7,17 @@ use App\Models\Log;
 
 class LogController extends Controller
 {
+    ///
+    ///CONSTRUCTOR DE LA CLASE, INYECTA MIDDLEWARE
+    ///
     public function __construct()
     {
        // $this->middleware('api.auth');
     }
     
+    ///
+    ///RETORNA TODOS LOS LOG DE LA BASE DE DATOS
+    ///
     public function index(){  
         $data=Log::all(); //OBTIENE TODOS LOS REGISTROS EN LA DB
         $response=array(
@@ -22,6 +28,9 @@ class LogController extends Controller
         return response()->json($response,200);
     }
 
+    ///
+    ///RETORNA LA INFORMACION DE UN LOG A PARTIR DE UN ID
+    ///
     public function show($id){  
         $data=Log::find($id);  
         if(is_object($data)){  
@@ -40,6 +49,9 @@ class LogController extends Controller
         return response()->json($response,$response['code']);
     }    
 
+    ///
+    ///RECIBE LA INFORMACION DEL LOG, VERIFICA LOS CAMPOS Y LO AGREGA A LA BASE DE DATOS
+    ///
     public function store(Request $request){
         $Log=$request;
         $json=$request->input('json',null);
@@ -73,6 +85,9 @@ class LogController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    ///
+    ///RECIBE LA INFORMACION DEL LOG, VERIFICA LOS CAMPOS Y LO ACTUALIZA EN LA BASE DE DATOS
+    ///
     public function update(Request $request){ 
         $Log=$request;
         $json=$request->input('json',null);
@@ -120,6 +135,9 @@ class LogController extends Controller
         }
         return response()->json($response,$response['code']);
     }
+    ///
+    ///ELIMINA UN LOG DE LA BASE DE DATOS A PARTIR DEL ID DEL MISMO 
+    ///
     public function destroy($id){
         if(isset($id)){
             $deleted=Log::where('id',$id)->delete();
@@ -146,7 +164,9 @@ class LogController extends Controller
         return response()->json($response,$response['code']);
     }
 
-
+    ///
+    ///RETORNA TODOS LOS LOGS DE UN PROYECTO A PARTIR DEL ID DEL MISMO
+    ///
     public function getLogByP($id){  
         $data = Log::Where('proyecto_id',$id)->get();
        return response()->json([

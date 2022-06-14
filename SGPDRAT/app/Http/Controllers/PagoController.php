@@ -7,11 +7,18 @@ use App\Models\Pago;
 
 class PagoController extends Controller
 {
+
+    ///
+    ///CONSTRUCTOR DE LA CLASE, INYECTA MIDDLEWARE
+    ///
     public function __construct()
     {
        // $this->middleware('api.auth');
     }
     
+    ///
+    ///RETORNA TODOS LOS REGISTROS DE PAGOS DE LA BASE DE DATOS
+    ///
     public function index(){  
         $data=Pago::all(); //OBTIENE TODOS LOS REGISTROS EN LA DB
         $response=array(
@@ -22,6 +29,9 @@ class PagoController extends Controller
         return response()->json($response,200);
     }
 
+    ///
+    ///RECIBE UN ID Y RETORNA LA INFORMACION DEL PAGO CON ESE ID
+    ///
     public function show($id){  
         $data=Pago::find($id);  
         if(is_object($data)){  
@@ -40,6 +50,9 @@ class PagoController extends Controller
         return response()->json($response,$response['code']);
     }    
 
+    ///
+    ///RETORNA TODOS LOS PAGOS QUE PERTENEZCAN A UN PROYECTO A PARTIR DE UN ID
+    ///
     public function getPagoByP($id){  
         $data = Pago::Where('proyecto_id',$id)->get();
 
@@ -50,6 +63,9 @@ class PagoController extends Controller
        ], 200);
     }
 
+    ///
+    ///RECIBE LOS DATOS DEL PAGO, VERIFICA LOS CAMPOS Y LO AGREGA A LA BASE DE DATOS
+    ///
     public function store(Request $request){
         $Pago=$request;
         $json=$request->input('json',null);
@@ -89,6 +105,9 @@ class PagoController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    ///
+    ///RECIBE LOS DATOS DEL PAGO, VERIFICA LOS CAMPOS Y LO ACTUALIZA EN LA BASE DE DATOS
+    ///
     public function update(Request $request){ 
         $Pago=$request;
         $json=$request->input('json',null);
@@ -139,6 +158,10 @@ class PagoController extends Controller
         }
         return response()->json($response,$response['code']);
     }
+
+    ///
+    ///RECIBE EL ID DEL PAGO Y SI EXISTE LO ELIMINA DE LA BASE DE DATOS
+    ///
     public function destroy($id){
         if(isset($id)){
             $deleted=Pago::where('id',$id)->delete();

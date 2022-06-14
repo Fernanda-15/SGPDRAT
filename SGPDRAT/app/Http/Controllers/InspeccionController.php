@@ -7,11 +7,18 @@ use App\Models\Inspeccion;
 
 class InspeccionController extends Controller
 {
+    ///
+    ///CONSTRUCTOR DE LA CLASE, INYECTA MIDDLEWARE
+    ///
     public function __construct()
     {
        // $this->middleware('api.auth');
     }
 
+
+    ///
+    ///RETORNA TODOS LOS REGISTROS DE INSPECCIONES DE LA BASE DE DATOS
+    ///
     public function index(){  
         $data=Inspeccion::all(); //OBTIENE TODOS LOS REGISTROS EN LA DB
         $response=array(
@@ -22,6 +29,9 @@ class InspeccionController extends Controller
         return response()->json($response,200);
     }
 
+    ///
+    ///RETORNA TODAS LAS INSPECCIONES DE UN PROYECTO A PARTIR DEL ID DEL MISMO
+    ///
     public function getInspeccionByP($id){  
         $data = Inspeccion::Where('proyecto_id',$id)->get();
 
@@ -32,6 +42,9 @@ class InspeccionController extends Controller
        ], 200);
     }
     
+    ///
+    ///RETORNA UNA INSPECCION A PARTIR DEL ID DE LA MISMA
+    ///
     public function show($id){  //BUSQUEDA POR ID
         $data=Inspeccion::find($id);  //BUSCA EL ID EN LA DB
         if(is_object($data)){  //VERIFICA SI ES OBJETO
@@ -50,6 +63,9 @@ class InspeccionController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    ///
+    ///RECIBE LA INFORMACION DE LA INSPECCION, VERIFICA LOS CAMPOS Y ALMACENA LA INSPECCION EN LA BASE DE DATOS
+    ///
     public function store(Request $request){
         $inspeccion=$request;
         $json=$request->input('json',null);
@@ -94,7 +110,9 @@ class InspeccionController extends Controller
         return response()->json($response,$response['code']);
     }
 
-    
+    ///
+    ///OBTIENE LA ULTIMA INSPECCION GUARDADA EN LA BASE DE DATOS
+    ///
     public function getUltimo(){ //Buscar el ID del proyecto
         $data = Inspeccion::latest('id')->first();
         $response=array(
@@ -105,6 +123,9 @@ class InspeccionController extends Controller
         return response()->json($response,200);
     }
 
+    ///
+    ///RECIBE LA INFORMACION DE LA INSPECCION, VERIFICA LOS CAMPOS Y ACTUALIZA LA INSPECCION EN LA BASE DE DATOS
+    ///
     public function update(Request $request){ 
         $inspeccion=$request;
         $json=$request->input('json',null);
@@ -160,6 +181,9 @@ class InspeccionController extends Controller
     return response()->json($response,$response['code']);
 }
 
+    ///
+    ///ELIMINA UNA INSPECCION A PARTIR DEL ID DE LA MISMA
+    ///
 public function destroy($id){
       
     if(isset($id)){
