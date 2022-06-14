@@ -48,25 +48,6 @@
 
   <div class="row">
     <div id="info" class="form-group">
-        <label>Peso: </label>
-        <input type="number" name="peso" class="form-control" #peso="ngModel"
-        [(ngModel)]="tarea.peso" required pattern="^[1-9]\d*$">
-        <small *ngIf="!peso.valid && peso.touched" class="invalid-feedback d-block">
-            El peso de la tarea no es válido
-        </small>
-    </div>
-
-    <div id="info" class="form-group">
-        <label>Avance: </label>
-        <input type="number" name="avance" class="form-control" #avance="ngModel"
-        [(ngModel)]="tarea.avance" required pattern="^[1-9]\d*$">
-        <small *ngIf="!avance.valid && avance.touched" class="invalid-feedback d-block">
-            El avance de tarea no es válido
-        </small>
-    </div>
-  </div>
-  <div class="row">
-    <div id="info" class="form-group">
         <label for="fecha_inicio">Fecha de inicio: </label>
         <input type="date" name="fecha_inicio" class="form-control" #fecha_inicio="ngModel" [(ngModel)]="tarea.fecha_inicio">
     </div>
@@ -75,6 +56,18 @@
         <label for="fecha_final">Fecha de finalización: </label>
         <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="tarea.fecha_final">
     </div>
+  </div>
+  
+  <div class="row">
+    <div id="info" class="form-group">
+        <label>Peso: </label>
+        <input type="number" name="peso" class="form-control" #peso="ngModel"
+        [(ngModel)]="tarea.peso" required pattern="^[1-9]\d*$">
+        <small *ngIf="!peso.valid && peso.touched" class="invalid-feedback d-block">
+            El peso de la tarea no es válido
+        </small>
+    </div>
+
   </div>
     <div class="row">
 

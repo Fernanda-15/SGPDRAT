@@ -16,7 +16,8 @@ import { UserService } from 'src/app/services/user.service';
   providers: [
     PagoService,
     LogService,
-    UserService
+    UserService,
+    ProyectoService
   ]
 })
 export class PagoUpdateComponent implements OnInit {
@@ -24,7 +25,7 @@ export class PagoUpdateComponent implements OnInit {
   
   public pago:Pago;
   public proyecto:Proyecto;
-  public pagos:any;
+  public pagos:any[]=[];
   public status: number;
   public reset=false;
   public log:Log;
@@ -46,32 +47,14 @@ export class PagoUpdateComponent implements OnInit {
 
   ngOnInit(): void { 
     this.loadStorage();
-    this.getProyecto();
     this.reset=false;
+    this.getPago();
   }
 
   public loadStorage(){
     this.identity=this._userService.getIdentity();
   }
 
-  getProyecto():void{
-    this._route.params.subscribe(params=>{
-    let id=params['id'];
-       this._proyectoService.getProyecto(id).subscribe(
-         response=>{
-           if(response.status=='success'){
-             this.proyecto=response.data;
-             this.loadPagos(this.proyecto.id);
-           }else{
-             this._router.navigate(['']);
-           }
-         },
-         error=>{
-          this._router.navigate(['']); 
-         }
-       );
-     });
-    }
  
   getPago():void{
 
@@ -83,6 +66,7 @@ export class PagoUpdateComponent implements OnInit {
         response=>{
           if(response.status=='success'){
             this.pago=response.data;
+            this.getProyecto();
           }
         },
         error=>{
@@ -92,6 +76,23 @@ export class PagoUpdateComponent implements OnInit {
     });
   }
 
+  getProyecto():void{
+   
+       this._proyectoService.getProyecto(this.pago.proyecto_id).subscribe(
+         response=>{
+           if(response.status=='success'){
+             this.proyecto=response.data;
+           }else{
+             this._router.navigate(['']);
+           }
+         },
+         error=>{
+          this._router.navigate(['']); 
+         }
+       );
+     
+    }
+  
   insertLogUpdate(proyectoid:number,texto:string){
     this.log = new Log(0,proyectoid,this.identity.nombreUsuario,"Se actualizó el pago "+texto,"");
     console.log(this.log);
@@ -111,7 +112,7 @@ export class PagoUpdateComponent implements OnInit {
         this._pagoService.update(this.pago).subscribe(
           response=>{
         if(response.code==200){
-          this.insertLogUpdate(this.pago.proyecto_id,this.pago.numero+" | Monto: "+this.pago.monto.toString()+" | N Transaccion: "+this.pago.numero_transaccion)
+        //  this.insertLogUpdate(this.pago.proyecto_id,this.pago.numero+" | Monto: "+this.pago.monto.toString()+" | N Transaccion: "+this.pago.numero_transaccion)
           form.reset();
           this._router.navigate(['/pago-list', this.proyecto.id]);
           }
@@ -140,20 +141,24 @@ export class PagoUpdateComponent implements OnInit {
    
   }
 
-
   pendiente():any{
-    let p:number=0;
     let deuda:number = 0;
     let abonos:number = 0;
     let sub:number = 0;
-    deuda = this.proyecto.monto_adjudicado;
-    for(let i in this.pagos){
-       abonos= abonos + (this.pagos[i].monto);
-     }  
-      sub = abonos + this.pago.monto;
-      p = deuda - abonos;
 
-      if(p != 0){
+    deuda = this.proyecto.monto_adjudicado;
+
+    if(this.pagos.length != 1){
+      for(let i in this.pagos){
+        abonos= abonos + (this.pagos[i].monto);
+      }  
+    }
+      sub = abonos + this.pago.monto;
+      this.pago.proyeccion = deuda - abonos;
+      console.log("Proyeccion", this.pago.proyeccion);
+      
+      console.log("PENDIENTE");
+      if(this.pago.proyeccion != 0){
         if(sub <= deuda){
           return true;
         }else{
@@ -169,6 +174,7 @@ export class PagoUpdateComponent implements OnInit {
     this._proyectoService.getPagos(id).subscribe(
       response=>{
           this.pagos = response.data;
+          this.getPendiente();
           console.log(this.pagos);
       },
       error=>{
@@ -177,6 +183,21 @@ export class PagoUpdateComponent implements OnInit {
     );
   }
 
+   getPendiente(){
+    let p:number=0;
+    let deuda:number = 0;
+    let abonos:number = 0;
+    let sub:number = 0;
+    deuda = this.proyecto.monto_adjudicado;
+    for(let i in this.pagos){
+       abonos= abonos + (this.pagos[i].monto);
+     }  
+      sub = abonos + this.pago.monto;
+      p = deuda - abonos;
+      this.pago.proyeccion=p;
+      console.log("GET PENDIENTE");
+      
+  }
   existeNP():any{
     let existe=0;
     console.log(this.pagos); 

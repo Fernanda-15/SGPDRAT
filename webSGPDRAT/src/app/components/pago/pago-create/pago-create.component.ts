@@ -123,7 +123,7 @@ export class PagoCreateComponent implements OnInit {
       response=>{
           this.pagos = response.data;
           this.getPendiente();
-          console.log(this.pagos);
+          console.log("LOAD PAGOS",this.pagos);
       },
       error=>{
         console.log(error);
@@ -160,6 +160,8 @@ export class PagoCreateComponent implements OnInit {
       sub = abonos + this.pago.monto;
       p = deuda - abonos;
       this.pago.proyeccion=p;
+      
+      console.log("PENDIENTE");
       if(p != 0){
         if(sub <= deuda){
           return true;
@@ -184,6 +186,7 @@ export class PagoCreateComponent implements OnInit {
       sub = abonos + this.pago.monto;
       p = deuda - abonos;
       this.pago.proyeccion=p;
+      console.log("GET PENDIENTE");
       
   }
 

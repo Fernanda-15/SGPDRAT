@@ -46,7 +46,7 @@ export class ProyectoInfoComponent implements OnInit {
   public pagos:any[]=[];
   public pago:Pago;
   public total:number;
-  
+  public pdf1:any;
   //PDF
   @ViewChild('htmlData') htmlData!: ElementRef;
   //PDF

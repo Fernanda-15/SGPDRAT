@@ -44,7 +44,6 @@
         <thead>
             <tr>
                 <th scope="col">Número</th>
-                <th scope="col">Proyección</th>
                 <th scope="col">Monto</th>
                 <th scope="col">Justificación</th>
                 <th scope="col">Numero de Transacción</th>
@@ -56,7 +55,6 @@
 
             <tr *ngFor="let pago of pagos | slice:desde:hasta let i=index">
                     <td>{{pago.numero}}</td>
-                    <td>{{pago.proyeccion}}</td>
                     <td>{{pago.monto}}</td>
                     <td>{{pago.justificacion}}</td>
                     <td>{{pago.numero_transaccion}}</td>
