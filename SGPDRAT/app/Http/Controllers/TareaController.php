@@ -7,11 +7,18 @@ use App\Models\Tarea;
 
 class TareaController extends Controller
 {
+
+    ///
+    ///CONSTRUCTOR DE LA CLASE,INYECTA MIDDLEWARE
+    ///
     public function __construct()
     {
        // $this->middleware('api.auth');
     }
 
+    ///
+    ///RETORNA TODOS LOS REGISTROS DE TAREA DE LA BASE DE DATOS
+    ///
     public function index(){  
         $data=Tarea::all(); //OBTIENE TODOS LOS REGISTROS EN LA DB
         $response=array(
@@ -22,6 +29,9 @@ class TareaController extends Controller
         return response()->json($response,200);
     }
 
+    ///
+    ///RECIBE UN ID Y RETORNA LA TAREA CON ESE ID
+    ///
     public function show($id){  
         $data=Tarea::find($id);  
         if(is_object($data)){  
@@ -40,6 +50,9 @@ class TareaController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    ///
+    ///RECIBE UN ID DEL PROYECTO Y RETORNA TODAS LAS TAREAS DEL PROYECTO
+    ///
     public function getTareaByP($id){  
         $data = Tarea::Where('proyecto_id',$id)->get();
 
@@ -50,6 +63,9 @@ class TareaController extends Controller
        ], 200);
     }
 
+    ///
+    ///RECIBE UN REQUEST CON LOS DATOS DE LA TAREA, VERIFICA LOS CAMPOS Y AGREGA LA TAREA A LA BASE DE DATOS
+    ///
     public function store(Request $request){
         $tarea=$request;
         $json=$request->input('json',null);
@@ -90,6 +106,10 @@ class TareaController extends Controller
         return response()->json($response,$response['code']);
     }
 
+
+    ///
+    ///RECIBE UN REQUEST CON LOS DATOS DE LA TAREA, VERIFICA LOS CAMPOS Y ACTUALIZA LA TAREA A LA BASE DE DATOS
+    ///
     public function update(Request $request){ 
             $tarea=$request;
             $json=$request->input('json',null);
@@ -143,6 +163,9 @@ class TareaController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    ///
+    ///RECIBE EL ID DE LA TAREA Y SI EXISTE LO ELIMINA DE LA BASE DE DATOS 
+    ///
     public function destroy($id){
         if(isset($id)){
             $deleted=Tarea::where('id',$id)->delete();
