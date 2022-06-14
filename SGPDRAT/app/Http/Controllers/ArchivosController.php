@@ -8,11 +8,17 @@ use App\Models\Archivos;
 
 class ArchivosController extends Controller
 {
+    ///
+    ///CONSTRUCTOR DE LA CLASE, INYECTA MIDDLEWARE
+    ///
     public function __construct()
     {
        // $this->middleware('api.auth');
     }
     
+    ///
+    ///OBTIENE TODA LA INFORMACION DE TODOS LOS ARCHIVOS DESDE LA BASE DE DATOS
+    ///
     public function index(){  
         $data=Archivos::all(); //OBTIENE TODOS LOS REGISTROS EN LA DB
         $response=array(
@@ -23,6 +29,9 @@ class ArchivosController extends Controller
         return response()->json($response,200);
     }
 
+    ///
+    ///OBTIENE LA INFORMACION DE UN ARCHIVO A PARTIR DEL ID DEL MISMO
+    ///
     public function show($id){  
         $data=Archivos::find($id);  
         if(is_object($data)){  
@@ -41,6 +50,9 @@ class ArchivosController extends Controller
         return response()->json($response,$response['code']);
     }    
 
+    ///
+    ///RECIBE LA INFORMACION DE UN ARCHIVO, VERIFICA LOS CAMPOS Y LO ALMACENA EN LA BASE DE DATOS
+    ///
     public function store(Request $request){
         $archivos=$request;
         $json=$request->input('json',null);
@@ -72,6 +84,9 @@ class ArchivosController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    ///
+    ///RECIBE LA INFORMACION DE UN ARCHIVO, VERIFICA LOS CAMPOS Y LO ACTUALIZA EN LA BASE DE DATOS
+    ///
     public function update(Request $request){ 
         $archivos=$request;
         $json=$request->input('json',null);
@@ -118,6 +133,9 @@ class ArchivosController extends Controller
         }
     return response()->json($response,$response['code']);
 }
+    ///
+    ///ELIMINA LA INFORMACION DE UN ARCHIVO EN LA BASE DE DATOS A PARTIR DEL ID DEL MISMO
+    ///
 public function destroy($id){
     if(isset($id)){
         $data=Archivos::find($id);
@@ -147,6 +165,9 @@ public function destroy($id){
     return response()->json($response,$response['code']);
 }
 
+    ///
+    ///SUBE UN ARCHIVO, PRIMERO VERIFICA EL FORMATO Y LUEGO LO AGREGA AL DIRECTORIO DE ARCHIVOS 
+    ///
 public function uploadArchivo(Request $request){
     $file=$request->file('file0');
     $validate=\Validator::make($request->all(),[
@@ -171,6 +192,10 @@ public function uploadArchivo(Request $request){
     }
     return response()->json($response,$response['code']);
 }
+
+    ///
+    ///RETORNA LOS ARCHIVOS DE UN INSPECCION
+    ///
 public function getArchivosByI($id){  
     $data = Archivos::Where('inspeccion_id',$id)->get();
 
@@ -181,7 +206,9 @@ public function getArchivosByI($id){
    ], 200);
 }
 
-
+    ///
+    ///RETORNA LOS DOCUMENTOS ALMACENADOS EN EL DIRECTORIO
+    ///
 public function getDocumentos($filename){
     $exist=\Storage::disk('archivos')->exists($filename);
     if($exist){
@@ -197,12 +224,17 @@ public function getDocumentos($filename){
     }
 }
 
+    ///
+    ///OBTIENE LA RUTA DE LOS ARCHIVOS
+    ///
 public function getRuta($filename){
     return response()->file(storage_path('app/public/archivos/'.$filename));
    
 }
 
-
+    ///
+    ///ELIMINA UN ARCHIVO ALMACENADO EN EL DIRECTORIO
+    ///
 public function liberar($name){
     \Storage::disk('archivos')->delete($name);
     return response()->json([

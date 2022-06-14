@@ -8,12 +8,18 @@ use App\Models\User;
 class JwtAuth{
 
     private $key; //llave privada de nuestra aplicacion
+    ///
+    ///CONSTRUCTOR DE LA CLASE, CONTIENE LA LLAVE UNICA
+    ///
     function __construct() //inicializa llave
     {
         $this->key='23und2end023r02dn';
         //esta llave es unica
     }
 
+    ///
+    ///FUNCION INICIAR SESION, GENERA UNA IDENTIDAD DEL USUARIO
+    ///
     public function signin($nombreUsuario,$contrasena){ //GENERA EL TOKEN PARA UN USUARIO AUTENTICADO
         //entrar login cifrar token, verifica user password
         $user=User::where([ //hace el select,mueve a primer registro
@@ -47,6 +53,9 @@ class JwtAuth{
         //por eso devuelve arreglo porque solo trabaja en controladores
     }
 
+    ///
+    ///VERIFICA EL TOKEN INGRESADO
+    ///
     public function verify($token,$getIdentity=false){ // verifica token y devuelve cifrado si es verdadero
         $auth=false;
         try{
