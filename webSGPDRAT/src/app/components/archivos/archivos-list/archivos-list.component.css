@@ -36,6 +36,23 @@
     margin: 4px;
   }
   
+  
+.modal-content{
+  width: 300px;
+  border: dashed 4px rgba(20, 172, 232, 0.825);
+}
+.modal-boddy{
+  margin-left: 20px;
+  margin-right: 20px;
+
+  align-items: center;
+}
+
+.modal-footer{
+  margin-left: 0px;
+  margin-right: 30px;
+
+}
 
   
   
