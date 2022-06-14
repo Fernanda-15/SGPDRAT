@@ -8,11 +8,17 @@ use App\Models\Fotos;
 
 class FotosController extends Controller
 {
+    ///
+    ///CONSTRUCTOR DE LA CLASE, INYECTA MIDDLEWARE
+    ///
     public function __construct()
     {
        // $this->middleware('api.auth');
     }
 
+    ///
+    ///RETORNA TODAS LAS INFORMACION DE LAS FOTOS DESDE LA BASE DE DATOS 
+    ///
     public function index(){  
         $data=Fotos::all(); //OBTIENE TODOS LOS REGISTROS EN LA DB
         $response=array(
@@ -23,6 +29,9 @@ class FotosController extends Controller
         return response()->json($response,200);
     }
 
+    ///
+    ///RETORNA LA INFORMACION DE UNA FOTO A PARTIR DEL ID DE LA MISMA
+    ///
     public function show($id){  
         $data=Fotos::find($id);  
         if(is_object($data)){  
@@ -41,6 +50,9 @@ class FotosController extends Controller
         return response()->json($response,$response['code']);
     }    
 
+    ///
+    ///OBTIENE LA INFORMACION DE LA FOTO, VERIFICA LOS CAMPOS Y AGREGA LA INFORMACION A LA BASE DE DATOS
+    ///
     public function store(Request $request){
         $fotos=$request;
         $json=$request->input('json',null);
@@ -72,6 +84,9 @@ class FotosController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    ///
+    ///OBTIENE LA INFORMACION DE LA FOTO, VERIFICA LOS CAMPOS Y ACTUALIZA LA INFORMACION A LA BASE DE DATOS
+    ///
     public function update(Request $request){ 
         $fotos=$request;
         $json=$request->input('json',null);
@@ -118,6 +133,10 @@ class FotosController extends Controller
         }
     return response()->json($response,$response['code']);
 }
+
+    ///
+    ///ELIMINA LA INFORMACION DE UNA FOTO DE LA BASE DE DATOS A PARTIR DEL ID DE LA MISMA
+    ///
 public function destroy($id){
     if(isset($id)){
         $data=Fotos::find($id);
@@ -147,6 +166,9 @@ public function destroy($id){
     return response()->json($response,$response['code']);
 }
 
+    ///
+    ///RECIBE UNA IMAGEN, VERIFICA EL FORMATO Y LA ALMACENA EN LA CARPETA DE FOTOS 
+    ///
 public function uploadImage(Request $request){
     $image=$request->file('file0');
     $validate=\Validator::make($request->all(),[
@@ -175,6 +197,10 @@ public function uploadImage(Request $request){
     return response()->json($response,$response['code']);
 }
 
+
+    ///
+    ///OBTIENE UNA IMAGEN DESDE EL DIRECTORIO DE FOTOS
+    ///
 public function getImage($filename){
     $exist=\Storage::disk('fotos')->exists($filename);
     if($exist){
@@ -190,7 +216,9 @@ public function getImage($filename){
     }
 }
 
-
+    ///
+    ///OBTIENE LAS FOTOS DE UNA INSPECCION A PARTIR DEL ID DE LA MISMA
+    ///
 public function getFotosByI($id){  
     $data = Fotos::Where('inspeccion_id',$id)->get();
    return response()->json([
@@ -200,11 +228,17 @@ public function getFotosByI($id){
    ], 200);
 }
 
+    ///
+    ///OBTIENE LA RUTA DE LAS FOTOS
+    ///
 public function getRuta($filename){
     return response()->file(storage_path('app/public/fotos/'.$filename));
    
 }
 
+    ///
+    ///ELIMINA LA FOTO DE UN DIRECTORIO
+    ///
 public function liberar($name){
     \Storage::disk('fotos')->delete($name);
     return response()->json([

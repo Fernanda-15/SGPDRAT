@@ -8,15 +8,24 @@ use App\Helpers\JwtAuth;
 
 class UserController extends Controller
 {
+    ///
+    ///CONSTRUCTOR DE LA CLASE, SE INYECTA EL MIDDLEWARE
+    ///
     public function __construct()
     {
         $this->middleware('api.auth',['except'=>['login','store','index','destroy','update','show','getIdentity']]);
     }
 
+    ///
+    /// TEST USUARIO
+    ///
     public function test(Request $request){
         return "Test Controlador Usuario";
     }
 
+    ///
+    ///LOGIN -> RECIBE USERNAME Y PASSWORD, VERIFICA LAS CREDENCIALES CON EL JWTAUTH Y RETORNA EL SIGN IN
+    ///
     public function login(Request $request){
         $jwtAuth= new JwtAuth();
         $json=$request->input('json',null);
@@ -45,6 +54,10 @@ class UserController extends Controller
         }
     }
 
+
+    ///
+    ///OBTIENE LA IDENTIDAD LOGEADA
+    ///
     public function getIdentity(Request $request){ 
         $jwtAuth=new JwtAuth();
         $token=$request->header('token');
@@ -52,10 +65,18 @@ class UserController extends Controller
         return $response;
     }
 
+
+    ///
+    ///NO TIENE FUNCIONALIDAD
+    ///
     public function register(Request $request){
         return "Registro de Usuario";
     }
 
+
+    ///
+    ///RETORNA TODOS LOS USUARIOS 
+    ///
     public function index(){  
         $data=User::all(); //OBTIENE TODOS LOS REGISTROS EN LA DB
         $response=array(
@@ -66,6 +87,9 @@ class UserController extends Controller
         return response()->json($response,200);
     }
 
+    ///
+    ///BUSCA UN USUARIO POR ID Y SI EXISTE LO RETORNA
+    ///
     public function show($id){  //BUSQUEDA POR ID
         $data=User::find($id);  //BUSCA EL ID EN LA DB
         if(is_object($data)){  //VERIFICA SI ES OBJETO
@@ -84,7 +108,11 @@ class UserController extends Controller
         return response()->json($response,$response['code']);
     }
 
-    //PARA DESABILITAR VERIFICACION CSRF  app/Http/Kernel.php
+
+    ///
+    ///RECIBE UN REQUEST CON LOS DATOS DEL USUARIO, VERIFICA QUE LOS CAMPOS ESTEN CORRECTOS
+    ///CREA UNA NUEVA ENTIDAD USER, ENCRIPTA LA CONTRASENA Y LO ALMACENA EN LA BASE DE DATOS
+    ///
     public function store(Request $request){
         $user=$request;
         $json=$request->input('json',null);
@@ -126,6 +154,10 @@ class UserController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    ///
+    ///RECIBE UN REQUEST CON LOS DATOS DEL USUARIO A ACTUALIZAR, VERIFICA LOS CAMPOS
+    ///Y ACTUALIZA EL USUARIO EN LA BASE DE DATOS
+    ///
     public function update(Request $request){ 
         $user=$request;
             $json=$request->input('json',null);
@@ -178,8 +210,10 @@ class UserController extends Controller
         return response()->json($response,$response['code']);
     }
 
-    public function destroy($id){
-      
+    ///
+    ///RECIBE UN ID Y ELIMINA EL USUARIO CON ESE ID EN LA BASE DE DATOS
+    ///
+    public function destroy($id){      
         if(isset($id)){
             $deleted=User::where('id',$id)->delete();
         if($deleted){
@@ -205,6 +239,9 @@ class UserController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    ///
+    ///RECIBE EL ID Y EL ROL DEL USUARIO Y LO ACTUALIZA
+    ///
     public function updateRole(Request $request){
         $user=$request;
         $json=$request->input('json',null);
@@ -243,6 +280,9 @@ class UserController extends Controller
     }
     }
 
+    ///
+    ///BUSCA POR ID EL USUARIO Y RETORNA EL ROL DEL MISMO
+    ///
     public function getRole($id){  //BUSQUEDA POR ID
         info($id);
         $data=User::find($id);  //BUSCA EL ID EN LA DB

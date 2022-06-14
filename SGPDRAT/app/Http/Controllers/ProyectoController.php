@@ -8,11 +8,17 @@ use App\Models\Proyecto;
 class ProyectoController extends Controller
 {
 
+    ///
+    ///CONSTRUCTOR DE LA CLASE, INYECTA MIDDLEWARE
+    ///
     public function __construct()
     {
        // $this->middleware('api.auth');
     }
 
+    ///
+    ///RETORNA TODOS LOS REGISTROS DE PROYECTOS ALMACENADOS EN LA BASE DE DATOS
+    ///
     public function index(){
         $data=Proyecto::all(); //OBTIENE TODOS LOS REGISTROS EN LA DB
         $response=array(
@@ -23,6 +29,9 @@ class ProyectoController extends Controller
         return response()->json($response,200);
     }
 
+    ///
+    ///RECIBE UN ID DEL PROYECTO Y RETORNA LOS DATOS DEL MISMO SI EXISTE EN LA BASE DE DATOS
+    ///
     public function show($id){  //BUSQUEDA POR ID
         $data=Proyecto::find($id);  //BUSCA EL ID EN LA DB
         if(is_object($data)){  //VERIFICA SI ES OBJETO
@@ -41,6 +50,9 @@ class ProyectoController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    ///
+    ///OBTIENE EL ULTIMO PROYECTO DE LA BASE DE DATOS
+    ///
     public function getUltimo(){ //Buscar el ID del proyecto
         $data = Proyecto::latest('id')->first();
         $response=array(
@@ -51,6 +63,9 @@ class ProyectoController extends Controller
         return response()->json($response,200);
     }
 
+    ///
+    ///RECIBE UN REQUEST CON LA INFORMACION DEL PROYECTO, VERIFICA LOS CAMPOS Y AGREGA EL PROYECTO A LA BASE DE DATOS
+    ///
     public function store(Request $request){
         $proyecto=$request;
         $json=$request->input('json',null);
@@ -96,6 +111,9 @@ class ProyectoController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    ///
+    ///RECIBE UN REQUEST CON LA INFORMACION DEL PROYECTO, VERIFICA LOS CAMPOS Y AGREGA EL PROYECTO A LA BASE DE DATOS
+    ///
     public function update(Request $request){
             $proyecto=$request;
             $json=$request->input('json',null);
@@ -151,6 +169,9 @@ class ProyectoController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    ///
+    ///RECIBE EL ID DEL PROYECTO Y SI EXISTE EN LA BASE DE DATOS LO ELIMINA
+    ///
     public function destroy($id){
 
         if(isset($id)){
@@ -178,6 +199,9 @@ class ProyectoController extends Controller
         return response()->json($response,$response['code']);
     }
 
+    ///
+    ///OBTIENE LOS PROYECTOS A PARTIR DEL ID DE UN USUARIO
+    ///
     public function getProyectoByU($id){
         $data = Proyecto::Where('user_id',$id)->get();
        return response()->json([
@@ -187,6 +211,9 @@ class ProyectoController extends Controller
        ], 200);
     }
 
+    ///
+    ///BUSCA LOS PROYECTOS CON UN NOMBRE QUE CONTENGA LAS MISMAS LETRAS QUE LA BUSQUEDA
+    ///
     public function buscar($valor){
         $data = Proyecto::Where('nombre', 'like' , "%$valor%")->get();
        return response()->json([
