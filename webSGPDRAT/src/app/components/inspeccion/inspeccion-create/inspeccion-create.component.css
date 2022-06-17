@@ -87,5 +87,17 @@ color: rgb(0, 0, 0);
 
 }
 
+#opciones{
+  text-decoration:none; 
+  color:black;
 
+}
+
+
+#titulo{
+        font-size: 32px;
+        line-height: 40px;
+        text-align: center;
+        font-family: 'Josefin Sans', sans-serif;
+}
 

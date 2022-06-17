@@ -41,60 +41,84 @@
 </div>
 
 <div class="container">
-    <!--FORMULARIO-->
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block" id="opciones" type="button" data-toggle="collapse" data-target="#UNO" aria-expanded="true" aria-controls="collapseOne">
+          Datos de la inspección
+        </button>
+      </h2>
+    </div>
+
+    <div id="UNO" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+         <!--FORMULARIO-->
     <form id="formInspeccion" class="col-md-6 mr-auto ml-auto" #createInspeccionForm="ngForm"
-        (ngSubmit)="onSubmit(createInspeccionForm)">
-        <!--TITULO-->
-        <div class="form-group">
-            <p>Agregar Inspección</p>
+    (ngSubmit)="onSubmit(createInspeccionForm)">
+    <!--TITULO-->
+    <div class="form-group" style="margin-bottom: 30px;">
+        <p>Agregar Inspección</p>
+    </div>
+    <div class="row" >
+        <div id="info" class="form-grou col-md-6">
+            <label>Numero de inspeccion: </label>
+            <input type="number" name="numero" class="form-control" #numero="ngModel"
+                [(ngModel)]="inspeccion.numero" required pattern="^[1-9]\d*$">
+            <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
+                El número de inspección no es válido
+            </small>
         </div>
-        <div class="row">
-            <div id="info" class="form-grou col-md-6">
-                <label>Numero de inspeccion: </label>
-                <input type="number" name="numero" class="form-control" #numero="ngModel"
-                    [(ngModel)]="inspeccion.numero" required pattern="^[1-9]\d*$">
-                <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
-                    El número de inspección no es válido
-                </small>
-            </div>
-            <div id="info" class="form-group col-md-6">
-                <label>Firma: </label>
-                <input type="text" name="firma" class="form-control" #firma="ngModel" [(ngModel)]="inspeccion.firma"
-                    required pattern="^[a-zA-Z0-9\.]*$">
-                <small *ngIf="!firma.valid && firma.touched" class="invalid-feedback d-block">
-                    La firma no es válida
-                </small>
-            </div>
+        <div id="info" class="form-group col-md-6">
+            <label>Firma: </label>
+            <input type="text" name="firma" class="form-control" #firma="ngModel" [(ngModel)]="inspeccion.firma"
+                required pattern="^[a-zA-Z0-9\.]*$">
+            <small *ngIf="!firma.valid && firma.touched" class="invalid-feedback d-block">
+                La firma no es válida
+            </small>
         </div>
-        <div class="row">
-            <div id="info" class="form-group col-md-6" style="margin-right:200px;margin-top: 25px;">
-                <mat-form-field appearance="fill" style="width:200%;">
-                    <mat-label>Escriba sus observaciones...</mat-label>
-                    <textarea name="observaciones" #observaciones="ngModel" [(ngModel)]="inspeccion.observaciones"
-                        matInput placeholder="Escriba sus observaciones..."></textarea>
-                </mat-form-field>
-                <!--<input type="text" name="observaciones" class="form-control" #observaciones="ngModel"
-                [(ngModel)]="inspeccion.observaciones" required pattern="^[a-zA-Z0-9\.]*$"> -->
-                <small *ngIf="!observaciones.valid && observaciones.touched" class="invalid-feedback d-block">
-                    La observación no es válida
-                </small>
-            </div>
+    </div>
+    <div class="row">
+        <div id="info" class="form-group col-md-6" style="margin-right:200px;margin-top: 25px;">
+            <mat-form-field appearance="fill" style="width:200%;">
+                <mat-label>Escriba sus observaciones...</mat-label>
+                <textarea name="observaciones" #observaciones="ngModel" [(ngModel)]="inspeccion.observaciones"
+                    matInput placeholder="Escriba sus observaciones..."></textarea>
+            </mat-form-field>
+            <!--<input type="text" name="observaciones" class="form-control" #observaciones="ngModel"
+            [(ngModel)]="inspeccion.observaciones" required pattern="^[a-zA-Z0-9\.]*$"> -->
+            <small *ngIf="!observaciones.valid && observaciones.touched" class="invalid-feedback d-block">
+                La observación no es válida
+            </small>
         </div>
+    </div>
 
-       
-        <div class="row">
-            <div style="position: center; margin-top: 40px;">
-                <input id="boton" type="submit" value="Agregar" class="btn btn-success mr-2"
-                    [disabled]="createInspeccionForm.invalid">
-            </div>
+   
+    <div class="row">
+        <div style="position: center; margin-top: 40px;">
+            <input id="boton" type="submit" value="Agregar" class="btn btn-success mr-2"
+                [disabled]="createInspeccionForm.invalid">
         </div>
-        
-    </form>
-
+    </div>
     
-        <!--IMAGENES-->
-        <div class="row" >
-            <div style="position: center; margin-top: 20px;">
+</form>
+<!--FORMULARIO-->
+       </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block collapsed"  id="opciones" type="button" data-toggle="collapse" data-target="#DOS" aria-expanded="false" aria-controls="collapseTwo">
+          Imagenes
+        </button>
+      </h2>
+    </div>
+    <div id="DOS" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+         <!--IMAGENES-->
+         <div class="row" >
+            <div>
                 <angular-file-uploader  *ngIf="fotos.length != 10" [config]="afuConfig" [resetUpload]=reset (ApiResponse)="imageUploaded($event)">
                 </angular-file-uploader>
             </div>
@@ -159,12 +183,23 @@
 
 
         </div>
-
-    
-     <!--DOCUMENTOS-->
+        <!--IMAGENES-->
+       </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree" >
+      <h2 class="mb-0" >
+        <button class="btn btn-link btn-block collapsed"  id="opciones" type="button" data-toggle="collapse" data-target="#TRES" aria-expanded="false" aria-controls="collapseThree">
+          Documentos
+        </button>
+      </h2>
+    </div>
+    <div id="TRES" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+        <!--DOCUMENTOS-->
      <div class="row" id="documentos">
-      
-        <div style="position: center; margin-top: 29px;">
+        <div>
             <angular-file-uploader  *ngIf="archivos.length != 5" [config]="afuConfig2" [resetUpload]=reset (ApiResponse)="docUploaded($event)">
             </angular-file-uploader>
         </div>
@@ -234,10 +269,26 @@
 
 
     </div>
+    <!--DOCUMENTOS-->
+      </div>
+    </div>
+  </div>
 
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block"  id="opciones" type="button" data-toggle="collapse" data-target="#CUATRO" aria-expanded="true" aria-controls="collapseOne">
+          Avance de las tareas
+        </button>
+      </h2>
+    </div>
 
+    <div id="CUATRO" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+       
+    <!--TAREAS-->
 
-    <div class="containerr" style=" margin-top: 30px;" >
+    <div class="containerr" >
 
         <div class="row">
             <div class="col">
@@ -246,7 +297,7 @@
 
         </div>
         <div class="table-responsive" id="table_refresh"  *ngIf="tareas.length != 0">
-            <table class="table table-striped" style="position: center;">
+            <table class="table table-striped" style="position: center; margin-top: 10px;">
                 <thead>
                     <tr>
                         <th scope="col">Numero</th>
@@ -313,5 +364,12 @@
 
 
     </div>
+    <!--TAREAS-->
+      </div>
+    </div>
+  </div>
+  
+</div>
+
 
 </div>
