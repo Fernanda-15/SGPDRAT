@@ -65,6 +65,7 @@ color: rgb(0, 0, 0);
   color:black;
 
 }
+<<<<<<< HEAD
 
 
 #titulo{
@@ -73,5 +74,14 @@ color: rgb(0, 0, 0);
         text-align: center;
         font-family: 'Josefin Sans', sans-serif;
 }
+=======
+>>>>>>> 43ea159967aa5804f3ffeae00cd97ed53b085b40
 
+
+#titulo{
+        font-size: 32px;
+        line-height: 40px;
+        text-align: center;
+        font-family: 'Josefin Sans', sans-serif;
+}
 
