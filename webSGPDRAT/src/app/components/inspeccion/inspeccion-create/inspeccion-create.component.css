@@ -3,7 +3,7 @@
   /* align-items: center; */
   /* display:flex;
   flex-direction: column; */
-  background-color: #ffffff;
+  background-color: white;
   border:outset #0080be;
   border-radius: 4px;
   box-sizing: border-box;
@@ -26,7 +26,15 @@ p{
 }
 
 
+.card{
+  margin-top: 10px;
+}
 
+.card-header{
+  background-color: #f7f7f7;
+  height:55px;
+  align-items: center;
+}
 
 
 h5{
@@ -62,8 +70,7 @@ color: rgb(0, 0, 0);
 
 #opciones{
   text-decoration:none;
-  color:black;
-
+  color: #015397;
 }
 
 
@@ -74,6 +81,3 @@ color: rgb(0, 0, 0);
         font-family: 'Josefin Sans', sans-serif;
 }
 
-.accordion{
-  /* display: block; */
-}

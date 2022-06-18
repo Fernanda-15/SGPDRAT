@@ -394,6 +394,8 @@ export class InspeccionCreateComponent implements OnInit {
           if (this.archivo.nombre != "") {
             this.onSubmit3();
           }
+          
+          this._router.navigate(['/inspeccion-list', this.inspeccion.proyecto_id]);
         }
       },
       error => {
