@@ -82,7 +82,7 @@
                         </div>
                         <div class="row">
                             <div id="info" class="form-group col-md-6" style="margin-right:200px;margin-top: 25px;">
-                                <mat-form-field appearance="fill" style="width:200%;">
+                                <mat-form-field appearance="fill" style="width:215%;">
                                     <mat-label>Escriba sus observaciones...</mat-label>
                                     <textarea name="observaciones" #observaciones="ngModel"
                                         [(ngModel)]="inspeccion.observaciones" matInput
@@ -115,8 +115,8 @@
             <div id="DOS" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                 <div class="card-body">
                     <!--IMAGENES-->
-                    <div class="row">
-                        <div>
+                    <div class="row" style="margin-left: 468px;">
+                        <div class="imagen">
                             <angular-file-uploader *ngIf="fotos.length != 10" [config]="afuConfig" [resetUpload]=reset
                                 (ApiResponse)="imageUploaded($event)">
                             </angular-file-uploader>
@@ -201,7 +201,7 @@
             <div id="TRES" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body">
                     <!--DOCUMENTOS-->
-                    <div class="row" id="documentos">
+                    <div class="row" id="documentos"  style="margin-left: 468px;">
                         <div>
                             <angular-file-uploader *ngIf="archivos.length != 5" [config]="afuConfig2"
                                 [resetUpload]=reset (ApiResponse)="docUploaded($event)">
