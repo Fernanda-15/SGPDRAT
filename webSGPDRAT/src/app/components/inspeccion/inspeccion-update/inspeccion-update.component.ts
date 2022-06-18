@@ -12,13 +12,17 @@ import { timer } from 'rxjs';
 import { LogService } from 'src/app/services/log.service';
 import { Log } from 'src/app/models/log';
 import { UserService } from 'src/app/services/user.service';
+import { TareaService } from 'src/app/services/tarea.service';
+import { Tarea } from 'src/app/models/tarea';
+import { ProyectoService } from 'src/app/services/proyecto.service';
+import { Proyecto } from 'src/app/models/proyecto';
 
 @Component({
   selector: 'app-inspeccion-update',
   templateUrl: './inspeccion-update.component.html',
   styleUrls: ['./inspeccion-update.component.css'],
   providers: [InspeccionService, FotosService, ArchivosService, LogService,
-    UserService]
+    UserService, TareaService, ProyectoService]
 })
 export class InspeccionUpdateComponent implements OnInit {
 
@@ -29,13 +33,27 @@ export class InspeccionUpdateComponent implements OnInit {
   public status: number;
   public reset: any;
   private log: Log;
+  public fotos: any[] = [];
+  public archivos: any[] = [];
+  public desde: number = 0;
+  public hasta: number = 3;
+  public tareas: any[] = [];
+  public tarea:Tarea;
+  public tareasEjecutadas: number;
+  public tareasTotal: number;
+  public avanceObra: number;
+  public pagos: any;
+  public porcentajePagado: number;
+  public proyecto: Proyecto;
 
   constructor(
     private _inspeccionService: InspeccionService,
     private _fotosService: FotosService,
     private _archivosService: ArchivosService,
+    private _tareaService: TareaService,
     private _logService: LogService,
     private _userService: UserService,
+    private _proyectoService: ProyectoService,
     private _router: Router,
     private _route: ActivatedRoute
   ) {
@@ -45,6 +63,12 @@ export class InspeccionUpdateComponent implements OnInit {
     this.status = -1;
     this.reset = false;
     this.log = new Log(0, 0, "", "", "");
+    this.tarea=new Tarea(0, 0, 0, "", 0, 0, "", "");
+    this.proyecto=new Proyecto(0, 0, "", "", "", "", "", "", "", 0);
+    this.tareasEjecutadas = 0;
+    this.tareasTotal = 0;
+    this.avanceObra = 0;
+    this.porcentajePagado = 0;
   }
 
   ngOnInit(): void {
@@ -70,15 +94,14 @@ export class InspeccionUpdateComponent implements OnInit {
   }
 
   getInspeccion(): void {
-
     this._route.params.subscribe(params => {
-
       let id = params['id'];
       console.log(id);
       this._inspeccionService.getInspeccion(id).subscribe(
         response => {
           if (response.status == 'success') {
             this.inspeccion = response.data;
+            this.getProyecto();
           }
         },
         error => {
@@ -88,8 +111,72 @@ export class InspeccionUpdateComponent implements OnInit {
     });
   }
 
+  getProyecto(): void {
+      this._proyectoService.getProyecto(this.inspeccion.proyecto_id).subscribe(
+        response => {
+          if (response.status == 'success') {
+            this.proyecto = response.data;
+            this.loadTareas(this.inspeccion.proyecto_id);
+          } else {
+            console.log('AQUI');
+            this._router.navigate(['']);
+          }
+        },
+        error => {
+          console.log(error);
+          this._router.navigate(['']);
+        }
+      );
+    
+  }
 
 
+
+  loadTareas(id: number): void {
+    this._proyectoService.getTareas(id).subscribe(
+      response => {
+        console.log(response.data);
+        this.tareas = response.data;
+        this.tareas.forEach((t: any) => {
+          this.tareasTotal += 1;
+          if (t.avance == 100) {
+            this.tareasEjecutadas += 1;
+          }
+        })
+        this.avanceObra = (this.tareasEjecutadas / this.tareasTotal) * 100;
+        this.getFotos(this.inspeccion.id);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  //CARGAR FOTOS
+
+  getFotos(id:number):void{
+    this._inspeccionService.getFotos(id).subscribe(
+      response=>{
+          this.fotos = response.data;
+          
+          this.getDocumentos(id);
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
+
+  getDocumentos(id:number):void{
+    this._inspeccionService.getArchivos(id).subscribe(
+      response=>{
+          this.archivos = response.data; 
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
 
   onSubmit(form: any) {
     let counter = timer(5000);
@@ -239,5 +326,85 @@ export class InspeccionUpdateComponent implements OnInit {
       }
 
     );
+  }
+
+  
+  delete(id: any): void {
+    let indice: any;
+    let eliminar:any;
+    let counter = timer(5000); //AGREGAR MENSAJE
+
+    indice = this.fotos.indexOf(id); // obtenemos el indice
+    eliminar=this.fotos[indice].id;
+    this._fotosService.deleteFoto(eliminar).subscribe(
+      response => {
+        if (response.code == 200) {
+          console.log("ELIMINADA CORRECTAMENTE");
+          this.fotos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
+          this.status = 4;
+          counter.subscribe(n => {
+            console.log(n);
+            this.status = -1;
+          });
+        }
+      },
+      error => {
+        console.log(<any>error);
+
+      }
+
+    );
+
+  }
+
+  delete2(id: number): void {
+    let indice: any;
+    let eliminar:any;
+    let counter = timer(5000); //AGREGAR MENSAJE
+
+    indice = this.archivos.indexOf(id); // obtenemos el indice
+
+    eliminar=this.archivos[indice].id;
+    this._archivosService.deletearchivos(eliminar).subscribe(
+      response => {
+        if (response.code == 200) {
+          console.log("ELIMINADO CORRECTAMENTE");
+          this.archivos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
+          this.status = 5;
+          counter.subscribe(n => {
+            console.log(n);
+            this.status = -1;
+          });
+        }
+      },
+      error => {
+        console.log(<any>error);
+
+      }
+
+    );
+      
+  }
+  cambiarpagina(e: PageEvent) {
+    console.log(e);
+    this.desde = e.pageIndex * e.pageSize;
+    this.hasta = this.desde + e.pageSize;
+
+  }
+
+  getTarea(id: number, a: any) {
+    this._tareaService.getTarea(id).subscribe(
+      response => {
+        if (response.code == 200) {
+          this.tarea = response.data;
+          //this.modificar(a);
+        }
+      },
+
+      error => {
+        console.log(error);
+      }
+    );
+
   }
 }

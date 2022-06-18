@@ -45,9 +45,6 @@ export class InspeccionCreateComponent implements OnInit {
   public reset: any;
   public status: number;
   private log: Log;
-
-
-  /* PRUEBA MULTIPLES IMAGENES && DOCUMENTOS */
   public fotos: any[] = [];
   public archivos: any[] = [];
 

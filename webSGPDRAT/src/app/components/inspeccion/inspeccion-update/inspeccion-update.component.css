@@ -1,33 +1,83 @@
-#formProyecto{
-    margin-bottom: 50px;
-    align-items: center;
-    display:flex;
-    flex-direction: column;
-    background-color: #ffffff;
-    border: dashed 4px rgba(20, 172, 232, 0.825);
-    border-radius: 4px;
-    box-sizing: border-box;
-    padding: 32px 32px;
-    scroll-margin-bottom: 100%;
-    position: center;
-  }
+.container{
+  margin-bottom: 50px;
+  background-color: white;
+  border:outset #0080be;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 32px 32px;
+  scroll-margin-bottom: 100%;
+  position: center;
 
-  p{
-    font-size: 32px;
-    line-height: 40px;
-    text-align: center;
-  }
+}
 
-  .container{
-    margin-bottom: 50px;
-    /* align-items: center; */
-    /* display:flex;
-    flex-direction: column; */
-    background-color: #ffffff;
-    border:outset rgba(20, 172, 232, 0.825);
-    border-radius: 4px;
-    box-sizing: border-box;
-    padding: 32px 32px;
-    scroll-margin-bottom: 100%;
-    position: center;
-  }  
+p{
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
+}
+
+#titulo{
+  font-size: 18px;
+  line-height: 40px;
+  text-align: center;
+}
+
+
+.card{
+  margin-top: 10px;
+}
+
+.card-header{
+  background-color: #f7f7f7;
+  height:55px;
+  align-items: center;
+}
+
+
+h5{
+  font-size: 18px;
+  line-height: 40px;
+  text-align: center;
+}
+
+#avance{
+margin: 0px 0px 14px;
+padding: 5px;
+width : 200px;
+color: rgb(0, 0, 0);
+}
+
+
+.modal-content{
+  width: 300px;
+  border: dashed 4px rgba(20, 172, 232, 0.825);
+}
+.modal-boddy{
+  margin-left: 20px;
+  margin-right: 20px;
+
+  align-items: center;
+}
+
+.modal-footer{
+  margin-left: 0px;
+  margin-right: 30px;
+
+}
+
+#opciones{
+  text-decoration:none;
+  color: #015397;
+}
+
+
+#titulo{
+        font-size: 32px;
+        line-height: 40px;
+        text-align: center;
+        font-family: 'Josefin Sans', sans-serif;
+}
+
+.mensaje{
+  text-align: center;
+}
