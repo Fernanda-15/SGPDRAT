@@ -16,6 +16,7 @@
   height: 75px;
   top: 0;left: 0;
   position: fixed;
+  z-index: 2;
 }
 
 .container{
@@ -71,7 +72,7 @@
   position:relative;
   transition: all 500ms ease;
 	transform: translateX(-100%);
-
+  z-index: 3;
 }
 
 
@@ -178,9 +179,8 @@
 
 footer {
   border-top: 400px;
-    background-color: #222;
-    color: #fff;
-    font-size: 14px;
+  background: linear-gradient(#002f52, #005992, #006fb4);  
+    font-size: 12px;
     bottom: 0;
     position: fixed;
     left: 0;
@@ -190,7 +190,7 @@ footer {
 }
 
 footer p {
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
 footer i {
@@ -198,7 +198,7 @@ footer i {
 }
 
 footer a {
-    color: #3c97bf;
+    color: white;
     text-decoration: none;
 }
 
