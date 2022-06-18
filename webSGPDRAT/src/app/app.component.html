@@ -23,13 +23,11 @@
 
     <div class="container">
       <div class="btn-menu">
-        <label for="btn-menu" class="bi-list"></label>
+        <label for="btn-menu" class="bi-list">Inicio</label>
       </div>
     </div>
 
-    <div class="entrada"> Inicio
 
-    </div>
   </header>
 
       <input [checked]="checked" (click)="changeChecked()" type="checkbox" id="btn-menu" *ngIf="identity.rol != 'null'">
@@ -59,9 +57,9 @@
       </div>
 
 
-    <div class="bodysito">
-      <router-outlet></router-outlet>
-    </div>
+      <div style="margin-top: 110px;">
+        <router-outlet></router-outlet>
+      </div>
 
 
 
