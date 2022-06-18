@@ -1,0 +1,33 @@
+#formProyecto{
+    margin-bottom: 50px;
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: dashed 4px rgba(20, 172, 232, 0.825);
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 32px 32px;
+    scroll-margin-bottom: 100%;
+    position: center;
+  }
+
+  p{
+    font-size: 32px;
+    line-height: 40px;
+    text-align: center;
+  }
+
+  .container{
+    margin-bottom: 50px;
+    /* align-items: center; */
+    /* display:flex;
+    flex-direction: column; */
+    background-color: #ffffff;
+    border:outset rgba(20, 172, 232, 0.825);
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 32px 32px;
+    scroll-margin-bottom: 100%;
+    position: center;
+  }  
