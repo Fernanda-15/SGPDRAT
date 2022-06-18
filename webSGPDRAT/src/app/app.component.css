@@ -178,8 +178,7 @@
 
 footer {
   border-top: 400px;
-    background-color: #222;
-    color: #fff;
+  background: linear-gradient(#002f52, #005992, #006fb4);  
     font-size: 14px;
     bottom: 0;
     position: fixed;
@@ -198,7 +197,7 @@ footer i {
 }
 
 footer a {
-    color: #3c97bf;
+    color: white;
     text-decoration: none;
 }
 
