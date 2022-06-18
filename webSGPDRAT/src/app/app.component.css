@@ -180,7 +180,7 @@
 footer {
   border-top: 400px;
   background: linear-gradient(#002f52, #005992, #006fb4);  
-    font-size: 14px;
+    font-size: 12px;
     bottom: 0;
     position: fixed;
     left: 0;
@@ -190,7 +190,7 @@ footer {
 }
 
 footer p {
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
 footer i {
