@@ -5,10 +5,10 @@
   display:flex;
   flex-direction: column;
   background-color: #ffffff;
-  border: dashed 4px rgba(20, 172, 232, 0.825);
+  border: solid 4px #ffffff;
   border-radius: 4px;
   box-sizing: border-box;
-  padding: 32px 32px;
+  padding: 20px 32px;
   scroll-margin-bottom: 100%;
   position: center;
 }
@@ -18,6 +18,7 @@
 position:static;
 margin: 1px;
 margin-top: 15px;
+border: solid 2px #0080be;
 
 }
 
@@ -55,7 +56,7 @@ margin-top: 15px;
 
 }
 mat-paginator{
-  background-color:dashed 4px rgba(20, 172, 232, 0.825);;
+  background-color:dashed 4px #0080be;
 }
 
 #titulo{
@@ -67,12 +68,12 @@ mat-paginator{
 
 #form{
   margin-left: 700px;
-  
+
 }
 
 .modal-content{
   width: 300px;
-  border: dashed 4px rgba(20, 172, 232, 0.825);
+  border: solid 4px #0080be;
 }
 .modal-boddy{
   margin-left: 20px;

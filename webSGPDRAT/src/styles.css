@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
  /*@import "~jsgantt-improved/dist/jsgantt.css";*/
  html, body {
-  width: 100%;
+  /* width: 100%; */
    overflow-x: hidden;
  }
 
@@ -12,13 +12,22 @@ html{
 }
 
 body {
-  
+
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* html, body { height: 100%; } */
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+  background:url(src/assets/images/senara-adorno-hojas.jpg) no-repeat bottom right transparent;
+  background-image: url(src/assets/images/senara-adorno-hojas.jpg);
+  background-position-x: right;
+  background-position-y: bottom;
+  background-size: 120px 300px;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: transparent;}
 
 
 div.gantt {

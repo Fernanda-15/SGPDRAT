@@ -1,5 +1,5 @@
 
-      <header class="header" *ngIf="identity.rol != 'null'">
+      <!-- <header class="header" *ngIf="identity.rol != 'null'">
 
         <div class="container">
           <div class="btn-menu">
@@ -11,11 +11,26 @@
 
         </div>
 
-        <!-- <div class="bodysito">
-          <router-outlet></router-outlet>
-        </div>-->
 
-       </header>
+
+       </header> -->
+
+    <!-- <div  class="bodysito" >
+      <router-outlet></router-outlet>
+    </div> -->
+<body class="mat-typography">
+  <header class="header" *ngIf="identity.rol != 'null'">
+
+    <div class="container">
+      <div class="btn-menu">
+        <label for="btn-menu" class="bi-list"></label>
+      </div>
+    </div>
+
+    <div class="entrada"> Inicio
+
+    </div>
+  </header>
 
       <input [checked]="checked" (click)="changeChecked()" type="checkbox" id="btn-menu" *ngIf="identity.rol != 'null'">
       <div class="container-menu">
@@ -44,10 +59,13 @@
       </div>
 
 
-    <div  class="bodysito" >
+    <div class="bodysito">
       <router-outlet></router-outlet>
     </div>
 
+
+
+</body>
 
     <footer>
       <p>
