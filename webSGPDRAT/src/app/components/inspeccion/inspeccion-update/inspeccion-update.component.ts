@@ -293,7 +293,7 @@ export class InspeccionUpdateComponent implements OnInit {
 
   public afuConfig2 = {
     multiple: true,
-    formatsAllowed: ".pdf,.docx,.txt",
+    formatsAllowed: ".pdf,.docx,.txt,.xlsx",
     method: "POST",
     maxSize: 3,
     uploadAPI: {

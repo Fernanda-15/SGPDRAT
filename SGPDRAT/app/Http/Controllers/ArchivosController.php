@@ -171,7 +171,7 @@ public function destroy($id){
 public function uploadArchivo(Request $request){
     $file=$request->file('file0');
     $validate=\Validator::make($request->all(),[
-        'file0'=>'required|file|mimes:pdf,txt,docx'
+        'file0'=>'required|file|mimes:pdf,txt,docx,xlsx'
     ]);
     if(!$file || $validate->fails()){
         $response=array(

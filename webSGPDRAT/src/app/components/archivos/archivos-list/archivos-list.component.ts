@@ -97,7 +97,10 @@ export class ArchivosListComponent implements OnInit {
     if(nombre.includes(".docx")){
       return 2;
     }
-    return 3;
+    if(nombre.includes(".txt")){
+      return 3;
+    }
+    return 4;
   }
   delete(id:number):void{
     let counter=timer(5000);
