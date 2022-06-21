@@ -66,7 +66,7 @@
                       <span  class="bi bi-pencil-fill"></span>
                     </a>
 
-                    <a [routerLink]="['/pago-list', proyecto.id]" class="btn btn-info mr-2" *ngIf="proyecto.forma_pago == 'credito' && identity.rol != 'inspector' && identity.rol != 'direccion' ">
+                    <a [routerLink]="['/pago-list', proyecto.id]" class="btn btn-info mr-2" *ngIf="identity.rol != 'inspector' && identity.rol != 'direccion' ">
                       <span  class="bi bi-currency-dollar"></span>
                     </a>
 

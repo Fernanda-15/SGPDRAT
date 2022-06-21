@@ -46,7 +46,6 @@
                 <th scope="col">Número</th>
                 <th scope="col">Monto</th>
                 <th scope="col">Justificación</th>
-                <th scope="col">Numero de Transacción</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
             </tr>
@@ -57,7 +56,6 @@
                     <td>{{pago.numero}}</td>
                     <td>{{pago.monto}}</td>
                     <td>{{pago.justificacion}}</td>
-                    <td>{{pago.numero_transaccion}}</td>
 
                     <td >
                     <a [routerLink]="['/pago-update',pago.id]" class="btn btn-warning btn-xs"  u >

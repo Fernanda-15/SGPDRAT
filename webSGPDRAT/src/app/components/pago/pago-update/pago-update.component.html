@@ -51,7 +51,21 @@
   
     </div>
   
-  
+    <div class="row">
+      <div id="info" class="form-group col-md-6" style="margin-right:200px;margin-top: 25px;">
+        <mat-form-field appearance="fill" style="width:200%;">
+            <mat-label>Escriba su justificación...</mat-label>
+            <textarea name="justificacion" #justificacion="ngModel"
+                [(ngModel)]="pago.justificacion" matInput
+                placeholder="Escriba sus observaciones..." required></textarea>
+        </mat-form-field>
+        <small *ngIf="!!justificacion.valid && justificacion.touched"
+            class="invalid-feedback d-block">
+            La observación no es válida
+        </small>
+    </div>
+    </div>
+    
     <div class="row">
         <div id="info" class="form-group">
             <label>Monto: </label>
@@ -62,26 +76,6 @@
             </small>
         </div>
   
-        <div id="info" class="form-group">
-          <label>Número de transacción: </label>
-          <input type="number" name="numero_transaccion" class="form-control" #numero_transaccion="ngModel" 
-          [(ngModel)]="pago.numero_transaccion" required pattern="^[1-9]\d*$">
-          <small *ngIf="!numero_transaccion.valid && numero_transaccion.touched" class="invalid-feedback d-block">
-              El número de transacción no es válido
-          </small>
-        </div>
-  
-    </div>
-  
-    <div class="row">
-      <div id="info" class="form-group">
-        <label>Justificación: </label>
-        <input type="text" name="justificacion" class="form-control" #justificacion="ngModel"
-        [(ngModel)]="pago.justificacion" required pattern="^[a-zA-Z0-9\.]*$">
-        <small *ngIf="!justificacion.valid && justificacion.touched" class="invalid-feedback d-block">
-            La justificación no es válida
-        </small>
-    </div>   
   
     </div>
   

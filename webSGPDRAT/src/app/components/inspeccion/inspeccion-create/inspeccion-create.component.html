@@ -88,8 +88,6 @@
                                         [(ngModel)]="inspeccion.observaciones" matInput
                                         placeholder="Escriba sus observaciones..." required></textarea>
                                 </mat-form-field>
-                                <!--<input type="text" name="observaciones" class="form-control" #observaciones="ngModel"
-            [(ngModel)]="inspeccion.observaciones" required pattern="^[a-zA-Z0-9\.]*$"> -->
                                 <small *ngIf="!observaciones.valid && observaciones.touched"
                                     class="invalid-feedback d-block">
                                     La observación no es válida
