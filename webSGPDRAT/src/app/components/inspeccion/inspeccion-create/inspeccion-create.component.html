@@ -74,7 +74,7 @@
                             <div id="info" class="form-group col-md-6">
                                 <label>Firma: </label>
                                 <input type="text" name="firma" class="form-control" #firma="ngModel"
-                                    [(ngModel)]="inspeccion.firma" required pattern="^[a-zA-Z0-9\.]*$">
+                                    [(ngModel)]="inspeccion.firma" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
                                 <small *ngIf="!firma.valid && firma.touched" class="invalid-feedback d-block">
                                     La firma no es válida
                                 </small>
