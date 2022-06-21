@@ -36,6 +36,7 @@ export class InspeccionUpdateComponent implements OnInit {
   public fotos: any[] = [];
   public fotos2: any[] = [];
   public archivos: any[] = [];
+  public archivos2: any[] = [];
   public desde: number = 0;
   public hasta: number = 3;
   public tareas: any[] = [];
@@ -238,19 +239,28 @@ export class InspeccionUpdateComponent implements OnInit {
 
   docUploaded(response: any) {
     this.archivo = new Archivos(0, 0, "");
+    let id = 0;
+    let tama = this.archivos.length;
+    if(tama != 0){
+      id = this.archivos[tama -1].id;
+    }else{
+      id = 1;
+    }
     if (response.body.code == 200) {
-
-      console.log("Documento", response.body);
       let data = response.body;
       this.archivo.nombre = data.file;
       this.archivo.inspeccion_id = this.inspeccion.id;
+      id = id+1;
+      this.archivo.id = id;
       this.archivos.push(this.archivo);
-
+      this.archivos2.push(this.archivo); 
+      
     } else {
 
     }
     console.log(response);
   }
+
   public afuConfig = {
     multiple: true,
     formatsAllowed: ".jpg,.jpeg,.png,.gif",
@@ -313,8 +323,6 @@ export class InspeccionUpdateComponent implements OnInit {
 
   onSubmit2() {
     for (let i in this.fotos2) {
-        //this.fotos2[i].inspeccion_id = this.foto.inspeccion_id;
-        console.log("ONSUB2", this.fotos2[i]);
         this._fotosService.registro(this.fotos2[i]).subscribe(
           response => {
             if (response.code == 200) {
@@ -333,9 +341,8 @@ export class InspeccionUpdateComponent implements OnInit {
   }
 
   onSubmit3() {
-    for (let i in this.archivos) {
-      this.archivos[i].inspeccion_id = this.archivo.inspeccion_id;
-      this._archivosService.registro(this.archivos[i]).subscribe(
+    for (let i in this.archivos2) {
+      this._archivosService.registro(this.archivos2[i]).subscribe(
         response => {
           if (response.code == 200) {
             console.log("SUCCESS UPLOAD ARCHIVO");
@@ -419,39 +426,21 @@ export class InspeccionUpdateComponent implements OnInit {
   delete2(id: number): void { //ELIMINAR DOCUMENTO
     let indice: any;
     let eliminar:any;
+    let counter = timer(5000); 
     let eliminar2:any;
-    let counter = timer(5000); //AGREGAR MENSAJE
 
-    indice = this.archivos.indexOf(id); // obtenemos el indice
+    indice = this.archivos.indexOf(id); 
+    let indice2 = this.archivos2.indexOf(id); 
 
-    eliminar=this.archivos[indice].id;
-    eliminar2=this.archivos[indice].nombre;
+    eliminar=this.archivos[indice].id; //agarra el ID de la foto
+    eliminar2=this.archivos[indice].nombre; //agarra el nombre de la foto
 
-    if(eliminar!=0){
-      this._archivosService.deletearchivos(eliminar).subscribe(
+    if(indice2 == -1){  //Verifica si la foto tiene ID, si tiene se debe eliminar de la base de datos
+      this._archivosService.deletearchivos(eliminar).subscribe( //Llamar funcion eliminar
         response => {
           if (response.code == 200) {
-            console.log("ELIMINADO CORRECTAMENTE");
-            this.archivos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
-            this.status = 5;
-            counter.subscribe(n => {
-              console.log(n);
-              this.status = -1;
-            });
-          }
-        },
-        error => {
-          console.log(<any>error);
-  
-        }
-  
-      );
-    }else{
-      this._archivosService.liberar(eliminar2).subscribe(
-        response => {
-          if (response.code == 200) {
-            console.log("ELIMINADO CORRECTAMENTE");
-            this.archivos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
+            console.log("ELIMINADA CORRECTAMENTE");
+            this.archivos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar del arreglo
             this.status = 4;
             counter.subscribe(n => {
               console.log(n);
@@ -464,8 +453,29 @@ export class InspeccionUpdateComponent implements OnInit {
   
         }
   
-  
       );
+    }else{ //SI LA FOTO NO ESTÀ REGISTRADA EN BD
+      
+    this._archivosService.liberar(eliminar2).subscribe( //llama la funcion para eliminar imagen del storage
+      response => {
+        if (response.code == 200) {
+          console.log("ELIMINADA CORRECTAMENTE");
+          this.archivos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar QUITA LA IMAGEN DEL ARREGLO 1
+          this.archivos2.splice(indice2,1); //QUITAR DE FOTOS A SUBIR
+          this.status = 4;
+          counter.subscribe(n => {
+            console.log(n);
+            this.status = -1;
+          });
+        }
+      },
+      error => {
+        console.log(<any>error);
+
+      }
+
+
+    );
     }
    
   }
