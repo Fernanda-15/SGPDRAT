@@ -142,10 +142,10 @@
                                             <td>{{f.nombre}}</td>
                                             <td>
                                                 <button id="btnDelete" class="btn btn-danger btn-xs" data-toggle="modal"
-                                                    data-target="#exampleModal" [attr.data-target]="'#exampleModal'">
+                                                    data-target="#exampleModal'" [attr.data-target]="'#exampleModal'+f.id">
                                                     <span class="bi bi-trash-fill"></span>
                                                 </button>
-                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                <div class="modal fade" id="exampleModal{{f.id}}" tabindex="-1" role="dialog"
                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">

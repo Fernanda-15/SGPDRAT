@@ -34,6 +34,7 @@ export class InspeccionUpdateComponent implements OnInit {
   public reset: any;
   private log: Log;
   public fotos: any[] = [];
+  public fotos2: any[] = [];
   public archivos: any[] = [];
   public desde: number = 0;
   public hasta: number = 3;
@@ -74,11 +75,13 @@ export class InspeccionUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.loadStorage();
     this.getInspeccion();
+    
   }
 
 
   public loadStorage() {
     this.identity = this._userService.getIdentity();
+    
   }
 
   insertLogUpdate(proyectoid: number, texto: string) {
@@ -158,7 +161,6 @@ export class InspeccionUpdateComponent implements OnInit {
     this._inspeccionService.getFotos(id).subscribe(
       response=>{
           this.fotos = response.data;
-          
           this.getDocumentos(id);
       },
       error=>{
@@ -208,14 +210,25 @@ export class InspeccionUpdateComponent implements OnInit {
   }
 
   imageUploaded(response: any) {
+    this.foto = new Fotos(0, 0, "");
+    let id = 0;
     console.log("ACA", response.body.image);
-
+    let tama = this.fotos.length;
+    if(tama != 0){
+      id = this.fotos[tama -1].id;
+    }else{
+      id = 1;
+    }
     if (response.body.code == 200) {
       let data = response.body;
       console.log("Foto", data.image);
-      this.foto.nombre = data.image;
-      this.foto.inspeccion_id = this.inspeccion.id;
-
+      this.foto.nombre = data.image; //NOMBRE DE LA IMAGEN
+      this.foto.inspeccion_id = this.inspeccion.id; //Numero de inspeccion
+      id = id+1;
+      this.foto.id = id;
+      this.fotos.push(this.foto); //Agregar foto en el arreglo 1
+      this.fotos2.push(this.foto); //Agregar foto en arreglo de fotos a subir
+      
     } else {
 
     }
@@ -224,14 +237,14 @@ export class InspeccionUpdateComponent implements OnInit {
 
 
   docUploaded(response: any) {
+    this.archivo = new Archivos(0, 0, "");
     if (response.body.code == 200) {
 
-      console.log("ACA2", response.body);
-
+      console.log("Documento", response.body);
       let data = response.body;
       this.archivo.nombre = data.file;
-
       this.archivo.inspeccion_id = this.inspeccion.id;
+      this.archivos.push(this.archivo);
 
     } else {
 
@@ -299,48 +312,91 @@ export class InspeccionUpdateComponent implements OnInit {
 
 
   onSubmit2() {
-    this._fotosService.registro(this.foto).subscribe(
-      response => {
-        if (response.code == 200) {
-          console.log("SUCCESS UPLOAD FOTO");
-        }
-      },
-      error => {
-        console.log(<any>error);
-
-      }
-
-    );
+    for (let i in this.fotos2) {
+        //this.fotos2[i].inspeccion_id = this.foto.inspeccion_id;
+        console.log("ONSUB2", this.fotos2[i]);
+        this._fotosService.registro(this.fotos2[i]).subscribe(
+          response => {
+            if (response.code == 200) {
+              console.log("SUCCESS UPLOAD FOTO");
+            }
+          },
+          error => {
+            console.log(<any>error);
+  
+          }
+  
+        );
+     
+   
+    }
   }
 
   onSubmit3() {
-    this._archivosService.registro(this.archivo).subscribe(
-      response => {
-        if (response.code == 200) {
-          console.log("SUCCESS UPLOAD ARCHIVO");
+    for (let i in this.archivos) {
+      this.archivos[i].inspeccion_id = this.archivo.inspeccion_id;
+      this._archivosService.registro(this.archivos[i]).subscribe(
+        response => {
+          if (response.code == 200) {
+            console.log("SUCCESS UPLOAD ARCHIVO");
+            this._router.navigate(['/inspeccion-list', this.inspeccion.proyecto_id]);
+          }
+        },
+        error => {
+          console.log(<any>error);
+
         }
-      },
-      error => {
-        console.log(<any>error);
 
-      }
-
-    );
+      );
+    }
   }
 
   
-  delete(id: any): void {
+  delete(id:any): void { //ELIMINAR FOTO
     let indice: any;
     let eliminar:any;
     let counter = timer(5000); //AGREGAR MENSAJE
+    let eliminar2:any;
 
-    indice = this.fotos.indexOf(id); // obtenemos el indice
-    eliminar=this.fotos[indice].id;
-    this._fotosService.deleteFoto(eliminar).subscribe(
+    console.log("FOTOS", this.fotos);
+    console.log("FOTO", id);
+
+    indice = this.fotos.indexOf(id); // obtenemos la posicion de la foto ren el arreglo fotos
+    console.log("ARREGLO I1",indice);
+
+    let indice2 = this.fotos2.indexOf(id); //INDICE SEGUNDO ARREGLO (FOTOS A SUBIR)
+    console.log("ARREGLO I2",indice2);
+
+    eliminar=this.fotos[indice].id; //agarra el ID de la foto
+    eliminar2=this.fotos[indice].nombre; //agarra el nombre de la foto
+
+    if(indice2 == -1){  //Verifica si la foto tiene ID, si tiene se debe eliminar de la base de datos
+      this._fotosService.deleteFoto(eliminar).subscribe( //Llamar funcion eliminar
+        response => {
+          if (response.code == 200) {
+            console.log("ELIMINADA CORRECTAMENTE");
+            this.fotos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar del arreglo
+            this.status = 4;
+            counter.subscribe(n => {
+              console.log(n);
+              this.status = -1;
+            });
+          }
+        },
+        error => {
+          console.log(<any>error);
+  
+        }
+  
+      );
+    }else{ //SI LA FOTO NO ESTÀ REGISTRADA EN BD
+      
+    this._fotosService.liberar(eliminar2).subscribe( //llama la funcion para eliminar imagen del storage
       response => {
         if (response.code == 200) {
           console.log("ELIMINADA CORRECTAMENTE");
-          this.fotos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
+          this.fotos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar QUITA LA IMAGEN DEL ARREGLO 1
+          this.fotos2.splice(indice2,1); //QUITAR DE FOTOS A SUBIR
           this.status = 4;
           counter.subscribe(n => {
             console.log(n);
@@ -353,38 +409,67 @@ export class InspeccionUpdateComponent implements OnInit {
 
       }
 
+
     );
+    }
+ 
 
   }
 
-  delete2(id: number): void {
+  delete2(id: number): void { //ELIMINAR DOCUMENTO
     let indice: any;
     let eliminar:any;
+    let eliminar2:any;
     let counter = timer(5000); //AGREGAR MENSAJE
 
     indice = this.archivos.indexOf(id); // obtenemos el indice
 
     eliminar=this.archivos[indice].id;
-    this._archivosService.deletearchivos(eliminar).subscribe(
-      response => {
-        if (response.code == 200) {
-          console.log("ELIMINADO CORRECTAMENTE");
-          this.archivos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
-          this.status = 5;
-          counter.subscribe(n => {
-            console.log(n);
-            this.status = -1;
-          });
+    eliminar2=this.archivos[indice].nombre;
+
+    if(eliminar!=0){
+      this._archivosService.deletearchivos(eliminar).subscribe(
+        response => {
+          if (response.code == 200) {
+            console.log("ELIMINADO CORRECTAMENTE");
+            this.archivos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
+            this.status = 5;
+            counter.subscribe(n => {
+              console.log(n);
+              this.status = -1;
+            });
+          }
+        },
+        error => {
+          console.log(<any>error);
+  
         }
-      },
-      error => {
-        console.log(<any>error);
-
-      }
-
-    );
-      
+  
+      );
+    }else{
+      this._archivosService.liberar(eliminar2).subscribe(
+        response => {
+          if (response.code == 200) {
+            console.log("ELIMINADO CORRECTAMENTE");
+            this.archivos.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
+            this.status = 4;
+            counter.subscribe(n => {
+              console.log(n);
+              this.status = -1;
+            });
+          }
+        },
+        error => {
+          console.log(<any>error);
+  
+        }
+  
+  
+      );
+    }
+   
   }
+
   cambiarpagina(e: PageEvent) {
     console.log(e);
     this.desde = e.pageIndex * e.pageSize;

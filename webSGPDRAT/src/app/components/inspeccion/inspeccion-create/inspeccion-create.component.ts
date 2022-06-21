@@ -444,7 +444,7 @@ export class InspeccionCreateComponent implements OnInit {
   }
 
 
-  delete(id: any): void {
+  delete(id:any): void {
     let indice: any;
     let nombre:any;
     let counter = timer(5000); //AGREGAR MENSAJE
