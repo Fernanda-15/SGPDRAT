@@ -5,11 +5,6 @@
         <strong> Error</strong> de servidor interno!!!
     </div>
 
-    <div class="alert alert-danger" *ngSwitchCase="1">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <i class="bi bi-exclamation-triangle-fill"></i>
-        <strong> Error:</strong> El numero de inspección ingresado ya existe!!!
-    </div>
     <!--MODIFICO CON EXITO-->
     <div class="alert alert-success" *ngSwitchCase="2">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -66,7 +61,7 @@
                             <div id="info" class="form-grou col-md-6">
                                 <label>Numero de inspeccion: </label>
                                 <input type="number" name="numero" class="form-control" #numero="ngModel"
-                                    [(ngModel)]="inspeccion.numero" required pattern="^[1-9]\d*$">
+                                    [(ngModel)]="inspeccion.numero" required pattern="^[1-9]\d*$" disabled>
                                 <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
                                     El número de inspección no es válido
                                 </small>

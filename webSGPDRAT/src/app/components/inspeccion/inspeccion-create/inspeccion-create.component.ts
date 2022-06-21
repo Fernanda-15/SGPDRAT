@@ -114,7 +114,9 @@ export class InspeccionCreateComponent implements OnInit {
         console.log(response);
         if (response.status == "success") {
           this.inspecciones = response.data;
+          this.numInspeccion();
         }
+
       },
       error => {
         console.log(<any>error);
@@ -125,20 +127,17 @@ export class InspeccionCreateComponent implements OnInit {
 
   }
 
-  existeNI(): any {
-    let existe = 0;
-    console.log(this.inspecciones);
-    for (let i in this.inspecciones) {
-      if (this.inspecciones[i].numero == this.inspeccion.numero) {
-        existe = existe + 1;
-      }
+  numInspeccion():void{
+    let tam = this.inspecciones.length;
+    if( tam != 0){
+      let ultimo = this.inspecciones[tam-1].numero;
+      this.inspeccion.numero = ultimo+1;
+    }else{
+      this.inspeccion.numero =1;
     }
-    if (existe > 0) {
-      return true;
-    }
-    return false;
-
   }
+
+ 
 
   insertLogCreate(proyectoid: number, texto: string) {
     this.log = new Log(0, proyectoid, this.identity.nombreUsuario, "Se ha generado la inspeccion " + texto, "");
@@ -252,7 +251,7 @@ export class InspeccionCreateComponent implements OnInit {
     this.inspeccion.porcentaje_pagado = this.porcentajePagado;
     this.inspeccion.tareas_ejecutadas = this.tareasEjecutadas;
 
-    if (!this.existeNI()) {
+
       this._inspeccionService.registro(this.inspeccion).subscribe(
         response => {
           if (response.code == 200) {
@@ -270,13 +269,7 @@ export class InspeccionCreateComponent implements OnInit {
         }
 
       );
-    } else {
-      this.status = 1;
-      counter.subscribe(n => {
-        console.log(n);
-        this.status = -1;
-      });
-    }
+   
 
   }
 
