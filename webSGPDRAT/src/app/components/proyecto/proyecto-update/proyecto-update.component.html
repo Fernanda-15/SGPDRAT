@@ -38,12 +38,12 @@
     </div>
 
     <div id="info" class="form-group">
-        <label>Numero de contratación: </label>
-        <input type="text" name="numero_contratacion" class="form-control" #numero_contratacion="ngModel"
-        [(ngModel)]="proyecto.numero_contratacion" required pattern="^[a-zA-Z0-9\.]*$">
-        <small *ngIf="!numero_contratacion.valid && numero_contratacion.touched" class="invalid-feedback d-block">
-            El número de contratación no es válido
-        </small>
+      <label>Numero de contratación: </label>
+      <input type="text" name="numero_contratacion" class="form-control" #numero_contratacion="ngModel"
+      [(ngModel)]="proyecto.numero_contratacion" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
+      <small *ngIf="!numero_contratacion.valid && numero_contratacion.touched" class="invalid-feedback d-block">
+          El número de contratación no es válido
+      </small>
     </div>
       </div>
 
