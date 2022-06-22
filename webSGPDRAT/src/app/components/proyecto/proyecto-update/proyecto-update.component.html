@@ -62,7 +62,7 @@
     <div id="info" class="form-group col-md-6">
             <label>Nombre: </label>
             <input type="text" name="nombre" class="form-control" #nombre="ngModel"
-            [(ngModel)]="proyecto.nombre" required pattern="^[a-zA-Z0-9\.]*$">
+            [(ngModel)]="proyecto.nombre" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
             <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
                 El nombre no es válido
             </small>
@@ -71,7 +71,7 @@
     <div id="info" class="form-group col-md-6">
         <label>Objetivo: </label>
         <input type="text" name="objetivo" class="form-control" #objetivo="ngModel"
-        [(ngModel)]="proyecto.objetivo" required pattern="^[a-zA-Z0-9\.]*$">
+        [(ngModel)]="proyecto.objetivo" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
         <small *ngIf="!objetivo.valid && objetivo.touched" class="invalid-feedback d-block">
             El objetivo no es válido
         </small>
@@ -81,7 +81,7 @@
     <div id="info" class="form-group col-md-6">
         <label>Ubicación: </label>
         <input type="text" name="ubicacion" class="form-control" #ubicacion="ngModel"
-        [(ngModel)]="proyecto.ubicacion" required pattern="^[a-zA-Z0-9\.]*$">
+        [(ngModel)]="proyecto.ubicacion" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
         <small *ngIf="!ubicacion.valid && ubicacion.touched" class="invalid-feedback d-block">
             La ubicacion no es válida
         </small>
