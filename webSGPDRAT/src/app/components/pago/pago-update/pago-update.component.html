@@ -39,7 +39,7 @@
               <p>Modificar Pago {{pago.id}}</p>
               </div>
                 <div class="row">
-                  <div id="info" class="form-group">
+                  <div id="info" class="form-group col-md-6">
                       <label>Numero de pago: </label>
                       <input type="number" name="numero" class="form-control" #numero="ngModel"
                       [(ngModel)]="pago.numero" required pattern="^[1-9]\d*$">
@@ -48,7 +48,7 @@
                       </small>
                   </div>
 
-                  <div id="info" class="form-group">
+                  <div id="info" class="form-group col-md-6">
                     <label>Proyección: </label>
                     <input type="number" name="proyeccion" class="form-control" #proyeccion="ngModel"
                     [(ngModel)]="pago.proyeccion" required pattern="^[0-9]+" disabled>
@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="row">
-                  <div id="info" class="form-group col-md-6" style="margin-right:200px;margin-top: 25px;">
+                  <div id="info" class="form-group col-md-6" style="margin-right:200px;margin-top: 25px; color: black;">
                     <mat-form-field appearance="fill" style="width:200%;">
                         <mat-label>Escriba su justificación...</mat-label>
                         <textarea name="justificacion" #justificacion="ngModel"
@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="row">
-                    <div id="info" class="form-group">
+                    <div id="info" class="form-group col-md-6">
                         <label>Monto: </label>
                         <input type="number" name="monto" class="form-control" #monto="ngModel"
                         [(ngModel)]="pago.monto" required pattern="^[1-9]\d*$">

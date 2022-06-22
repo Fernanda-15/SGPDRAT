@@ -57,17 +57,15 @@
                     </div>
 
                     <div id="info" class="form-group col-md-6">
-                      <label>Descripcion: </label>
-                      <input type="text" name="descripcion" class="form-control" #descripcion="ngModel"
-                        [(ngModel)]="tarea.descripcion" required pattern="^[a-zA-Z0-9\.]*$">
-                      <small *ngIf="!descripcion.valid && descripcion.touched" class="invalid-feedback d-block">
-                        La descripción no es válida
+                      <label>Peso: </label>
+                      <input type="number" name="peso" class="form-control" #peso="ngModel" [(ngModel)]="tarea.peso"
+                        required pattern="^[1-9]\d*$">
+                      <small *ngIf="!peso.valid && peso.touched" class="invalid-feedback d-block">
+                        El peso de la tarea no es válido
                       </small>
                     </div>
-
+                  
                   </div>
-
-
                   <div class="row">
                     <div id="info" class="form-group col-md-6">
                       <label for="fecha_inicio">Fecha de inicio: </label>
@@ -84,14 +82,18 @@
                   </div>
 
                   <div class="row">
-                    <div id="info" class="form-group col-md-6">
-                      <label>Peso: </label>
-                      <input type="number" name="peso" class="form-control" #peso="ngModel" [(ngModel)]="tarea.peso"
-                        required pattern="^[1-9]\d*$">
-                      <small *ngIf="!peso.valid && peso.touched" class="invalid-feedback d-block">
-                        El peso de la tarea no es válido
+                    <div id="info" style="margin-right:300px;margin-top: 30px; color: black;" >
+                      <mat-form-field appearance="fill" style="width:330%;">
+                          <mat-label>Escriba la descripcion...</mat-label>
+                          <textarea name="descripcion" #descripcion="ngModel"
+                              [(ngModel)]="tarea.descripcion" matInput
+                              placeholder="Escriba sus descripción..." required></textarea>
+                      </mat-form-field>
+                      <small *ngIf="!descripcion.valid && descripcion.touched"
+                          class="invalid-feedback d-block">
+                          La observación no es válida
                       </small>
-                    </div>
+                  </div>
 
                   </div>
 

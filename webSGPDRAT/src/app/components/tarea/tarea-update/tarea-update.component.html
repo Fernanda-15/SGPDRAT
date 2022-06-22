@@ -1,76 +1,119 @@
 <div style="border:20px;" [ngSwitch]="status">
-    <div  class="alert alert-danger" *ngSwitchCase="0">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <i class="bi bi-exclamation-triangle-fill"></i>
-          <strong> Error</strong> de servidor interno!!!
-    </div>
+  <div class="alert alert-danger" *ngSwitchCase="0">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <i class="bi bi-exclamation-triangle-fill"></i>
+    <strong> Error</strong> de servidor interno!!!
+  </div>
 
-    <div class="alert alert-danger"  *ngSwitchCase="1">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <i class="bi bi-exclamation-triangle-fill"></i>
-      <strong> Error: </strong>La fecha final debe ser mayor a la fecha de inicio!!
-    </div>
+  <div class="alert alert-danger" *ngSwitchCase="1">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <i class="bi bi-exclamation-triangle-fill"></i>
+    <strong> Error: </strong>La fecha final debe ser mayor a la fecha de inicio!!
+  </div>
 
-    <div class="alert alert-danger"  *ngSwitchCase="2">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <i class="bi bi-exclamation-triangle-fill"></i>
-      <strong> Error: </strong>La fecha de Inicio de la tarea debe estar dentro del periodo del proyecto: [{{proyecto.fecha_inicio}} - {{proyecto.fecha_final}}]!!
-    </div>
+  <div class="alert alert-danger" *ngSwitchCase="2">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <i class="bi bi-exclamation-triangle-fill"></i>
+    <strong> Error: </strong>La fecha de Inicio de la tarea debe estar dentro del periodo del proyecto:
+    [{{proyecto.fecha_inicio}} - {{proyecto.fecha_final}}]!!
+  </div>
 
-    <div class="alert alert-danger"  *ngSwitchCase="3">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <i class="bi bi-exclamation-triangle-fill"></i>
-      <strong> Error: </strong>La fecha Final de la tarea debe estar dentro del periodo del proyecto: [{{proyecto.fecha_inicio}} - {{proyecto.fecha_final}}]!!
-    </div>
+  <div class="alert alert-danger" *ngSwitchCase="3">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <i class="bi bi-exclamation-triangle-fill"></i>
+    <strong> Error: </strong>La fecha Final de la tarea debe estar dentro del periodo del proyecto:
+    [{{proyecto.fecha_inicio}} - {{proyecto.fecha_final}}]!!
+  </div>
 </div>
 
-<form id="formTarea" class="col-md-6 mr-auto ml-auto" #updateTareaForm="ngForm" (ngSubmit)="onSubmit(updateTareaForm)">
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="wrapper">
+          <div class="row no-gutters">
+            <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+              <div class="contact-wrap w-100 p-md-5 p-4">
+                <p>Modificar tarea {{tarea.id}}</p>
 
-<div class="row">
-    <div id="info" class="form-group">
-        <label>Numero de tarea: </label>
-        <input type="number" name="numero" class="form-control" #numero="ngModel"
-        [(ngModel)]="tarea.numero" required pattern="^[1-9]\d*$">
-        <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
-            El número de tarea no es válido
-        </small>
-    </div>
+                <form id="formTarea" #updateTareaForm="ngForm"
+                  (ngSubmit)="onSubmit(updateTareaForm)">
 
-    <div id="info" class="form-group">
-            <label>Descripcion: </label>
-            <input type="text" name="descripcion" class="form-control" #descripcion="ngModel"
-            [(ngModel)]="tarea.descripcion" required pattern="^[a-zA-Z0-9\.]*$">
-            <small *ngIf="!descripcion.valid && descripcion.touched" class="invalid-feedback d-block">
-                La descripción no es válida
-            </small>
+                  <div class="row">
+                    <div id="info" class="form-group  col-md-6">
+                      <label>Numero de tarea: </label>
+                      <input type="number" name="numero" class="form-control" #numero="ngModel"
+                        [(ngModel)]="tarea.numero" required pattern="^[1-9]\d*$">
+                      <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
+                        El número de tarea no es válido
+                      </small>
+                    </div>
+
+                    <div id="info" class="form-group  col-md-6">
+                      <label>Peso: </label>
+                      <input type="number" name="peso" class="form-control" #peso="ngModel" [(ngModel)]="tarea.peso"
+                        required pattern="^[1-9]\d*$">
+                      <small *ngIf="!peso.valid && peso.touched" class="invalid-feedback d-block">
+                        El peso de la tarea no es válido
+                      </small>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div id="info" class="form-group  col-md-6">
+                      <label for="fecha_inicio">Fecha de inicio: </label>
+                      <input type="date" name="fecha_inicio" class="form-control" #fecha_inicio="ngModel"
+                        [(ngModel)]="tarea.fecha_inicio">
+                    </div>
+
+                    <div id="info" class="form-group  col-md-6">
+                      <label for="fecha_final">Fecha de finalización: </label>
+                      <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel"
+                        [(ngModel)]="tarea.fecha_final">
+                    </div>
+                  </div>
+
+
+                  <div class="row">
+                    <div id="info" style="margin-right:300px;margin-top: 30px; color: black;" >
+                      <mat-form-field appearance="fill" style="width:330%;">
+                          <mat-label>Escriba la descripcion...</mat-label>
+                          <textarea name="descripcion" #descripcion="ngModel"
+                              [(ngModel)]="tarea.descripcion" matInput
+                              placeholder="Escriba sus descripción..." required></textarea>
+                      </mat-form-field>
+                      <small *ngIf="!descripcion.valid && descripcion.touched"
+                          class="invalid-feedback d-block">
+                          La observación no es válida
+                      </small>
+                  </div>
+
+                  </div>
+                  <div class="row">
+
+                    <input id="boton" type="submit" value="Modificar" class="btn btn-success"
+                      [disabled]="updateTareaForm.invalid">
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-5 d-flex align-items-stretch">
+              <div class="wrap w-100 p-md-5 p-4">
+                <div>
+                  <img src="assets/images/senara-logo-div.png" width="250" height="150"
+                    style="margin-top:150px;margin-bottom:150px;" routerLink="/">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="row">
-    <div id="info" class="form-group">
-        <label for="fecha_inicio">Fecha de inicio: </label>
-        <input type="date" name="fecha_inicio" class="form-control" #fecha_inicio="ngModel" [(ngModel)]="tarea.fecha_inicio">
-    </div>
-
-    <div id="info" class="form-group">
-        <label for="fecha_final">Fecha de finalización: </label>
-        <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="tarea.fecha_final">
-    </div>
-  </div>
-  
-  <div class="row">
-    <div id="info" class="form-group">
-        <label>Peso: </label>
-        <input type="number" name="peso" class="form-control" #peso="ngModel"
-        [(ngModel)]="tarea.peso" required pattern="^[1-9]\d*$">
-        <small *ngIf="!peso.valid && peso.touched" class="invalid-feedback d-block">
-            El peso de la tarea no es válido
-        </small>
-    </div>
-
-  </div>
-    <div class="row">
-
-    <input id="boton" type="submit" value="Modificar" class="btn btn-success" [disabled]="updateTareaForm.invalid">
-    </div>
-</form>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/main.js"></script>
