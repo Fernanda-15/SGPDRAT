@@ -1,98 +1,135 @@
 <div style="border:20px; width:50%;margin-left:315px" [ngSwitch]="status">
-  <div  class="alert alert-danger" *ngSwitchCase="0">
+  <div class="alert alert-danger" *ngSwitchCase="0">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <i class="bi bi-exclamation-triangle-fill"></i>
-        <strong> Error</strong> de servidor interno!!!
+    <strong> Error</strong> de servidor interno!!!
   </div>
-  <div class="alert alert-danger"  *ngSwitchCase="1">
+  <div class="alert alert-danger" *ngSwitchCase="1">
     <i class="bi bi-exclamation-triangle-fill"></i>
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <strong> Error:</strong> La fecha final debe ser mayor a la fecha de inicio!!
   </div>
-  <div class="alert alert-danger"  *ngSwitchCase="2">
+  <div class="alert alert-danger" *ngSwitchCase="2">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <i class="bi bi-exclamation-triangle-fill"></i>
-        <strong> Error:</strong> La fecha de Inicio de la tarea debe estar dentro del periodo del proyecto: [{{proyecto.fecha_inicio}} - {{proyecto.fecha_final}}] !!
+    <strong> Error:</strong> La fecha de Inicio de la tarea debe estar dentro del periodo del proyecto:
+    [{{proyecto.fecha_inicio}} - {{proyecto.fecha_final}}] !!
   </div>
-  <div class="alert alert-danger"  *ngSwitchCase="3">
+  <div class="alert alert-danger" *ngSwitchCase="3">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <i class="bi bi-exclamation-triangle-fill"></i>
-        <strong> Error:</strong> La fecha Final de la tarea debe estar dentro del periodo del proyecto: [{{proyecto.fecha_inicio}} - {{proyecto.fecha_final}}] !!
+    <strong> Error:</strong> La fecha Final de la tarea debe estar dentro del periodo del proyecto:
+    [{{proyecto.fecha_inicio}} - {{proyecto.fecha_final}}] !!
   </div>
-  <div class="alert alert-danger"  *ngSwitchCase="4">
+  <div class="alert alert-danger" *ngSwitchCase="4">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <i class="bi bi-exclamation-triangle-fill"></i>
-        <strong> Error:</strong> El numero de tarea ya está asignado a otra tarea!!
+    <strong> Error:</strong> El numero de tarea ya está asignado a otra tarea!!
   </div>
-  <div class="alert alert-danger"  *ngSwitchCase="5">
+  <div class="alert alert-danger" *ngSwitchCase="5">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <i class="bi bi-exclamation-triangle-fill"></i>
     <strong> Error:</strong> La suma del peso de las tareas no debe ser mayor a 100!!
   </div>
- </div>
+</div>
 
- <div class="form-group">
-  <p>Agregar Tarea</p>
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="wrapper">
+          <div class="row no-gutters">
+            <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+              <div class="contact-wrap w-100 p-md-5 p-4">
+                <h3 class="mb-4">Agregar Tarea</h3>
+
+                <form id="formTarea"  #createTareaForm="ngForm"
+                  (ngSubmit)="onSubmit(createTareaForm)">
+
+                  <div class="row">
+                    <div id="info" class="form-group col-md-6">
+                      <label>Numero de tarea: </label>
+                      <input type="number" name="numero" class="form-control" #numero="ngModel"
+                        [(ngModel)]="tarea.numero" required pattern="^[1-9]\d*$">
+                      <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
+                        El número de tarea no es válido
+                      </small>
+                    </div>
+
+                    <div id="info" class="form-group col-md-6">
+                      <label>Descripcion: </label>
+                      <input type="text" name="descripcion" class="form-control" #descripcion="ngModel"
+                        [(ngModel)]="tarea.descripcion" required pattern="^[a-zA-Z0-9\.]*$">
+                      <small *ngIf="!descripcion.valid && descripcion.touched" class="invalid-feedback d-block">
+                        La descripción no es válida
+                      </small>
+                    </div>
+
+                  </div>
+
+
+                  <div class="row">
+                    <div id="info" class="form-group col-md-6">
+                      <label for="fecha_inicio">Fecha de inicio: </label>
+                      <input type="date" name="fecha_inicio" class="form-control" #fecha_inicio="ngModel"
+                        [(ngModel)]="tarea.fecha_inicio">
+                    </div>
+
+                    <div id="info" class="form-group col-md-6">
+                      <label for="fecha_final">Fecha de finalización: </label>
+                      <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel"
+                        [(ngModel)]="tarea.fecha_final">
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div id="info" class="form-group col-md-6">
+                      <label>Peso: </label>
+                      <input type="number" name="peso" class="form-control" #peso="ngModel" [(ngModel)]="tarea.peso"
+                        required pattern="^[1-9]\d*$">
+                      <small *ngIf="!peso.valid && peso.touched" class="invalid-feedback d-block">
+                        El peso de la tarea no es válido
+                      </small>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div style="position: center; margin-top: 29px;">
+                      <input id="boton" type="submit" value="Agregar" class="btn btn-success mr-2"
+                        [disabled]="createTareaForm.invalid">
+                    </div>
+
+                    <!--CAMBIAR ESTILO AL SELECCIONAR BOTON-->
+                    <!--Regresar a la lista de tareas en caso de no poder agregar mas-->
+
+                    <div style="position: center; margin-top: 29px;" *ngIf="status == 5">
+                      <input id="boton" type="submit" value="Regresar" class="btn btn-danger mr-2"
+                        [routerLink]="['/tarea-list', proyecto.id]">
+                    </div>
+
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-5 d-flex align-items-stretch">
+              <div class="wrap w-100 p-md-5 p-4">
+                <div>
+                  <img src="assets/images/senara-logo-div.png" width="250" height="150"
+                    style="margin-top:150px;margin-bottom:150px;" routerLink="/">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-<form id="formTarea" class="col-md-6 mr-auto ml-auto" #createTareaForm="ngForm" (ngSubmit)="onSubmit(createTareaForm)">
+</section>
 
-  <div class="row">
-    <div id="info" class="form-group">
-        <label>Numero de tarea: </label>
-        <input type="number" name="numero" class="form-control" #numero="ngModel" 
-        [(ngModel)]="tarea.numero" required pattern="^[1-9]\d*$">
-        <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
-            El número de tarea no es válido
-        </small>
-    </div>
-
-    <div id="info" class="form-group">
-            <label>Descripcion: </label>
-            <input type="text" name="descripcion" class="form-control" #descripcion="ngModel"
-            [(ngModel)]="tarea.descripcion" required pattern="^[a-zA-Z0-9\.]*$">
-            <small *ngIf="!descripcion.valid && descripcion.touched" class="invalid-feedback d-block">
-                La descripción no es válida
-            </small>
-    </div>
-
-  </div>
-
-
-  <div class="row">
-    <div id="info" class="form-group">
-        <label for="fecha_inicio">Fecha de inicio: </label>
-        <input type="date" name="fecha_inicio" class="form-control" #fecha_inicio="ngModel" [(ngModel)]="tarea.fecha_inicio">
-    </div>
-
-    <div id="info" class="form-group">
-        <label for="fecha_final">Fecha de finalización: </label>
-        <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="tarea.fecha_final">
-    </div>
-
-  </div>
-
-  <div class="row">
-    <div id="info" class="form-group">
-        <label>Peso: </label>
-        <input type="number" name="peso" class="form-control" #peso="ngModel"
-        [(ngModel)]="tarea.peso" required pattern="^[1-9]\d*$">
-        <small *ngIf="!peso.valid && peso.touched" class="invalid-feedback d-block">
-            El peso de la tarea no es válido
-        </small>
-    </div>
-
-  </div>
-
-  <div class="row">
-    <div style="position: center; margin-top: 29px;">
-      <input id="boton" type="submit" value="Agregar" class="btn btn-success mr-2" [disabled]="createTareaForm.invalid">
-    </div>
-      
-    <!--CAMBIAR ESTILO AL SELECCIONAR BOTON--> <!--Regresar a la lista de tareas en caso de no poder agregar mas-->
-    
-    <div style="position: center; margin-top: 29px;" *ngIf="status == 5">
-        <input id="boton" type="submit" value="Regresar" class="btn btn-danger mr-2" [routerLink]="['/tarea-list', proyecto.id]">
-    </div>
-
-  </div>
-</form>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/main.js"></script>
