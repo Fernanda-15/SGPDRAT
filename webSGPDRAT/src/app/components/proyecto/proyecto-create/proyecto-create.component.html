@@ -53,8 +53,8 @@
 
       <div id="info" class="form-group col-md-6">
           <label>Numero de contratación: </label>
-          <input type="number" name="numero_contratacion" class="form-control" #numero_contratacion="ngModel"
-          [(ngModel)]="proyecto.numero_contratacion" required pattern="^[1-9]\d*$">
+          <input type="text" name="numero_contratacion" class="form-control" #numero_contratacion="ngModel"
+          [(ngModel)]="proyecto.numero_contratacion" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
           <small *ngIf="!numero_contratacion.valid && numero_contratacion.touched" class="invalid-feedback d-block">
               El número de contratación no es válido
           </small>
