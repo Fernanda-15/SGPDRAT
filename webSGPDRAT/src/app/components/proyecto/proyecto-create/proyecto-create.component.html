@@ -37,8 +37,8 @@
             <div class="row no-gutters">
               <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
                 <div class="contact-wrap w-100 p-md-5 p-4">
-                  <h3 class="mb-4">Registro de proyecto</h3>
-                  <form id="formProyecto"  #createProyectoForm="ngForm" (ngSubmit)="onSubmit(createProyectoForm)">
+                  <p>Agregar proyecto</p>
+                  <form id="formProyecto" #createProyectoForm="ngForm" (ngSubmit)="onSubmit(createProyectoForm)">
                     <div class="row">
                       <div id="info" class="form-group col-md-6" *ngIf="identity.rol == 'admin'">
                               <label>Usuario: </label>

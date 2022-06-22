@@ -39,7 +39,7 @@
       </div>
 
       <div class="row">
-    <div id="info" class="form-group">
+    <div id="info" class="form-group col-md-6">
             <label>Usuario: </label>
             <select name="usuario" #usuario="ngModel" [(ngModel)]="proyecto.user_id" class="form-control">
                 <option *ngFor="let us of users" value="{{us.id}}">
@@ -48,7 +48,7 @@
             </select>
     </div>
 
-    <div id="info" class="form-group">
+    <div id="info" class="form-group col-md-6">
       <label>Numero de contratación: </label>
       <input type="text" name="numero_contratacion" class="form-control" #numero_contratacion="ngModel"
       [(ngModel)]="proyecto.numero_contratacion" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
@@ -59,7 +59,7 @@
       </div>
 
       <div class="row">
-    <div id="info" class="form-group">
+    <div id="info" class="form-group col-md-6">
             <label>Nombre: </label>
             <input type="text" name="nombre" class="form-control" #nombre="ngModel"
             [(ngModel)]="proyecto.nombre" required pattern="^[a-zA-Z0-9\.]*$">
@@ -68,7 +68,7 @@
             </small>
     </div>
 
-    <div id="info" class="form-group">
+    <div id="info" class="form-group col-md-6">
         <label>Objetivo: </label>
         <input type="text" name="objetivo" class="form-control" #objetivo="ngModel"
         [(ngModel)]="proyecto.objetivo" required pattern="^[a-zA-Z0-9\.]*$">
@@ -78,7 +78,7 @@
     </div>
       </div>
       <div class="row">
-    <div id="info" class="form-group">
+    <div id="info" class="form-group col-md-6">
         <label>Ubicación: </label>
         <input type="text" name="ubicacion" class="form-control" #ubicacion="ngModel"
         [(ngModel)]="proyecto.ubicacion" required pattern="^[a-zA-Z0-9\.]*$">
@@ -87,19 +87,19 @@
         </small>
     </div>
 
-    <div id="info" class="form-group">
+    <div id="info" class="form-group col-md-6">
         <label for="fecha_inicio">Fecha de inicio: </label>
         <input type="date" name="fecha_inicio" class="form-control" #fecha_inicio="ngModel" [(ngModel)]="proyecto.fecha_inicio">
     </div>
       </div>
       <div class="row">
-    <div id="info" class="form-group">
+    <div id="info" class="form-group col-md-6">
         <label for="fecha_final">Fecha de finalización: </label>
         <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="proyecto.fecha_final">
     </div>
 
       <div style="position: center; margin-top: 29px;">
-    <input id="boton" type="submit" value="Modificar" class="btn btn-success" [disabled]="updateProyectoForm.invalid">
+    <input id="boton" type="submit" value="Modificar" class="btn btn-success ml-2" [disabled]="updateProyectoForm.invalid">
       </div>
 
     </div>
