@@ -10,7 +10,7 @@
       <i class="bi bi-exclamation-triangle-fill"></i>
       <strong> Error:</strong>  La fecha final debe ser mayor a la fecha de inicio!!
     </div>
-    
+
 </div>
 <div *ngIf="!showContent">
   <h1 id="titulo">Cargando...</h1>
@@ -20,7 +20,18 @@
   <error-component></error-component>
 </div>
 <div *ngIf="identity.sub == proyecto.user_id || identity.rol=='admin'">
-<form id="formProyecto" class="col-md-6 mr-auto ml-auto" #updateProyectoForm="ngForm" (ngSubmit)="onSubmit(updateProyectoForm)">
+
+
+
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <div class="wrapper">
+            <div class="row no-gutters">
+              <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+                <div class="contact-wrap w-100 p-md-5 p-4">
+  <form id="formProyecto"  #updateProyectoForm="ngForm" (ngSubmit)="onSubmit(updateProyectoForm)">
      <div class="form-group">
         <p>
           Modifica el proyecto #{{proyecto.id}}
@@ -87,11 +98,40 @@
         <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="proyecto.fecha_final">
     </div>
 
-      </div>
-      
-    <div class="row">
+      <div style="position: center; margin-top: 29px;">
     <input id="boton" type="submit" value="Modificar" class="btn btn-success" [disabled]="updateProyectoForm.invalid">
       </div>
+
+    </div>
+
 </form>
+
+
 </div>
 </div>
+<div class="col-lg-4 col-md-5 d-flex align-items-stretch">
+  <div class="wrap w-100 p-md-5 p-4">
+    <div>
+      <img src="assets/images/senara-logo-div.png" width="250" height="150" style="margin-top:150px;margin-bottom:150px;" routerLink="/">
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/main.js"></script>
+
+
+
+
+
+

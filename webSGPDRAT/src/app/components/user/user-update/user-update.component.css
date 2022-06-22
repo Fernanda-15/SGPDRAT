@@ -1,15 +1,64 @@
-#formU{
-  margin-bottom: 50px;
-  align-items: center;
-  display:flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  border: dashed 4px rgba(20, 172, 232, 0.825);
-  border-radius: 4px;
-  box-sizing: border-box;
-  padding: 32px 32px;
-  scroll-margin-bottom: 100%;
+.wrap{
+  border-right:outset rgba(20, 172, 232, 0.825);
+ background-color: rgba(149,193,31);
+ border-radius: 4px;
+ background:  rgba(149,193,31);
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: 0 0;
+ color: #FFFFFF;
+ position: relative;
+ border-radius: 10px;
+   box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+     0 10px 10px rgba(0,0,0,0.22);
+ position: relative;
+ overflow: hidden;
+
 }
+
+.col-lg-8{
+ border:outset rgba(255, 255, 255, 0.825);
+ background-color: rgba(149,193,31);
+ border-radius: 4px;
+ background:  rgb(255, 255, 255);
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: 0 0;
+ color: #FFFFFF;
+ position: relative;
+ border-radius: 10px;
+   box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+     0 10px 10px rgba(0,0,0,0.22);
+ position: relative;
+ overflow: hidden;
+}
+
+.text-center {
+ text-align: center!important;
+ margin-bottom: 10px;
+}
+
+
+h3{
+  color: black;
+  }
+
+
+.container{
+ /* margin-bottom: 50px;
+ align-items: center;
+ display:flex;
+ flex-direction: column; */
+ background-color: #ffffff;
+ /* border:outset rgba(20, 172, 232, 0.825); */
+ border-radius: 4px;
+ box-sizing: border-box;
+ padding: 32px 32px;
+ scroll-margin-bottom: 100%;
+ position: center;
+ min-height: 100vh;
+}
+
 
 
 #info{
@@ -30,6 +79,8 @@ small{
 }
 
 p{
+
+  color: black;
   font-size: 32px;
   line-height: 40px;
   text-align: center;
