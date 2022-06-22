@@ -4,7 +4,7 @@
     <i class="bi bi-exclamation-triangle-fill"></i>
         <strong> Error</strong> de servidor interno!!!
   </div>
-  
+
   <div class="alert alert-danger"  *ngSwitchCase="1">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <i class="bi bi-exclamation-triangle-fill"></i>
@@ -24,67 +24,98 @@
   </div>
 
  </div>
- 
-<div class="form-group">
-    <p>Modificar Pago {{pago.id}}</p>
-    </div>
-  <form id="formPago" class="col-md-6 mr-auto ml-auto" #updatePagoForm="ngForm" (ngSubmit)="onSubmit(updatePagoForm)">
-  
-    <div class="row">
-      <div id="info" class="form-group">
-          <label>Numero de pago: </label>
-          <input type="number" name="numero" class="form-control" #numero="ngModel" 
-          [(ngModel)]="pago.numero" required pattern="^[1-9]\d*$">
-          <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
-              El número de pago no es válido
-          </small>
-      </div>
- 
-      <div id="info" class="form-group">
-        <label>Proyección: </label>
-        <input type="number" name="proyeccion" class="form-control" #proyeccion="ngModel"
-        [(ngModel)]="pago.proyeccion" required pattern="^[0-9]+" disabled>
-        <small *ngIf="!proyeccion.valid && proyeccion.touched" class="invalid-feedback d-block">
-            La proyeccion no es válida
-        </small>
-    </div>
-  
-    </div>
-  
-    <div class="row">
-      <div id="info" class="form-group col-md-6" style="margin-right:200px;margin-top: 25px;">
-        <mat-form-field appearance="fill" style="width:200%;">
-            <mat-label>Escriba su justificación...</mat-label>
-            <textarea name="justificacion" #justificacion="ngModel"
-                [(ngModel)]="pago.justificacion" matInput
-                placeholder="Escriba sus observaciones..." required></textarea>
-        </mat-form-field>
-        <small *ngIf="!!justificacion.valid && justificacion.touched"
-            class="invalid-feedback d-block">
-            La observación no es válida
-        </small>
-    </div>
-    </div>
-    
-    <div class="row">
-        <div id="info" class="form-group">
-            <label>Monto: </label>
-            <input type="number" name="monto" class="form-control" #monto="ngModel" 
-            [(ngModel)]="pago.monto" required pattern="^[1-9]\d*$">
-            <small *ngIf="!monto.valid && monto.touched" class="invalid-feedback d-block">
-                El monto no es válido
-            </small>
-        </div>
-  
-  
-    </div>
-  
-    <div class="row">
-      <div style="position: center; margin-top: 29px;">
-        <input id="boton" type="submit" value="Modificar" class="btn btn-success mr-2" [disabled]="updatePagoForm.invalid">
-      </div>
-    
-    </div>
 
-  </form>
+
+ <section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="wrapper">
+          <div class="row no-gutters">
+            <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+              <div class="contact-wrap w-100 p-md-5 p-4">
+              <form id="formPago" #updatePagoForm="ngForm" (ngSubmit)="onSubmit(updatePagoForm)">
+            <div class="form-group">
+              <p>Modificar Pago {{pago.id}}</p>
+              </div>
+                <div class="row">
+                  <div id="info" class="form-group">
+                      <label>Numero de pago: </label>
+                      <input type="number" name="numero" class="form-control" #numero="ngModel"
+                      [(ngModel)]="pago.numero" required pattern="^[1-9]\d*$">
+                      <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
+                          El número de pago no es válido
+                      </small>
+                  </div>
+
+                  <div id="info" class="form-group">
+                    <label>Proyección: </label>
+                    <input type="number" name="proyeccion" class="form-control" #proyeccion="ngModel"
+                    [(ngModel)]="pago.proyeccion" required pattern="^[0-9]+" disabled>
+                    <small *ngIf="!proyeccion.valid && proyeccion.touched" class="invalid-feedback d-block">
+                        La proyeccion no es válida
+                    </small>
+                </div>
+
+                </div>
+
+                <div class="row">
+                  <div id="info" class="form-group col-md-6" style="margin-right:200px;margin-top: 25px;">
+                    <mat-form-field appearance="fill" style="width:200%;">
+                        <mat-label>Escriba su justificación...</mat-label>
+                        <textarea name="justificacion" #justificacion="ngModel"
+                            [(ngModel)]="pago.justificacion" matInput
+                            placeholder="Escriba sus observaciones..." required></textarea>
+                    </mat-form-field>
+                    <small *ngIf="!!justificacion.valid && justificacion.touched"
+                        class="invalid-feedback d-block">
+                        La observación no es válida
+                    </small>
+                </div>
+                </div>
+
+                <div class="row">
+                    <div id="info" class="form-group">
+                        <label>Monto: </label>
+                        <input type="number" name="monto" class="form-control" #monto="ngModel"
+                        [(ngModel)]="pago.monto" required pattern="^[1-9]\d*$">
+                        <small *ngIf="!monto.valid && monto.touched" class="invalid-feedback d-block">
+                            El monto no es válido
+                        </small>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                  <div style="position: center; margin-top: 29px;">
+                    <input id="boton" type="submit" value="Modificar" class="btn btn-success mr-2" [disabled]="updatePagoForm.invalid">
+                  </div>
+
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-5 d-flex align-items-stretch">
+            <div class="wrap w-100 p-md-5 p-4">
+              <div>
+                <img src="assets/images/senara-logo-div.png" width="250" height="150" style="margin-top:150px;margin-bottom:150px;" routerLink="/">
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </section>
+
+          <script src="js/jquery.min.js"></script>
+          <script src="js/popper.js"></script>
+          <script src="js/bootstrap.min.js"></script>
+          <script src="js/jquery.validate.min.js"></script>
+          <script src="js/main.js"></script>
+
 
