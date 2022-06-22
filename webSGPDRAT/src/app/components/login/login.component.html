@@ -14,31 +14,30 @@
     <div class="form-group">
       <p data-testid="titulo">Bienvenido</p>
       </div>
-    <form id="formLogin" class="col-md-6 mr-auto ml-auto" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-      <div class="row">
-        <div id="info" class="form-group">
-            <label>Nombre de Usuario: </label>
-            <input type="text" name="userName" class="form-control" #userName="ngModel"
-            [(ngModel)]="user.nombreUsuario" required>
-            <small *ngIf="!userName.valid && userName.touched" class="invalid-feedback d-block">
-                Por favor ingrese el usuario.
-            </small>
-        </div>
-      </div>
-      <div class="row">
-        <div id="info" class="form-group">
-                <label>Contraseña: </label>
-                <input type="password" name="contrasena" class="form-control" #contrasena="ngModel"
-                [(ngModel)]="user.contrasena" required>
-                <small *ngIf="!contrasena.valid && contrasena.touched" class="invalid-feedback d-block">
-                    Por favor ingrese la contraseña.
-                </small>
-        </div>
-      </div>
-      <div class="row">
-      <div style="position: center; margin-top: 29px;">
-        <input id="boton" type="submit" value="Iniciar Sesión" class="btn btn-success" [disabled]="loginForm.invalid">
-        </div>
-      </div>
-    </form>
-
+         <form id="formLogin" class="col-md-6 mr-auto ml-auto" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+                          <div class="row">
+                            <div id="info" class="form-group">
+                                <label>Nombre de Usuario: </label>
+                                <input type="text" name="userName" class="form-control" #userName="ngModel"
+                                [(ngModel)]="user.nombreUsuario" required>
+                                <small *ngIf="!userName.valid && userName.touched" class="invalid-feedback d-block">
+                                    Por favor ingrese el usuario.
+                                </small>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div id="info" class="form-group">
+                                    <label>Contraseña: </label>
+                                    <input type="password" name="contrasena" class="form-control" #contrasena="ngModel"
+                                    [(ngModel)]="user.contrasena" required>
+                                    <small *ngIf="!contrasena.valid && contrasena.touched" class="invalid-feedback d-block">
+                                        Por favor ingrese la contraseña.
+                                    </small>
+                            </div>
+                          </div>
+                          <div class="row">
+                          <div style="position: center; margin-top: 29px;">
+                            <input id="boton" type="submit" value="Iniciar Sesión" class="btn btn-success" [disabled]="loginForm.invalid">
+                            </div>
+                          </div>
+                        </form>
