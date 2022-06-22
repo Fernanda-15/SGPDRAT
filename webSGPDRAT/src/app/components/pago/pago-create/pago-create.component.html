@@ -67,7 +67,7 @@
                               [(ngModel)]="pago.justificacion" matInput
                               placeholder="Escriba sus observaciones..." required></textarea>
                       </mat-form-field>
-                      <small *ngIf="!!justificacion.valid && justificacion.touched"
+                      <small *ngIf="!justificacion.valid && justificacion.touched"
                           class="invalid-feedback d-block">
                           La observación no es válida
                       </small>
