@@ -35,11 +35,11 @@
       </form>
     </div>
   </nav>
-<h1 id="titulo" *ngIf="proyectos.length==0 && status!=3">Todavía no tienes proyectos asignados.</h1>
+<h1 id="titulo" *ngIf="proyectos.length==0 && status!=3" style="margin-top:100px;">Todavía no tienes proyectos asignados.</h1>
 
-<h1 id="titulo" *ngIf="proyectos.length==0 && status==3">No se encontró ningun proyecto con ese nombre.</h1>
+<h1 id="titulo" *ngIf="proyectos.length==0 && status==3" style="margin-top:100px;">No se encontró ningun proyecto con ese nombre.</h1>
 
-<h1 id="titulo" *ngIf="status==4">Proyectos encontrados con: {{p}}</h1>
+<h1 id="titulo" *ngIf="status==4" >Proyectos encontrados con: {{p}}</h1>
 
 
   

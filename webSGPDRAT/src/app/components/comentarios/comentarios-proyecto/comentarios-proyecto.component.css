@@ -7,13 +7,13 @@
   font-family: 'Josefin Sans', sans-serif;
 }
 
-
 hr{
-background-color: rgba(20, 172, 232, 0.825);
+  background-color: rgba(20, 172, 232, 0.825);
 }
 
+
 thead {
-background-color: rgba(20, 172, 232, 0.825);
+  background-color:#0080be;
 
 }
 
@@ -23,7 +23,6 @@ align-items: center;
 display:flex;
 flex-direction: column;
 background-color: #ffffff;
-border: dashed 4px rgba(20, 172, 232, 0.825);
 border-radius: 4px;
 box-sizing: border-box;
 padding: 32px 32px;

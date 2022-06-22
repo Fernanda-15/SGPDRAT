@@ -18,7 +18,7 @@
 
                 <div class="card-header" style="width: 18rem;">
                     <a href="{{url + 'fotos/getruta/' + foto.nombre }}" download>
-                        <img src="{{url + 'fotos/getimage/' + foto.nombre }}" class="card-img-top">
+                        <img src="{{url + 'fotos/getimage/' + foto.nombre }}" class="card-img-top" width="100" height="200">
                     </a>
                     <div class="card-body" id="card-body">
                         <button id="btnDelete" class="btn btn-danger btn-xs mr-2" data-toggle="modal"
@@ -50,10 +50,11 @@
                 </div>
 
             </article>
-            <mat-paginator [length]="fotos.length" [pageSize]="3" [pageSizeOptions]="[3, 5, 10, 25, 100]"
-                aria-label="Select page" (page)="cambiarpagina($event)">
-            </mat-paginator>
+           
         </div>
+        <mat-paginator [length]="fotos.length" [pageSize]="3" [pageSizeOptions]="[3, 5, 10, 25, 100]"
+        aria-label="Select page" (page)="cambiarpagina($event)">
+    </mat-paginator>
     </div>
 
 
@@ -64,7 +65,7 @@
         <div class="card-columns">
 
             <article class="card border-primary mb-3" style="max-width: 18rem;"
-                *ngFor="let archivo of archivos | slice:desde:hasta let i=index">
+                *ngFor="let archivo of archivos | slice:desde2:hasta2 let i=index">
 
                 <div class="card-header" style="width: 18rem; text-align: center;">
                     <a href="{{url + 'archivos/getruta/' + archivo.nombre }}" download>
@@ -113,10 +114,11 @@
                 </div>
 
             </article>
-            <mat-paginator [length]="fotos.length" [pageSize]="3" [pageSizeOptions]="[3, 5, 10, 25, 100]"
-                aria-label="Select page" (page)="cambiarpagina($event)">
-            </mat-paginator>
+            
         </div>
+        <mat-paginator [length]="archivos.length" [pageSize]="3" [pageSizeOptions]="[3, 5, 10, 25, 100]"
+                aria-label="Select page" (page)="cambiarpagina2($event)">
+            </mat-paginator>
     </div>
 
 

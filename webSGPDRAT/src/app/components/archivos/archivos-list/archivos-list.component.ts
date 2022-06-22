@@ -25,6 +25,8 @@ export class ArchivosListComponent implements OnInit {
   public inspeccion:Inspeccion;
   public desde:number = 0;
   public hasta:number = 3;
+  public desde2:number = 0;
+  public hasta2:number = 3;
   public url:any;
   public status:number=-1;
   public tipo:any;
@@ -165,6 +167,14 @@ export class ArchivosListComponent implements OnInit {
     this.hasta = this.desde + e.pageSize;
 
   }
+
+  cambiarpagina2(e:PageEvent){
+    console.log(e);
+    this.desde2 = e.pageIndex * e.pageSize;
+    this.hasta2 = this.desde2 + e.pageSize;
+
+  }
+
 
   
 }
