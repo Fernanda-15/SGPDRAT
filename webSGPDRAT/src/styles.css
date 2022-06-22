@@ -18,7 +18,7 @@ body {
 }
 
 /* html, body { height: 100%; } */
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+/* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
   background:url(src/assets/images/senara-adorno-hojas.jpg) no-repeat bottom right transparent;
   background-image: url(src/assets/images/senara-adorno-hojas.jpg);
   background-position-x: right;
@@ -27,7 +27,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
   background-attachment: initial;
   background-origin: initial;
   background-clip: initial;
-  background-color: transparent;}
+  background-color: transparent;} */
 
 
 div.gantt {
