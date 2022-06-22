@@ -119,7 +119,7 @@ class UserController extends Controller
         $data=json_decode($json,true);
         $data=array_map('trim',$data);
         $rules=[
-            'nombreUsuario'=>'required|alpha',
+            'nombreUsuario'=>'required',
             'contrasena'=>'required',
             'nombre'=>'required',
             'cedula'=>'required',
@@ -165,7 +165,7 @@ class UserController extends Controller
             if(!empty($data)){
                 $data=array_map('trim',$data);
                 $rules=[
-                    'nombreUsuario'=>'required|alpha',
+                    'nombreUsuario'=>'required',
                     'contrasena'=>'required',
                     'nombre'=>'required',
                     'cedula'=>'required',
