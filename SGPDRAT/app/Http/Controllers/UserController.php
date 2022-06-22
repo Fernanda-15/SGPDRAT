@@ -185,6 +185,7 @@ class UserController extends Controller
                         unset($data['id']);  
                         unset($data['created_at']);   
                         $data['updated_at']=now();     
+                        $data['contrasena']=hash('sha256',$data['contrasena']);
                         $updated=User::where('id',$id)->update($data);
                         if($updated>0){
                             $response=array(
