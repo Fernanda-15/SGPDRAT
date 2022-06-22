@@ -38,6 +38,11 @@
  margin-bottom: 10px;
 }
 
+h3{
+  color: black;
+  }
+
+  
 .container{
  /* margin-bottom: 50px;
  align-items: center;
@@ -52,8 +57,6 @@
  position: center;
  min-height: 100vh;
 }
-
-
 
 
 

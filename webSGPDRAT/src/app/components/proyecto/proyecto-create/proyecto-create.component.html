@@ -29,112 +29,135 @@
 </div>
 <div *ngIf="identity.rol == 'ingeniero' || identity.rol == 'admin'">
 
+  <section class="ftco-section">
     <div class="container">
-      <!--FORMULARIO-->
-  <form id="formProyecto" class="col-md-6 mr-auto ml-auto" #createProyectoForm="ngForm" (ngSubmit)="onSubmit(createProyectoForm)">
-    <!--TITULO-->
-    <div class="form-group">
-      <p>Agregar Proyecto</p>
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <div class="wrapper">
+            <div class="row no-gutters">
+              <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+                <div class="contact-wrap w-100 p-md-5 p-4">
+                  <h3 class="mb-4">Registro de usuario</h3>
+                  <form id="formProyecto"  #createProyectoForm="ngForm" (ngSubmit)="onSubmit(createProyectoForm)">
+                    <div class="row">
+                      <div id="info" class="form-group col-md-6" *ngIf="identity.rol == 'admin'">
+                              <label>Usuario: </label>
+                              <select name="usuario" #usuario="ngModel" [(ngModel)]="proyecto.user_id" class="form-control">
+                                  <option *ngFor="let us of users" value="{{us.id}}">
+                                      {{us.nombre}}
+                                    </option>
+                              </select>
+                      </div>
+                      <div id="info" class="form-group col-md-6" *ngIf="identity.rol != 'admin'">
+                        <label>Usuario: </label>
+                        <input type="text"  name="usuario" class="form-control"
+                        value={{identity.nombreUsuario}} disabled>
+                </div>
+
+                      <div id="info" class="form-group col-md-6">
+                          <label>Numero de contratación: </label>
+                          <input type="text" name="numero_contratacion" class="form-control" #numero_contratacion="ngModel"
+                          [(ngModel)]="proyecto.numero_contratacion" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
+                          <small *ngIf="!numero_contratacion.valid && numero_contratacion.touched" class="invalid-feedback d-block">
+                              El número de contratación no es válido
+                          </small>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div id="info" class="form-group col-md-6">
+                              <label>Nombre: </label>
+                              <input type="text" name="nombre" class="form-control" #nombre="ngModel"
+                              [(ngModel)]="proyecto.nombre" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
+                              <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
+                                  El nombre no es válido
+                              </small>
+                      </div>
+
+                      <div id="info" class="form-group col-md-6">
+                          <label>Objetivo: </label>
+                          <input type="text" name="objetivo" class="form-control" #objetivo="ngModel"
+                          [(ngModel)]="proyecto.objetivo" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
+                          <small *ngIf="!objetivo.valid && objetivo.touched" class="invalid-feedback d-block">
+                              El objetivo no es válido
+                          </small>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div id="info" class="form-group col-md-6">
+                          <label>Ubicación: </label>
+                          <input type="text" name="ubicacion" class="form-control" #ubicacion="ngModel"
+                          [(ngModel)]="proyecto.ubicacion" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
+                          <small *ngIf="!ubicacion.valid && ubicacion.touched" class="invalid-feedback d-block">
+                              La ubicacion no es válida
+                          </small>
+                      </div>
+
+                      <div id="info" class="form-group col-md-6">
+                          <label for="fecha_inicio">Fecha de inicio: </label>
+                          <input type="date" name="fecha_inicio" class="form-control" #fecha_inicio="ngModel" [(ngModel)]="proyecto.fecha_inicio">
+                      </div>
+                    </div>
+
+                    <!--<div> {{proyecto.fecha_inicio | date : 'yyyy-MM-dd'}} </div> Formato fecha    -->
+                    <div class="row">
+                      <div id="info" class="form-group col-md-6">
+                        <label for="fecha_final">Fecha de finalización: </label>
+                        <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="proyecto.fecha_final">
+                    </div>
+
+
+                    <div id="info" class="form-group col-md-6">
+                      <label>Forma de pago</label>
+                      <select name="forma_pago" #forma_pago="ngModel" [(ngModel)]="proyecto.forma_pago" class="form-control">
+                        <option value="parcial">Pagos parciales</option>
+                        <option  value="final">Final</option>
+                      </select>
+                    </div>
+                    </div>
+
+                    <div class="row">
+                      <div id="info" class="form-group col-md-6">
+                        <label>Monto adjudicado:</label>
+                        <input type="number" name="monto_adjudicado" class="form-control" #monto_adjudicado="ngModel"
+                        [(ngModel)]="proyecto.monto_adjudicado" required pattern="^[0-9\.]*$">
+                        <small *ngIf="!monto_adjudicado.valid && monto_adjudicado.touched" class="invalid-feedback d-block">
+                            El monto no es válido
+                        </small>
+                      </div>
+
+
+
+                    <div style="position: center; margin-top: 29px;">
+                      <input id="boton" type="submit" value="Agregar" class="btn btn-success" [disabled]="createProyectoForm.invalid">
+                      </div>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-5 d-flex align-items-stretch">
+                <div class="wrap w-100 p-md-5 p-4">
+                  <div>
+                    <img src="assets/images/senara-logo-div.png" width="250" height="150" style="margin-top:150px;margin-bottom:150px;" routerLink="/">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    <div class="row">
-      <div id="info" class="form-group col-md-6" *ngIf="identity.rol == 'admin'">
-              <label>Usuario: </label>
-              <select name="usuario" #usuario="ngModel" [(ngModel)]="proyecto.user_id" class="form-control">
-                  <option *ngFor="let us of users" value="{{us.id}}">
-                      {{us.nombre}}
-                    </option>
-              </select>
-      </div>
-      <div id="info" class="form-group col-md-6" *ngIf="identity.rol != 'admin'">
-        <label>Usuario: </label>
-        <input type="text"  name="usuario" class="form-control"
-        value={{identity.nombreUsuario}} disabled>
+    </div>
+  </section>
 </div>
 
-      <div id="info" class="form-group col-md-6">
-          <label>Numero de contratación: </label>
-          <input type="text" name="numero_contratacion" class="form-control" #numero_contratacion="ngModel"
-          [(ngModel)]="proyecto.numero_contratacion" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
-          <small *ngIf="!numero_contratacion.valid && numero_contratacion.touched" class="invalid-feedback d-block">
-              El número de contratación no es válido
-          </small>
-      </div>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/main.js"></script>
 
-    </div>
-    <div class="row">
-      <div id="info" class="form-group col-md-6">
-              <label>Nombre: </label>
-              <input type="text" name="nombre" class="form-control" #nombre="ngModel"
-              [(ngModel)]="proyecto.nombre" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
-              <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
-                  El nombre no es válido
-              </small>
-      </div>
-
-      <div id="info" class="form-group col-md-6">
-          <label>Objetivo: </label>
-          <input type="text" name="objetivo" class="form-control" #objetivo="ngModel"
-          [(ngModel)]="proyecto.objetivo" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
-          <small *ngIf="!objetivo.valid && objetivo.touched" class="invalid-feedback d-block">
-              El objetivo no es válido
-          </small>
-      </div>
-    </div>
-
-    <div class="row">
-      <div id="info" class="form-group col-md-6">
-          <label>Ubicación: </label>
-          <input type="text" name="ubicacion" class="form-control" #ubicacion="ngModel"
-          [(ngModel)]="proyecto.ubicacion" required pattern="^[a-zA-ZñÑ0-9\.\s\W]*$">
-          <small *ngIf="!ubicacion.valid && ubicacion.touched" class="invalid-feedback d-block">
-              La ubicacion no es válida
-          </small>
-      </div>
-
-      <div id="info" class="form-group col-md-6">
-          <label for="fecha_inicio">Fecha de inicio: </label>
-          <input type="date" name="fecha_inicio" class="form-control" #fecha_inicio="ngModel" [(ngModel)]="proyecto.fecha_inicio">
-      </div>
-    </div>
-
-    <!--<div> {{proyecto.fecha_inicio | date : 'yyyy-MM-dd'}} </div> Formato fecha    -->
-    <div class="row">
-      <div id="info" class="form-group col-md-6">
-        <label for="fecha_final">Fecha de finalización: </label>
-        <input type="date" name="fecha_final" class="form-control" #fecha_final="ngModel" [(ngModel)]="proyecto.fecha_final">
-    </div>
-
-
-    <div id="info" class="form-group col-md-6">
-      <label>Forma de pago</label>
-      <select name="forma_pago" #forma_pago="ngModel" [(ngModel)]="proyecto.forma_pago" class="form-control">
-        <option value="parcial">Pagos parciales</option>
-        <option  value="final">Final</option>
-      </select>
-    </div>
-    </div>
-
-    <div class="row">
-      <div id="info" class="form-group col-md-6">
-        <label>Monto adjudicado:</label>
-        <input type="number" name="monto_adjudicado" class="form-control" #monto_adjudicado="ngModel"
-        [(ngModel)]="proyecto.monto_adjudicado" required pattern="^[0-9\.]*$">
-        <small *ngIf="!monto_adjudicado.valid && monto_adjudicado.touched" class="invalid-feedback d-block">
-            El monto no es válido
-        </small>
-      </div>
-
-
-
-    <div style="position: center; margin-top: 29px;">
-      <input id="boton" type="submit" value="Agregar" class="btn btn-success" [disabled]="createProyectoForm.invalid">
-      </div>
-    </div>
-  </form>
-
-</div>
-</div>
-</div>
 
 
 
