@@ -58,6 +58,10 @@
                   <!--Botones-->
                   <div class="buttons">
 
+                    <a [routerLink]="['/inspeccion-list',proyecto.id]" class="btn btn-success" *ngIf="identity.rol == 'inspector'" >
+                      <span  class="bi bi-paperclip"></span>
+                    </a>
+
                     <a [routerLink]="['/tarea-list',proyecto.id]" class="btn btn-success mr-2" *ngIf="identity.rol == 'admin' || identity.rol == 'ingeniero'">
                       <span  class="bi bi-clipboard2-fill"></span>
                     </a>
@@ -70,14 +74,11 @@
                       <span  class="bi bi-currency-dollar"></span>
                     </a>
 
-                    <a [routerLink]="['/inspeccion-list',proyecto.id]" class="btn btn-success mr-2" *ngIf="identity.rol == 'inspector'" >
-                      <span  class="bi bi-paperclip"></span>
-                    </a>
-
                     <a [routerLink]="['/log-list',proyecto.id]" class="btn btn-dark mr-2" *ngIf="identity.rol =='admin' || identity.rol =='direccion' || identity.rol =='ingeniero'" >
                       <span  class="bi bi-file-text"></span>
                     </a>
 
+                    
                 <button id="btnDelete" class="btn btn-danger btn-xs mr-2" *ngIf="identity.rol == 'admin' || identity.rol == 'ingeniero'" data-toggle="modal" data-target="#exampleModal" [attr.data-target]="'#exampleModal'+proyecto.id">
                     <span class="bi bi-trash-fill"></span>
                 </button>

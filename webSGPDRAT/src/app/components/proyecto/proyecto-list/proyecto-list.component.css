@@ -16,14 +16,16 @@
 
 .card{
 position:static;
-margin: 1px;
+margin: 10px;
 margin-top: 15px;
 border: solid 2px #0080be;
-
+  height: 350px;
+  width: 300px;
 }
 
 .cards-columns{
   margin: 4px;
+  
 }
 
 .card-header{
