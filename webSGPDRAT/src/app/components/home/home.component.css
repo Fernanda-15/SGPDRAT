@@ -42,6 +42,7 @@ p{
   padding: 32px 32px;
   scroll-margin-bottom: 100%;
   position: center;
+
 }
 
 
@@ -50,6 +51,11 @@ p{
   border: solid 4px #0080be;
   border-radius: 6px;
 font-size: medium;
+border-radius: 10px;
+box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+  0 10px 10px rgba(0,0,0,0.22);
+position: relative;
+overflow: hidden;
 }
 
 #pro{
