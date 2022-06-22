@@ -39,11 +39,11 @@
 
 <h1 id="titulo" *ngIf="proyectos.length==0 && status==3" style="margin-top:100px;">No se encontró ningun proyecto con ese nombre.</h1>
 
-<h1 id="titulo" *ngIf="status==4" >Proyectos encontrados con: {{p}}</h1>
+<h1 id="titulo" *ngIf="status==4" style="margin-top:20px;">Proyectos encontrados con: {{p}}</h1>
 
 
   
- <div class="card-columns" *ngIf="proyectos.length>0">
+ <div class="card-columns" *ngIf="proyectos.length>0" style="margin-top:20px;">
 
         <article class="card border-primary " *ngFor="let proyecto of proyectos | slice:desde:hasta let i=index">
             <div class="card-header">
