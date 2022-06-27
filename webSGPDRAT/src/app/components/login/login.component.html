@@ -15,6 +15,11 @@
       <p data-testid="titulo">Bienvenido</p>
       </div>
          <form id="formLogin" class="col-md-6 mr-auto ml-auto" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+          <div class="row">
+            <div>
+              <img src="assets/images/senara-logo-hor.png" width="160" height="55" routerLink="/">
+            </div>
+          </div>
                           <div class="row">
                             <div id="info" class="form-group">
                                 <label>Nombre de Usuario: </label>
@@ -40,4 +45,5 @@
                             <input id="boton" type="submit" value="Iniciar Sesión" class="btn btn-success" [disabled]="loginForm.invalid">
                             </div>
                           </div>
+                          
                         </form>
