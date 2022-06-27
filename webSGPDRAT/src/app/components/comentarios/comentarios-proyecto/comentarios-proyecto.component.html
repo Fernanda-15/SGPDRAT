@@ -41,8 +41,14 @@
 
                     <div class="modal-boddy">
                         <label for="contenido" class="col-form-label">Contenido:</label>
-                        <input #contenido type="text" class="form-control" id="contenido">
-
+                       
+                            <div id="info" class="form-group col-md-6" style="margin-right:200px;margin-top: 25px;">
+                                <mat-form-field appearance="fill" style="width:215%;">
+                                    <mat-label>Escriba su comentario...</mat-label>
+                                    <textarea name="contenido" #contenido id="contenido" matInput
+                                        placeholder="Escriba su comentario..." required></textarea>
+                                </mat-form-field>
+                            </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
