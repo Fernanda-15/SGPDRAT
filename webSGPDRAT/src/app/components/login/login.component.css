@@ -1,4 +1,14 @@
 #formLogin{
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+  background:url(src/assets/images/senara-adorno-hojas.jpg) no-repeat bottom right transparent;
+  background-image: url(src/assets/images/senara-adorno-hojas.jpg);
+  background-position-x: right;
+  background-position-y: bottom;
+  background-size: 100px 200px;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: transparent;
   margin-bottom: 50px;
   align-items: center;
   display:flex;
@@ -16,7 +26,9 @@
 position: relative;
 overflow: hidden;
 }
-
+img{
+  border-radius: 4px;
+}
 
 #info{
 margin: 0px 0px 14px;
