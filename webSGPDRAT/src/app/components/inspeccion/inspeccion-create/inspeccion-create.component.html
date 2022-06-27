@@ -135,26 +135,24 @@
                                             <td>{{tarea.descripcion}}</td>
                                             <td>{{tarea.avance}}</td>
                                             <td>
-                                                <button id="btnUpdate" class="btn btn-info btn-xs" data-toggle="modal"
-                                                    data-target="#exampleModal"
-                                                    [attr.data-target]="'#exampleModal'+tarea.id">
-                                                    <span class="bi bi-bar-chart-fill"></span>
-                                                </button>
-                                                <div class="modal fade" id="exampleModal{{tarea.id}}" tabindex="-1"
-                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                
+
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" 
+                                                data-target="#modalEditarT"><span class="bi bi-pencil-fill"></span></button>
+
+                                                <div class="modal fade" id="modalEditarT" role="dialog">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-
-                                                                <h5 id="exampleModalLabel">Avance de Tarea: {{tarea.id}}
+                                                                <h5>  <strong> Avance de Tarea {{tarea.id}}</strong>
                                                                 </h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span class="bi bi-x-lg"></span>
+                                                                <button type="button" class="close" style="color:black" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
 
-                                                            <div class="modal-boddy">
+                                                            <div class="modal-boddy" style="margin-top:10px; align-self: center;">
                                                                 <label for="avance"
                                                                     class="col-form-label">Valor:</label>
                                                                 <input #avance type="number" value="{{tarea.avance}}"
@@ -206,7 +204,7 @@
             <div id="DOS" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                 <div class="card-body">
                     <!--IMAGENES-->
-                    <div class="row">
+                    <div class="imagenes">
                         <div class="imagen" style="margin-left: 468px;">
                             <angular-file-uploader *ngIf="fotos.length != 10" [config]="afuConfig" [resetUpload]=reset
                                 (ApiResponse)="imageUploaded($event)">
@@ -232,23 +230,21 @@
                                         <tr>
                                             <td>{{f.nombre}}</td>
                                             <td>
-                                                <button id="btnDelete" class="btn btn-danger btn-xs" data-toggle="modal"
-                                                    data-target="#exampleModal'" [attr.data-target]="'#exampleModal'+f.id">
-                                                    <span class="bi bi-trash-fill"></span>
-                                                </button>
-                                                <div class="modal fade" id="exampleModal{{f.id}}" tabindex="-1" role="dialog"
-                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" 
+                                                data-target="#modalEliminarF"><span class="bi bi-trash-fill"></span></button>
+
+                                                <div class="modal fade" id="modalEliminarF" role="dialog">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Confirmar
+                                                                <h5 class="modal-title" id="exampleModalLabel"> <strong>Confirmar</strong>
                                                                 </h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
+                                                                <button type="button" class="close" style="color:black" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
                                                             </div>
-                                                            <div class="modal-body">
+                                                            <div class="modal-body" style="text-align:center; margin-top:10px;">
                                                                 ¿Esta seguro de eliminar la foto?
                                                             </div>
                                                             <div class="modal-footer">
@@ -319,25 +315,22 @@
                                         <tr>
                                             <td>{{a.nombre}}</td>
                                             <td>
-                                                <button id="btnDelete" class="btn btn-danger btn-xs" data-toggle="modal"
-                                                    data-target="#exampleModal"
-                                                    [attr.data-target]="'#exampleModal'+a.id">
-                                                    <span class="bi bi-trash-fill"></span>
-                                                </button>
-                                                <div class="modal fade" id="exampleModal{{a.id}}" tabindex="-1"
-                                                    role="dialog" aria-labelledby="exampleModalLabel"
-                                                    aria-hidden="true">
+                                                
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" 
+                                                data-target="#modalEliminarA"><span class="bi bi-trash-fill"></span></button>
+
+                                                <div class="modal fade" id="modalEliminarA" role="dialog">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Confirmar
+                                                                <h5 class="modal-title" id="exampleModalLabel"><strong>Confirmar</strong>
                                                                 </h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
+                                                            <button type="button" class="close" style="color:black" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
                                                             </div>
-                                                            <div class="modal-body">
+                                                            <div class="modal-body" style="text-align:center;">
                                                                 ¿Esta seguro de eliminar el documento?
                                                             </div>
                                                             <div class="modal-footer">
