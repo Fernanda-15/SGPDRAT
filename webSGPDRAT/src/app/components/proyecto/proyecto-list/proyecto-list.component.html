@@ -42,7 +42,7 @@
 <h1 id="titulo" *ngIf="status==4" style="margin-top:20px;">Proyectos encontrados con: {{p}}</h1>
 
 
-  
+
  <div class="card-columns" *ngIf="proyectos.length>0" style="margin-top:20px;">
 
         <article class="card border-primary " *ngFor="let proyecto of proyectos | slice:desde:hasta let i=index">
@@ -78,7 +78,7 @@
                       <span  class="bi bi-file-text"></span>
                     </a>
 
-                    
+
                 <button id="btnDelete" class="btn btn-danger btn-xs mr-2" *ngIf="identity.rol == 'admin' || identity.rol == 'ingeniero'" data-toggle="modal" data-target="#exampleModal" [attr.data-target]="'#exampleModal'+proyecto.id">
                     <span class="bi bi-trash-fill"></span>
                 </button>
@@ -129,6 +129,6 @@
       </div>
       <mat-paginator [length]="proyectos.length" [pageSize]="3"  [pageSizeOptions]="[3, 5, 10, 25, 100]"  aria-label="Select page" (page)="cambiarpagina($event)" *ngIf="proyectos.length>3">
       </mat-paginator>
-      
+
 </div>
 </div>
