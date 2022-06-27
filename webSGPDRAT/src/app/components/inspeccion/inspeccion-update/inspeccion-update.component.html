@@ -1,3 +1,40 @@
+<div style="border:20px;" [ngSwitch]="status">
+    <div class="alert alert-danger" *ngSwitchCase="0">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <strong> Error</strong> de servidor interno!!!
+    </div>
+
+    <!--MODIFICO CON EXITO-->
+    <div class="alert alert-success" *ngSwitchCase="2">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="bi bi-check-circle-fill"></i>
+        <strong> Éxito:</strong> Avance modificado con exito !!!
+    </div>
+
+    <!--AVANCE DE TAREA-->
+    <div class="alert alert-danger" *ngSwitchCase="3">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <strong> Error:</strong> El avance no debe ser mayor a 100 !!!
+    </div>
+
+    <!--IMAGEN ELIMINADA CON EXITO-->
+    <div class="alert alert-success" *ngSwitchCase="4">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="bi bi-check-circle-fill"></i>
+        <strong> Éxito:</strong> Imagen eliminada con exito !!!
+    </div>
+
+    <!--DOCUMENTO ELIMINADA CON EXITO-->
+    <div class="alert alert-success" *ngSwitchCase="5">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="bi bi-check-circle-fill"></i>
+        <strong> Éxito:</strong> Documento eliminado con exito !!!
+    </div>
+
+</div>
+
 <div class="container">
     <div class="form-group" style="margin-bottom: 30px;">
         <p>Modificar Inspección {{inspeccion.numero}}</p>
@@ -37,8 +74,7 @@
                                         [(ngModel)]="inspeccion.observaciones" matInput
                                         placeholder="Escriba sus observaciones..." required></textarea>
                                 </mat-form-field>
-                                <!--<input type="text" name="observaciones" class="form-control" #observaciones="ngModel"
-            [(ngModel)]="inspeccion.observaciones" required pattern="^[a-zA-Z0-9\.]*$"> -->
+          
                                 <small *ngIf="!observaciones.valid && observaciones.touched"
                                     class="invalid-feedback d-block">
                                     La observación no es válida
@@ -90,24 +126,28 @@
                                         <tr>
                                             <td>{{f.nombre}}</td>
                                             <td>
-                                                <button id="btnDelete" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModal" [attr.data-target]="'#exampleModal'+f.id">
-                                                    <span class="bi bi-trash-fill"></span>
-                                                </button>
-                                                <div class="modal fade" id="exampleModal{{f.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" 
+                                                data-target="#modalEliminarF"><span class="bi bi-trash-fill"></span></button>
+
+                                             <div class="modal fade" id="modalEliminarF" role="dialog" >
                                                     <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Confirmar</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
+                                                        <h5 class="modal-title"><strong>Confirmar</strong></h5>
+                                                        <button type="button" class="close" style="color:black" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
                                                         </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                        ¿Esta seguro de eliminar el pago?
+                                                        ¿Esta seguro de eliminar la foto?
                                                         </div>
                                                         <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-                                                        <button id="btnConfirmar{{f.id}}"  type="button" class="btn btn-success" (click)="delete(f)" data-dismiss="modal">Aceptar</button>
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">No</button>
+                                                            <button id="btnConfirmar{{f.id}}" type="button"
+                                                                class="btn btn-success" (click)="delete(f)"
+                                                                data-dismiss="modal">Aceptar</button>
                                                         </div>
                                                     </div>
                                                     </div>
@@ -170,22 +210,18 @@
                                         <tr>
                                             <td>{{a.nombre}}</td>
                                             <td>
-                                                <button id="btnDelete" class="btn btn-danger btn-xs" data-toggle="modal"
-                                                    data-target="#exampleModal"
-                                                    [attr.data-target]="'#exampleModal'+a.id">
-                                                    <span class="bi bi-trash-fill"></span>
-                                                </button>
-                                                <div class="modal fade" id="exampleModal{{a.id}}" tabindex="-1"
-                                                    role="dialog" aria-labelledby="exampleModalLabel"
-                                                    aria-hidden="true">
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" 
+                                                data-target="#modalEliminarA"><span class="bi bi-trash-fill"></span></button>
+
+                                                <div class="modal fade" id="modalEliminarA" role="dialog" >
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Confirmar
+                                                                <h5 class="modal-title"><strong>Confirmar</strong> 
                                                                 </h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
+                                                                <button type="button" class="close" style="color:black" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
@@ -201,11 +237,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <script>
-                                                    $('#btnDelete' + user.id).attr('data-target', '#exampleModal' + user.id);
-                                                    $('#btnConfirmar' + user.id).attr('data-target', '#exampleModal' + user.id);
-                                                </script>
-
+                                                
                                             </td>
                                         </tr>
                                     </ng-container>
@@ -272,22 +304,19 @@
                                             <td>{{tarea.descripcion}}</td>
                                             <td>{{tarea.avance}}</td>
                                             <td>
-                                                <button id="btnUpdate" class="btn btn-info btn-xs" data-toggle="modal"
-                                                    data-target="#exampleModal"
-                                                    [attr.data-target]="'#exampleModal'+tarea.id">
-                                                    <span class="bi bi-bar-chart-fill"></span>
-                                                </button>
-                                                <div class="modal fade" id="exampleModal{{tarea.id}}" tabindex="-1"
-                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" 
+                                                data-target="#modalEditarT"><span class="bi bi-pencil-fill"></span></button>
+
+                                                <div class="modal fade" id="modalEditarT"  role="dialog">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
 
-                                                                <h5 id="exampleModalLabel">Avance de Tarea: {{tarea.id}}
+                                                                <h5><strong>Avance de Tarea {{tarea.id}}</strong> 
                                                                 </h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span class="bi bi-x-lg"></span>
+                                                                <button type="button" class="close" style="color:black" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
 
