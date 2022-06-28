@@ -12,7 +12,12 @@ import { User } from 'src/app/models/user';
 import { Pago } from 'src/app/models/pago';
 import { PagoService } from 'src/app/services/pago.service';
 import { timer } from 'rxjs';
-
+import { Fotos } from 'src/app/models/fotos';
+import { FotosService } from 'src/app/services/fotos.service';
+import { InspeccionService } from 'src/app/services/inspeccion.service';
+import { Inspeccion } from 'src/app/models/inspeccion';
+import { global } from 'src/app/services/global';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 
 @Component({
   selector: 'app-proyecto-info',
@@ -21,7 +26,9 @@ import { timer } from 'rxjs';
   providers: [TareaService,
             ProyectoService,
           UserService,
-        PagoService]
+        PagoService,
+      FotosService,
+    InspeccionService]
 })
 export class ProyectoInfoComponent implements OnInit {
   public showContent: boolean = false;
@@ -47,6 +54,12 @@ export class ProyectoInfoComponent implements OnInit {
   public pago:Pago;
   public total:number;
   public pdf1:any;
+  public foto:Fotos;
+  public fotos: any[]=[];
+  public fotitos: any[]=[];
+  public inspeccion:Inspeccion;
+  public inspecciones : any[]=[];
+  public url:any;
   //PDF
   @ViewChild('htmlData') htmlData!: ElementRef;
   //PDF
@@ -57,6 +70,8 @@ export class ProyectoInfoComponent implements OnInit {
     private _pagoService:PagoService,
     private _route:ActivatedRoute, 
     private _router:Router,
+    private _inspeccionService:InspeccionService,
+    private _fotosService:FotosService
   ) { 
     this.proyecto = new Proyecto(0,0,"","","","","","","",0);
     this.user = new User(0,"","","","","","","","");
@@ -72,6 +87,9 @@ export class ProyectoInfoComponent implements OnInit {
     this.mostrarInfoPDF = false;
     this.pago = new Pago(0,0,0,0,0,"","");
     this.total=0;
+    this.foto=new Fotos(0,0,"");
+    this.inspeccion=new Inspeccion(0,0,0,0,"","","",0,0,0);
+    this.url = global.urlApi;
   }
 
   ngOnInit(): void {
@@ -92,6 +110,7 @@ export class ProyectoInfoComponent implements OnInit {
             this.proyecto_id = this.proyecto.id.toString();
             this.loadTareas(this.proyecto.id); 
             this.loadPagos(id);
+            this.loadInspecciones(id);
           }else{
             console.log('AQUI');
             //this._router.navigate(['']);
@@ -104,6 +123,8 @@ export class ProyectoInfoComponent implements OnInit {
       );
     });
   }
+
+  
 
   getUserName(){
       this._userService.getUser(this.proyecto.user_id).subscribe(
@@ -145,6 +166,34 @@ export class ProyectoInfoComponent implements OnInit {
     );
   }
 
+  loadInspecciones(id:number):void{
+    this._proyectoService.getInspecciones(id).subscribe(
+      response=>{
+          this.inspecciones = response.data;
+          console.log(this.inspecciones);
+          for (let i in this.inspecciones) {
+            this.loadFotos(this.inspecciones[i].id);
+          }
+      
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
+
+  loadFotos(id:number):void{
+    this.fotitos= this.fotos;
+    this._inspeccionService.getFotos(id).subscribe(
+      response=>{
+          this.fotos = response.data;
+          this.fotitos = this.fotitos.concat(this.fotos);
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
   loadPorcentajePagado(id:number){
     this._proyectoService.getPagos(id).subscribe(
       response=>{
