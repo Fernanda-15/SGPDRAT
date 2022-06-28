@@ -76,11 +76,6 @@ overflow: hidden;
   align-items: flex-end;
   float: right;
 }
-.btn-danger {
-  color: #fff;
-  background-color: #dc3545;
-  border-color: #dc3545;
-}
 
 .modal-body{
   margin-left: 20px;
