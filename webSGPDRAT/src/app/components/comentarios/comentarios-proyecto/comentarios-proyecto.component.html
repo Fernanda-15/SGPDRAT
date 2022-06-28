@@ -16,7 +16,7 @@
 
 <!--TABLA DE COMENTARIOS-->
 <div class="container" *ngIf="comentarios">
-    <h5 id="titulo">Comentarios del Proyecto {{proyecto.nombre}} #{{proyecto.numero_contratacion}}</h5>
+    <h5 id="titulo">Comentarios del proyecto "{{proyecto.nombre}} #{{proyecto.numero_contratacion}}"</h5>
 
     <!--Boton nuevo comentario  -->
     <div class="row">
@@ -30,18 +30,13 @@
             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-
-                        <h5 id="exampleModalLabel">Agregar Comentario: 
-                        </h5>
-                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-                            <span class="bi bi-x-lg"></span>
-                        </button>
-                    </div>
 
                     <div class="modal-boddy">
-                        <label for="contenido" class="col-form-label">Contenido:</label>
-                       
+                      <div class="boton-modal">
+                      <button  type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                        <span class="bi bi-x-lg"></span>
+                    </button>
+                  </div>
                             <div id="info" class="form-group col-md-6" style="margin-right:200px;margin-top: 25px;">
                                 <mat-form-field appearance="fill" style="width:215%;">
                                     <mat-label>Escriba su comentario...</mat-label>
@@ -51,10 +46,13 @@
                             </div>
                     </div>
                     <div class="modal-footer">
+                      <div class="row">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                      </div>
+                      <div class="row">
                         <button id="btnConfirmar{{proyecto.id}}" type="button" class="btn btn-success"
                             (click)="onSubmit(proyecto.id, contenido.value)" data-dismiss="modal">Agregar</button>
-
+                          </div>
                     </div>
 
 
