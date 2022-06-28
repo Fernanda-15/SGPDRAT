@@ -55,7 +55,7 @@
                     <!--FORMULARIO-->
                     <form id="formInspeccion" class="col-md-6 mr-auto ml-auto" #createInspeccionForm="ngForm"
                         (ngSubmit)="onSubmit(createInspeccionForm)">
-                    
+
                         <div class="row">
                             <div id="info" class="form-grou col-md-6">
                                 <label>Numero de inspeccion: </label>
@@ -134,16 +134,16 @@
                                             <td>{{tarea.descripcion}}</td>
                                             <td>{{tarea.avance}}</td>
                                             <td>
-                                                
 
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" 
+
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
                                                 data-target="#modalEditarT"><span class="bi bi-pencil-fill"></span></button>
 
                                                 <div class="modal fade" id="modalEditarT" role="dialog">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5>  <strong> Avance de Tarea {{tarea.id}}</strong>
+                                                                <h5>  Avance de Tarea {{tarea.id}}
                                                                 </h5>
                                                                 <button type="button" class="close" style="color:black" data-dismiss="modal"
                                                                 aria-label="Close">
@@ -153,7 +153,7 @@
 
                                                             <div class="modal-boddy">
                                                                 <label for="avance"
-                                                                    class="col-form-label">Valor:</label>
+                                                                    class="col-form-label"> Inserte el valor:</label>
                                                                 <input #avance type="number" value="{{tarea.avance}}"
                                                                     class="form-control" id="avance">
 
@@ -229,27 +229,27 @@
                                         <tr>
                                             <td>{{f.nombre}}</td>
                                             <td>
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" 
+                                                <button type="button" class="btn btn-danger" data-toggle="modal"
                                                 data-target="#modalEliminarF"><span class="bi bi-trash-fill"></span></button>
 
                                                 <div class="modal fade" id="modalEliminarF" role="dialog">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel"> <strong>Confirmar</strong>
-                                                                </h5>
-                                                                <button type="button" class="close" style="color:black" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
+                                                            <div class="boton-modal-eliminar">
+                                                              <button type="button" class="close" style="color:black" data-dismiss="modal"
+                                                              aria-label="Close">
+                                                              <span aria-hidden="true">&times;</span>
                                                             </button>
-                                                            </div>
+
                                                             <div class="modal-body">
-                                                                ¿Esta seguro de eliminar la foto?
+                                                             <h5  >¿Esta seguro de eliminar la foto? </h5>
                                                             </div>
+                                                            </div>
+
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-danger"
+                                                                <button style="width:100px;" type="button" class="btn btn-danger"
                                                                     data-dismiss="modal">No</button>
-                                                                <button id="btnConfirmar{{f.id}}" type="button"
+                                                                <button  id="btnConfirmar{{f.id}}" type="button"
                                                                     class="btn btn-success" (click)="delete(f)"
                                                                     data-dismiss="modal">Aceptar</button>
                                                             </div>
@@ -314,24 +314,24 @@
                                         <tr>
                                             <td>{{a.nombre}}</td>
                                             <td>
-                                                
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" 
+
+                                                <button type="button" class="btn btn-danger" data-toggle="modal"
                                                 data-target="#modalEliminarA"><span class="bi bi-trash-fill"></span></button>
 
                                                 <div class="modal fade" id="modalEliminarA" role="dialog">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel"><strong>Confirmar</strong>
-                                                                </h5>
+
+                                                          <div class="boton-modal-eliminar">
                                                             <button type="button" class="close" style="color:black" data-dismiss="modal"
                                                                 aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
-                                                            </div>
+
                                                             <div class="modal-body">
                                                                 ¿Esta seguro de eliminar el documento?
                                                             </div>
+                                                          </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-danger"
                                                                     data-dismiss="modal">No</button>
@@ -342,7 +342,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
 
                                             </td>
                                         </tr>
@@ -356,7 +356,7 @@
                                 </mat-paginator>
                         </div>
 
-                       
+
 
                     </div>
                     <!--DOCUMENTOS-->
